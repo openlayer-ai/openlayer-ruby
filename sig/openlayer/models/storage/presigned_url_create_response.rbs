@@ -1,0 +1,22 @@
+module Openlayer
+  module Models
+    module Storage
+      type presigned_url_create_response =
+        { storage_uri: String, url: String, fields: top }
+
+      class PresignedURLCreateResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor storage_uri: String
+
+        attr_accessor url: String
+
+        attr_reader fields: top?
+
+        def fields=: (top) -> top
+
+        def initialize: (storage_uri: String, url: String, ?fields: top) -> void
+
+        def to_hash: -> { storage_uri: String, url: String, fields: top }
+      end
+    end
+  end
+end

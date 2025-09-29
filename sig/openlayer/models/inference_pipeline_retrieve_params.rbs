@@ -1,0 +1,41 @@
+module Openlayer
+  module Models
+    type inference_pipeline_retrieve_params =
+      {
+        expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]
+      }
+      & Openlayer::Internal::Type::request_parameters
+
+    class InferencePipelineRetrieveParams < Openlayer::Internal::Type::BaseModel
+      extend Openlayer::Internal::Type::RequestParameters::Converter
+      include Openlayer::Internal::Type::RequestParameters
+
+      attr_reader expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]?
+
+      def expand=: (
+        ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]
+      ) -> ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]
+
+      def initialize: (
+        ?expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand],
+        ?request_options: Openlayer::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand],
+        request_options: Openlayer::RequestOptions
+      }
+
+      type expand = :project | :workspace
+
+      module Expand
+        extend Openlayer::Internal::Type::Enum
+
+        PROJECT: :project
+        WORKSPACE: :workspace
+
+        def self?.values: -> ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]
+      end
+    end
+  end
+end

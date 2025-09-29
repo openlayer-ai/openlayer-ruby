@@ -1,0 +1,386 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type data_stream_params =
+        {
+          config: Openlayer::Models::InferencePipelines::DataStreamParams::config,
+          rows: ::Array[::Hash[Symbol, top]]
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class DataStreamParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor config: Openlayer::Models::InferencePipelines::DataStreamParams::config
+
+        attr_accessor rows: ::Array[::Hash[Symbol, top]]
+
+        def initialize: (
+          config: Openlayer::Models::InferencePipelines::DataStreamParams::config,
+          rows: ::Array[::Hash[Symbol, top]],
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          config: Openlayer::Models::InferencePipelines::DataStreamParams::config,
+          rows: ::Array[::Hash[Symbol, top]],
+          request_options: Openlayer::RequestOptions
+        }
+
+        type config =
+          Openlayer::InferencePipelines::DataStreamParams::Config::LlmData
+          | Openlayer::InferencePipelines::DataStreamParams::Config::TabularClassificationData
+          | Openlayer::InferencePipelines::DataStreamParams::Config::TabularRegressionData
+          | Openlayer::InferencePipelines::DataStreamParams::Config::TextClassificationData
+
+        module Config
+          extend Openlayer::Internal::Type::Union
+
+          type llm_data =
+            {
+              output_column_name: String,
+              context_column_name: String,
+              cost_column_name: String,
+              ground_truth_column_name: String,
+              inference_id_column_name: String,
+              input_variable_names: ::Array[String],
+              latency_column_name: String,
+              metadata: top,
+              num_of_token_column_name: String?,
+              prompt: ::Array[Openlayer::InferencePipelines::DataStreamParams::Config::LlmData::Prompt],
+              question_column_name: String,
+              session_id_column_name: String?,
+              timestamp_column_name: String,
+              user_id_column_name: String?
+            }
+
+          class LlmData < Openlayer::Internal::Type::BaseModel
+            attr_accessor output_column_name: String
+
+            attr_reader context_column_name: String?
+
+            def context_column_name=: (String) -> String
+
+            attr_reader cost_column_name: String?
+
+            def cost_column_name=: (String) -> String
+
+            attr_reader ground_truth_column_name: String?
+
+            def ground_truth_column_name=: (String) -> String
+
+            attr_reader inference_id_column_name: String?
+
+            def inference_id_column_name=: (String) -> String
+
+            attr_reader input_variable_names: ::Array[String]?
+
+            def input_variable_names=: (::Array[String]) -> ::Array[String]
+
+            attr_reader latency_column_name: String?
+
+            def latency_column_name=: (String) -> String
+
+            attr_reader metadata: top?
+
+            def metadata=: (top) -> top
+
+            attr_accessor num_of_token_column_name: String?
+
+            attr_reader prompt: ::Array[Openlayer::InferencePipelines::DataStreamParams::Config::LlmData::Prompt]?
+
+            def prompt=: (
+              ::Array[Openlayer::InferencePipelines::DataStreamParams::Config::LlmData::Prompt]
+            ) -> ::Array[Openlayer::InferencePipelines::DataStreamParams::Config::LlmData::Prompt]
+
+            attr_reader question_column_name: String?
+
+            def question_column_name=: (String) -> String
+
+            attr_accessor session_id_column_name: String?
+
+            attr_reader timestamp_column_name: String?
+
+            def timestamp_column_name=: (String) -> String
+
+            attr_accessor user_id_column_name: String?
+
+            def initialize: (
+              output_column_name: String,
+              ?context_column_name: String,
+              ?cost_column_name: String,
+              ?ground_truth_column_name: String,
+              ?inference_id_column_name: String,
+              ?input_variable_names: ::Array[String],
+              ?latency_column_name: String,
+              ?metadata: top,
+              ?num_of_token_column_name: String?,
+              ?prompt: ::Array[Openlayer::InferencePipelines::DataStreamParams::Config::LlmData::Prompt],
+              ?question_column_name: String,
+              ?session_id_column_name: String?,
+              ?timestamp_column_name: String,
+              ?user_id_column_name: String?
+            ) -> void
+
+            def to_hash: -> {
+              output_column_name: String,
+              context_column_name: String,
+              cost_column_name: String,
+              ground_truth_column_name: String,
+              inference_id_column_name: String,
+              input_variable_names: ::Array[String],
+              latency_column_name: String,
+              metadata: top,
+              num_of_token_column_name: String?,
+              prompt: ::Array[Openlayer::InferencePipelines::DataStreamParams::Config::LlmData::Prompt],
+              question_column_name: String,
+              session_id_column_name: String?,
+              timestamp_column_name: String,
+              user_id_column_name: String?
+            }
+
+            type prompt = { content: String, role: String }
+
+            class Prompt < Openlayer::Internal::Type::BaseModel
+              attr_reader content: String?
+
+              def content=: (String) -> String
+
+              attr_reader role: String?
+
+              def role=: (String) -> String
+
+              def initialize: (?content: String, ?role: String) -> void
+
+              def to_hash: -> { content: String, role: String }
+            end
+          end
+
+          type tabular_classification_data =
+            {
+              class_names: ::Array[String],
+              categorical_feature_names: ::Array[String],
+              feature_names: ::Array[String],
+              inference_id_column_name: String,
+              label_column_name: String,
+              latency_column_name: String,
+              metadata: top,
+              predictions_column_name: String,
+              prediction_scores_column_name: String,
+              timestamp_column_name: String
+            }
+
+          class TabularClassificationData < Openlayer::Internal::Type::BaseModel
+            attr_accessor class_names: ::Array[String]
+
+            attr_reader categorical_feature_names: ::Array[String]?
+
+            def categorical_feature_names=: (::Array[String]) -> ::Array[String]
+
+            attr_reader feature_names: ::Array[String]?
+
+            def feature_names=: (::Array[String]) -> ::Array[String]
+
+            attr_reader inference_id_column_name: String?
+
+            def inference_id_column_name=: (String) -> String
+
+            attr_reader label_column_name: String?
+
+            def label_column_name=: (String) -> String
+
+            attr_reader latency_column_name: String?
+
+            def latency_column_name=: (String) -> String
+
+            attr_reader metadata: top?
+
+            def metadata=: (top) -> top
+
+            attr_reader predictions_column_name: String?
+
+            def predictions_column_name=: (String) -> String
+
+            attr_reader prediction_scores_column_name: String?
+
+            def prediction_scores_column_name=: (String) -> String
+
+            attr_reader timestamp_column_name: String?
+
+            def timestamp_column_name=: (String) -> String
+
+            def initialize: (
+              class_names: ::Array[String],
+              ?categorical_feature_names: ::Array[String],
+              ?feature_names: ::Array[String],
+              ?inference_id_column_name: String,
+              ?label_column_name: String,
+              ?latency_column_name: String,
+              ?metadata: top,
+              ?predictions_column_name: String,
+              ?prediction_scores_column_name: String,
+              ?timestamp_column_name: String
+            ) -> void
+
+            def to_hash: -> {
+              class_names: ::Array[String],
+              categorical_feature_names: ::Array[String],
+              feature_names: ::Array[String],
+              inference_id_column_name: String,
+              label_column_name: String,
+              latency_column_name: String,
+              metadata: top,
+              predictions_column_name: String,
+              prediction_scores_column_name: String,
+              timestamp_column_name: String
+            }
+          end
+
+          type tabular_regression_data =
+            {
+              categorical_feature_names: ::Array[String],
+              feature_names: ::Array[String],
+              inference_id_column_name: String,
+              latency_column_name: String,
+              metadata: top,
+              predictions_column_name: String,
+              target_column_name: String,
+              timestamp_column_name: String
+            }
+
+          class TabularRegressionData < Openlayer::Internal::Type::BaseModel
+            attr_reader categorical_feature_names: ::Array[String]?
+
+            def categorical_feature_names=: (::Array[String]) -> ::Array[String]
+
+            attr_reader feature_names: ::Array[String]?
+
+            def feature_names=: (::Array[String]) -> ::Array[String]
+
+            attr_reader inference_id_column_name: String?
+
+            def inference_id_column_name=: (String) -> String
+
+            attr_reader latency_column_name: String?
+
+            def latency_column_name=: (String) -> String
+
+            attr_reader metadata: top?
+
+            def metadata=: (top) -> top
+
+            attr_reader predictions_column_name: String?
+
+            def predictions_column_name=: (String) -> String
+
+            attr_reader target_column_name: String?
+
+            def target_column_name=: (String) -> String
+
+            attr_reader timestamp_column_name: String?
+
+            def timestamp_column_name=: (String) -> String
+
+            def initialize: (
+              ?categorical_feature_names: ::Array[String],
+              ?feature_names: ::Array[String],
+              ?inference_id_column_name: String,
+              ?latency_column_name: String,
+              ?metadata: top,
+              ?predictions_column_name: String,
+              ?target_column_name: String,
+              ?timestamp_column_name: String
+            ) -> void
+
+            def to_hash: -> {
+              categorical_feature_names: ::Array[String],
+              feature_names: ::Array[String],
+              inference_id_column_name: String,
+              latency_column_name: String,
+              metadata: top,
+              predictions_column_name: String,
+              target_column_name: String,
+              timestamp_column_name: String
+            }
+          end
+
+          type text_classification_data =
+            {
+              class_names: ::Array[String],
+              inference_id_column_name: String,
+              label_column_name: String,
+              latency_column_name: String,
+              metadata: top,
+              predictions_column_name: String,
+              prediction_scores_column_name: String,
+              text_column_name: String,
+              timestamp_column_name: String
+            }
+
+          class TextClassificationData < Openlayer::Internal::Type::BaseModel
+            attr_accessor class_names: ::Array[String]
+
+            attr_reader inference_id_column_name: String?
+
+            def inference_id_column_name=: (String) -> String
+
+            attr_reader label_column_name: String?
+
+            def label_column_name=: (String) -> String
+
+            attr_reader latency_column_name: String?
+
+            def latency_column_name=: (String) -> String
+
+            attr_reader metadata: top?
+
+            def metadata=: (top) -> top
+
+            attr_reader predictions_column_name: String?
+
+            def predictions_column_name=: (String) -> String
+
+            attr_reader prediction_scores_column_name: String?
+
+            def prediction_scores_column_name=: (String) -> String
+
+            attr_reader text_column_name: String?
+
+            def text_column_name=: (String) -> String
+
+            attr_reader timestamp_column_name: String?
+
+            def timestamp_column_name=: (String) -> String
+
+            def initialize: (
+              class_names: ::Array[String],
+              ?inference_id_column_name: String,
+              ?label_column_name: String,
+              ?latency_column_name: String,
+              ?metadata: top,
+              ?predictions_column_name: String,
+              ?prediction_scores_column_name: String,
+              ?text_column_name: String,
+              ?timestamp_column_name: String
+            ) -> void
+
+            def to_hash: -> {
+              class_names: ::Array[String],
+              inference_id_column_name: String,
+              label_column_name: String,
+              latency_column_name: String,
+              metadata: top,
+              predictions_column_name: String,
+              prediction_scores_column_name: String,
+              text_column_name: String,
+              timestamp_column_name: String
+            }
+          end
+
+          def self?.variants: -> ::Array[Openlayer::Models::InferencePipelines::DataStreamParams::config]
+        end
+      end
+    end
+  end
+end

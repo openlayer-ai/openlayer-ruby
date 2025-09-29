@@ -1,0 +1,14 @@
+module Openlayer
+  module Resources
+    class Commits
+      attr_reader test_results: Openlayer::Resources::Commits::TestResults
+
+      def retrieve: (
+        String project_version_id,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::CommitRetrieveResponse
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end

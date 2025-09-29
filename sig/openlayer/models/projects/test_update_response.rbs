@@ -1,0 +1,25 @@
+module Openlayer
+  module Models
+    module Projects
+      type test_update_response =
+        { task_result_id: String, task_result_url: String }
+
+      class TestUpdateResponse < Openlayer::Internal::Type::BaseModel
+        attr_reader task_result_id: String?
+
+        def task_result_id=: (String) -> String
+
+        attr_reader task_result_url: String?
+
+        def task_result_url=: (String) -> String
+
+        def initialize: (
+          ?task_result_id: String,
+          ?task_result_url: String
+        ) -> void
+
+        def to_hash: -> { task_result_id: String, task_result_url: String }
+      end
+    end
+  end
+end

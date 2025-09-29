@@ -1,0 +1,25 @@
+module Openlayer
+  module Models
+    module Storage
+      type presigned_url_create_params =
+        { object_name: String } & Openlayer::Internal::Type::request_parameters
+
+      class PresignedURLCreateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor object_name: String
+
+        def initialize: (
+          object_name: String,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          object_name: String,
+          request_options: Openlayer::RequestOptions
+        }
+      end
+    end
+  end
+end

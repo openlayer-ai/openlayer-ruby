@@ -1,0 +1,84 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type test_result_list_params =
+        {
+          page: Integer,
+          per_page: Integer,
+          status: Openlayer::Models::InferencePipelines::TestResultListParams::status,
+          type: Openlayer::Models::InferencePipelines::TestResultListParams::type_
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class TestResultListParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader per_page: Integer?
+
+        def per_page=: (Integer) -> Integer
+
+        attr_reader status: Openlayer::Models::InferencePipelines::TestResultListParams::status?
+
+        def status=: (
+          Openlayer::Models::InferencePipelines::TestResultListParams::status
+        ) -> Openlayer::Models::InferencePipelines::TestResultListParams::status
+
+        attr_reader type: Openlayer::Models::InferencePipelines::TestResultListParams::type_?
+
+        def type=: (
+          Openlayer::Models::InferencePipelines::TestResultListParams::type_
+        ) -> Openlayer::Models::InferencePipelines::TestResultListParams::type_
+
+        def initialize: (
+          ?page: Integer,
+          ?per_page: Integer,
+          ?status: Openlayer::Models::InferencePipelines::TestResultListParams::status,
+          ?type: Openlayer::Models::InferencePipelines::TestResultListParams::type_,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          page: Integer,
+          per_page: Integer,
+          status: Openlayer::Models::InferencePipelines::TestResultListParams::status,
+          type: Openlayer::Models::InferencePipelines::TestResultListParams::type_,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type status = :running | :passing | :failing | :skipped | :error
+
+        module Status
+          extend Openlayer::Internal::Type::Enum
+
+          RUNNING: :running
+          PASSING: :passing
+          FAILING: :failing
+          SKIPPED: :skipped
+          ERROR: :error
+
+          def self?.values: -> ::Array[Openlayer::Models::InferencePipelines::TestResultListParams::status]
+        end
+
+        type type_ =
+          :integrity | :consistency | :performance | :fairness | :robustness
+
+        module Type
+          extend Openlayer::Internal::Type::Enum
+
+          INTEGRITY: :integrity
+          CONSISTENCY: :consistency
+          PERFORMANCE: :performance
+          FAIRNESS: :fairness
+          ROBUSTNESS: :robustness
+
+          def self?.values: -> ::Array[Openlayer::Models::InferencePipelines::TestResultListParams::type_]
+        end
+      end
+    end
+  end
+end

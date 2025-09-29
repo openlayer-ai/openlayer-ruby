@@ -1,0 +1,21 @@
+module Openlayer
+  class CommitRetrieveParams = Openlayer::Models::CommitRetrieveParams
+
+  module Commits = Openlayer::Models::Commits
+
+  class InferencePipelineDeleteParams = Openlayer::Models::InferencePipelineDeleteParams
+
+  class InferencePipelineRetrieveParams = Openlayer::Models::InferencePipelineRetrieveParams
+
+  module InferencePipelines = Openlayer::Models::InferencePipelines
+
+  class InferencePipelineUpdateParams = Openlayer::Models::InferencePipelineUpdateParams
+
+  class ProjectCreateParams = Openlayer::Models::ProjectCreateParams
+
+  class ProjectListParams = Openlayer::Models::ProjectListParams
+
+  module Projects = Openlayer::Models::Projects
+
+  module Storage = Openlayer::Models::Storage
+end

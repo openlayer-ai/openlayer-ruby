@@ -1,0 +1,53 @@
+module Openlayer
+  module Models
+    type project_create_params =
+      {
+        name: String,
+        task_type: Openlayer::Models::ProjectCreateParams::task_type,
+        description: String?
+      }
+      & Openlayer::Internal::Type::request_parameters
+
+    class ProjectCreateParams < Openlayer::Internal::Type::BaseModel
+      extend Openlayer::Internal::Type::RequestParameters::Converter
+      include Openlayer::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor task_type: Openlayer::Models::ProjectCreateParams::task_type
+
+      attr_accessor description: String?
+
+      def initialize: (
+        name: String,
+        task_type: Openlayer::Models::ProjectCreateParams::task_type,
+        ?description: String?,
+        ?request_options: Openlayer::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        task_type: Openlayer::Models::ProjectCreateParams::task_type,
+        description: String?,
+        request_options: Openlayer::RequestOptions
+      }
+
+      type task_type =
+        :"llm-base"
+        | :"tabular-classification"
+        | :"tabular-regression"
+        | :"text-classification"
+
+      module TaskType
+        extend Openlayer::Internal::Type::Enum
+
+        LLM_BASE: :"llm-base"
+        TABULAR_CLASSIFICATION: :"tabular-classification"
+        TABULAR_REGRESSION: :"tabular-regression"
+        TEXT_CLASSIFICATION: :"text-classification"
+
+        def self?.values: -> ::Array[Openlayer::Models::ProjectCreateParams::task_type]
+      end
+    end
+  end
+end

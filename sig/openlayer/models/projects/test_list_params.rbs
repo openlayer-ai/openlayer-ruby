@@ -1,0 +1,85 @@
+module Openlayer
+  module Models
+    module Projects
+      type test_list_params =
+        {
+          include_archived: bool,
+          origin_version_id: String?,
+          page: Integer,
+          per_page: Integer,
+          suggested: bool,
+          type: Openlayer::Models::Projects::TestListParams::type_,
+          uses_production_data: bool?
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class TestListParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_reader include_archived: bool?
+
+        def include_archived=: (bool) -> bool
+
+        attr_accessor origin_version_id: String?
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader per_page: Integer?
+
+        def per_page=: (Integer) -> Integer
+
+        attr_reader suggested: bool?
+
+        def suggested=: (bool) -> bool
+
+        attr_reader type: Openlayer::Models::Projects::TestListParams::type_?
+
+        def type=: (
+          Openlayer::Models::Projects::TestListParams::type_
+        ) -> Openlayer::Models::Projects::TestListParams::type_
+
+        attr_accessor uses_production_data: bool?
+
+        def initialize: (
+          ?include_archived: bool,
+          ?origin_version_id: String?,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?suggested: bool,
+          ?type: Openlayer::Models::Projects::TestListParams::type_,
+          ?uses_production_data: bool?,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          include_archived: bool,
+          origin_version_id: String?,
+          page: Integer,
+          per_page: Integer,
+          suggested: bool,
+          type: Openlayer::Models::Projects::TestListParams::type_,
+          uses_production_data: bool?,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type type_ =
+          :integrity | :consistency | :performance | :fairness | :robustness
+
+        module Type
+          extend Openlayer::Internal::Type::Enum
+
+          INTEGRITY: :integrity
+          CONSISTENCY: :consistency
+          PERFORMANCE: :performance
+          FAIRNESS: :fairness
+          ROBUSTNESS: :robustness
+
+          def self?.values: -> ::Array[Openlayer::Models::Projects::TestListParams::type_]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Openlayer
+  module Resources
+    class Storage
+      class PresignedURL
+        def create: (
+          object_name: String,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Storage::PresignedURLCreateResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

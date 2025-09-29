@@ -1,0 +1,28 @@
+module Openlayer
+  module Resources
+    class Projects
+      attr_reader commits: Openlayer::Resources::Projects::Commits
+
+      attr_reader inference_pipelines: Openlayer::Resources::Projects::InferencePipelines
+
+      attr_reader tests: Openlayer::Resources::Projects::Tests
+
+      def create: (
+        name: String,
+        task_type: Openlayer::Models::ProjectCreateParams::task_type,
+        ?description: String?,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::ProjectCreateResponse
+
+      def list: (
+        ?name: String,
+        ?page: Integer,
+        ?per_page: Integer,
+        ?task_type: Openlayer::Models::ProjectListParams::task_type,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::ProjectListResponse
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end

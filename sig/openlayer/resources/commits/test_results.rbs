@@ -1,0 +1,19 @@
+module Openlayer
+  module Resources
+    class Commits
+      class TestResults
+        def list: (
+          String project_version_id,
+          ?include_archived: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?status: Openlayer::Models::Commits::TestResultListParams::status,
+          ?type: Openlayer::Models::Commits::TestResultListParams::type_,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Commits::TestResultListResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

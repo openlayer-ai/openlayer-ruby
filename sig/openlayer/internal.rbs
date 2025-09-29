@@ -1,0 +1,9 @@
+module Openlayer
+  module Internal
+    extend Openlayer::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Openlayer::FilePart
+
+    OMIT: Object
+  end
+end

@@ -1,0 +1,68 @@
+module Openlayer
+  module Models
+    type project_list_params =
+      {
+        name: String,
+        page: Integer,
+        per_page: Integer,
+        task_type: Openlayer::Models::ProjectListParams::task_type
+      }
+      & Openlayer::Internal::Type::request_parameters
+
+    class ProjectListParams < Openlayer::Internal::Type::BaseModel
+      extend Openlayer::Internal::Type::RequestParameters::Converter
+      include Openlayer::Internal::Type::RequestParameters
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      attr_reader per_page: Integer?
+
+      def per_page=: (Integer) -> Integer
+
+      attr_reader task_type: Openlayer::Models::ProjectListParams::task_type?
+
+      def task_type=: (
+        Openlayer::Models::ProjectListParams::task_type
+      ) -> Openlayer::Models::ProjectListParams::task_type
+
+      def initialize: (
+        ?name: String,
+        ?page: Integer,
+        ?per_page: Integer,
+        ?task_type: Openlayer::Models::ProjectListParams::task_type,
+        ?request_options: Openlayer::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        page: Integer,
+        per_page: Integer,
+        task_type: Openlayer::Models::ProjectListParams::task_type,
+        request_options: Openlayer::RequestOptions
+      }
+
+      type task_type =
+        :"llm-base"
+        | :"tabular-classification"
+        | :"tabular-regression"
+        | :"text-classification"
+
+      module TaskType
+        extend Openlayer::Internal::Type::Enum
+
+        LLM_BASE: :"llm-base"
+        TABULAR_CLASSIFICATION: :"tabular-classification"
+        TABULAR_REGRESSION: :"tabular-regression"
+        TEXT_CLASSIFICATION: :"text-classification"
+
+        def self?.values: -> ::Array[Openlayer::Models::ProjectListParams::task_type]
+      end
+    end
+  end
+end

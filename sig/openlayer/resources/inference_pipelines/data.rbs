@@ -1,0 +1,16 @@
+module Openlayer
+  module Resources
+    class InferencePipelines
+      class Data
+        def stream: (
+          String inference_pipeline_id,
+          config: Openlayer::Models::InferencePipelines::DataStreamParams::config,
+          rows: ::Array[::Hash[Symbol, top]],
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::InferencePipelines::DataStreamResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type data_stream_response =
+        {
+          success: Openlayer::Models::InferencePipelines::DataStreamResponse::success
+        }
+
+      class DataStreamResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor success: Openlayer::Models::InferencePipelines::DataStreamResponse::success
+
+        def initialize: (
+          success: Openlayer::Models::InferencePipelines::DataStreamResponse::success
+        ) -> void
+
+        def to_hash: -> {
+          success: Openlayer::Models::InferencePipelines::DataStreamResponse::success
+        }
+
+        type success = true
+
+        module Success
+          extend Openlayer::Internal::Type::Enum
+
+          TRUE: true
+
+          def self?.values: -> ::Array[Openlayer::Models::InferencePipelines::DataStreamResponse::success]
+        end
+      end
+    end
+  end
+end

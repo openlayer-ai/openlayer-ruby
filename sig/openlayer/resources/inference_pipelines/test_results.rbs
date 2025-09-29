@@ -1,0 +1,18 @@
+module Openlayer
+  module Resources
+    class InferencePipelines
+      class TestResults
+        def list: (
+          String inference_pipeline_id,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?status: Openlayer::Models::InferencePipelines::TestResultListParams::status,
+          ?type: Openlayer::Models::InferencePipelines::TestResultListParams::type_,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::InferencePipelines::TestResultListResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

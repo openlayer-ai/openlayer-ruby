@@ -1,0 +1,9 @@
+module Openlayer
+  module Resources
+    class Storage
+      attr_reader presigned_url: Openlayer::Resources::Storage::PresignedURL
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end
