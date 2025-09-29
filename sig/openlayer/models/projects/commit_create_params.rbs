@@ -1,0 +1,82 @@
+module Openlayer
+  module Models
+    module Projects
+      type commit_create_params =
+        {
+          commit: Openlayer::Projects::CommitCreateParams::Commit,
+          storage_uri: String,
+          archived: bool?,
+          deployment_status: String
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class CommitCreateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor commit: Openlayer::Projects::CommitCreateParams::Commit
+
+        attr_accessor storage_uri: String
+
+        attr_accessor archived: bool?
+
+        attr_reader deployment_status: String?
+
+        def deployment_status=: (String) -> String
+
+        def initialize: (
+          commit: Openlayer::Projects::CommitCreateParams::Commit,
+          storage_uri: String,
+          ?archived: bool?,
+          ?deployment_status: String,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          commit: Openlayer::Projects::CommitCreateParams::Commit,
+          storage_uri: String,
+          archived: bool?,
+          deployment_status: String,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type commit =
+          {
+            id: String,
+            author_id: String,
+            file_size: Integer?,
+            message: String,
+            ml_model_id: String?,
+            storage_uri: String,
+            training_dataset_id: String?,
+            validation_dataset_id: String?,
+            date_created: Time,
+            git_commit_ref: String,
+            git_commit_sha: Integer,
+            git_commit_url: String
+          }
+
+        class Commit < Openlayer::Internal::Type::BaseModel
+          attr_accessor message: String
+
+          def initialize: (message: String) -> void
+
+          def to_hash: -> {
+            id: String,
+            author_id: String,
+            file_size: Integer?,
+            message: String,
+            ml_model_id: String?,
+            storage_uri: String,
+            training_dataset_id: String?,
+            validation_dataset_id: String?,
+            date_created: Time,
+            git_commit_ref: String,
+            git_commit_sha: Integer,
+            git_commit_url: String
+          }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,228 @@
+module Openlayer
+  module Models
+    module Projects
+      type commit_list_response =
+        {
+          items: ::Array[Openlayer::Models::Projects::CommitListResponse::Item]
+        }
+
+      class CommitListResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Openlayer::Models::Projects::CommitListResponse::Item]
+
+        def initialize: (
+          items: ::Array[Openlayer::Models::Projects::CommitListResponse::Item]
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Openlayer::Models::Projects::CommitListResponse::Item]
+        }
+
+        type item =
+          {
+            id: String,
+            commit: Openlayer::Models::Projects::CommitListResponse::Item::Commit,
+            date_archived: Time?,
+            date_created: Time,
+            failing_goal_count: Integer,
+            ml_model_id: String?,
+            passing_goal_count: Integer,
+            project_id: String,
+            status: Openlayer::Models::Projects::CommitListResponse::Item::status,
+            status_message: String?,
+            storage_uri: String,
+            total_goal_count: Integer,
+            training_dataset_id: String?,
+            validation_dataset_id: String?,
+            archived: bool?,
+            deployment_status: String,
+            links: Openlayer::Models::Projects::CommitListResponse::Item::Links
+          }
+
+        class Item < Openlayer::Internal::Type::BaseModel
+          attr_accessor commit: Openlayer::Models::Projects::CommitListResponse::Item::Commit
+
+          attr_accessor archived: bool?
+
+          attr_reader deployment_status: String?
+
+          def deployment_status=: (String) -> String
+
+          attr_accessor id: String
+
+          attr_accessor date_archived: Time?
+
+          attr_accessor date_created: Time
+
+          attr_accessor failing_goal_count: Integer
+
+          attr_accessor ml_model_id: String?
+
+          attr_accessor passing_goal_count: Integer
+
+          attr_accessor project_id: String
+
+          attr_accessor status: Openlayer::Models::Projects::CommitListResponse::Item::status
+
+          attr_accessor status_message: String?
+
+          attr_accessor total_goal_count: Integer
+
+          attr_accessor training_dataset_id: String?
+
+          attr_accessor validation_dataset_id: String?
+
+          attr_reader links: Openlayer::Models::Projects::CommitListResponse::Item::Links?
+
+          def links=: (
+            Openlayer::Models::Projects::CommitListResponse::Item::Links
+          ) -> Openlayer::Models::Projects::CommitListResponse::Item::Links
+
+          def initialize: (
+            id: String,
+            commit: Openlayer::Models::Projects::CommitListResponse::Item::Commit,
+            date_archived: Time?,
+            date_created: Time,
+            failing_goal_count: Integer,
+            ml_model_id: String?,
+            passing_goal_count: Integer,
+            project_id: String,
+            status: Openlayer::Models::Projects::CommitListResponse::Item::status,
+            status_message: String?,
+            total_goal_count: Integer,
+            training_dataset_id: String?,
+            validation_dataset_id: String?,
+            ?archived: bool?,
+            ?deployment_status: String,
+            ?links: Openlayer::Models::Projects::CommitListResponse::Item::Links
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            commit: Openlayer::Models::Projects::CommitListResponse::Item::Commit,
+            date_archived: Time?,
+            date_created: Time,
+            failing_goal_count: Integer,
+            ml_model_id: String?,
+            passing_goal_count: Integer,
+            project_id: String,
+            status: Openlayer::Models::Projects::CommitListResponse::Item::status,
+            status_message: String?,
+            storage_uri: String,
+            total_goal_count: Integer,
+            training_dataset_id: String?,
+            validation_dataset_id: String?,
+            archived: bool?,
+            deployment_status: String,
+            links: Openlayer::Models::Projects::CommitListResponse::Item::Links
+          }
+
+          type commit =
+            {
+              id: String,
+              author_id: String,
+              file_size: Integer?,
+              message: String,
+              ml_model_id: String?,
+              storage_uri: String,
+              training_dataset_id: String?,
+              validation_dataset_id: String?,
+              date_created: Time,
+              git_commit_ref: String,
+              git_commit_sha: Integer,
+              git_commit_url: String
+            }
+
+          class Commit < Openlayer::Internal::Type::BaseModel
+            attr_accessor message: String
+
+            attr_accessor id: String
+
+            attr_accessor author_id: String
+
+            attr_accessor file_size: Integer?
+
+            attr_accessor ml_model_id: String?
+
+            attr_accessor storage_uri: String
+
+            attr_accessor training_dataset_id: String?
+
+            attr_accessor validation_dataset_id: String?
+
+            attr_reader date_created: Time?
+
+            def date_created=: (Time) -> Time
+
+            attr_reader git_commit_ref: String?
+
+            def git_commit_ref=: (String) -> String
+
+            attr_reader git_commit_sha: Integer?
+
+            def git_commit_sha=: (Integer) -> Integer
+
+            attr_reader git_commit_url: String?
+
+            def git_commit_url=: (String) -> String
+
+            def initialize: (
+              id: String,
+              author_id: String,
+              file_size: Integer?,
+              message: String,
+              ml_model_id: String?,
+              storage_uri: String,
+              training_dataset_id: String?,
+              validation_dataset_id: String?,
+              ?date_created: Time,
+              ?git_commit_ref: String,
+              ?git_commit_sha: Integer,
+              ?git_commit_url: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              author_id: String,
+              file_size: Integer?,
+              message: String,
+              ml_model_id: String?,
+              storage_uri: String,
+              training_dataset_id: String?,
+              validation_dataset_id: String?,
+              date_created: Time,
+              git_commit_ref: String,
+              git_commit_sha: Integer,
+              git_commit_url: String
+            }
+          end
+
+          type status =
+            :queued | :running | :paused | :failed | :completed | :unknown
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            QUEUED: :queued
+            RUNNING: :running
+            PAUSED: :paused
+            FAILED: :failed
+            COMPLETED: :completed
+            UNKNOWN: :unknown
+
+            def self?.values: -> ::Array[Openlayer::Models::Projects::CommitListResponse::Item::status]
+          end
+
+          type links = { app: String }
+
+          class Links < Openlayer::Internal::Type::BaseModel
+            attr_accessor app: String
+
+            def initialize: (app: String) -> void
+
+            def to_hash: -> { app: String }
+          end
+        end
+      end
+    end
+  end
+end

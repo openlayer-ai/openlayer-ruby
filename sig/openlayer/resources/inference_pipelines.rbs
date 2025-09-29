@@ -1,0 +1,32 @@
+module Openlayer
+  module Resources
+    class InferencePipelines
+      attr_reader data: Openlayer::Resources::InferencePipelines::Data
+
+      attr_reader rows: Openlayer::Resources::InferencePipelines::Rows
+
+      attr_reader test_results: Openlayer::Resources::InferencePipelines::TestResults
+
+      def retrieve: (
+        String inference_pipeline_id,
+        ?expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand],
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::InferencePipelineRetrieveResponse
+
+      def update: (
+        String inference_pipeline_id,
+        ?description: String?,
+        ?name: String,
+        ?reference_dataset_uri: String?,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::InferencePipelineUpdateResponse
+
+      def delete: (
+        String inference_pipeline_id,
+        ?request_options: Openlayer::request_opts
+      ) -> nil
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end

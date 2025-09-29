@@ -1,0 +1,275 @@
+module Openlayer
+  module Models
+    module Projects
+      type test_update_params =
+        { payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload] }
+        & Openlayer::Internal::Type::request_parameters
+
+      class TestUpdateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload]
+
+        def initialize: (
+          payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload],
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload],
+          request_options: Openlayer::RequestOptions
+        }
+
+        type payload =
+          {
+            id: String,
+            archived: bool,
+            description: top?,
+            name: String,
+            suggested: Openlayer::Models::Projects::TestUpdateParams::Payload::suggested,
+            thresholds: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold]
+          }
+
+        class Payload < Openlayer::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_reader archived: bool?
+
+          def archived=: (bool) -> bool
+
+          attr_accessor description: top?
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          attr_reader suggested: Openlayer::Models::Projects::TestUpdateParams::Payload::suggested?
+
+          def suggested=: (
+            Openlayer::Models::Projects::TestUpdateParams::Payload::suggested
+          ) -> Openlayer::Models::Projects::TestUpdateParams::Payload::suggested
+
+          attr_reader thresholds: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold]?
+
+          def thresholds=: (
+            ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold]
+          ) -> ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold]
+
+          def initialize: (
+            id: String,
+            ?archived: bool,
+            ?description: top?,
+            ?name: String,
+            ?suggested: Openlayer::Models::Projects::TestUpdateParams::Payload::suggested,
+            ?thresholds: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold]
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            archived: bool,
+            description: top?,
+            name: String,
+            suggested: Openlayer::Models::Projects::TestUpdateParams::Payload::suggested,
+            thresholds: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold]
+          }
+
+          type suggested = false
+
+          module Suggested
+            extend Openlayer::Internal::Type::Enum
+
+            FALSE: false
+
+            def self?.values: -> ::Array[Openlayer::Models::Projects::TestUpdateParams::Payload::suggested]
+          end
+
+          type threshold =
+            {
+              insight_name: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::insight_name,
+              insight_parameters: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold::InsightParameter]?,
+              measurement: String,
+              operator: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::operator,
+              threshold_mode: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::threshold_mode,
+              value: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::value
+            }
+
+          class Threshold < Openlayer::Internal::Type::BaseModel
+            attr_reader insight_name: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::insight_name?
+
+            def insight_name=: (
+              Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::insight_name
+            ) -> Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::insight_name
+
+            attr_accessor insight_parameters: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold::InsightParameter]?
+
+            attr_reader measurement: String?
+
+            def measurement=: (String) -> String
+
+            attr_reader operator: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::operator?
+
+            def operator=: (
+              Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::operator
+            ) -> Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::operator
+
+            attr_reader threshold_mode: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::threshold_mode?
+
+            def threshold_mode=: (
+              Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::threshold_mode
+            ) -> Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::threshold_mode
+
+            attr_reader value: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::value?
+
+            def value=: (
+              Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::value
+            ) -> Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::value
+
+            def initialize: (
+              ?insight_name: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::insight_name,
+              ?insight_parameters: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold::InsightParameter]?,
+              ?measurement: String,
+              ?operator: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::operator,
+              ?threshold_mode: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::threshold_mode,
+              ?value: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::value
+            ) -> void
+
+            def to_hash: -> {
+              insight_name: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::insight_name,
+              insight_parameters: ::Array[Openlayer::Projects::TestUpdateParams::Payload::Threshold::InsightParameter]?,
+              measurement: String,
+              operator: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::operator,
+              threshold_mode: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::threshold_mode,
+              value: Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::value
+            }
+
+            type insight_name =
+              :characterLength
+              | :classImbalance
+              | :expectColumnAToBeInColumnB
+              | :columnAverage
+              | :columnDrift
+              | :columnValuesMatch
+              | :confidenceDistribution
+              | :conflictingLabelRowCount
+              | :containsPii
+              | :containsValidUrl
+              | :correlatedFeatures
+              | :customMetric
+              | :duplicateRowCount
+              | :emptyFeatures
+              | :featureDrift
+              | :featureProfile
+              | :greatExpectations
+              | :groupByColumnStatsCheck
+              | :illFormedRowCount
+              | :isCode
+              | :isJson
+              | :llmRubricV2
+              | :labelDrift
+              | :metrics
+              | :newCategories
+              | :newLabels
+              | :nullRowCount
+              | :ppScore
+              | :quasiConstantFeatures
+              | :sentenceLength
+              | :sizeRatio
+              | :specialCharacters
+              | :stringValidation
+              | :trainValLeakageRowCount
+
+            module InsightName
+              extend Openlayer::Internal::Type::Enum
+
+              CHARACTER_LENGTH: :characterLength
+              CLASS_IMBALANCE: :classImbalance
+              EXPECT_COLUMN_A_TO_BE_IN_COLUMN_B: :expectColumnAToBeInColumnB
+              COLUMN_AVERAGE: :columnAverage
+              COLUMN_DRIFT: :columnDrift
+              COLUMN_VALUES_MATCH: :columnValuesMatch
+              CONFIDENCE_DISTRIBUTION: :confidenceDistribution
+              CONFLICTING_LABEL_ROW_COUNT: :conflictingLabelRowCount
+              CONTAINS_PII: :containsPii
+              CONTAINS_VALID_URL: :containsValidUrl
+              CORRELATED_FEATURES: :correlatedFeatures
+              CUSTOM_METRIC: :customMetric
+              DUPLICATE_ROW_COUNT: :duplicateRowCount
+              EMPTY_FEATURES: :emptyFeatures
+              FEATURE_DRIFT: :featureDrift
+              FEATURE_PROFILE: :featureProfile
+              GREAT_EXPECTATIONS: :greatExpectations
+              GROUP_BY_COLUMN_STATS_CHECK: :groupByColumnStatsCheck
+              ILL_FORMED_ROW_COUNT: :illFormedRowCount
+              IS_CODE: :isCode
+              IS_JSON: :isJson
+              LLM_RUBRIC_V2: :llmRubricV2
+              LABEL_DRIFT: :labelDrift
+              METRICS: :metrics
+              NEW_CATEGORIES: :newCategories
+              NEW_LABELS: :newLabels
+              NULL_ROW_COUNT: :nullRowCount
+              PP_SCORE: :ppScore
+              QUASI_CONSTANT_FEATURES: :quasiConstantFeatures
+              SENTENCE_LENGTH: :sentenceLength
+              SIZE_RATIO: :sizeRatio
+              SPECIAL_CHARACTERS: :specialCharacters
+              STRING_VALIDATION: :stringValidation
+              TRAIN_VAL_LEAKAGE_ROW_COUNT: :trainValLeakageRowCount
+
+              def self?.values: -> ::Array[Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::insight_name]
+            end
+
+            type insight_parameter = { name: String, value: top }
+
+            class InsightParameter < Openlayer::Internal::Type::BaseModel
+              attr_accessor name: String
+
+              attr_accessor value: top
+
+              def initialize: (name: String, value: top) -> void
+
+              def to_hash: -> { name: String, value: top }
+            end
+
+            type operator = :is | :> | :>= | :< | :<= | :!=
+
+            module Operator
+              extend Openlayer::Internal::Type::Enum
+
+              IS: :is
+              GREATER: :>
+              GREATER_OR_EQUALS: :>=
+              LESS: :<
+              LESS_OR_EQUALS: :<=
+              NOT_EQUALS: :!=
+
+              def self?.values: -> ::Array[Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::operator]
+            end
+
+            type threshold_mode = :automatic | :manual
+
+            module ThresholdMode
+              extend Openlayer::Internal::Type::Enum
+
+              AUTOMATIC: :automatic
+              MANUAL: :manual
+
+              def self?.values: -> ::Array[Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::threshold_mode]
+            end
+
+            type value = Float | bool | String | ::Array[String]
+
+            module Value
+              extend Openlayer::Internal::Type::Union
+
+              def self?.variants: -> ::Array[Openlayer::Models::Projects::TestUpdateParams::Payload::Threshold::value]
+
+              StringArray: Openlayer::Internal::Type::Converter
+            end
+          end
+        end
+      end
+    end
+  end
+end

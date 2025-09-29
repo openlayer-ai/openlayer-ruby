@@ -1,0 +1,25 @@
+module Openlayer
+  module Resources
+    class Projects
+      class Commits
+        def create: (
+          String project_id,
+          commit: Openlayer::Projects::CommitCreateParams::Commit,
+          storage_uri: String,
+          ?archived: bool?,
+          ?deployment_status: String,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Projects::CommitCreateResponse
+
+        def list: (
+          String project_id,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Projects::CommitListResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

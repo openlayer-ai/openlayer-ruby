@@ -1,0 +1,45 @@
+module Openlayer
+  module Resources
+    class Projects
+      class Tests
+        def create: (
+          String project_id,
+          description: top?,
+          name: String,
+          subtype: Openlayer::Models::Projects::TestCreateParams::subtype,
+          thresholds: ::Array[Openlayer::Projects::TestCreateParams::Threshold],
+          type: Openlayer::Models::Projects::TestCreateParams::type_,
+          ?archived: bool,
+          ?delay_window: Float?,
+          ?evaluation_window: Float?,
+          ?uses_ml_model: bool,
+          ?uses_production_data: bool,
+          ?uses_reference_dataset: bool,
+          ?uses_training_dataset: bool,
+          ?uses_validation_dataset: bool,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Projects::TestCreateResponse
+
+        def update: (
+          String project_id,
+          payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload],
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Projects::TestUpdateResponse
+
+        def list: (
+          String project_id,
+          ?include_archived: bool,
+          ?origin_version_id: String?,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?suggested: bool,
+          ?type: Openlayer::Models::Projects::TestListParams::type_,
+          ?uses_production_data: bool?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Projects::TestListResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

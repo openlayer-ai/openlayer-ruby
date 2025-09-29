@@ -1,0 +1,3 @@
+module Openlayer
+  VERSION: String
+end

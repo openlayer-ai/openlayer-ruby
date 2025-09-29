@@ -1,0 +1,529 @@
+module Openlayer
+  module Models
+    module Commits
+      type test_result_list_response =
+        {
+          items: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item]
+        }
+
+      class TestResultListResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item]
+
+        def initialize: (
+          items: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item]
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item]
+        }
+
+        type item =
+          {
+            id: String,
+            date_created: Time,
+            date_data_ends: Time?,
+            date_data_starts: Time?,
+            date_updated: Time,
+            inference_pipeline_id: String?,
+            project_version_id: String?,
+            status: Openlayer::Models::Commits::TestResultListResponse::Item::status,
+            status_message: String?,
+            goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal,
+            goal_id: String?
+          }
+
+        class Item < Openlayer::Internal::Type::BaseModel
+          attr_accessor status: Openlayer::Models::Commits::TestResultListResponse::Item::status
+
+          attr_accessor status_message: String?
+
+          attr_reader goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal?
+
+          def goal=: (
+            Openlayer::Models::Commits::TestResultListResponse::Item::Goal
+          ) -> Openlayer::Models::Commits::TestResultListResponse::Item::Goal
+
+          attr_accessor id: String
+
+          attr_accessor date_created: Time
+
+          attr_accessor date_data_ends: Time?
+
+          attr_accessor date_data_starts: Time?
+
+          attr_accessor date_updated: Time
+
+          attr_accessor inference_pipeline_id: String?
+
+          attr_accessor project_version_id: String?
+
+          attr_accessor goal_id: String?
+
+          def initialize: (
+            id: String,
+            date_created: Time,
+            date_data_ends: Time?,
+            date_data_starts: Time?,
+            date_updated: Time,
+            inference_pipeline_id: String?,
+            project_version_id: String?,
+            status: Openlayer::Models::Commits::TestResultListResponse::Item::status,
+            status_message: String?,
+            ?goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal,
+            ?goal_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            date_created: Time,
+            date_data_ends: Time?,
+            date_data_starts: Time?,
+            date_updated: Time,
+            inference_pipeline_id: String?,
+            project_version_id: String?,
+            status: Openlayer::Models::Commits::TestResultListResponse::Item::status,
+            status_message: String?,
+            goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal,
+            goal_id: String?
+          }
+
+          type status = :running | :passing | :failing | :skipped | :error
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            RUNNING: :running
+            PASSING: :passing
+            FAILING: :failing
+            SKIPPED: :skipped
+            ERROR: :error
+
+            def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::status]
+          end
+
+          type goal =
+            {
+              id: String,
+              comment_count: Integer,
+              creator_id: String?,
+              date_archived: Time?,
+              date_created: Time,
+              date_updated: Time,
+              description: top?,
+              name: String,
+              number: Integer,
+              origin_project_version_id: String?,
+              subtype: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::subtype,
+              suggested: bool,
+              thresholds: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold],
+              type: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::type_,
+              archived: bool,
+              delay_window: Float?,
+              evaluation_window: Float?,
+              uses_ml_model: bool,
+              uses_production_data: bool,
+              uses_reference_dataset: bool,
+              uses_training_dataset: bool,
+              uses_validation_dataset: bool
+            }
+
+          class Goal < Openlayer::Internal::Type::BaseModel
+            attr_accessor description: top?
+
+            attr_accessor name: String
+
+            attr_accessor subtype: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::subtype
+
+            attr_accessor thresholds: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold]
+
+            attr_accessor type: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::type_
+
+            attr_reader archived: bool?
+
+            def archived=: (bool) -> bool
+
+            attr_accessor delay_window: Float?
+
+            attr_accessor evaluation_window: Float?
+
+            attr_reader uses_ml_model: bool?
+
+            def uses_ml_model=: (bool) -> bool
+
+            attr_reader uses_production_data: bool?
+
+            def uses_production_data=: (bool) -> bool
+
+            attr_reader uses_reference_dataset: bool?
+
+            def uses_reference_dataset=: (bool) -> bool
+
+            attr_reader uses_training_dataset: bool?
+
+            def uses_training_dataset=: (bool) -> bool
+
+            attr_reader uses_validation_dataset: bool?
+
+            def uses_validation_dataset=: (bool) -> bool
+
+            attr_accessor id: String
+
+            attr_accessor comment_count: Integer
+
+            attr_accessor creator_id: String?
+
+            attr_accessor date_archived: Time?
+
+            attr_accessor date_created: Time
+
+            attr_accessor date_updated: Time
+
+            attr_accessor number: Integer
+
+            attr_accessor origin_project_version_id: String?
+
+            attr_accessor suggested: bool
+
+            def initialize: (
+              id: String,
+              comment_count: Integer,
+              creator_id: String?,
+              date_archived: Time?,
+              date_created: Time,
+              date_updated: Time,
+              description: top?,
+              name: String,
+              number: Integer,
+              origin_project_version_id: String?,
+              subtype: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::subtype,
+              suggested: bool,
+              thresholds: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold],
+              type: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::type_,
+              ?archived: bool,
+              ?delay_window: Float?,
+              ?evaluation_window: Float?,
+              ?uses_ml_model: bool,
+              ?uses_production_data: bool,
+              ?uses_reference_dataset: bool,
+              ?uses_training_dataset: bool,
+              ?uses_validation_dataset: bool
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              comment_count: Integer,
+              creator_id: String?,
+              date_archived: Time?,
+              date_created: Time,
+              date_updated: Time,
+              description: top?,
+              name: String,
+              number: Integer,
+              origin_project_version_id: String?,
+              subtype: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::subtype,
+              suggested: bool,
+              thresholds: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold],
+              type: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::type_,
+              archived: bool,
+              delay_window: Float?,
+              evaluation_window: Float?,
+              uses_ml_model: bool,
+              uses_production_data: bool,
+              uses_reference_dataset: bool,
+              uses_training_dataset: bool,
+              uses_validation_dataset: bool
+            }
+
+            type subtype =
+              :anomalousColumnCount
+              | :characterLength
+              | :classImbalanceRatio
+              | :expectColumnAToBeInColumnB
+              | :columnAverage
+              | :columnDrift
+              | :columnStatistic
+              | :columnValuesMatch
+              | :conflictingLabelRowCount
+              | :containsPii
+              | :containsValidUrl
+              | :correlatedFeatureCount
+              | :customMetricThreshold
+              | :duplicateRowCount
+              | :emptyFeature
+              | :emptyFeatureCount
+              | :driftedFeatureCount
+              | :featureMissingValues
+              | :featureValueValidation
+              | :greatExpectations
+              | :groupByColumnStatsCheck
+              | :illFormedRowCount
+              | :isCode
+              | :isJson
+              | :llmRubricThresholdV2
+              | :labelDrift
+              | :metricThreshold
+              | :newCategoryCount
+              | :newLabelCount
+              | :nullRowCount
+              | :rowCount
+              | :ppScoreValueValidation
+              | :quasiConstantFeature
+              | :quasiConstantFeatureCount
+              | :sqlQuery
+              | :dtypeValidation
+              | :sentenceLength
+              | :sizeRatio
+              | :specialCharactersRatio
+              | :stringValidation
+              | :trainValLeakageRowCount
+
+            module Subtype
+              extend Openlayer::Internal::Type::Enum
+
+              ANOMALOUS_COLUMN_COUNT: :anomalousColumnCount
+              CHARACTER_LENGTH: :characterLength
+              CLASS_IMBALANCE_RATIO: :classImbalanceRatio
+              EXPECT_COLUMN_A_TO_BE_IN_COLUMN_B: :expectColumnAToBeInColumnB
+              COLUMN_AVERAGE: :columnAverage
+              COLUMN_DRIFT: :columnDrift
+              COLUMN_STATISTIC: :columnStatistic
+              COLUMN_VALUES_MATCH: :columnValuesMatch
+              CONFLICTING_LABEL_ROW_COUNT: :conflictingLabelRowCount
+              CONTAINS_PII: :containsPii
+              CONTAINS_VALID_URL: :containsValidUrl
+              CORRELATED_FEATURE_COUNT: :correlatedFeatureCount
+              CUSTOM_METRIC_THRESHOLD: :customMetricThreshold
+              DUPLICATE_ROW_COUNT: :duplicateRowCount
+              EMPTY_FEATURE: :emptyFeature
+              EMPTY_FEATURE_COUNT: :emptyFeatureCount
+              DRIFTED_FEATURE_COUNT: :driftedFeatureCount
+              FEATURE_MISSING_VALUES: :featureMissingValues
+              FEATURE_VALUE_VALIDATION: :featureValueValidation
+              GREAT_EXPECTATIONS: :greatExpectations
+              GROUP_BY_COLUMN_STATS_CHECK: :groupByColumnStatsCheck
+              ILL_FORMED_ROW_COUNT: :illFormedRowCount
+              IS_CODE: :isCode
+              IS_JSON: :isJson
+              LLM_RUBRIC_THRESHOLD_V2: :llmRubricThresholdV2
+              LABEL_DRIFT: :labelDrift
+              METRIC_THRESHOLD: :metricThreshold
+              NEW_CATEGORY_COUNT: :newCategoryCount
+              NEW_LABEL_COUNT: :newLabelCount
+              NULL_ROW_COUNT: :nullRowCount
+              ROW_COUNT: :rowCount
+              PP_SCORE_VALUE_VALIDATION: :ppScoreValueValidation
+              QUASI_CONSTANT_FEATURE: :quasiConstantFeature
+              QUASI_CONSTANT_FEATURE_COUNT: :quasiConstantFeatureCount
+              SQL_QUERY: :sqlQuery
+              DTYPE_VALIDATION: :dtypeValidation
+              SENTENCE_LENGTH: :sentenceLength
+              SIZE_RATIO: :sizeRatio
+              SPECIAL_CHARACTERS_RATIO: :specialCharactersRatio
+              STRING_VALIDATION: :stringValidation
+              TRAIN_VAL_LEAKAGE_ROW_COUNT: :trainValLeakageRowCount
+
+              def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::subtype]
+            end
+
+            type threshold =
+              {
+                insight_name: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::insight_name,
+                insight_parameters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::InsightParameter]?,
+                measurement: String,
+                operator: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::operator,
+                threshold_mode: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::threshold_mode,
+                value: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::value
+              }
+
+            class Threshold < Openlayer::Internal::Type::BaseModel
+              attr_reader insight_name: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::insight_name?
+
+              def insight_name=: (
+                Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::insight_name
+              ) -> Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::insight_name
+
+              attr_accessor insight_parameters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::InsightParameter]?
+
+              attr_reader measurement: String?
+
+              def measurement=: (String) -> String
+
+              attr_reader operator: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::operator?
+
+              def operator=: (
+                Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::operator
+              ) -> Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::operator
+
+              attr_reader threshold_mode: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::threshold_mode?
+
+              def threshold_mode=: (
+                Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::threshold_mode
+              ) -> Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::threshold_mode
+
+              attr_reader value: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::value?
+
+              def value=: (
+                Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::value
+              ) -> Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::value
+
+              def initialize: (
+                ?insight_name: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::insight_name,
+                ?insight_parameters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::InsightParameter]?,
+                ?measurement: String,
+                ?operator: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::operator,
+                ?threshold_mode: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::threshold_mode,
+                ?value: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::value
+              ) -> void
+
+              def to_hash: -> {
+                insight_name: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::insight_name,
+                insight_parameters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::InsightParameter]?,
+                measurement: String,
+                operator: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::operator,
+                threshold_mode: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::threshold_mode,
+                value: Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::value
+              }
+
+              type insight_name =
+                :characterLength
+                | :classImbalance
+                | :expectColumnAToBeInColumnB
+                | :columnAverage
+                | :columnDrift
+                | :columnValuesMatch
+                | :confidenceDistribution
+                | :conflictingLabelRowCount
+                | :containsPii
+                | :containsValidUrl
+                | :correlatedFeatures
+                | :customMetric
+                | :duplicateRowCount
+                | :emptyFeatures
+                | :featureDrift
+                | :featureProfile
+                | :greatExpectations
+                | :groupByColumnStatsCheck
+                | :illFormedRowCount
+                | :isCode
+                | :isJson
+                | :llmRubricV2
+                | :labelDrift
+                | :metrics
+                | :newCategories
+                | :newLabels
+                | :nullRowCount
+                | :ppScore
+                | :quasiConstantFeatures
+                | :sentenceLength
+                | :sizeRatio
+                | :specialCharacters
+                | :stringValidation
+                | :trainValLeakageRowCount
+
+              module InsightName
+                extend Openlayer::Internal::Type::Enum
+
+                CHARACTER_LENGTH: :characterLength
+                CLASS_IMBALANCE: :classImbalance
+                EXPECT_COLUMN_A_TO_BE_IN_COLUMN_B: :expectColumnAToBeInColumnB
+                COLUMN_AVERAGE: :columnAverage
+                COLUMN_DRIFT: :columnDrift
+                COLUMN_VALUES_MATCH: :columnValuesMatch
+                CONFIDENCE_DISTRIBUTION: :confidenceDistribution
+                CONFLICTING_LABEL_ROW_COUNT: :conflictingLabelRowCount
+                CONTAINS_PII: :containsPii
+                CONTAINS_VALID_URL: :containsValidUrl
+                CORRELATED_FEATURES: :correlatedFeatures
+                CUSTOM_METRIC: :customMetric
+                DUPLICATE_ROW_COUNT: :duplicateRowCount
+                EMPTY_FEATURES: :emptyFeatures
+                FEATURE_DRIFT: :featureDrift
+                FEATURE_PROFILE: :featureProfile
+                GREAT_EXPECTATIONS: :greatExpectations
+                GROUP_BY_COLUMN_STATS_CHECK: :groupByColumnStatsCheck
+                ILL_FORMED_ROW_COUNT: :illFormedRowCount
+                IS_CODE: :isCode
+                IS_JSON: :isJson
+                LLM_RUBRIC_V2: :llmRubricV2
+                LABEL_DRIFT: :labelDrift
+                METRICS: :metrics
+                NEW_CATEGORIES: :newCategories
+                NEW_LABELS: :newLabels
+                NULL_ROW_COUNT: :nullRowCount
+                PP_SCORE: :ppScore
+                QUASI_CONSTANT_FEATURES: :quasiConstantFeatures
+                SENTENCE_LENGTH: :sentenceLength
+                SIZE_RATIO: :sizeRatio
+                SPECIAL_CHARACTERS: :specialCharacters
+                STRING_VALIDATION: :stringValidation
+                TRAIN_VAL_LEAKAGE_ROW_COUNT: :trainValLeakageRowCount
+
+                def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::insight_name]
+              end
+
+              type insight_parameter = { name: String, value: top }
+
+              class InsightParameter < Openlayer::Internal::Type::BaseModel
+                attr_accessor name: String
+
+                attr_accessor value: top
+
+                def initialize: (name: String, value: top) -> void
+
+                def to_hash: -> { name: String, value: top }
+              end
+
+              type operator = :is | :> | :>= | :< | :<= | :!=
+
+              module Operator
+                extend Openlayer::Internal::Type::Enum
+
+                IS: :is
+                GREATER: :>
+                GREATER_OR_EQUALS: :>=
+                LESS: :<
+                LESS_OR_EQUALS: :<=
+                NOT_EQUALS: :!=
+
+                def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::operator]
+              end
+
+              type threshold_mode = :automatic | :manual
+
+              module ThresholdMode
+                extend Openlayer::Internal::Type::Enum
+
+                AUTOMATIC: :automatic
+                MANUAL: :manual
+
+                def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::threshold_mode]
+              end
+
+              type value = Float | bool | String | ::Array[String]
+
+              module Value
+                extend Openlayer::Internal::Type::Union
+
+                def self?.variants: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::Threshold::value]
+
+                StringArray: Openlayer::Internal::Type::Converter
+              end
+            end
+
+            type type_ = :integrity | :consistency | :performance
+
+            module Type
+              extend Openlayer::Internal::Type::Enum
+
+              INTEGRITY: :integrity
+              CONSISTENCY: :consistency
+              PERFORMANCE: :performance
+
+              def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::type_]
+            end
+          end
+        end
+      end
+    end
+  end
+end

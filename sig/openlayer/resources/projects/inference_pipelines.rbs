@@ -1,0 +1,26 @@
+module Openlayer
+  module Resources
+    class Projects
+      class InferencePipelines
+        def create: (
+          String project_id,
+          description: String?,
+          name: String,
+          ?project: Openlayer::Projects::InferencePipelineCreateParams::Project?,
+          ?workspace: Openlayer::Projects::InferencePipelineCreateParams::Workspace?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Projects::InferencePipelineCreateResponse
+
+        def list: (
+          String project_id,
+          ?name: String,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Projects::InferencePipelineListResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

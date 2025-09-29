@@ -1,0 +1,17 @@
+module Openlayer
+  module Resources
+    class InferencePipelines
+      class Rows
+        def update: (
+          String inference_pipeline_id,
+          inference_id: String,
+          row: top,
+          ?config: Openlayer::InferencePipelines::RowUpdateParams::Config?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::InferencePipelines::RowUpdateResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

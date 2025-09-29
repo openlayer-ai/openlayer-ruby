@@ -1,0 +1,308 @@
+module Openlayer
+  module Models
+    module Projects
+      type inference_pipeline_create_params =
+        {
+          description: String?,
+          name: String,
+          project: Openlayer::Projects::InferencePipelineCreateParams::Project?,
+          workspace: Openlayer::Projects::InferencePipelineCreateParams::Workspace?
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class InferencePipelineCreateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor description: String?
+
+        attr_accessor name: String
+
+        attr_accessor project: Openlayer::Projects::InferencePipelineCreateParams::Project?
+
+        attr_accessor workspace: Openlayer::Projects::InferencePipelineCreateParams::Workspace?
+
+        def initialize: (
+          description: String?,
+          name: String,
+          ?project: Openlayer::Projects::InferencePipelineCreateParams::Project?,
+          ?workspace: Openlayer::Projects::InferencePipelineCreateParams::Workspace?,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          description: String?,
+          name: String,
+          project: Openlayer::Projects::InferencePipelineCreateParams::Project?,
+          workspace: Openlayer::Projects::InferencePipelineCreateParams::Workspace?,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type project =
+          {
+            id: String,
+            creator_id: String?,
+            date_created: Time,
+            date_updated: Time,
+            development_goal_count: Integer,
+            goal_count: Integer,
+            inference_pipeline_count: Integer,
+            links: Openlayer::Projects::InferencePipelineCreateParams::Project::Links,
+            monitoring_goal_count: Integer,
+            name: String,
+            source: Openlayer::Models::Projects::InferencePipelineCreateParams::Project::source?,
+            task_type: Openlayer::Models::Projects::InferencePipelineCreateParams::Project::task_type,
+            version_count: Integer,
+            workspace_id: String?,
+            description: String?,
+            git_repo: Openlayer::Projects::InferencePipelineCreateParams::Project::GitRepo?
+          }
+
+        class Project < Openlayer::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor task_type: Openlayer::Models::Projects::InferencePipelineCreateParams::Project::task_type
+
+          attr_accessor description: String?
+
+          def initialize: (
+            name: String,
+            task_type: Openlayer::Models::Projects::InferencePipelineCreateParams::Project::task_type,
+            ?description: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            creator_id: String?,
+            date_created: Time,
+            date_updated: Time,
+            development_goal_count: Integer,
+            goal_count: Integer,
+            inference_pipeline_count: Integer,
+            links: Openlayer::Projects::InferencePipelineCreateParams::Project::Links,
+            monitoring_goal_count: Integer,
+            name: String,
+            source: Openlayer::Models::Projects::InferencePipelineCreateParams::Project::source?,
+            task_type: Openlayer::Models::Projects::InferencePipelineCreateParams::Project::task_type,
+            version_count: Integer,
+            workspace_id: String?,
+            description: String?,
+            git_repo: Openlayer::Projects::InferencePipelineCreateParams::Project::GitRepo?
+          }
+
+          type links = { app: String }
+
+          class Links < Openlayer::Internal::Type::BaseModel
+            attr_accessor app: String
+
+            def initialize: (app: String) -> void
+
+            def to_hash: -> { app: String }
+          end
+
+          type source = :web | :api | :null
+
+          module Source
+            extend Openlayer::Internal::Type::Enum
+
+            WEB: :web
+            API: :api
+            NULL: :null
+
+            def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineCreateParams::Project::source]
+          end
+
+          type task_type =
+            :"llm-base"
+            | :"tabular-classification"
+            | :"tabular-regression"
+            | :"text-classification"
+
+          module TaskType
+            extend Openlayer::Internal::Type::Enum
+
+            LLM_BASE: :"llm-base"
+            TABULAR_CLASSIFICATION: :"tabular-classification"
+            TABULAR_REGRESSION: :"tabular-regression"
+            TEXT_CLASSIFICATION: :"text-classification"
+
+            def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineCreateParams::Project::task_type]
+          end
+
+          type git_repo =
+            {
+              id: String,
+              date_connected: Time,
+              date_updated: Time,
+              git_account_id: String,
+              git_id: Integer,
+              name: String,
+              private: bool,
+              project_id: String,
+              slug: String,
+              url: String,
+              branch: String,
+              root_dir: String
+            }
+
+          class GitRepo < Openlayer::Internal::Type::BaseModel
+            attr_accessor git_account_id: String
+
+            attr_accessor git_id: Integer
+
+            attr_reader branch: String?
+
+            def branch=: (String) -> String
+
+            attr_reader root_dir: String?
+
+            def root_dir=: (String) -> String
+
+            def initialize: (
+              git_account_id: String,
+              git_id: Integer,
+              ?branch: String,
+              ?root_dir: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              date_connected: Time,
+              date_updated: Time,
+              git_account_id: String,
+              git_id: Integer,
+              name: String,
+              private: bool,
+              project_id: String,
+              slug: String,
+              url: String,
+              branch: String,
+              root_dir: String
+            }
+          end
+        end
+
+        type workspace =
+          {
+            id: String,
+            creator_id: String?,
+            date_created: Time,
+            date_updated: Time,
+            invite_count: Integer,
+            member_count: Integer,
+            name: String,
+            period_end_date: Time?,
+            period_start_date: Time?,
+            project_count: Integer,
+            slug: String,
+            status: Openlayer::Models::Projects::InferencePipelineCreateParams::Workspace::status,
+            invite_code: String,
+            monthly_usage: ::Array[Openlayer::Projects::InferencePipelineCreateParams::Workspace::MonthlyUsage],
+            saml_only_access: bool,
+            wildcard_domains: ::Array[String]
+          }
+
+        class Workspace < Openlayer::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor slug: String
+
+          attr_reader saml_only_access: bool?
+
+          def saml_only_access=: (bool) -> bool
+
+          attr_reader wildcard_domains: ::Array[String]?
+
+          def wildcard_domains=: (::Array[String]) -> ::Array[String]
+
+          attr_reader invite_code: String?
+
+          def invite_code=: (String) -> String
+
+          def initialize: (
+            name: String,
+            slug: String,
+            ?invite_code: String,
+            ?saml_only_access: bool,
+            ?wildcard_domains: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            creator_id: String?,
+            date_created: Time,
+            date_updated: Time,
+            invite_count: Integer,
+            member_count: Integer,
+            name: String,
+            period_end_date: Time?,
+            period_start_date: Time?,
+            project_count: Integer,
+            slug: String,
+            status: Openlayer::Models::Projects::InferencePipelineCreateParams::Workspace::status,
+            invite_code: String,
+            monthly_usage: ::Array[Openlayer::Projects::InferencePipelineCreateParams::Workspace::MonthlyUsage],
+            saml_only_access: bool,
+            wildcard_domains: ::Array[String]
+          }
+
+          type status =
+            :active
+            | :past_due
+            | :unpaid
+            | :canceled
+            | :incomplete
+            | :incomplete_expired
+            | :trialing
+            | :paused
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            ACTIVE: :active
+            PAST_DUE: :past_due
+            UNPAID: :unpaid
+            CANCELED: :canceled
+            INCOMPLETE: :incomplete
+            INCOMPLETE_EXPIRED: :incomplete_expired
+            TRIALING: :trialing
+            PAUSED: :paused
+
+            def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineCreateParams::Workspace::status]
+          end
+
+          type monthly_usage =
+            {
+              execution_time_ms: Integer?,
+              month_year: Date,
+              prediction_count: Integer
+            }
+
+          class MonthlyUsage < Openlayer::Internal::Type::BaseModel
+            attr_accessor execution_time_ms: Integer?
+
+            attr_reader month_year: Date?
+
+            def month_year=: (Date) -> Date
+
+            attr_reader prediction_count: Integer?
+
+            def prediction_count=: (Integer) -> Integer
+
+            def initialize: (
+              ?execution_time_ms: Integer?,
+              ?month_year: Date,
+              ?prediction_count: Integer
+            ) -> void
+
+            def to_hash: -> {
+              execution_time_ms: Integer?,
+              month_year: Date,
+              prediction_count: Integer
+            }
+          end
+        end
+      end
+    end
+  end
+end

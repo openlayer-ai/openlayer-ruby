@@ -1,0 +1,32 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type row_update_response =
+        {
+          success: Openlayer::Models::InferencePipelines::RowUpdateResponse::success
+        }
+
+      class RowUpdateResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor success: Openlayer::Models::InferencePipelines::RowUpdateResponse::success
+
+        def initialize: (
+          success: Openlayer::Models::InferencePipelines::RowUpdateResponse::success
+        ) -> void
+
+        def to_hash: -> {
+          success: Openlayer::Models::InferencePipelines::RowUpdateResponse::success
+        }
+
+        type success = true
+
+        module Success
+          extend Openlayer::Internal::Type::Enum
+
+          TRUE: true
+
+          def self?.values: -> ::Array[Openlayer::Models::InferencePipelines::RowUpdateResponse::success]
+        end
+      end
+    end
+  end
+end

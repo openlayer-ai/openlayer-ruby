@@ -1,0 +1,75 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type row_update_params =
+        {
+          inference_id: String,
+          row: top,
+          config: Openlayer::InferencePipelines::RowUpdateParams::Config?
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class RowUpdateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor inference_id: String
+
+        attr_accessor row: top
+
+        attr_accessor config: Openlayer::InferencePipelines::RowUpdateParams::Config?
+
+        def initialize: (
+          inference_id: String,
+          row: top,
+          ?config: Openlayer::InferencePipelines::RowUpdateParams::Config?,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          inference_id: String,
+          row: top,
+          config: Openlayer::InferencePipelines::RowUpdateParams::Config?,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type config =
+          {
+            ground_truth_column_name: String?,
+            human_feedback_column_name: String?,
+            inference_id_column_name: String?,
+            latency_column_name: String?,
+            timestamp_column_name: String?
+          }
+
+        class Config < Openlayer::Internal::Type::BaseModel
+          attr_accessor ground_truth_column_name: String?
+
+          attr_accessor human_feedback_column_name: String?
+
+          attr_accessor latency_column_name: String?
+
+          attr_accessor timestamp_column_name: String?
+
+          attr_accessor inference_id_column_name: String?
+
+          def initialize: (
+            ?ground_truth_column_name: String?,
+            ?human_feedback_column_name: String?,
+            ?inference_id_column_name: String?,
+            ?latency_column_name: String?,
+            ?timestamp_column_name: String?
+          ) -> void
+
+          def to_hash: -> {
+            ground_truth_column_name: String?,
+            human_feedback_column_name: String?,
+            inference_id_column_name: String?,
+            latency_column_name: String?,
+            timestamp_column_name: String?
+          }
+        end
+      end
+    end
+  end
+end

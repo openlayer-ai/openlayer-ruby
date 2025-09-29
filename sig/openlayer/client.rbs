@@ -1,0 +1,32 @@
+module Openlayer
+  class Client < Openlayer::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader api_key: String?
+
+    attr_reader projects: Openlayer::Resources::Projects
+
+    attr_reader commits: Openlayer::Resources::Commits
+
+    attr_reader inference_pipelines: Openlayer::Resources::InferencePipelines
+
+    attr_reader storage: Openlayer::Resources::Storage
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end
