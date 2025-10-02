@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2025-10-02)
+
+Full Changelog: [v0.0.2...v0.4.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.0.2...v0.4.0)
+
+### Chores
+
+* update readme ([102f6fb](https://github.com/openlayer-ai/openlayer-ruby/commit/102f6fb531cc81b046d27550788d508015c3674c))
+
 ## 0.0.2 (2025-10-02)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.0.1...v0.0.2)
