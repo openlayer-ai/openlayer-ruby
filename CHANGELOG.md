@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.1 (2025-10-15)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.4.0...v0.4.1)
+
+### Bug Fixes
+
+* should not reuse buffers for `IO.copy_stream` interop ([059d546](https://github.com/openlayer-ai/openlayer-ruby/commit/059d546e23d6e2d43c56c6cdb3c0408432db3ee1))
+
+
+### Chores
+
+* ignore linter error for tests having large collections ([2ccd433](https://github.com/openlayer-ai/openlayer-ruby/commit/2ccd433d1e144d0a38c998f8c44550462498734f))
+
 ## 0.4.0 (2025-10-02)
 
 Full Changelog: [v0.0.2...v0.4.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.0.2...v0.4.0)
