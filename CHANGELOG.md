@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.2 (2025-10-16)
+
+Full Changelog: [v0.4.1...v0.4.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.4.1...v0.4.2)
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([e245d11](https://github.com/openlayer-ai/openlayer-ruby/commit/e245d1191c6f5e73a5f4431a8bfff1989d828648))
+
 ## 0.4.1 (2025-10-15)
 
 Full Changelog: [v0.4.0...v0.4.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.4.0...v0.4.1)
