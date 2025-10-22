@@ -17,6 +17,14 @@ module Openlayer
         #   @return [String]
         required :name, String
 
+        # @!attribute data_backend
+        #
+        #   @return [Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5, nil]
+        optional :data_backend,
+                 union: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend },
+                 api_name: :dataBackend,
+                 nil?: true
+
         # @!attribute project
         #
         #   @return [Openlayer::Models::Projects::InferencePipelineCreateResponse::Project, nil]
@@ -109,6 +117,18 @@ module Openlayer
           #   @return [Integer]
           required :total_goal_count, Integer, api_name: :totalGoalCount
 
+          # @!attribute date_last_polled
+          #   The last time the data was polled.
+          #
+          #   @return [Time, nil]
+          optional :date_last_polled, Time, api_name: :dateLastPolled, nil?: true
+
+          # @!attribute total_records_count
+          #   The total number of records in the data backend.
+          #
+          #   @return [Integer, nil]
+          optional :total_records_count, Integer, api_name: :totalRecordsCount, nil?: true
+
           # @!attribute workspace_id
           #   The workspace id.
           #
@@ -116,7 +136,7 @@ module Openlayer
           optional :workspace_id, String, api_name: :workspaceId
         end
 
-        # @!method initialize(id:, date_created:, date_last_evaluated:, date_last_sample_received:, date_of_next_evaluation:, date_updated:, description:, failing_goal_count:, links:, name:, passing_goal_count:, project_id:, status:, status_message:, total_goal_count:, project: nil, workspace: nil, workspace_id: nil)
+        # @!method initialize(id:, date_created:, date_last_evaluated:, date_last_sample_received:, date_of_next_evaluation:, date_updated:, description:, failing_goal_count:, links:, name:, passing_goal_count:, project_id:, status:, status_message:, total_goal_count:, data_backend: nil, date_last_polled: nil, project: nil, total_records_count: nil, workspace: nil, workspace_id: nil)
         #   @param id [String] The inference pipeline id.
         #
         #   @param date_created [Time] The creation date.
@@ -147,7 +167,13 @@ module Openlayer
         #
         #   @param total_goal_count [Integer] The total number of tests.
         #
+        #   @param data_backend [Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5, nil]
+        #
+        #   @param date_last_polled [Time, nil] The last time the data was polled.
+        #
         #   @param project [Openlayer::Models::Projects::InferencePipelineCreateResponse::Project, nil]
+        #
+        #   @param total_records_count [Integer, nil] The total number of records in the data backend.
         #
         #   @param workspace [Openlayer::Models::Projects::InferencePipelineCreateResponse::Workspace, nil]
         #
@@ -179,6 +205,486 @@ module Openlayer
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Openlayer::Models::Projects::InferencePipelineCreateResponse#data_backend
+        module DataBackend
+          extend Openlayer::Internal::Type::Union
+
+          variant -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0 }
+
+          variant -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType }
+
+          variant -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2 }
+
+          variant -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3 }
+
+          variant -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4 }
+
+          variant -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5 }
+
+          class UnionMember0 < Openlayer::Internal::Type::BaseModel
+            # @!attribute backend_type
+            #
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType]
+            required :backend_type,
+                     enum: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType },
+                     api_name: :backendType
+
+            # @!attribute bigquery_connection_id
+            #
+            #   @return [String, nil]
+            required :bigquery_connection_id, String, api_name: :bigqueryConnectionId, nil?: true
+
+            # @!attribute dataset_id
+            #
+            #   @return [String]
+            required :dataset_id, String, api_name: :datasetId
+
+            # @!attribute project_id
+            #
+            #   @return [String]
+            required :project_id, String, api_name: :projectId
+
+            # @!attribute table_id
+            #
+            #   @return [String, nil]
+            required :table_id, String, api_name: :tableId, nil?: true
+
+            # @!attribute partition_type
+            #
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType, nil]
+            optional :partition_type,
+                     enum: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType },
+                     api_name: :partitionType,
+                     nil?: true
+
+            # @!method initialize(backend_type:, bigquery_connection_id:, dataset_id:, project_id:, table_id:, partition_type: nil)
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType]
+            #   @param bigquery_connection_id [String, nil]
+            #   @param dataset_id [String]
+            #   @param project_id [String]
+            #   @param table_id [String, nil]
+            #   @param partition_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType, nil]
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0#backend_type
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              BIGQUERY = :bigquery
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0#config
+            class Config < Openlayer::Internal::Type::BaseModel
+              # @!attribute ground_truth_column_name
+              #   Name of the column with the ground truths.
+              #
+              #   @return [String, nil]
+              optional :ground_truth_column_name, String, api_name: :groundTruthColumnName, nil?: true
+
+              # @!attribute human_feedback_column_name
+              #   Name of the column with human feedback.
+              #
+              #   @return [String, nil]
+              optional :human_feedback_column_name, String, api_name: :humanFeedbackColumnName, nil?: true
+
+              # @!attribute latency_column_name
+              #   Name of the column with the latencies.
+              #
+              #   @return [String, nil]
+              optional :latency_column_name, String, api_name: :latencyColumnName, nil?: true
+
+              # @!attribute timestamp_column_name
+              #   Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              #   If not provided, the upload timestamp is used.
+              #
+              #   @return [String, nil]
+              optional :timestamp_column_name, String, api_name: :timestampColumnName, nil?: true
+
+              # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::Config}
+              #   for more details.
+              #
+              #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
+              #
+              #   @param human_feedback_column_name [String, nil] Name of the column with human feedback.
+              #
+              #   @param latency_column_name [String, nil] Name of the column with the latencies.
+              #
+              #   @param timestamp_column_name [String, nil] Name of the column with the timestamps. Timestamps must be in UNIX sec format. I
+            end
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0#partition_type
+            module PartitionType
+              extend Openlayer::Internal::Type::Enum
+
+              DAY = :DAY
+              MONTH = :MONTH
+              YEAR = :YEAR
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          class BackendType < Openlayer::Internal::Type::BaseModel
+            # @!attribute backend_type
+            #
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType]
+            required :backend_type,
+                     enum: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType },
+                     api_name: :backendType
+
+            # @!method initialize(backend_type:)
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType]
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType#backend_type
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              DEFAULT = :default
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          class UnionMember2 < Openlayer::Internal::Type::BaseModel
+            # @!attribute backend_type
+            #
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType]
+            required :backend_type,
+                     enum: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType },
+                     api_name: :backendType
+
+            # @!attribute database
+            #
+            #   @return [String]
+            required :database, String
+
+            # @!attribute schema
+            #
+            #   @return [String]
+            required :schema, String
+
+            # @!attribute snowflake_connection_id
+            #
+            #   @return [String, nil]
+            required :snowflake_connection_id, String, api_name: :snowflakeConnectionId, nil?: true
+
+            # @!attribute table
+            #
+            #   @return [String, nil]
+            required :table, String, nil?: true
+
+            # @!method initialize(backend_type:, database:, schema:, snowflake_connection_id:, table:)
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType]
+            #   @param database [String]
+            #   @param schema [String]
+            #   @param snowflake_connection_id [String, nil]
+            #   @param table [String, nil]
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2#backend_type
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              SNOWFLAKE = :snowflake
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2#config
+            class Config < Openlayer::Internal::Type::BaseModel
+              # @!attribute ground_truth_column_name
+              #   Name of the column with the ground truths.
+              #
+              #   @return [String, nil]
+              optional :ground_truth_column_name, String, api_name: :groundTruthColumnName, nil?: true
+
+              # @!attribute human_feedback_column_name
+              #   Name of the column with human feedback.
+              #
+              #   @return [String, nil]
+              optional :human_feedback_column_name, String, api_name: :humanFeedbackColumnName, nil?: true
+
+              # @!attribute latency_column_name
+              #   Name of the column with the latencies.
+              #
+              #   @return [String, nil]
+              optional :latency_column_name, String, api_name: :latencyColumnName, nil?: true
+
+              # @!attribute timestamp_column_name
+              #   Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              #   If not provided, the upload timestamp is used.
+              #
+              #   @return [String, nil]
+              optional :timestamp_column_name, String, api_name: :timestampColumnName, nil?: true
+
+              # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::Config}
+              #   for more details.
+              #
+              #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
+              #
+              #   @param human_feedback_column_name [String, nil] Name of the column with human feedback.
+              #
+              #   @param latency_column_name [String, nil] Name of the column with the latencies.
+              #
+              #   @param timestamp_column_name [String, nil] Name of the column with the timestamps. Timestamps must be in UNIX sec format. I
+            end
+          end
+
+          class UnionMember3 < Openlayer::Internal::Type::BaseModel
+            # @!attribute backend_type
+            #
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType]
+            required :backend_type,
+                     enum: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType },
+                     api_name: :backendType
+
+            # @!attribute databricks_dtl_connection_id
+            #
+            #   @return [String, nil]
+            required :databricks_dtl_connection_id, String, api_name: :databricksDtlConnectionId, nil?: true
+
+            # @!attribute table_id
+            #
+            #   @return [String, nil]
+            required :table_id, String, api_name: :tableId, nil?: true
+
+            # @!method initialize(backend_type:, databricks_dtl_connection_id:, table_id:)
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType]
+            #   @param databricks_dtl_connection_id [String, nil]
+            #   @param table_id [String, nil]
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3#backend_type
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              DATABRICKS_DTL = :databricks_dtl
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3#config
+            class Config < Openlayer::Internal::Type::BaseModel
+              # @!attribute ground_truth_column_name
+              #   Name of the column with the ground truths.
+              #
+              #   @return [String, nil]
+              optional :ground_truth_column_name, String, api_name: :groundTruthColumnName, nil?: true
+
+              # @!attribute human_feedback_column_name
+              #   Name of the column with human feedback.
+              #
+              #   @return [String, nil]
+              optional :human_feedback_column_name, String, api_name: :humanFeedbackColumnName, nil?: true
+
+              # @!attribute latency_column_name
+              #   Name of the column with the latencies.
+              #
+              #   @return [String, nil]
+              optional :latency_column_name, String, api_name: :latencyColumnName, nil?: true
+
+              # @!attribute timestamp_column_name
+              #   Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              #   If not provided, the upload timestamp is used.
+              #
+              #   @return [String, nil]
+              optional :timestamp_column_name, String, api_name: :timestampColumnName, nil?: true
+
+              # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::Config}
+              #   for more details.
+              #
+              #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
+              #
+              #   @param human_feedback_column_name [String, nil] Name of the column with human feedback.
+              #
+              #   @param latency_column_name [String, nil] Name of the column with the latencies.
+              #
+              #   @param timestamp_column_name [String, nil] Name of the column with the timestamps. Timestamps must be in UNIX sec format. I
+            end
+          end
+
+          class UnionMember4 < Openlayer::Internal::Type::BaseModel
+            # @!attribute backend_type
+            #
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType]
+            required :backend_type,
+                     enum: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType },
+                     api_name: :backendType
+
+            # @!attribute redshift_connection_id
+            #
+            #   @return [String, nil]
+            required :redshift_connection_id, String, api_name: :redshiftConnectionId, nil?: true
+
+            # @!attribute schema_name
+            #
+            #   @return [String]
+            required :schema_name, String, api_name: :schemaName
+
+            # @!attribute table_name
+            #
+            #   @return [String]
+            required :table_name, String, api_name: :tableName
+
+            # @!method initialize(backend_type:, redshift_connection_id:, schema_name:, table_name:)
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType]
+            #   @param redshift_connection_id [String, nil]
+            #   @param schema_name [String]
+            #   @param table_name [String]
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4#backend_type
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              REDSHIFT = :redshift
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4#config
+            class Config < Openlayer::Internal::Type::BaseModel
+              # @!attribute ground_truth_column_name
+              #   Name of the column with the ground truths.
+              #
+              #   @return [String, nil]
+              optional :ground_truth_column_name, String, api_name: :groundTruthColumnName, nil?: true
+
+              # @!attribute human_feedback_column_name
+              #   Name of the column with human feedback.
+              #
+              #   @return [String, nil]
+              optional :human_feedback_column_name, String, api_name: :humanFeedbackColumnName, nil?: true
+
+              # @!attribute latency_column_name
+              #   Name of the column with the latencies.
+              #
+              #   @return [String, nil]
+              optional :latency_column_name, String, api_name: :latencyColumnName, nil?: true
+
+              # @!attribute timestamp_column_name
+              #   Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              #   If not provided, the upload timestamp is used.
+              #
+              #   @return [String, nil]
+              optional :timestamp_column_name, String, api_name: :timestampColumnName, nil?: true
+
+              # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::Config}
+              #   for more details.
+              #
+              #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
+              #
+              #   @param human_feedback_column_name [String, nil] Name of the column with human feedback.
+              #
+              #   @param latency_column_name [String, nil] Name of the column with the latencies.
+              #
+              #   @param timestamp_column_name [String, nil] Name of the column with the timestamps. Timestamps must be in UNIX sec format. I
+            end
+          end
+
+          class UnionMember5 < Openlayer::Internal::Type::BaseModel
+            # @!attribute backend_type
+            #
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType]
+            required :backend_type,
+                     enum: -> { Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType },
+                     api_name: :backendType
+
+            # @!attribute database
+            #
+            #   @return [String]
+            required :database, String
+
+            # @!attribute postgres_connection_id
+            #
+            #   @return [String, nil]
+            required :postgres_connection_id, String, api_name: :postgresConnectionId, nil?: true
+
+            # @!attribute schema
+            #
+            #   @return [String]
+            required :schema, String
+
+            # @!attribute table
+            #
+            #   @return [String, nil]
+            required :table, String, nil?: true
+
+            # @!method initialize(backend_type:, database:, postgres_connection_id:, schema:, table:)
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType]
+            #   @param database [String]
+            #   @param postgres_connection_id [String, nil]
+            #   @param schema [String]
+            #   @param table [String, nil]
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5#backend_type
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              POSTGRES = :postgres
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5#config
+            class Config < Openlayer::Internal::Type::BaseModel
+              # @!attribute ground_truth_column_name
+              #   Name of the column with the ground truths.
+              #
+              #   @return [String, nil]
+              optional :ground_truth_column_name, String, api_name: :groundTruthColumnName, nil?: true
+
+              # @!attribute human_feedback_column_name
+              #   Name of the column with human feedback.
+              #
+              #   @return [String, nil]
+              optional :human_feedback_column_name, String, api_name: :humanFeedbackColumnName, nil?: true
+
+              # @!attribute latency_column_name
+              #   Name of the column with the latencies.
+              #
+              #   @return [String, nil]
+              optional :latency_column_name, String, api_name: :latencyColumnName, nil?: true
+
+              # @!attribute timestamp_column_name
+              #   Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              #   If not provided, the upload timestamp is used.
+              #
+              #   @return [String, nil]
+              optional :timestamp_column_name, String, api_name: :timestampColumnName, nil?: true
+
+              # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::Config}
+              #   for more details.
+              #
+              #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
+              #
+              #   @param human_feedback_column_name [String, nil] Name of the column with human feedback.
+              #
+              #   @param latency_column_name [String, nil] Name of the column with the latencies.
+              #
+              #   @param timestamp_column_name [String, nil] Name of the column with the timestamps. Timestamps must be in UNIX sec format. I
+            end
+          end
+
+          # @!method self.variants
+          #   @return [Array(Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5)]
         end
 
         # @see Openlayer::Models::Projects::InferencePipelineCreateResponse#project
