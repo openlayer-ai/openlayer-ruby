@@ -6,6 +6,7 @@ module Openlayer
           String project_id,
           description: String?,
           name: String,
+          ?data_backend: Openlayer::Models::Projects::InferencePipelineCreateParams::data_backend?,
           ?project: Openlayer::Projects::InferencePipelineCreateParams::Project?,
           ?workspace: Openlayer::Projects::InferencePipelineCreateParams::Workspace?,
           ?request_options: Openlayer::request_opts
