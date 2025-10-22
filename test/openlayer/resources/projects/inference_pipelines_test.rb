@@ -32,7 +32,10 @@ class Openlayer::Test::Resources::Projects::InferencePipelinesTest < Openlayer::
         status: Openlayer::Models::Projects::InferencePipelineCreateResponse::Status,
         status_message: String | nil,
         total_goal_count: Integer,
+        data_backend: Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend | nil,
+        date_last_polled: Time | nil,
         project: Openlayer::Models::Projects::InferencePipelineCreateResponse::Project | nil,
+        total_records_count: Integer | nil,
         workspace: Openlayer::Models::Projects::InferencePipelineCreateResponse::Workspace | nil,
         workspace_id: String | nil
       }
