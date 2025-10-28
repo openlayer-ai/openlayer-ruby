@@ -18,8 +18,12 @@ module Openlayer
           thresholds: ::Array[Openlayer::Models::Projects::TestCreateResponse::Threshold],
           type: Openlayer::Models::Projects::TestCreateResponse::type_,
           archived: bool,
+          default_to_all_pipelines: bool?,
           delay_window: Float?,
           evaluation_window: Float?,
+          exclude_pipelines: ::Array[String]?,
+          include_historical_data: bool?,
+          include_pipelines: ::Array[String]?,
           uses_ml_model: bool,
           uses_production_data: bool,
           uses_reference_dataset: bool,
@@ -42,9 +46,17 @@ module Openlayer
 
         def archived=: (bool) -> bool
 
+        attr_accessor default_to_all_pipelines: bool?
+
         attr_accessor delay_window: Float?
 
         attr_accessor evaluation_window: Float?
+
+        attr_accessor exclude_pipelines: ::Array[String]?
+
+        attr_accessor include_historical_data: bool?
+
+        attr_accessor include_pipelines: ::Array[String]?
 
         attr_reader uses_ml_model: bool?
 
@@ -100,8 +112,12 @@ module Openlayer
           thresholds: ::Array[Openlayer::Models::Projects::TestCreateResponse::Threshold],
           type: Openlayer::Models::Projects::TestCreateResponse::type_,
           ?archived: bool,
+          ?default_to_all_pipelines: bool?,
           ?delay_window: Float?,
           ?evaluation_window: Float?,
+          ?exclude_pipelines: ::Array[String]?,
+          ?include_historical_data: bool?,
+          ?include_pipelines: ::Array[String]?,
           ?uses_ml_model: bool,
           ?uses_production_data: bool,
           ?uses_reference_dataset: bool,
@@ -125,8 +141,12 @@ module Openlayer
           thresholds: ::Array[Openlayer::Models::Projects::TestCreateResponse::Threshold],
           type: Openlayer::Models::Projects::TestCreateResponse::type_,
           archived: bool,
+          default_to_all_pipelines: bool?,
           delay_window: Float?,
           evaluation_window: Float?,
+          exclude_pipelines: ::Array[String]?,
+          include_historical_data: bool?,
+          include_pipelines: ::Array[String]?,
           uses_ml_model: bool,
           uses_production_data: bool,
           uses_reference_dataset: bool,

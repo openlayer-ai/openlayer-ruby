@@ -23,6 +23,15 @@ module Openlayer
         sig do
           returns(
             T.nilable(
+              Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::Variants
+            )
+          )
+        end
+        attr_accessor :data_backend
+
+        sig do
+          returns(
+            T.nilable(
               Openlayer::Models::Projects::InferencePipelineCreateResponse::Project
             )
           )
@@ -125,6 +134,14 @@ module Openlayer
         sig { returns(Integer) }
         attr_accessor :total_goal_count
 
+        # The last time the data was polled.
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :date_last_polled
+
+        # The total number of records in the data backend.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :total_records_count
+
         # The workspace id.
         sig { returns(T.nilable(String)) }
         attr_reader :workspace_id
@@ -151,10 +168,23 @@ module Openlayer
               Openlayer::Models::Projects::InferencePipelineCreateResponse::Status::OrSymbol,
             status_message: T.nilable(String),
             total_goal_count: Integer,
+            data_backend:
+              T.nilable(
+                T.any(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::OrHash,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::OrHash,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::OrHash,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::OrHash,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::OrHash,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::OrHash
+                )
+              ),
+            date_last_polled: T.nilable(Time),
             project:
               T.nilable(
                 Openlayer::Models::Projects::InferencePipelineCreateResponse::Project::OrHash
               ),
+            total_records_count: T.nilable(Integer),
             workspace:
               T.nilable(
                 Openlayer::Models::Projects::InferencePipelineCreateResponse::Workspace::OrHash
@@ -192,7 +222,12 @@ module Openlayer
           status_message:,
           # The total number of tests.
           total_goal_count:,
+          data_backend: nil,
+          # The last time the data was polled.
+          date_last_polled: nil,
           project: nil,
+          # The total number of records in the data backend.
+          total_records_count: nil,
           workspace: nil,
           # The workspace id.
           workspace_id: nil
@@ -219,10 +254,16 @@ module Openlayer
                 Openlayer::Models::Projects::InferencePipelineCreateResponse::Status::TaggedSymbol,
               status_message: T.nilable(String),
               total_goal_count: Integer,
+              data_backend:
+                T.nilable(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::Variants
+                ),
+              date_last_polled: T.nilable(Time),
               project:
                 T.nilable(
                   Openlayer::Models::Projects::InferencePipelineCreateResponse::Project
                 ),
+              total_records_count: T.nilable(Integer),
               workspace:
                 T.nilable(
                   Openlayer::Models::Projects::InferencePipelineCreateResponse::Workspace
@@ -307,6 +348,917 @@ module Openlayer
             )
           end
           def self.values
+          end
+        end
+
+        module DataBackend
+          extend Openlayer::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0,
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType,
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2,
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3,
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4,
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5
+              )
+            end
+
+          class UnionMember0 < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType::TaggedSymbol
+              )
+            end
+            attr_accessor :backend_type
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :bigquery_connection_id
+
+            sig { returns(String) }
+            attr_accessor :dataset_id
+
+            sig { returns(String) }
+            attr_accessor :project_id
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :table_id
+
+            sig do
+              returns(
+                T.nilable(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                )
+              )
+            end
+            attr_accessor :partition_type
+
+            sig do
+              params(
+                backend_type:
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType::OrSymbol,
+                bigquery_connection_id: T.nilable(String),
+                dataset_id: String,
+                project_id: String,
+                table_id: T.nilable(String),
+                partition_type:
+                  T.nilable(
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType::OrSymbol
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              backend_type:,
+              bigquery_connection_id:,
+              dataset_id:,
+              project_id:,
+              table_id:,
+              partition_type: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  backend_type:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType::TaggedSymbol,
+                  bigquery_connection_id: T.nilable(String),
+                  config:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::Config,
+                  dataset_id: String,
+                  project_id: String,
+                  table_id: T.nilable(String),
+                  partition_type:
+                    T.nilable(
+                      Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              BIGQUERY =
+                T.let(
+                  :bigquery,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::BackendType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class Config < Openlayer::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::Config,
+                    Openlayer::Internal::AnyHash
+                  )
+                end
+
+              # Name of the column with the ground truths.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :ground_truth_column_name
+
+              # Name of the column with human feedback.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :human_feedback_column_name
+
+              # Name of the column with the latencies.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :latency_column_name
+
+              # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              # If not provided, the upload timestamp is used.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :timestamp_column_name
+
+              sig do
+                params(
+                  ground_truth_column_name: T.nilable(String),
+                  human_feedback_column_name: T.nilable(String),
+                  latency_column_name: T.nilable(String),
+                  timestamp_column_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Name of the column with the ground truths.
+                ground_truth_column_name: nil,
+                # Name of the column with human feedback.
+                human_feedback_column_name: nil,
+                # Name of the column with the latencies.
+                latency_column_name: nil,
+                # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+                # If not provided, the upload timestamp is used.
+                timestamp_column_name: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    ground_truth_column_name: T.nilable(String),
+                    human_feedback_column_name: T.nilable(String),
+                    inference_id_column_name: T.nilable(String),
+                    latency_column_name: T.nilable(String),
+                    timestamp_column_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            module PartitionType
+              extend Openlayer::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              DAY =
+                T.let(
+                  :DAY,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                )
+              MONTH =
+                T.let(
+                  :MONTH,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                )
+              YEAR =
+                T.let(
+                  :YEAR,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class BackendType < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType::TaggedSymbol
+              )
+            end
+            attr_accessor :backend_type
+
+            sig do
+              params(
+                backend_type:
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(backend_type:)
+            end
+
+            sig do
+              override.returns(
+                {
+                  backend_type:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              DEFAULT =
+                T.let(
+                  :default,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::BackendType::BackendType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class UnionMember2 < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType::TaggedSymbol
+              )
+            end
+            attr_accessor :backend_type
+
+            sig { returns(String) }
+            attr_accessor :database
+
+            sig { returns(String) }
+            attr_accessor :schema
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :snowflake_connection_id
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :table
+
+            sig do
+              params(
+                backend_type:
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType::OrSymbol,
+                database: String,
+                schema: String,
+                snowflake_connection_id: T.nilable(String),
+                table: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              backend_type:,
+              database:,
+              schema:,
+              snowflake_connection_id:,
+              table:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  backend_type:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType::TaggedSymbol,
+                  config:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::Config,
+                  database: String,
+                  schema: String,
+                  snowflake_connection_id: T.nilable(String),
+                  table: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              SNOWFLAKE =
+                T.let(
+                  :snowflake,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::BackendType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class Config < Openlayer::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember2::Config,
+                    Openlayer::Internal::AnyHash
+                  )
+                end
+
+              # Name of the column with the ground truths.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :ground_truth_column_name
+
+              # Name of the column with human feedback.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :human_feedback_column_name
+
+              # Name of the column with the latencies.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :latency_column_name
+
+              # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              # If not provided, the upload timestamp is used.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :timestamp_column_name
+
+              sig do
+                params(
+                  ground_truth_column_name: T.nilable(String),
+                  human_feedback_column_name: T.nilable(String),
+                  latency_column_name: T.nilable(String),
+                  timestamp_column_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Name of the column with the ground truths.
+                ground_truth_column_name: nil,
+                # Name of the column with human feedback.
+                human_feedback_column_name: nil,
+                # Name of the column with the latencies.
+                latency_column_name: nil,
+                # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+                # If not provided, the upload timestamp is used.
+                timestamp_column_name: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    ground_truth_column_name: T.nilable(String),
+                    human_feedback_column_name: T.nilable(String),
+                    inference_id_column_name: T.nilable(String),
+                    latency_column_name: T.nilable(String),
+                    timestamp_column_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class UnionMember3 < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType::TaggedSymbol
+              )
+            end
+            attr_accessor :backend_type
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :databricks_dtl_connection_id
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :table_id
+
+            sig do
+              params(
+                backend_type:
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType::OrSymbol,
+                databricks_dtl_connection_id: T.nilable(String),
+                table_id: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              backend_type:,
+              databricks_dtl_connection_id:,
+              table_id:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  backend_type:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType::TaggedSymbol,
+                  config:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::Config,
+                  databricks_dtl_connection_id: T.nilable(String),
+                  table_id: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              DATABRICKS_DTL =
+                T.let(
+                  :databricks_dtl,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::BackendType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class Config < Openlayer::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember3::Config,
+                    Openlayer::Internal::AnyHash
+                  )
+                end
+
+              # Name of the column with the ground truths.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :ground_truth_column_name
+
+              # Name of the column with human feedback.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :human_feedback_column_name
+
+              # Name of the column with the latencies.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :latency_column_name
+
+              # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              # If not provided, the upload timestamp is used.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :timestamp_column_name
+
+              sig do
+                params(
+                  ground_truth_column_name: T.nilable(String),
+                  human_feedback_column_name: T.nilable(String),
+                  latency_column_name: T.nilable(String),
+                  timestamp_column_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Name of the column with the ground truths.
+                ground_truth_column_name: nil,
+                # Name of the column with human feedback.
+                human_feedback_column_name: nil,
+                # Name of the column with the latencies.
+                latency_column_name: nil,
+                # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+                # If not provided, the upload timestamp is used.
+                timestamp_column_name: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    ground_truth_column_name: T.nilable(String),
+                    human_feedback_column_name: T.nilable(String),
+                    inference_id_column_name: T.nilable(String),
+                    latency_column_name: T.nilable(String),
+                    timestamp_column_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class UnionMember4 < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType::TaggedSymbol
+              )
+            end
+            attr_accessor :backend_type
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :redshift_connection_id
+
+            sig { returns(String) }
+            attr_accessor :schema_name
+
+            sig { returns(String) }
+            attr_accessor :table_name
+
+            sig do
+              params(
+                backend_type:
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType::OrSymbol,
+                redshift_connection_id: T.nilable(String),
+                schema_name: String,
+                table_name: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              backend_type:,
+              redshift_connection_id:,
+              schema_name:,
+              table_name:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  backend_type:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType::TaggedSymbol,
+                  config:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::Config,
+                  redshift_connection_id: T.nilable(String),
+                  schema_name: String,
+                  table_name: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              REDSHIFT =
+                T.let(
+                  :redshift,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::BackendType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class Config < Openlayer::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember4::Config,
+                    Openlayer::Internal::AnyHash
+                  )
+                end
+
+              # Name of the column with the ground truths.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :ground_truth_column_name
+
+              # Name of the column with human feedback.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :human_feedback_column_name
+
+              # Name of the column with the latencies.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :latency_column_name
+
+              # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              # If not provided, the upload timestamp is used.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :timestamp_column_name
+
+              sig do
+                params(
+                  ground_truth_column_name: T.nilable(String),
+                  human_feedback_column_name: T.nilable(String),
+                  latency_column_name: T.nilable(String),
+                  timestamp_column_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Name of the column with the ground truths.
+                ground_truth_column_name: nil,
+                # Name of the column with human feedback.
+                human_feedback_column_name: nil,
+                # Name of the column with the latencies.
+                latency_column_name: nil,
+                # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+                # If not provided, the upload timestamp is used.
+                timestamp_column_name: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    ground_truth_column_name: T.nilable(String),
+                    human_feedback_column_name: T.nilable(String),
+                    inference_id_column_name: T.nilable(String),
+                    latency_column_name: T.nilable(String),
+                    timestamp_column_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class UnionMember5 < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType::TaggedSymbol
+              )
+            end
+            attr_accessor :backend_type
+
+            sig { returns(String) }
+            attr_accessor :database
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :postgres_connection_id
+
+            sig { returns(String) }
+            attr_accessor :schema
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :table
+
+            sig do
+              params(
+                backend_type:
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType::OrSymbol,
+                database: String,
+                postgres_connection_id: T.nilable(String),
+                schema: String,
+                table: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              backend_type:,
+              database:,
+              postgres_connection_id:,
+              schema:,
+              table:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  backend_type:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType::TaggedSymbol,
+                  config:
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::Config,
+                  database: String,
+                  postgres_connection_id: T.nilable(String),
+                  schema: String,
+                  table: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module BackendType
+              extend Openlayer::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              POSTGRES =
+                T.let(
+                  :postgres,
+                  Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::BackendType::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class Config < Openlayer::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::UnionMember5::Config,
+                    Openlayer::Internal::AnyHash
+                  )
+                end
+
+              # Name of the column with the ground truths.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :ground_truth_column_name
+
+              # Name of the column with human feedback.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :human_feedback_column_name
+
+              # Name of the column with the latencies.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :latency_column_name
+
+              # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+              # If not provided, the upload timestamp is used.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :timestamp_column_name
+
+              sig do
+                params(
+                  ground_truth_column_name: T.nilable(String),
+                  human_feedback_column_name: T.nilable(String),
+                  latency_column_name: T.nilable(String),
+                  timestamp_column_name: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Name of the column with the ground truths.
+                ground_truth_column_name: nil,
+                # Name of the column with human feedback.
+                human_feedback_column_name: nil,
+                # Name of the column with the latencies.
+                latency_column_name: nil,
+                # Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+                # If not provided, the upload timestamp is used.
+                timestamp_column_name: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    ground_truth_column_name: T.nilable(String),
+                    human_feedback_column_name: T.nilable(String),
+                    inference_id_column_name: T.nilable(String),
+                    latency_column_name: T.nilable(String),
+                    timestamp_column_name: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Openlayer::Models::Projects::InferencePipelineCreateResponse::DataBackend::Variants
+              ]
+            )
+          end
+          def self.variants
           end
         end
 

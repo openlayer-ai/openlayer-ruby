@@ -10,6 +10,17 @@ module Openlayer
             project_id: String,
             description: T.nilable(String),
             name: String,
+            data_backend:
+              T.nilable(
+                T.any(
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::OrHash
+                )
+              ),
             project:
               T.nilable(
                 Openlayer::Projects::InferencePipelineCreateParams::Project::OrHash
@@ -30,6 +41,7 @@ module Openlayer
           description:,
           # The inference pipeline name.
           name:,
+          data_backend: nil,
           project: nil,
           workspace: nil,
           request_options: {}

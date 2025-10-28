@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.5.0 (2025-10-28)
+
+Full Changelog: [v0.4.1...v0.5.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.4.1...v0.5.0)
+
+### Features
+
+* **api:** api update ([e686c41](https://github.com/openlayer-ai/openlayer-ruby/commit/e686c41ce85b71f1d36e6e98c57fd1e15b0dba50))
+* **api:** api update ([062f345](https://github.com/openlayer-ai/openlayer-ruby/commit/062f34578e996d2f947d6175656e29657bd6d325))
+* handle thread interrupts in the core HTTP client ([ec67b44](https://github.com/openlayer-ai/openlayer-ruby/commit/ec67b44714f9f117f129ace368b40e47e9ec3f3c))
+
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([e245d11](https://github.com/openlayer-ai/openlayer-ruby/commit/e245d1191c6f5e73a5f4431a8bfff1989d828648))
+
 ## 0.4.1 (2025-10-15)
 
 Full Changelog: [v0.4.0...v0.4.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.4.0...v0.4.1)

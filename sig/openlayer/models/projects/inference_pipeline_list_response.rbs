@@ -34,7 +34,10 @@ module Openlayer
             status: Openlayer::Models::Projects::InferencePipelineListResponse::Item::status,
             status_message: String?,
             total_goal_count: Integer,
+            data_backend: Openlayer::Models::Projects::InferencePipelineListResponse::Item::data_backend?,
+            date_last_polled: Time?,
             project: Openlayer::Models::Projects::InferencePipelineListResponse::Item::Project?,
+            total_records_count: Integer?,
             workspace: Openlayer::Models::Projects::InferencePipelineListResponse::Item::Workspace?,
             workspace_id: String
           }
@@ -43,6 +46,8 @@ module Openlayer
           attr_accessor description: String?
 
           attr_accessor name: String
+
+          attr_accessor data_backend: Openlayer::Models::Projects::InferencePipelineListResponse::Item::data_backend?
 
           attr_accessor project: Openlayer::Models::Projects::InferencePipelineListResponse::Item::Project?
 
@@ -74,6 +79,10 @@ module Openlayer
 
           attr_accessor total_goal_count: Integer
 
+          attr_accessor date_last_polled: Time?
+
+          attr_accessor total_records_count: Integer?
+
           attr_reader workspace_id: String?
 
           def workspace_id=: (String) -> String
@@ -94,7 +103,10 @@ module Openlayer
             status: Openlayer::Models::Projects::InferencePipelineListResponse::Item::status,
             status_message: String?,
             total_goal_count: Integer,
+            ?data_backend: Openlayer::Models::Projects::InferencePipelineListResponse::Item::data_backend?,
+            ?date_last_polled: Time?,
             ?project: Openlayer::Models::Projects::InferencePipelineListResponse::Item::Project?,
+            ?total_records_count: Integer?,
             ?workspace: Openlayer::Models::Projects::InferencePipelineListResponse::Item::Workspace?,
             ?workspace_id: String
           ) -> void
@@ -115,7 +127,10 @@ module Openlayer
             status: Openlayer::Models::Projects::InferencePipelineListResponse::Item::status,
             status_message: String?,
             total_goal_count: Integer,
+            data_backend: Openlayer::Models::Projects::InferencePipelineListResponse::Item::data_backend?,
+            date_last_polled: Time?,
             project: Openlayer::Models::Projects::InferencePipelineListResponse::Item::Project?,
+            total_records_count: Integer?,
             workspace: Openlayer::Models::Projects::InferencePipelineListResponse::Item::Workspace?,
             workspace_id: String
           }
@@ -144,6 +159,464 @@ module Openlayer
             UNKNOWN: :unknown
 
             def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::status]
+          end
+
+          type data_backend =
+            Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0
+            | Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::BackendType
+            | Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2
+            | Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3
+            | Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4
+            | Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5
+
+          module DataBackend
+            extend Openlayer::Internal::Type::Union
+
+            type union_member0 =
+              {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::backend_type,
+                bigquery_connection_id: String?,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::Config,
+                dataset_id: String,
+                project_id: String,
+                table_id: String?,
+                partition_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::partition_type?
+              }
+
+            class UnionMember0 < Openlayer::Internal::Type::BaseModel
+              attr_accessor backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::backend_type
+
+              attr_accessor bigquery_connection_id: String?
+
+              attr_accessor dataset_id: String
+
+              attr_accessor project_id: String
+
+              attr_accessor table_id: String?
+
+              attr_accessor partition_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::partition_type?
+
+              def initialize: (
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::backend_type,
+                bigquery_connection_id: String?,
+                dataset_id: String,
+                project_id: String,
+                table_id: String?,
+                ?partition_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::partition_type?
+              ) -> void
+
+              def to_hash: -> {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::backend_type,
+                bigquery_connection_id: String?,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::Config,
+                dataset_id: String,
+                project_id: String,
+                table_id: String?,
+                partition_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::partition_type?
+              }
+
+              type backend_type = :bigquery
+
+              module BackendType
+                extend Openlayer::Internal::Type::Enum
+
+                BIGQUERY: :bigquery
+
+                def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::backend_type]
+              end
+
+              type config =
+                {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+
+              class Config < Openlayer::Internal::Type::BaseModel
+                attr_accessor ground_truth_column_name: String?
+
+                attr_accessor human_feedback_column_name: String?
+
+                attr_accessor latency_column_name: String?
+
+                attr_accessor timestamp_column_name: String?
+
+                def initialize: (
+                  ?ground_truth_column_name: String?,
+                  ?human_feedback_column_name: String?,
+                  ?latency_column_name: String?,
+                  ?timestamp_column_name: String?
+                ) -> void
+
+                def to_hash: -> {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+              end
+
+              type partition_type = :DAY | :MONTH | :YEAR
+
+              module PartitionType
+                extend Openlayer::Internal::Type::Enum
+
+                DAY: :DAY
+                MONTH: :MONTH
+                YEAR: :YEAR
+
+                def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember0::partition_type]
+              end
+            end
+
+            type backend_type =
+              {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::BackendType::backend_type
+              }
+
+            class BackendType < Openlayer::Internal::Type::BaseModel
+              attr_accessor backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::BackendType::backend_type
+
+              def initialize: (
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::BackendType::backend_type
+              ) -> void
+
+              def to_hash: -> {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::BackendType::backend_type
+              }
+
+              type backend_type = :default
+
+              module BackendType
+                extend Openlayer::Internal::Type::Enum
+
+                DEFAULT: :default
+
+                def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::BackendType::backend_type]
+              end
+            end
+
+            type union_member2 =
+              {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2::Config,
+                database: String,
+                schema: String,
+                snowflake_connection_id: String?,
+                table: String?
+              }
+
+            class UnionMember2 < Openlayer::Internal::Type::BaseModel
+              attr_accessor backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2::backend_type
+
+              attr_accessor database: String
+
+              attr_accessor schema: String
+
+              attr_accessor snowflake_connection_id: String?
+
+              attr_accessor table: String?
+
+              def initialize: (
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2::backend_type,
+                database: String,
+                schema: String,
+                snowflake_connection_id: String?,
+                table: String?
+              ) -> void
+
+              def to_hash: -> {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2::Config,
+                database: String,
+                schema: String,
+                snowflake_connection_id: String?,
+                table: String?
+              }
+
+              type backend_type = :snowflake
+
+              module BackendType
+                extend Openlayer::Internal::Type::Enum
+
+                SNOWFLAKE: :snowflake
+
+                def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember2::backend_type]
+              end
+
+              type config =
+                {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+
+              class Config < Openlayer::Internal::Type::BaseModel
+                attr_accessor ground_truth_column_name: String?
+
+                attr_accessor human_feedback_column_name: String?
+
+                attr_accessor latency_column_name: String?
+
+                attr_accessor timestamp_column_name: String?
+
+                def initialize: (
+                  ?ground_truth_column_name: String?,
+                  ?human_feedback_column_name: String?,
+                  ?latency_column_name: String?,
+                  ?timestamp_column_name: String?
+                ) -> void
+
+                def to_hash: -> {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+              end
+            end
+
+            type union_member3 =
+              {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3::Config,
+                databricks_dtl_connection_id: String?,
+                table_id: String?
+              }
+
+            class UnionMember3 < Openlayer::Internal::Type::BaseModel
+              attr_accessor backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3::backend_type
+
+              attr_accessor databricks_dtl_connection_id: String?
+
+              attr_accessor table_id: String?
+
+              def initialize: (
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3::backend_type,
+                databricks_dtl_connection_id: String?,
+                table_id: String?
+              ) -> void
+
+              def to_hash: -> {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3::Config,
+                databricks_dtl_connection_id: String?,
+                table_id: String?
+              }
+
+              type backend_type = :databricks_dtl
+
+              module BackendType
+                extend Openlayer::Internal::Type::Enum
+
+                DATABRICKS_DTL: :databricks_dtl
+
+                def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember3::backend_type]
+              end
+
+              type config =
+                {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+
+              class Config < Openlayer::Internal::Type::BaseModel
+                attr_accessor ground_truth_column_name: String?
+
+                attr_accessor human_feedback_column_name: String?
+
+                attr_accessor latency_column_name: String?
+
+                attr_accessor timestamp_column_name: String?
+
+                def initialize: (
+                  ?ground_truth_column_name: String?,
+                  ?human_feedback_column_name: String?,
+                  ?latency_column_name: String?,
+                  ?timestamp_column_name: String?
+                ) -> void
+
+                def to_hash: -> {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+              end
+            end
+
+            type union_member4 =
+              {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4::Config,
+                redshift_connection_id: String?,
+                schema_name: String,
+                table_name: String
+              }
+
+            class UnionMember4 < Openlayer::Internal::Type::BaseModel
+              attr_accessor backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4::backend_type
+
+              attr_accessor redshift_connection_id: String?
+
+              attr_accessor schema_name: String
+
+              attr_accessor table_name: String
+
+              def initialize: (
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4::backend_type,
+                redshift_connection_id: String?,
+                schema_name: String,
+                table_name: String
+              ) -> void
+
+              def to_hash: -> {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4::Config,
+                redshift_connection_id: String?,
+                schema_name: String,
+                table_name: String
+              }
+
+              type backend_type = :redshift
+
+              module BackendType
+                extend Openlayer::Internal::Type::Enum
+
+                REDSHIFT: :redshift
+
+                def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember4::backend_type]
+              end
+
+              type config =
+                {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+
+              class Config < Openlayer::Internal::Type::BaseModel
+                attr_accessor ground_truth_column_name: String?
+
+                attr_accessor human_feedback_column_name: String?
+
+                attr_accessor latency_column_name: String?
+
+                attr_accessor timestamp_column_name: String?
+
+                def initialize: (
+                  ?ground_truth_column_name: String?,
+                  ?human_feedback_column_name: String?,
+                  ?latency_column_name: String?,
+                  ?timestamp_column_name: String?
+                ) -> void
+
+                def to_hash: -> {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+              end
+            end
+
+            type union_member5 =
+              {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5::Config,
+                database: String,
+                postgres_connection_id: String?,
+                schema: String,
+                table: String?
+              }
+
+            class UnionMember5 < Openlayer::Internal::Type::BaseModel
+              attr_accessor backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5::backend_type
+
+              attr_accessor database: String
+
+              attr_accessor postgres_connection_id: String?
+
+              attr_accessor schema: String
+
+              attr_accessor table: String?
+
+              def initialize: (
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5::backend_type,
+                database: String,
+                postgres_connection_id: String?,
+                schema: String,
+                table: String?
+              ) -> void
+
+              def to_hash: -> {
+                backend_type: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5::backend_type,
+                config: Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5::Config,
+                database: String,
+                postgres_connection_id: String?,
+                schema: String,
+                table: String?
+              }
+
+              type backend_type = :postgres
+
+              module BackendType
+                extend Openlayer::Internal::Type::Enum
+
+                POSTGRES: :postgres
+
+                def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::DataBackend::UnionMember5::backend_type]
+              end
+
+              type config =
+                {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+
+              class Config < Openlayer::Internal::Type::BaseModel
+                attr_accessor ground_truth_column_name: String?
+
+                attr_accessor human_feedback_column_name: String?
+
+                attr_accessor latency_column_name: String?
+
+                attr_accessor timestamp_column_name: String?
+
+                def initialize: (
+                  ?ground_truth_column_name: String?,
+                  ?human_feedback_column_name: String?,
+                  ?latency_column_name: String?,
+                  ?timestamp_column_name: String?
+                ) -> void
+
+                def to_hash: -> {
+                  ground_truth_column_name: String?,
+                  human_feedback_column_name: String?,
+                  inference_id_column_name: String?,
+                  latency_column_name: String?,
+                  timestamp_column_name: String?
+                }
+              end
+            end
+
+            def self?.variants: -> ::Array[Openlayer::Models::Projects::InferencePipelineListResponse::Item::data_backend]
           end
 
           type project =

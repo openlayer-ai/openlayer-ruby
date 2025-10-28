@@ -17,8 +17,12 @@ module Openlayer
               ],
             type: Openlayer::Projects::TestCreateParams::Type::OrSymbol,
             archived: T::Boolean,
+            default_to_all_pipelines: T.nilable(T::Boolean),
             delay_window: T.nilable(Float),
             evaluation_window: T.nilable(Float),
+            exclude_pipelines: T.nilable(T::Array[String]),
+            include_historical_data: T.nilable(T::Boolean),
+            include_pipelines: T.nilable(T::Array[String]),
             uses_ml_model: T::Boolean,
             uses_production_data: T::Boolean,
             uses_reference_dataset: T::Boolean,
@@ -41,11 +45,23 @@ module Openlayer
           type:,
           # Whether the test is archived.
           archived: nil,
+          # Whether to apply the test to all pipelines (data sources) or to a specific set
+          # of pipelines. Only applies to tests that use production data.
+          default_to_all_pipelines: nil,
           # The delay window in seconds. Only applies to tests that use production data.
           delay_window: nil,
           # The evaluation window in seconds. Only applies to tests that use production
           # data.
           evaluation_window: nil,
+          # Array of pipelines (data sources) to which the test should not be applied. Only
+          # applies to tests that use production data.
+          exclude_pipelines: nil,
+          # Whether to include historical data in the test result. Only applies to tests
+          # that use production data.
+          include_historical_data: nil,
+          # Array of pipelines (data sources) to which the test should be applied. Only
+          # applies to tests that use production data.
+          include_pipelines: nil,
           # Whether the test uses an ML model.
           uses_ml_model: nil,
           # Whether the test uses production data (monitoring mode only).
