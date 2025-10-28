@@ -9,7 +9,7 @@ module Openlayer
         #
         # Create a test.
         #
-        # @overload create(project_id, description:, name:, subtype:, thresholds:, type:, archived: nil, delay_window: nil, evaluation_window: nil, uses_ml_model: nil, uses_production_data: nil, uses_reference_dataset: nil, uses_training_dataset: nil, uses_validation_dataset: nil, request_options: {})
+        # @overload create(project_id, description:, name:, subtype:, thresholds:, type:, archived: nil, default_to_all_pipelines: nil, delay_window: nil, evaluation_window: nil, exclude_pipelines: nil, include_historical_data: nil, include_pipelines: nil, uses_ml_model: nil, uses_production_data: nil, uses_reference_dataset: nil, uses_training_dataset: nil, uses_validation_dataset: nil, request_options: {})
         #
         # @param project_id [String] The project id.
         #
@@ -25,9 +25,17 @@ module Openlayer
         #
         # @param archived [Boolean] Whether the test is archived.
         #
+        # @param default_to_all_pipelines [Boolean, nil] Whether to apply the test to all pipelines (data sources) or to a specific set o
+        #
         # @param delay_window [Float, nil] The delay window in seconds. Only applies to tests that use production data.
         #
         # @param evaluation_window [Float, nil] The evaluation window in seconds. Only applies to tests that use production data
+        #
+        # @param exclude_pipelines [Array<String>, nil] Array of pipelines (data sources) to which the test should not be applied. Only
+        #
+        # @param include_historical_data [Boolean, nil] Whether to include historical data in the test result. Only applies to tests tha
+        #
+        # @param include_pipelines [Array<String>, nil] Array of pipelines (data sources) to which the test should be applied. Only appl
         #
         # @param uses_ml_model [Boolean] Whether the test uses an ML model.
         #
