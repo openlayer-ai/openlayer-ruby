@@ -6,13 +6,15 @@ module Openlayer
       class InferencePipelines
         # Create an inference pipeline in a project.
         #
-        # @overload create(project_id, description:, name:, project: nil, workspace: nil, request_options: {})
+        # @overload create(project_id, description:, name:, data_backend: nil, project: nil, workspace: nil, request_options: {})
         #
         # @param project_id [String] The project id.
         #
         # @param description [String, nil] The inference pipeline description.
         #
         # @param name [String] The inference pipeline name.
+        #
+        # @param data_backend [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5, nil]
         #
         # @param project [Openlayer::Models::Projects::InferencePipelineCreateParams::Project, nil]
         #

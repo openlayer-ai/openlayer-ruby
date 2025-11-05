@@ -41,6 +41,16 @@ module Openlayer
         #   @return [Boolean, nil]
         optional :archived, Openlayer::Internal::Type::Boolean
 
+        # @!attribute default_to_all_pipelines
+        #   Whether to apply the test to all pipelines (data sources) or to a specific set
+        #   of pipelines. Only applies to tests that use production data.
+        #
+        #   @return [Boolean, nil]
+        optional :default_to_all_pipelines,
+                 Openlayer::Internal::Type::Boolean,
+                 api_name: :defaultToAllPipelines,
+                 nil?: true
+
         # @!attribute delay_window
         #   The delay window in seconds. Only applies to tests that use production data.
         #
@@ -53,6 +63,36 @@ module Openlayer
         #
         #   @return [Float, nil]
         optional :evaluation_window, Float, api_name: :evaluationWindow, nil?: true
+
+        # @!attribute exclude_pipelines
+        #   Array of pipelines (data sources) to which the test should not be applied. Only
+        #   applies to tests that use production data.
+        #
+        #   @return [Array<String>, nil]
+        optional :exclude_pipelines,
+                 Openlayer::Internal::Type::ArrayOf[String],
+                 api_name: :excludePipelines,
+                 nil?: true
+
+        # @!attribute include_historical_data
+        #   Whether to include historical data in the test result. Only applies to tests
+        #   that use production data.
+        #
+        #   @return [Boolean, nil]
+        optional :include_historical_data,
+                 Openlayer::Internal::Type::Boolean,
+                 api_name: :includeHistoricalData,
+                 nil?: true
+
+        # @!attribute include_pipelines
+        #   Array of pipelines (data sources) to which the test should be applied. Only
+        #   applies to tests that use production data.
+        #
+        #   @return [Array<String>, nil]
+        optional :include_pipelines,
+                 Openlayer::Internal::Type::ArrayOf[String],
+                 api_name: :includePipelines,
+                 nil?: true
 
         # @!attribute uses_ml_model
         #   Whether the test uses an ML model.
@@ -142,7 +182,7 @@ module Openlayer
           required :suggested, Openlayer::Internal::Type::Boolean
         end
 
-        # @!method initialize(id:, comment_count:, creator_id:, date_archived:, date_created:, date_updated:, description:, name:, number:, origin_project_version_id:, subtype:, suggested:, thresholds:, type:, archived: nil, delay_window: nil, evaluation_window: nil, uses_ml_model: nil, uses_production_data: nil, uses_reference_dataset: nil, uses_training_dataset: nil, uses_validation_dataset: nil)
+        # @!method initialize(id:, comment_count:, creator_id:, date_archived:, date_created:, date_updated:, description:, name:, number:, origin_project_version_id:, subtype:, suggested:, thresholds:, type:, archived: nil, default_to_all_pipelines: nil, delay_window: nil, evaluation_window: nil, exclude_pipelines: nil, include_historical_data: nil, include_pipelines: nil, uses_ml_model: nil, uses_production_data: nil, uses_reference_dataset: nil, uses_training_dataset: nil, uses_validation_dataset: nil)
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::Projects::TestCreateResponse} for more details.
         #
@@ -176,9 +216,17 @@ module Openlayer
         #
         #   @param archived [Boolean] Whether the test is archived.
         #
+        #   @param default_to_all_pipelines [Boolean, nil] Whether to apply the test to all pipelines (data sources) or to a specific set o
+        #
         #   @param delay_window [Float, nil] The delay window in seconds. Only applies to tests that use production data.
         #
         #   @param evaluation_window [Float, nil] The evaluation window in seconds. Only applies to tests that use production data
+        #
+        #   @param exclude_pipelines [Array<String>, nil] Array of pipelines (data sources) to which the test should not be applied. Only
+        #
+        #   @param include_historical_data [Boolean, nil] Whether to include historical data in the test result. Only applies to tests tha
+        #
+        #   @param include_pipelines [Array<String>, nil] Array of pipelines (data sources) to which the test should be applied. Only appl
         #
         #   @param uses_ml_model [Boolean] Whether the test uses an ML model.
         #
