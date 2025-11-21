@@ -27,7 +27,10 @@ class Openlayer::Test::Resources::InferencePipelinesTest < Openlayer::Test::Reso
         status: Openlayer::Models::InferencePipelineRetrieveResponse::Status,
         status_message: String | nil,
         total_goal_count: Integer,
+        data_backend: Openlayer::Models::InferencePipelineRetrieveResponse::DataBackend | nil,
+        date_last_polled: Time | nil,
         project: Openlayer::Models::InferencePipelineRetrieveResponse::Project | nil,
+        total_records_count: Integer | nil,
         workspace: Openlayer::Models::InferencePipelineRetrieveResponse::Workspace | nil,
         workspace_id: String | nil
       }
@@ -58,7 +61,10 @@ class Openlayer::Test::Resources::InferencePipelinesTest < Openlayer::Test::Reso
         status: Openlayer::Models::InferencePipelineUpdateResponse::Status,
         status_message: String | nil,
         total_goal_count: Integer,
+        data_backend: Openlayer::Models::InferencePipelineUpdateResponse::DataBackend | nil,
+        date_last_polled: Time | nil,
         project: Openlayer::Models::InferencePipelineUpdateResponse::Project | nil,
+        total_records_count: Integer | nil,
         workspace: Openlayer::Models::InferencePipelineUpdateResponse::Workspace | nil,
         workspace_id: String | nil
       }
