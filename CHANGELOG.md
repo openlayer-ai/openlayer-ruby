@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0 (2025-12-17)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** add test evaluation method ([18f2855](https://github.com/openlayer-ai/openlayer-ruby/commit/18f28556f722aad06666f8a247e597328d218b14))
+
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([8fe6142](https://github.com/openlayer-ai/openlayer-ruby/commit/8fe6142fdb2c5590bb28678f8fbf4958bdcfb9f9))
+
 ## 0.5.0 (2025-12-16)
 
 Full Changelog: [v0.4.1...v0.5.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.4.1...v0.5.0)
