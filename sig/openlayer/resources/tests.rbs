@@ -1,0 +1,16 @@
+module Openlayer
+  module Resources
+    class Tests
+      def evaluate: (
+        String test_id,
+        end_timestamp: Integer,
+        start_timestamp: Integer,
+        ?inference_pipeline_id: String,
+        ?overwrite_results: bool,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::TestEvaluateResponse
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end

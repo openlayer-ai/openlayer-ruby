@@ -30,6 +30,9 @@ module Openlayer
     # @return [Openlayer::Resources::Storage]
     attr_reader :storage
 
+    # @return [Openlayer::Resources::Tests]
+    attr_reader :tests
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -77,6 +80,7 @@ module Openlayer
       @commits = Openlayer::Resources::Commits.new(client: self)
       @inference_pipelines = Openlayer::Resources::InferencePipelines.new(client: self)
       @storage = Openlayer::Resources::Storage.new(client: self)
+      @tests = Openlayer::Resources::Tests.new(client: self)
     end
   end
 end
