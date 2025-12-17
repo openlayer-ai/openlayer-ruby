@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0 (2025-12-17)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **closes OPEN-8478:** add ConversationalSearchService tracer to Ruby SDK ([a33bc2e](https://github.com/openlayer-ai/openlayer-ruby/commit/a33bc2eab12db4b8e2d95a66435b1f7fbc1d0397))
+
 ## 0.6.0 (2025-12-17)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.5.0...v0.6.0)
