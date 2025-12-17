@@ -25,6 +25,9 @@ module Openlayer
     sig { returns(Openlayer::Resources::Storage) }
     attr_reader :storage
 
+    sig { returns(Openlayer::Resources::Tests) }
+    attr_reader :tests
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

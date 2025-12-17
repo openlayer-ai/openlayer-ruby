@@ -18,4 +18,6 @@ module Openlayer
   module Projects = Openlayer::Models::Projects
 
   module Storage = Openlayer::Models::Storage
+
+  class TestEvaluateParams = Openlayer::Models::TestEvaluateParams
 end
