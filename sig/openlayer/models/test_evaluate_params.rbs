@@ -1,0 +1,45 @@
+module Openlayer
+  module Models
+    type test_evaluate_params =
+      {
+        end_timestamp: Integer,
+        start_timestamp: Integer,
+        inference_pipeline_id: String,
+        overwrite_results: bool
+      }
+      & Openlayer::Internal::Type::request_parameters
+
+    class TestEvaluateParams < Openlayer::Internal::Type::BaseModel
+      extend Openlayer::Internal::Type::RequestParameters::Converter
+      include Openlayer::Internal::Type::RequestParameters
+
+      attr_accessor end_timestamp: Integer
+
+      attr_accessor start_timestamp: Integer
+
+      attr_reader inference_pipeline_id: String?
+
+      def inference_pipeline_id=: (String) -> String
+
+      attr_reader overwrite_results: bool?
+
+      def overwrite_results=: (bool) -> bool
+
+      def initialize: (
+        end_timestamp: Integer,
+        start_timestamp: Integer,
+        ?inference_pipeline_id: String,
+        ?overwrite_results: bool,
+        ?request_options: Openlayer::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        end_timestamp: Integer,
+        start_timestamp: Integer,
+        inference_pipeline_id: String,
+        overwrite_results: bool,
+        request_options: Openlayer::RequestOptions
+      }
+    end
+  end
+end

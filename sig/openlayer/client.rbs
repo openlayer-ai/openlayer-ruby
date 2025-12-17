@@ -18,6 +18,8 @@ module Openlayer
 
     attr_reader storage: Openlayer::Resources::Storage
 
+    attr_reader tests: Openlayer::Resources::Tests
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

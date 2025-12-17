@@ -1,0 +1,63 @@
+module Openlayer
+  module Models
+    type test_evaluate_response =
+      {
+        message: String,
+        pipeline_count: Integer,
+        requested_end_timestamp: Integer,
+        requested_start_timestamp: Integer,
+        tasks: ::Array[Openlayer::Models::TestEvaluateResponse::Task]
+      }
+
+    class TestEvaluateResponse < Openlayer::Internal::Type::BaseModel
+      attr_accessor message: String
+
+      attr_accessor pipeline_count: Integer
+
+      attr_accessor requested_end_timestamp: Integer
+
+      attr_accessor requested_start_timestamp: Integer
+
+      attr_accessor tasks: ::Array[Openlayer::Models::TestEvaluateResponse::Task]
+
+      def initialize: (
+        message: String,
+        pipeline_count: Integer,
+        requested_end_timestamp: Integer,
+        requested_start_timestamp: Integer,
+        tasks: ::Array[Openlayer::Models::TestEvaluateResponse::Task]
+      ) -> void
+
+      def to_hash: -> {
+        message: String,
+        pipeline_count: Integer,
+        requested_end_timestamp: Integer,
+        requested_start_timestamp: Integer,
+        tasks: ::Array[Openlayer::Models::TestEvaluateResponse::Task]
+      }
+
+      type task =
+        { pipeline_id: String, task_result_id: String, task_result_url: String }
+
+      class Task < Openlayer::Internal::Type::BaseModel
+        attr_accessor pipeline_id: String
+
+        attr_accessor task_result_id: String
+
+        attr_accessor task_result_url: String
+
+        def initialize: (
+          pipeline_id: String,
+          task_result_id: String,
+          task_result_url: String
+        ) -> void
+
+        def to_hash: -> {
+          pipeline_id: String,
+          task_result_id: String,
+          task_result_url: String
+        }
+      end
+    end
+  end
+end
