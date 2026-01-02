@@ -38,8 +38,12 @@ module Openlayer
       #   The Openlayer client instance for sending traces
       # @param inference_pipeline_id [String]
       #   The Openlayer inference pipeline ID to send traces to
+      # @param session_id [String, nil]
+      #   Optional session ID to use for all traces. Takes precedence over auto-extracted sessions.
+      # @param user_id [String, nil]
+      #   Optional user ID to use for all traces.
       # @return [void]
-      def self.trace_client(client, openlayer_client:, inference_pipeline_id:)
+      def self.trace_client(client, openlayer_client:, inference_pipeline_id:, session_id: nil, user_id: nil)
         # Store original method reference
         original_answer_query = client.method(:answer_query)
 
@@ -63,7 +67,9 @@ module Openlayer
               start_time: start_time,
               end_time: end_time,
               openlayer_client: openlayer_client,
-              inference_pipeline_id: inference_pipeline_id
+              inference_pipeline_id: inference_pipeline_id,
+              session_id: session_id,
+              user_id: user_id
             )
           rescue StandardError => e
             # Never break the user's application due to tracing errors
@@ -87,8 +93,10 @@ module Openlayer
       # @param end_time [Time] Request end time
       # @param openlayer_client [Openlayer::Client] Openlayer client instance
       # @param inference_pipeline_id [String] Pipeline ID
+      # @param session_id [String, nil] Optional session ID (takes precedence over auto-extracted)
+      # @param user_id [String, nil] Optional user ID
       # @return [void]
-      def self.send_trace(args:, kwargs:, response:, start_time:, end_time:, openlayer_client:, inference_pipeline_id:)
+      def self.send_trace(args:, kwargs:, response:, start_time:, end_time:, openlayer_client:, inference_pipeline_id:, session_id: nil, user_id: nil)
         # Calculate latency
         latency_ms = ((end_time - start_time) * 1000).round(2)
 
@@ -144,6 +152,19 @@ module Openlayer
             }
           ]
         }
+
+        # Determine which session to use (kwarg takes precedence over auto-extracted)
+        final_session = session_id || metadata[:session]
+        if final_session
+          trace_data[:rows][0][:session_id] = final_session
+          trace_data[:config][:sessionIdColumnName] = "session_id"
+        end
+
+        # Add user_id if provided
+        if user_id
+          trace_data[:rows][0][:user_id] = user_id
+          trace_data[:config][:userIdColumnName] = "user_id"
+        end
 
         # Send to Openlayer
         openlayer_client
