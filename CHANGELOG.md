@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0 (2026-01-05)
+
+Full Changelog: [v0.7.1...v0.8.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.7.1...v0.8.0)
+
+### Features
+
+* **closes OPEN-8574:** session and user id support for the ConversationalSearchService tracer ([9157c52](https://github.com/openlayer-ai/openlayer-ruby/commit/9157c528195ae1a3c56ba652b8b598a2c2e53eab))
+
 ## 0.7.1 (2025-12-19)
 
 Full Changelog: [v0.7.0...v0.7.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.7.0...v0.7.1)
