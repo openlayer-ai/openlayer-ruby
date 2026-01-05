@@ -125,6 +125,10 @@ module Openlayer
           nil
         end
 
+        # Extract nested steps (Google's execution steps)
+        answer = response.respond_to?(:answer) ? response.answer : nil
+        nested_steps = answer ? extract_steps(answer, query_text) : nil
+
         # Build step object
         step = {
           name: "Conversational Search answer_query",
@@ -150,6 +154,9 @@ module Openlayer
         step[:citations] = citations if citations
         step[:references] = references if references
         step[:relatedQuestions] = related_questions if related_questions
+
+        # Add nested steps (Google's execution steps as RetrieverSteps)
+        step[:steps] = nested_steps if nested_steps && !nested_steps.empty?
 
         # Build trace data in Openlayer format
         trace_data = {
@@ -184,9 +191,11 @@ module Openlayer
           trace_data[:config][:sessionIdColumnName] = "session_id"
         end
 
-        # Add user_id if provided
-        if user_id
-          trace_data[:rows][0][:user_id] = user_id
+        # Determine which user_id to use (kwarg takes precedence over auto-extracted)
+        user_pseudo_id = extract_user_pseudo_id(response)
+        final_user_id = user_id || user_pseudo_id
+        if final_user_id
+          trace_data[:rows][0][:user_id] = final_user_id
           trace_data[:config][:userIdColumnName] = "user_id"
         end
 
@@ -247,14 +256,22 @@ module Openlayer
         answer = response.answer
         return {answer_text: nil} if answer.nil?
 
+        # Extract answer_skipped_reasons if present
+        answer_skipped_reasons = safe_extract(answer, :answer_skipped_reasons)
+        answer_skipped_reasons = if answer_skipped_reasons && answer_skipped_reasons.respond_to?(:to_a)
+          answer_skipped_reasons.to_a.map(&:to_s).compact
+        end
+
         {
           answer_text: safe_extract(answer, :answer_text),
+          answer_name: safe_extract(answer, :name),
           state: safe_extract(answer, :state)&.to_s,
           grounding_score: safe_extract(answer, :grounding_score),
           create_time: extract_timestamp(answer, :create_time),
           complete_time: extract_timestamp(answer, :complete_time),
           citations_count: safe_count(answer, :citations),
-          references_count: safe_count(answer, :references)
+          references_count: safe_count(answer, :references),
+          answer_skipped_reasons: answer_skipped_reasons
         }
       rescue StandardError => e
         warn_if_debug("[Openlayer] Failed to extract answer data: #{e.message}")
@@ -344,6 +361,103 @@ module Openlayer
         nil
       end
 
+      # Extract execution steps from answer
+      #
+      # @param answer [Object] Answer object from response
+      # @param original_query [String, nil] Original user query for comparison
+      # @return [Array<Hash>, nil] Array of step hashes or nil
+      def self.extract_steps(answer, original_query = nil)
+        return nil unless answer && answer.respond_to?(:steps)
+
+        steps = safe_extract(answer, :steps)
+        return nil if steps.nil? || !steps.respond_to?(:map)
+
+        steps.map do |step|
+          extract_step_data(step, original_query)
+        end.compact
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract steps: #{e.message}")
+        nil
+      end
+
+      # Extract data from a single step
+      #
+      # @param step [Object] Step object
+      # @param original_query [String, nil] Original user query for comparison
+      # @return [Hash, nil] Step hash or nil
+      def self.extract_step_data(step, original_query = nil)
+        return nil if step.nil?
+
+        # Extract basic step info
+        description = safe_extract(step, :description)
+        state = safe_extract(step, :state)&.to_s
+        actions = safe_extract(step, :actions)
+
+        # Extract search action and results from first action
+        search_query = nil
+        search_results = nil
+
+        if actions && actions.respond_to?(:first)
+          first_action = actions.first
+          if first_action
+            search_action = safe_extract(first_action, :search_action)
+            observation = safe_extract(first_action, :observation)
+
+            search_query = safe_extract(search_action, :query) if search_action
+            search_results = safe_extract(observation, :search_results) if observation
+          end
+        end
+
+        # Build inputs showing both original and rephrased queries
+        inputs = if search_query
+          result = {rephrased_query: search_query}
+          result[:original_query] = original_query if original_query && original_query != search_query
+          result
+        end
+
+        # Map to OpenLayer RetrieverStep format
+        {
+          name: (description ? description.gsub(/\.\z/, "") : "Search and retrieve documents"),
+          type: "retriever",
+          inputs: inputs,
+          output: search_results ? {num_results: search_results.length} : nil,
+          documents: extract_search_results(search_results),
+          metadata: {
+            state: state,
+            action_type: "searchAction"
+          }.compact
+        }.compact
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract step data: #{e.message}")
+        nil
+      end
+
+      # Extract search results as documents
+      #
+      # @param search_results [Array] Array of search result objects
+      # @return [Array<Hash>, nil] Array of document hashes or nil
+      def self.extract_search_results(search_results)
+        return nil if search_results.nil? || !search_results.respond_to?(:map)
+
+        search_results.map do |result|
+          snippet_info = safe_extract(result, :snippet_info)
+          snippet = if snippet_info && snippet_info.respond_to?(:first)
+            first_snippet = snippet_info.first
+            safe_extract(first_snippet, :snippet) if first_snippet
+          end
+
+          {
+            id: safe_extract(result, :document),
+            uri: safe_extract(result, :uri),
+            title: safe_extract(result, :title),
+            snippet: snippet
+          }.compact
+        end.compact
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract search results: #{e.message}")
+        nil
+      end
+
       # Extract metadata from request and response
       #
       # @param args [Array] Positional arguments
@@ -362,10 +476,12 @@ module Openlayer
         }
 
         # Add answer metadata
+        metadata[:answer_name] = answer_data[:answer_name] if answer_data[:answer_name]
         metadata[:grounding_score] = answer_data[:grounding_score] if answer_data[:grounding_score]
         metadata[:state] = answer_data[:state] if answer_data[:state]
         metadata[:citations_count] = answer_data[:citations_count] if answer_data[:citations_count]
         metadata[:references_count] = answer_data[:references_count] if answer_data[:references_count]
+        metadata[:answer_skipped_reasons] = answer_data[:answer_skipped_reasons] if answer_data[:answer_skipped_reasons] && !answer_data[:answer_skipped_reasons].empty?
 
         # Add grounding information (citations, references, related questions)
         if answer
@@ -376,11 +492,19 @@ module Openlayer
           metadata[:citations] = citations if citations && !citations.empty?
           metadata[:references] = references if references && !references.empty?
           metadata[:relatedQuestions] = related_questions if related_questions && !related_questions.empty?
+
+          # Add query understanding info
+          query_understanding_info = extract_query_understanding_info(answer)
+          metadata[:query_understanding_info] = query_understanding_info if query_understanding_info
         end
 
         # Add request metadata
         metadata[:serving_config] = extract_serving_config(args, kwargs)
         metadata[:session] = extract_session(args, kwargs)
+
+        # Add answer query token
+        answer_query_token = safe_extract(response, :answer_query_token)
+        metadata[:answer_query_token] = answer_query_token if answer_query_token
 
         # Add timing metadata
         if answer_data[:create_time] && answer_data[:complete_time]
@@ -425,6 +549,48 @@ module Openlayer
           kwargs[:session]
         end
       rescue StandardError
+        nil
+      end
+
+      # Extract user pseudo ID from response session
+      #
+      # @param response [Object] Response object
+      # @return [String, nil] User pseudo ID or nil
+      def self.extract_user_pseudo_id(response)
+        return nil unless response && response.respond_to?(:session)
+
+        session = safe_extract(response, :session)
+        return nil unless session
+
+        safe_extract(session, :user_pseudo_id)
+      rescue StandardError
+        nil
+      end
+
+      # Extract query understanding info from answer
+      #
+      # @param answer [Object] Answer object
+      # @return [Hash, nil] Query understanding info or nil
+      def self.extract_query_understanding_info(answer)
+        return nil unless answer && answer.respond_to?(:query_understanding_info)
+
+        query_understanding_info = safe_extract(answer, :query_understanding_info)
+        return nil unless query_understanding_info
+
+        result = {}
+
+        # Extract query classification info
+        classification_info = safe_extract(query_understanding_info, :query_classification_info)
+        if classification_info && classification_info.respond_to?(:map)
+          result[:query_classification_info] = classification_info.map do |info|
+            type = safe_extract(info, :type)
+            type ? {type: type.to_s} : nil
+          end.compact
+        end
+
+        result.empty? ? nil : result
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract query understanding info: #{e.message}")
         nil
       end
 
@@ -485,9 +651,14 @@ module Openlayer
                            :extract_citation_sources,
                            :extract_references,
                            :extract_related_questions,
+                           :extract_steps,
+                           :extract_step_data,
+                           :extract_search_results,
                            :extract_metadata,
                            :extract_serving_config,
                            :extract_session,
+                           :extract_user_pseudo_id,
+                           :extract_query_understanding_info,
                            :safe_extract,
                            :safe_count,
                            :extract_timestamp
