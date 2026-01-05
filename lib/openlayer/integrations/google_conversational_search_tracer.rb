@@ -113,6 +113,44 @@ module Openlayer
         prompt_tokens = (query_text.length / 4.0).ceil
         completion_tokens = (answer_data[:answer_text].length / 4.0).ceil
 
+        # Extract grounding information from metadata for step root level
+        citations = metadata.delete(:citations)
+        references = metadata.delete(:references)
+        related_questions = metadata.delete(:relatedQuestions)
+
+        # Extract context from references (array of content strings)
+        context = if references && references.is_a?(Array)
+          references.map { |ref| ref[:content] }.compact
+        else
+          nil
+        end
+
+        # Build step object
+        step = {
+          name: "Conversational Search answer_query",
+          type: "chat_completion",
+          provider: "Google",
+          startTime: start_time.to_i,
+          endTime: end_time.to_i,
+          latency: latency_ms,
+          metadata: metadata,
+          inputs: {
+            prompt: [
+              {role: "user", content: query_text}
+            ]
+          },
+          output: answer_data[:answer_text],
+          promptTokens: prompt_tokens,
+          completionTokens: completion_tokens,
+          tokens: prompt_tokens + completion_tokens,
+          model: "google-discovery-engine"
+        }
+
+        # Add grounding information at step root level
+        step[:citations] = citations if citations
+        step[:references] = references if references
+        step[:relatedQuestions] = related_questions if related_questions
+
         # Build trace data in Openlayer format
         trace_data = {
           config: {
@@ -128,30 +166,16 @@ module Openlayer
               latency_ms: latency_ms,
               timestamp: start_time.to_i,
               metadata: metadata,
-              steps: [
-                {
-                  name: "Conversational Search answer_query",
-                  type: "chat_completion",
-                  provider: "Google",
-                  startTime: start_time.to_i,
-                  endTime: end_time.to_i,
-                  latency: latency_ms,
-                  metadata: metadata,
-                  inputs: {
-                    prompt: [
-                      {role: "user", content: query_text}
-                    ]
-                  },
-                  output: answer_data[:answer_text],
-                  promptTokens: prompt_tokens,
-                  completionTokens: completion_tokens,
-                  tokens: prompt_tokens + completion_tokens,
-                  model: "google-discovery-engine"
-                }
-              ]
+              steps: [step]
             }
           ]
         }
+
+        # Add context column if available
+        if context && !context.empty?
+          trace_data[:rows][0][:context] = context
+          trace_data[:config][:contextColumnName] = "context"
+        end
 
         # Determine which session to use (kwarg takes precedence over auto-extracted)
         final_session = session_id || metadata[:session]
@@ -237,6 +261,89 @@ module Openlayer
         {answer_text: nil}
       end
 
+      # Extract citations from answer
+      #
+      # @param answer [Object] Answer object from response
+      # @return [Array<Hash>, nil] Array of citation hashes or nil
+      def self.extract_citations(answer)
+        return nil unless answer && answer.respond_to?(:citations)
+
+        citations = safe_extract(answer, :citations)
+        return nil if citations.nil? || !citations.respond_to?(:map)
+
+        citations.map do |citation|
+          {
+            start_index: safe_extract(citation, :start_index)&.to_i,
+            end_index: safe_extract(citation, :end_index)&.to_i,
+            sources: extract_citation_sources(citation)
+          }.compact
+        end
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract citations: #{e.message}")
+        nil
+      end
+
+      # Extract sources from a citation
+      #
+      # @param citation [Object] Citation object
+      # @return [Array<Hash>, nil] Array of source hashes or nil
+      def self.extract_citation_sources(citation)
+        sources = safe_extract(citation, :sources)
+        return nil if sources.nil? || !sources.respond_to?(:map)
+
+        sources.map do |source|
+          {reference_id: safe_extract(source, :reference_id)}.compact
+        end
+      rescue StandardError
+        nil
+      end
+
+      # Extract references from answer
+      #
+      # @param answer [Object] Answer object from response
+      # @return [Array<Hash>, nil] Array of reference hashes or nil
+      def self.extract_references(answer)
+        return nil unless answer && answer.respond_to?(:references)
+
+        references = safe_extract(answer, :references)
+        return nil if references.nil? || !references.respond_to?(:each_with_index)
+
+        references.each_with_index.map do |reference, index|
+          chunk_info = safe_extract(reference, :chunk_info)
+          next nil if chunk_info.nil?
+
+          doc_metadata = safe_extract(chunk_info, :document_metadata)
+
+          {
+            reference_id: index.to_s,
+            content: safe_extract(chunk_info, :content),
+            relevance_score: safe_extract(chunk_info, :relevance_score)&.to_f,
+            document_id: doc_metadata ? safe_extract(doc_metadata, :document) : nil,
+            uri: doc_metadata ? safe_extract(doc_metadata, :uri) : nil,
+            title: doc_metadata ? safe_extract(doc_metadata, :title) : nil
+          }.compact
+        end.compact
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract references: #{e.message}")
+        nil
+      end
+
+      # Extract related questions from answer
+      #
+      # @param answer [Object] Answer object from response
+      # @return [Array<String>, nil] Array of related questions or nil
+      def self.extract_related_questions(answer)
+        return nil unless answer && answer.respond_to?(:related_questions)
+
+        questions = safe_extract(answer, :related_questions)
+        return nil if questions.nil? || !questions.respond_to?(:to_a)
+
+        questions.to_a.map(&:to_s).compact
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract related questions: #{e.message}")
+        nil
+      end
+
       # Extract metadata from request and response
       #
       # @param args [Array] Positional arguments
@@ -246,6 +353,7 @@ module Openlayer
       # @return [Hash] Metadata hash
       def self.extract_metadata(args, kwargs, response, latency_ms)
         answer_data = extract_answer_data(response)
+        answer = response.respond_to?(:answer) ? response.answer : nil
 
         metadata = {
           provider: "google",
@@ -258,6 +366,17 @@ module Openlayer
         metadata[:state] = answer_data[:state] if answer_data[:state]
         metadata[:citations_count] = answer_data[:citations_count] if answer_data[:citations_count]
         metadata[:references_count] = answer_data[:references_count] if answer_data[:references_count]
+
+        # Add grounding information (citations, references, related questions)
+        if answer
+          citations = extract_citations(answer)
+          references = extract_references(answer)
+          related_questions = extract_related_questions(answer)
+
+          metadata[:citations] = citations if citations && !citations.empty?
+          metadata[:references] = references if references && !references.empty?
+          metadata[:relatedQuestions] = related_questions if related_questions && !related_questions.empty?
+        end
 
         # Add request metadata
         metadata[:serving_config] = extract_serving_config(args, kwargs)
@@ -362,6 +481,10 @@ module Openlayer
       # from the singleton method context
       private_class_method :extract_query,
                            :extract_answer_data,
+                           :extract_citations,
+                           :extract_citation_sources,
+                           :extract_references,
+                           :extract_related_questions,
                            :extract_metadata,
                            :extract_serving_config,
                            :extract_session,
