@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.1 (2026-01-06)
+
+Full Changelog: [v0.8.0...v0.8.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.8.0...v0.8.1)
+
+### Chores
+
+* **closes OPEN-8602:** parse document chunks from ConversationalSearchService response ([afb7d2e](https://github.com/openlayer-ai/openlayer-ruby/commit/afb7d2e7ea00f809c27e382bc410bc4ea1571c7f))
+* **closes OPEN-8603:** represent nested steps for ConversationalSearchService traces ([e5026c7](https://github.com/openlayer-ai/openlayer-ruby/commit/e5026c72738e77610da528eff1fa826a67ffa5fe))
+
 ## 0.8.0 (2026-01-05)
 
 Full Changelog: [v0.7.1...v0.8.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.7.1...v0.8.0)
