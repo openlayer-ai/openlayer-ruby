@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.1 (2026-01-08)
+
+Full Changelog: [v0.9.0...v0.9.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.9.0...v0.9.1)
+
+### Chores
+
+* **closes OPEN-8644:** address warnings on Stainless studio ([7bb51fc](https://github.com/openlayer-ai/openlayer-ruby/commit/7bb51fca439c1c27ed12ec9505179a209c02bae4))
+* remove _meta ([11b8689](https://github.com/openlayer-ai/openlayer-ruby/commit/11b8689d14e08c691524515b316bd2fa2d9f7069))
+
 ## 0.9.0 (2026-01-08)
 
 Full Changelog: [v0.8.1...v0.9.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.8.1...v0.9.0)
