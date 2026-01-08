@@ -13,12 +13,12 @@ module Openlayer
             data_backend:
               T.nilable(
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::OrHash
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::OrHash
                 )
               ),
             project:
