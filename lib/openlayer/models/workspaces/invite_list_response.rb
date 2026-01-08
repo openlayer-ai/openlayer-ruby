@@ -5,56 +5,14 @@ module Openlayer
     module Workspaces
       # @see Openlayer::Resources::Workspaces::Invites#list
       class InviteListResponse < Openlayer::Internal::Type::BaseModel
-        # @!attribute _meta
-        #
-        #   @return [Openlayer::Models::Workspaces::InviteListResponse::Meta]
-        required :_meta, -> { Openlayer::Models::Workspaces::InviteListResponse::Meta }
-
         # @!attribute items
         #
         #   @return [Array<Openlayer::Models::Workspaces::InviteListResponse::Item>]
         required :items,
                  -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Models::Workspaces::InviteListResponse::Item] }
 
-        # @!method initialize(_meta:, items:)
-        #   @param _meta [Openlayer::Models::Workspaces::InviteListResponse::Meta]
+        # @!method initialize(items:)
         #   @param items [Array<Openlayer::Models::Workspaces::InviteListResponse::Item>]
-
-        # @see Openlayer::Models::Workspaces::InviteListResponse#_meta
-        class Meta < Openlayer::Internal::Type::BaseModel
-          # @!attribute page
-          #   The current page.
-          #
-          #   @return [Integer]
-          required :page, Integer
-
-          # @!attribute per_page
-          #   The number of items per page.
-          #
-          #   @return [Integer]
-          required :per_page, Integer, api_name: :perPage
-
-          # @!attribute total_items
-          #   The total number of items.
-          #
-          #   @return [Integer]
-          required :total_items, Integer, api_name: :totalItems
-
-          # @!attribute total_pages
-          #   The total number of pages.
-          #
-          #   @return [Integer]
-          required :total_pages, Integer, api_name: :totalPages
-
-          # @!method initialize(page:, per_page:, total_items:, total_pages:)
-          #   @param page [Integer] The current page.
-          #
-          #   @param per_page [Integer] The number of items per page.
-          #
-          #   @param total_items [Integer] The total number of items.
-          #
-          #   @param total_pages [Integer] The total number of pages.
-        end
 
         class Item < Openlayer::Internal::Type::BaseModel
           # @!attribute creator
