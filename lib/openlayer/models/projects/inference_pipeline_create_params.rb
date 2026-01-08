@@ -22,7 +22,7 @@ module Openlayer
 
         # @!attribute data_backend
         #
-        #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5, nil]
+        #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend, nil]
         optional :data_backend,
                  union: -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend },
                  api_name: :dataBackend,
@@ -43,7 +43,7 @@ module Openlayer
         #
         #   @param name [String] The inference pipeline name.
         #
-        #   @param data_backend [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5, nil]
+        #   @param data_backend [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend, nil]
         #
         #   @param project [Openlayer::Models::Projects::InferencePipelineCreateParams::Project, nil]
         #
@@ -54,25 +54,25 @@ module Openlayer
         module DataBackend
           extend Openlayer::Internal::Type::Union
 
-          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0 }
+          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend }
 
-          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType }
+          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend }
 
-          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2 }
+          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend }
 
-          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3 }
+          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend }
 
-          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4 }
+          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend }
 
-          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5 }
+          variant -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend }
 
-          class UnionMember0 < Openlayer::Internal::Type::BaseModel
+          class BigQueryDataBackend < Openlayer::Internal::Type::BaseModel
             # @!attribute backend_type
             #
-            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType]
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType]
             required :backend_type,
                      enum: -> {
-                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType
+                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType
                      },
                      api_name: :backendType
 
@@ -98,10 +98,10 @@ module Openlayer
 
             # @!attribute partition_type
             #
-            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType, nil]
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType, nil]
             optional :partition_type,
                      enum: -> {
-                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType
+                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType
                      },
                      api_name: :partitionType,
                      nil?: true
@@ -109,21 +109,21 @@ module Openlayer
             request_only do
               # @!attribute config
               #
-              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config]
+              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config]
               required :config,
-                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config }
+                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config }
             end
 
             # @!method initialize(backend_type:, bigquery_connection_id:, config:, dataset_id:, project_id:, table_id:, partition_type: nil)
-            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType]
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType]
             #   @param bigquery_connection_id [String, nil]
-            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config]
+            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config]
             #   @param dataset_id [String]
             #   @param project_id [String]
             #   @param table_id [String, nil]
-            #   @param partition_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType, nil]
+            #   @param partition_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType, nil]
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0#backend_type
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend#backend_type
             module BackendType
               extend Openlayer::Internal::Type::Enum
 
@@ -133,7 +133,7 @@ module Openlayer
               #   @return [Array<Symbol>]
             end
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0#config
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend#config
             class Config < Openlayer::Internal::Type::BaseModel
               # @!attribute ground_truth_column_name
               #   Name of the column with the ground truths.
@@ -172,7 +172,7 @@ module Openlayer
 
               # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, inference_id_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
               #   Some parameter documentations has been truncated, see
-              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config}
+              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config}
               #   for more details.
               #
               #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
@@ -186,7 +186,7 @@ module Openlayer
               #   @param timestamp_column_name [String, nil] Name of the column with the timestamps. Timestamps must be in UNIX sec format. I
             end
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0#partition_type
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend#partition_type
             module PartitionType
               extend Openlayer::Internal::Type::Enum
 
@@ -199,20 +199,20 @@ module Openlayer
             end
           end
 
-          class BackendType < Openlayer::Internal::Type::BaseModel
+          class DefaultDataBackend < Openlayer::Internal::Type::BaseModel
             # @!attribute backend_type
             #
-            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType]
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType]
             required :backend_type,
                      enum: -> {
-                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType
+                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType
                      },
                      api_name: :backendType
 
             # @!method initialize(backend_type:)
-            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType]
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType]
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType#backend_type
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend#backend_type
             module BackendType
               extend Openlayer::Internal::Type::Enum
 
@@ -223,13 +223,13 @@ module Openlayer
             end
           end
 
-          class UnionMember2 < Openlayer::Internal::Type::BaseModel
+          class SnowflakeDataBackend < Openlayer::Internal::Type::BaseModel
             # @!attribute backend_type
             #
-            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType]
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType]
             required :backend_type,
                      enum: -> {
-                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType
+                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType
                      },
                      api_name: :backendType
 
@@ -256,20 +256,20 @@ module Openlayer
             request_only do
               # @!attribute config
               #
-              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config]
+              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config]
               required :config,
-                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config }
+                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config }
             end
 
             # @!method initialize(backend_type:, config:, database:, schema:, snowflake_connection_id:, table:)
-            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType]
-            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config]
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType]
+            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config]
             #   @param database [String]
             #   @param schema [String]
             #   @param snowflake_connection_id [String, nil]
             #   @param table [String, nil]
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2#backend_type
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend#backend_type
             module BackendType
               extend Openlayer::Internal::Type::Enum
 
@@ -279,7 +279,7 @@ module Openlayer
               #   @return [Array<Symbol>]
             end
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2#config
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend#config
             class Config < Openlayer::Internal::Type::BaseModel
               # @!attribute ground_truth_column_name
               #   Name of the column with the ground truths.
@@ -318,7 +318,7 @@ module Openlayer
 
               # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, inference_id_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
               #   Some parameter documentations has been truncated, see
-              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config}
+              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config}
               #   for more details.
               #
               #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
@@ -333,13 +333,13 @@ module Openlayer
             end
           end
 
-          class UnionMember3 < Openlayer::Internal::Type::BaseModel
+          class DatabricksDtlDataBackend < Openlayer::Internal::Type::BaseModel
             # @!attribute backend_type
             #
-            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType]
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType]
             required :backend_type,
                      enum: -> {
-                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType
+                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType
                      },
                      api_name: :backendType
 
@@ -356,18 +356,18 @@ module Openlayer
             request_only do
               # @!attribute config
               #
-              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config]
+              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config]
               required :config,
-                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config }
+                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config }
             end
 
             # @!method initialize(backend_type:, config:, databricks_dtl_connection_id:, table_id:)
-            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType]
-            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config]
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType]
+            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config]
             #   @param databricks_dtl_connection_id [String, nil]
             #   @param table_id [String, nil]
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3#backend_type
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend#backend_type
             module BackendType
               extend Openlayer::Internal::Type::Enum
 
@@ -377,7 +377,7 @@ module Openlayer
               #   @return [Array<Symbol>]
             end
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3#config
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend#config
             class Config < Openlayer::Internal::Type::BaseModel
               # @!attribute ground_truth_column_name
               #   Name of the column with the ground truths.
@@ -416,7 +416,7 @@ module Openlayer
 
               # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, inference_id_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
               #   Some parameter documentations has been truncated, see
-              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config}
+              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config}
               #   for more details.
               #
               #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
@@ -431,13 +431,13 @@ module Openlayer
             end
           end
 
-          class UnionMember4 < Openlayer::Internal::Type::BaseModel
+          class RedshiftDataBackend < Openlayer::Internal::Type::BaseModel
             # @!attribute backend_type
             #
-            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType]
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType]
             required :backend_type,
                      enum: -> {
-                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType
+                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType
                      },
                      api_name: :backendType
 
@@ -459,19 +459,19 @@ module Openlayer
             request_only do
               # @!attribute config
               #
-              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config]
+              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config]
               required :config,
-                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config }
+                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config }
             end
 
             # @!method initialize(backend_type:, config:, redshift_connection_id:, schema_name:, table_name:)
-            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType]
-            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config]
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType]
+            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config]
             #   @param redshift_connection_id [String, nil]
             #   @param schema_name [String]
             #   @param table_name [String]
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4#backend_type
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend#backend_type
             module BackendType
               extend Openlayer::Internal::Type::Enum
 
@@ -481,7 +481,7 @@ module Openlayer
               #   @return [Array<Symbol>]
             end
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4#config
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend#config
             class Config < Openlayer::Internal::Type::BaseModel
               # @!attribute ground_truth_column_name
               #   Name of the column with the ground truths.
@@ -520,7 +520,7 @@ module Openlayer
 
               # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, inference_id_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
               #   Some parameter documentations has been truncated, see
-              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config}
+              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config}
               #   for more details.
               #
               #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
@@ -535,13 +535,13 @@ module Openlayer
             end
           end
 
-          class UnionMember5 < Openlayer::Internal::Type::BaseModel
+          class PostgresDataBackend < Openlayer::Internal::Type::BaseModel
             # @!attribute backend_type
             #
-            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType]
+            #   @return [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType]
             required :backend_type,
                      enum: -> {
-                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType
+                       Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType
                      },
                      api_name: :backendType
 
@@ -568,20 +568,20 @@ module Openlayer
             request_only do
               # @!attribute config
               #
-              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config]
+              #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config]
               required :config,
-                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config }
+                       -> { Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config }
             end
 
             # @!method initialize(backend_type:, config:, database:, postgres_connection_id:, schema:, table:)
-            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType]
-            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config]
+            #   @param backend_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType]
+            #   @param config [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config]
             #   @param database [String]
             #   @param postgres_connection_id [String, nil]
             #   @param schema [String]
             #   @param table [String, nil]
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5#backend_type
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend#backend_type
             module BackendType
               extend Openlayer::Internal::Type::Enum
 
@@ -591,7 +591,7 @@ module Openlayer
               #   @return [Array<Symbol>]
             end
 
-            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5#config
+            # @see Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend#config
             class Config < Openlayer::Internal::Type::BaseModel
               # @!attribute ground_truth_column_name
               #   Name of the column with the ground truths.
@@ -630,7 +630,7 @@ module Openlayer
 
               # @!method initialize(ground_truth_column_name: nil, human_feedback_column_name: nil, inference_id_column_name: nil, latency_column_name: nil, timestamp_column_name: nil)
               #   Some parameter documentations has been truncated, see
-              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config}
+              #   {Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config}
               #   for more details.
               #
               #   @param ground_truth_column_name [String, nil] Name of the column with the ground truths.
@@ -646,7 +646,7 @@ module Openlayer
           end
 
           # @!method self.variants
-          #   @return [Array(Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5)]
+          #   @return [Array(Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend)]
         end
 
         class Project < Openlayer::Internal::Type::BaseModel
