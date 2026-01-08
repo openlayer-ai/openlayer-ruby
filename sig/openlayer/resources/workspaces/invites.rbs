@@ -1,0 +1,23 @@
+module Openlayer
+  module Resources
+    class Workspaces
+      class Invites
+        def create: (
+          String workspace_id,
+          ?emails: ::Array[String],
+          ?role: Openlayer::Models::Workspaces::InviteCreateParams::role,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Workspaces::InviteCreateResponse
+
+        def list: (
+          String workspace_id,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Workspaces::InviteListResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

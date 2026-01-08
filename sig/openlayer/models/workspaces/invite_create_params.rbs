@@ -1,0 +1,51 @@
+module Openlayer
+  module Models
+    module Workspaces
+      type invite_create_params =
+        {
+          emails: ::Array[String],
+          role: Openlayer::Models::Workspaces::InviteCreateParams::role
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class InviteCreateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_reader emails: ::Array[String]?
+
+        def emails=: (::Array[String]) -> ::Array[String]
+
+        attr_reader role: Openlayer::Models::Workspaces::InviteCreateParams::role?
+
+        def role=: (
+          Openlayer::Models::Workspaces::InviteCreateParams::role
+        ) -> Openlayer::Models::Workspaces::InviteCreateParams::role
+
+        def initialize: (
+          ?emails: ::Array[String],
+          ?role: Openlayer::Models::Workspaces::InviteCreateParams::role,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          emails: ::Array[String],
+          role: Openlayer::Models::Workspaces::InviteCreateParams::role,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type role = :ADMIN | :MEMBER | :VIEWER
+
+        module Role
+          extend Openlayer::Internal::Type::Enum
+
+          ADMIN: :ADMIN
+          MEMBER: :MEMBER
+          VIEWER: :VIEWER
+
+          def self?.values: -> ::Array[Openlayer::Models::Workspaces::InviteCreateParams::role]
+        end
+      end
+    end
+  end
+end

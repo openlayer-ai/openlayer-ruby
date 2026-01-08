@@ -1,0 +1,47 @@
+module Openlayer
+  module Models
+    module Workspaces
+      type api_key_create_response =
+        {
+          id: String,
+          date_created: Time,
+          date_last_used: Time?,
+          date_updated: Time,
+          secure_key: String,
+          name: String?
+        }
+
+      class APIKeyCreateResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor name: String?
+
+        attr_accessor id: String
+
+        attr_accessor date_created: Time
+
+        attr_accessor date_last_used: Time?
+
+        attr_accessor date_updated: Time
+
+        attr_accessor secure_key: String
+
+        def initialize: (
+          id: String,
+          date_created: Time,
+          date_last_used: Time?,
+          date_updated: Time,
+          secure_key: String,
+          ?name: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          date_created: Time,
+          date_last_used: Time?,
+          date_updated: Time,
+          secure_key: String,
+          name: String?
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module Openlayer
+  module Resources
+    class Workspaces
+      attr_reader invites: Openlayer::Resources::Workspaces::Invites
+
+      attr_reader api_keys: Openlayer::Resources::Workspaces::APIKeys
+
+      def retrieve: (
+        String workspace_id,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::WorkspaceRetrieveResponse
+
+      def update: (
+        String workspace_id,
+        ?invite_code: String,
+        ?name: String,
+        ?slug: String,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::WorkspaceUpdateResponse
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,156 @@
+module Openlayer
+  module Models
+    type workspace_update_response =
+      {
+        id: String,
+        creator_id: String?,
+        date_created: Time,
+        date_updated: Time,
+        invite_count: Integer,
+        member_count: Integer,
+        name: String,
+        period_end_date: Time?,
+        period_start_date: Time?,
+        project_count: Integer,
+        slug: String,
+        status: Openlayer::Models::WorkspaceUpdateResponse::status,
+        invite_code: String,
+        monthly_usage: ::Array[Openlayer::Models::WorkspaceUpdateResponse::MonthlyUsage],
+        saml_only_access: bool,
+        wildcard_domains: ::Array[String]
+      }
+
+    class WorkspaceUpdateResponse < Openlayer::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor slug: String
+
+      attr_reader saml_only_access: bool?
+
+      def saml_only_access=: (bool) -> bool
+
+      attr_reader wildcard_domains: ::Array[String]?
+
+      def wildcard_domains=: (::Array[String]) -> ::Array[String]
+
+      attr_accessor id: String
+
+      attr_accessor creator_id: String?
+
+      attr_accessor date_created: Time
+
+      attr_accessor date_updated: Time
+
+      attr_accessor invite_count: Integer
+
+      attr_accessor member_count: Integer
+
+      attr_accessor period_end_date: Time?
+
+      attr_accessor period_start_date: Time?
+
+      attr_accessor project_count: Integer
+
+      attr_accessor status: Openlayer::Models::WorkspaceUpdateResponse::status
+
+      attr_reader monthly_usage: ::Array[Openlayer::Models::WorkspaceUpdateResponse::MonthlyUsage]?
+
+      def monthly_usage=: (
+        ::Array[Openlayer::Models::WorkspaceUpdateResponse::MonthlyUsage]
+      ) -> ::Array[Openlayer::Models::WorkspaceUpdateResponse::MonthlyUsage]
+
+      def initialize: (
+        id: String,
+        creator_id: String?,
+        date_created: Time,
+        date_updated: Time,
+        invite_count: Integer,
+        member_count: Integer,
+        name: String,
+        period_end_date: Time?,
+        period_start_date: Time?,
+        project_count: Integer,
+        slug: String,
+        status: Openlayer::Models::WorkspaceUpdateResponse::status,
+        ?monthly_usage: ::Array[Openlayer::Models::WorkspaceUpdateResponse::MonthlyUsage],
+        ?saml_only_access: bool,
+        ?wildcard_domains: ::Array[String]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        creator_id: String?,
+        date_created: Time,
+        date_updated: Time,
+        invite_count: Integer,
+        member_count: Integer,
+        name: String,
+        period_end_date: Time?,
+        period_start_date: Time?,
+        project_count: Integer,
+        slug: String,
+        status: Openlayer::Models::WorkspaceUpdateResponse::status,
+        invite_code: String,
+        monthly_usage: ::Array[Openlayer::Models::WorkspaceUpdateResponse::MonthlyUsage],
+        saml_only_access: bool,
+        wildcard_domains: ::Array[String]
+      }
+
+      type status =
+        :active
+        | :past_due
+        | :unpaid
+        | :canceled
+        | :incomplete
+        | :incomplete_expired
+        | :trialing
+        | :paused
+
+      module Status
+        extend Openlayer::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAST_DUE: :past_due
+        UNPAID: :unpaid
+        CANCELED: :canceled
+        INCOMPLETE: :incomplete
+        INCOMPLETE_EXPIRED: :incomplete_expired
+        TRIALING: :trialing
+        PAUSED: :paused
+
+        def self?.values: -> ::Array[Openlayer::Models::WorkspaceUpdateResponse::status]
+      end
+
+      type monthly_usage =
+        {
+          execution_time_ms: Integer?,
+          month_year: Date,
+          prediction_count: Integer
+        }
+
+      class MonthlyUsage < Openlayer::Internal::Type::BaseModel
+        attr_accessor execution_time_ms: Integer?
+
+        attr_reader month_year: Date?
+
+        def month_year=: (Date) -> Date
+
+        attr_reader prediction_count: Integer?
+
+        def prediction_count=: (Integer) -> Integer
+
+        def initialize: (
+          ?execution_time_ms: Integer?,
+          ?month_year: Date,
+          ?prediction_count: Integer
+        ) -> void
+
+        def to_hash: -> {
+          execution_time_ms: Integer?,
+          month_year: Date,
+          prediction_count: Integer
+        }
+      end
+    end
+  end
+end

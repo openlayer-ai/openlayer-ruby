@@ -12,6 +12,8 @@ module Openlayer
 
     attr_reader projects: Openlayer::Resources::Projects
 
+    attr_reader workspaces: Openlayer::Resources::Workspaces
+
     attr_reader commits: Openlayer::Resources::Commits
 
     attr_reader inference_pipelines: Openlayer::Resources::InferencePipelines
