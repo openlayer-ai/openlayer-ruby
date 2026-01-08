@@ -26,7 +26,6 @@ class Openlayer::Test::Resources::Workspaces::InvitesTest < Openlayer::Test::Res
 
     assert_pattern do
       response => {
-        _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
         items: ^(Openlayer::Internal::Type::ArrayOf[Openlayer::Models::Workspaces::InviteListResponse::Item])
       }
     end

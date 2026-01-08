@@ -12,17 +12,6 @@ module Openlayer
             )
           end
 
-        sig { returns(Openlayer::Models::Workspaces::InviteListResponse::Meta) }
-        attr_reader :_meta
-
-        sig do
-          params(
-            _meta:
-              Openlayer::Models::Workspaces::InviteListResponse::Meta::OrHash
-          ).void
-        end
-        attr_writer :_meta
-
         sig do
           returns(
             T::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
@@ -32,21 +21,18 @@ module Openlayer
 
         sig do
           params(
-            _meta:
-              Openlayer::Models::Workspaces::InviteListResponse::Meta::OrHash,
             items:
               T::Array[
                 Openlayer::Models::Workspaces::InviteListResponse::Item::OrHash
               ]
           ).returns(T.attached_class)
         end
-        def self.new(_meta:, items:)
+        def self.new(items:)
         end
 
         sig do
           override.returns(
             {
-              _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
               items:
                 T::Array[
                   Openlayer::Models::Workspaces::InviteListResponse::Item
@@ -55,65 +41,6 @@ module Openlayer
           )
         end
         def to_hash
-        end
-
-        class Meta < Openlayer::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Openlayer::Models::Workspaces::InviteListResponse::Meta,
-                Openlayer::Internal::AnyHash
-              )
-            end
-
-          # The current page.
-          sig { returns(Integer) }
-          attr_accessor :page
-
-          # The number of items per page.
-          sig { returns(Integer) }
-          attr_accessor :per_page
-
-          # The total number of items.
-          sig { returns(Integer) }
-          attr_accessor :total_items
-
-          # The total number of pages.
-          sig { returns(Integer) }
-          attr_accessor :total_pages
-
-          sig do
-            params(
-              page: Integer,
-              per_page: Integer,
-              total_items: Integer,
-              total_pages: Integer
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # The current page.
-            page:,
-            # The number of items per page.
-            per_page:,
-            # The total number of items.
-            total_items:,
-            # The total number of pages.
-            total_pages:
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                page: Integer,
-                per_page: Integer,
-                total_items: Integer,
-                total_pages: Integer
-              }
-            )
-          end
-          def to_hash
-          end
         end
 
         class Item < Openlayer::Internal::Type::BaseModel

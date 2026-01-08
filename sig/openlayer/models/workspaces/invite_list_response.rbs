@@ -3,56 +3,19 @@ module Openlayer
     module Workspaces
       type invite_list_response =
         {
-          _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
           items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
         }
 
       class InviteListResponse < Openlayer::Internal::Type::BaseModel
-        attr_accessor _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta
-
         attr_accessor items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
 
         def initialize: (
-          _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
           items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
         ) -> void
 
         def to_hash: -> {
-          _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
           items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
         }
-
-        type meta =
-          {
-            page: Integer,
-            per_page: Integer,
-            total_items: Integer,
-            total_pages: Integer
-          }
-
-        class Meta < Openlayer::Internal::Type::BaseModel
-          attr_accessor page: Integer
-
-          attr_accessor per_page: Integer
-
-          attr_accessor total_items: Integer
-
-          attr_accessor total_pages: Integer
-
-          def initialize: (
-            page: Integer,
-            per_page: Integer,
-            total_items: Integer,
-            total_pages: Integer
-          ) -> void
-
-          def to_hash: -> {
-            page: Integer,
-            per_page: Integer,
-            total_items: Integer,
-            total_pages: Integer
-          }
-        end
 
         type item =
           {
