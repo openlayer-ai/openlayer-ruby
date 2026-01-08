@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 (2026-01-08)
+
+Full Changelog: [v0.8.1...v0.9.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.8.1...v0.9.0)
+
+### Features
+
+* **api:** add missing endpoints ([57f7ad7](https://github.com/openlayer-ai/openlayer-ruby/commit/57f7ad72db4fe4a7b3802a5cabbe0c425e3740f4))
+
 ## 0.8.1 (2026-01-06)
 
 Full Changelog: [v0.8.0...v0.8.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.8.0...v0.8.1)
