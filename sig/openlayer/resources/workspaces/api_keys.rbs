@@ -1,0 +1,15 @@
+module Openlayer
+  module Resources
+    class Workspaces
+      class APIKeys
+        def create: (
+          String workspace_id,
+          ?name: String?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Workspaces::APIKeyCreateResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

@@ -16,6 +16,9 @@ module Openlayer
     sig { returns(Openlayer::Resources::Projects) }
     attr_reader :projects
 
+    sig { returns(Openlayer::Resources::Workspaces) }
+    attr_reader :workspaces
+
     sig { returns(Openlayer::Resources::Commits) }
     attr_reader :commits
 

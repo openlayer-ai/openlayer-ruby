@@ -21,6 +21,9 @@ module Openlayer
     # @return [Openlayer::Resources::Projects]
     attr_reader :projects
 
+    # @return [Openlayer::Resources::Workspaces]
+    attr_reader :workspaces
+
     # @return [Openlayer::Resources::Commits]
     attr_reader :commits
 
@@ -77,6 +80,7 @@ module Openlayer
       )
 
       @projects = Openlayer::Resources::Projects.new(client: self)
+      @workspaces = Openlayer::Resources::Workspaces.new(client: self)
       @commits = Openlayer::Resources::Commits.new(client: self)
       @inference_pipelines = Openlayer::Resources::InferencePipelines.new(client: self)
       @storage = Openlayer::Resources::Storage.new(client: self)

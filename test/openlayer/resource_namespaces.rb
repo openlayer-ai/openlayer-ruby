@@ -14,6 +14,9 @@ module Openlayer
 
       module Storage
       end
+
+      module Workspaces
+      end
     end
   end
 end
