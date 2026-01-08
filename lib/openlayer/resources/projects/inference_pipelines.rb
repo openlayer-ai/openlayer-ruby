@@ -14,7 +14,7 @@ module Openlayer
         #
         # @param name [String] The inference pipeline name.
         #
-        # @param data_backend [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BackendType, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5, nil]
+        # @param data_backend [Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend, Openlayer::Models::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend, nil]
         #
         # @param project [Openlayer::Models::Projects::InferencePipelineCreateParams::Project, nil]
         #

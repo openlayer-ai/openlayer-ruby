@@ -27,12 +27,12 @@ module Openlayer
           returns(
             T.nilable(
               T.any(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend
               )
             )
           )
@@ -84,12 +84,12 @@ module Openlayer
             data_backend:
               T.nilable(
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::OrHash,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::OrHash
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::OrHash
                 )
               ),
             project:
@@ -123,12 +123,12 @@ module Openlayer
               data_backend:
                 T.nilable(
                   T.any(
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend
                   )
                 ),
               project:
@@ -152,27 +152,27 @@ module Openlayer
           Variants =
             T.type_alias do
               T.any(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4,
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend,
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend
               )
             end
 
-          class UnionMember0 < Openlayer::Internal::Type::BaseModel
+          class BigQueryDataBackend < Openlayer::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend,
                   Openlayer::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType::OrSymbol
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType::OrSymbol
               )
             end
             attr_accessor :backend_type
@@ -192,7 +192,7 @@ module Openlayer
             sig do
               returns(
                 T.nilable(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType::OrSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType::OrSymbol
                 )
               )
             end
@@ -200,7 +200,7 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config
               )
             end
             attr_reader :config
@@ -208,7 +208,7 @@ module Openlayer
             sig do
               params(
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config::OrHash
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config::OrHash
               ).void
             end
             attr_writer :config
@@ -216,16 +216,16 @@ module Openlayer
             sig do
               params(
                 backend_type:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType::OrSymbol,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType::OrSymbol,
                 bigquery_connection_id: T.nilable(String),
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config::OrHash,
                 dataset_id: String,
                 project_id: String,
                 table_id: T.nilable(String),
                 partition_type:
                   T.nilable(
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType::OrSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType::OrSymbol
                   )
               ).returns(T.attached_class)
             end
@@ -244,16 +244,16 @@ module Openlayer
               override.returns(
                 {
                   backend_type:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType::OrSymbol,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType::OrSymbol,
                   bigquery_connection_id: T.nilable(String),
                   config:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config,
                   dataset_id: String,
                   project_id: String,
                   table_id: T.nilable(String),
                   partition_type:
                     T.nilable(
-                      Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType::OrSymbol
+                      Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType::OrSymbol
                     )
                 }
               )
@@ -268,7 +268,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -276,13 +276,13 @@ module Openlayer
               BIGQUERY =
                 T.let(
                   :bigquery,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::BackendType::TaggedSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::BackendType::TaggedSymbol
                   ]
                 )
               end
@@ -294,7 +294,7 @@ module Openlayer
               OrHash =
                 T.type_alias do
                   T.any(
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::Config,
                     Openlayer::Internal::AnyHash
                   )
                 end
@@ -370,7 +370,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -378,23 +378,23 @@ module Openlayer
               DAY =
                 T.let(
                   :DAY,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType::TaggedSymbol
                 )
               MONTH =
                 T.let(
                   :MONTH,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType::TaggedSymbol
                 )
               YEAR =
                 T.let(
                   :YEAR,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember0::PartitionType::TaggedSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BigQueryDataBackend::PartitionType::TaggedSymbol
                   ]
                 )
               end
@@ -403,18 +403,18 @@ module Openlayer
             end
           end
 
-          class BackendType < Openlayer::Internal::Type::BaseModel
+          class DefaultDataBackend < Openlayer::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend,
                   Openlayer::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType::OrSymbol
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType::OrSymbol
               )
             end
             attr_accessor :backend_type
@@ -422,7 +422,7 @@ module Openlayer
             sig do
               params(
                 backend_type:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType::OrSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType::OrSymbol
               ).returns(T.attached_class)
             end
             def self.new(backend_type:)
@@ -432,7 +432,7 @@ module Openlayer
               override.returns(
                 {
                   backend_type:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType::OrSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType::OrSymbol
                 }
               )
             end
@@ -446,7 +446,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -454,13 +454,13 @@ module Openlayer
               DEFAULT =
                 T.let(
                   :default,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::BackendType::BackendType::TaggedSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DefaultDataBackend::BackendType::TaggedSymbol
                   ]
                 )
               end
@@ -469,18 +469,18 @@ module Openlayer
             end
           end
 
-          class UnionMember2 < Openlayer::Internal::Type::BaseModel
+          class SnowflakeDataBackend < Openlayer::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend,
                   Openlayer::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType::OrSymbol
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType::OrSymbol
               )
             end
             attr_accessor :backend_type
@@ -499,7 +499,7 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config
               )
             end
             attr_reader :config
@@ -507,7 +507,7 @@ module Openlayer
             sig do
               params(
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config::OrHash
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config::OrHash
               ).void
             end
             attr_writer :config
@@ -515,9 +515,9 @@ module Openlayer
             sig do
               params(
                 backend_type:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType::OrSymbol,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType::OrSymbol,
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config::OrHash,
                 database: String,
                 schema: String,
                 snowflake_connection_id: T.nilable(String),
@@ -538,9 +538,9 @@ module Openlayer
               override.returns(
                 {
                   backend_type:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType::OrSymbol,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType::OrSymbol,
                   config:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config,
                   database: String,
                   schema: String,
                   snowflake_connection_id: T.nilable(String),
@@ -558,7 +558,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -566,13 +566,13 @@ module Openlayer
               SNOWFLAKE =
                 T.let(
                   :snowflake,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::BackendType::TaggedSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::BackendType::TaggedSymbol
                   ]
                 )
               end
@@ -584,7 +584,7 @@ module Openlayer
               OrHash =
                 T.type_alias do
                   T.any(
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember2::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::SnowflakeDataBackend::Config,
                     Openlayer::Internal::AnyHash
                   )
                 end
@@ -654,18 +654,18 @@ module Openlayer
             end
           end
 
-          class UnionMember3 < Openlayer::Internal::Type::BaseModel
+          class DatabricksDtlDataBackend < Openlayer::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend,
                   Openlayer::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType::OrSymbol
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType::OrSymbol
               )
             end
             attr_accessor :backend_type
@@ -678,7 +678,7 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config
               )
             end
             attr_reader :config
@@ -686,7 +686,7 @@ module Openlayer
             sig do
               params(
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config::OrHash
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config::OrHash
               ).void
             end
             attr_writer :config
@@ -694,9 +694,9 @@ module Openlayer
             sig do
               params(
                 backend_type:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType::OrSymbol,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType::OrSymbol,
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config::OrHash,
                 databricks_dtl_connection_id: T.nilable(String),
                 table_id: T.nilable(String)
               ).returns(T.attached_class)
@@ -713,9 +713,9 @@ module Openlayer
               override.returns(
                 {
                   backend_type:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType::OrSymbol,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType::OrSymbol,
                   config:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config,
                   databricks_dtl_connection_id: T.nilable(String),
                   table_id: T.nilable(String)
                 }
@@ -731,7 +731,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -739,13 +739,13 @@ module Openlayer
               DATABRICKS_DTL =
                 T.let(
                   :databricks_dtl,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::BackendType::TaggedSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::BackendType::TaggedSymbol
                   ]
                 )
               end
@@ -757,7 +757,7 @@ module Openlayer
               OrHash =
                 T.type_alias do
                   T.any(
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember3::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::DatabricksDtlDataBackend::Config,
                     Openlayer::Internal::AnyHash
                   )
                 end
@@ -827,18 +827,18 @@ module Openlayer
             end
           end
 
-          class UnionMember4 < Openlayer::Internal::Type::BaseModel
+          class RedshiftDataBackend < Openlayer::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend,
                   Openlayer::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType::OrSymbol
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType::OrSymbol
               )
             end
             attr_accessor :backend_type
@@ -854,7 +854,7 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config
               )
             end
             attr_reader :config
@@ -862,7 +862,7 @@ module Openlayer
             sig do
               params(
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config::OrHash
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config::OrHash
               ).void
             end
             attr_writer :config
@@ -870,9 +870,9 @@ module Openlayer
             sig do
               params(
                 backend_type:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType::OrSymbol,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType::OrSymbol,
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config::OrHash,
                 redshift_connection_id: T.nilable(String),
                 schema_name: String,
                 table_name: String
@@ -891,9 +891,9 @@ module Openlayer
               override.returns(
                 {
                   backend_type:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType::OrSymbol,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType::OrSymbol,
                   config:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config,
                   redshift_connection_id: T.nilable(String),
                   schema_name: String,
                   table_name: String
@@ -910,7 +910,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -918,13 +918,13 @@ module Openlayer
               REDSHIFT =
                 T.let(
                   :redshift,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::BackendType::TaggedSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::BackendType::TaggedSymbol
                   ]
                 )
               end
@@ -936,7 +936,7 @@ module Openlayer
               OrHash =
                 T.type_alias do
                   T.any(
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember4::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::RedshiftDataBackend::Config,
                     Openlayer::Internal::AnyHash
                   )
                 end
@@ -1006,18 +1006,18 @@ module Openlayer
             end
           end
 
-          class UnionMember5 < Openlayer::Internal::Type::BaseModel
+          class PostgresDataBackend < Openlayer::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend,
                   Openlayer::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType::OrSymbol
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType::OrSymbol
               )
             end
             attr_accessor :backend_type
@@ -1036,7 +1036,7 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config
+                Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config
               )
             end
             attr_reader :config
@@ -1044,7 +1044,7 @@ module Openlayer
             sig do
               params(
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config::OrHash
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config::OrHash
               ).void
             end
             attr_writer :config
@@ -1052,9 +1052,9 @@ module Openlayer
             sig do
               params(
                 backend_type:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType::OrSymbol,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType::OrSymbol,
                 config:
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config::OrHash,
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config::OrHash,
                 database: String,
                 postgres_connection_id: T.nilable(String),
                 schema: String,
@@ -1075,9 +1075,9 @@ module Openlayer
               override.returns(
                 {
                   backend_type:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType::OrSymbol,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType::OrSymbol,
                   config:
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config,
                   database: String,
                   postgres_connection_id: T.nilable(String),
                   schema: String,
@@ -1095,7 +1095,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1103,13 +1103,13 @@ module Openlayer
               POSTGRES =
                 T.let(
                   :postgres,
-                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType::TaggedSymbol
+                  Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::BackendType::TaggedSymbol
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::BackendType::TaggedSymbol
                   ]
                 )
               end
@@ -1121,7 +1121,7 @@ module Openlayer
               OrHash =
                 T.type_alias do
                   T.any(
-                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::UnionMember5::Config,
+                    Openlayer::Projects::InferencePipelineCreateParams::DataBackend::PostgresDataBackend::Config,
                     Openlayer::Internal::AnyHash
                   )
                 end
