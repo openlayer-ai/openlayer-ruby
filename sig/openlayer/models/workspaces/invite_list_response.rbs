@@ -1,0 +1,186 @@
+module Openlayer
+  module Models
+    module Workspaces
+      type invite_list_response =
+        {
+          _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
+          items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
+        }
+
+      class InviteListResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta
+
+        attr_accessor items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
+
+        def initialize: (
+          _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
+          items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
+        ) -> void
+
+        def to_hash: -> {
+          _meta: Openlayer::Models::Workspaces::InviteListResponse::Meta,
+          items: ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item]
+        }
+
+        type meta =
+          {
+            page: Integer,
+            per_page: Integer,
+            total_items: Integer,
+            total_pages: Integer
+          }
+
+        class Meta < Openlayer::Internal::Type::BaseModel
+          attr_accessor page: Integer
+
+          attr_accessor per_page: Integer
+
+          attr_accessor total_items: Integer
+
+          attr_accessor total_pages: Integer
+
+          def initialize: (
+            page: Integer,
+            per_page: Integer,
+            total_items: Integer,
+            total_pages: Integer
+          ) -> void
+
+          def to_hash: -> {
+            page: Integer,
+            per_page: Integer,
+            total_items: Integer,
+            total_pages: Integer
+          }
+        end
+
+        type item =
+          {
+            id: String,
+            creator: Openlayer::Models::Workspaces::InviteListResponse::Item::Creator,
+            date_created: Time,
+            email: String,
+            role: Openlayer::Models::Workspaces::InviteListResponse::Item::role,
+            status: Openlayer::Models::Workspaces::InviteListResponse::Item::status,
+            workspace: Openlayer::Models::Workspaces::InviteListResponse::Item::Workspace
+          }
+
+        class Item < Openlayer::Internal::Type::BaseModel
+          attr_accessor creator: Openlayer::Models::Workspaces::InviteListResponse::Item::Creator
+
+          attr_accessor email: String
+
+          attr_accessor role: Openlayer::Models::Workspaces::InviteListResponse::Item::role
+
+          attr_accessor status: Openlayer::Models::Workspaces::InviteListResponse::Item::status
+
+          attr_accessor id: String
+
+          attr_accessor date_created: Time
+
+          attr_accessor workspace: Openlayer::Models::Workspaces::InviteListResponse::Item::Workspace
+
+          def initialize: (
+            id: String,
+            creator: Openlayer::Models::Workspaces::InviteListResponse::Item::Creator,
+            date_created: Time,
+            email: String,
+            role: Openlayer::Models::Workspaces::InviteListResponse::Item::role,
+            status: Openlayer::Models::Workspaces::InviteListResponse::Item::status,
+            workspace: Openlayer::Models::Workspaces::InviteListResponse::Item::Workspace
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            creator: Openlayer::Models::Workspaces::InviteListResponse::Item::Creator,
+            date_created: Time,
+            email: String,
+            role: Openlayer::Models::Workspaces::InviteListResponse::Item::role,
+            status: Openlayer::Models::Workspaces::InviteListResponse::Item::status,
+            workspace: Openlayer::Models::Workspaces::InviteListResponse::Item::Workspace
+          }
+
+          type creator = { id: String, name: String?, username: String? }
+
+          class Creator < Openlayer::Internal::Type::BaseModel
+            attr_accessor name: String?
+
+            attr_accessor username: String?
+
+            attr_reader id: String?
+
+            def id=: (String) -> String
+
+            def initialize: (
+              ?id: String,
+              ?name: String?,
+              ?username: String?
+            ) -> void
+
+            def to_hash: -> { id: String, name: String?, username: String? }
+          end
+
+          type role = :ADMIN | :MEMBER | :VIEWER
+
+          module Role
+            extend Openlayer::Internal::Type::Enum
+
+            ADMIN: :ADMIN
+            MEMBER: :MEMBER
+            VIEWER: :VIEWER
+
+            def self?.values: -> ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item::role]
+          end
+
+          type status = :accepted | :pending
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            ACCEPTED: :accepted
+            PENDING: :pending
+
+            def self?.values: -> ::Array[Openlayer::Models::Workspaces::InviteListResponse::Item::status]
+          end
+
+          type workspace =
+            {
+              id: String,
+              date_created: Time,
+              member_count: Integer,
+              name: String,
+              slug: String
+            }
+
+          class Workspace < Openlayer::Internal::Type::BaseModel
+            attr_accessor name: String
+
+            attr_accessor slug: String
+
+            attr_accessor id: String
+
+            attr_accessor date_created: Time
+
+            attr_accessor member_count: Integer
+
+            def initialize: (
+              id: String,
+              date_created: Time,
+              member_count: Integer,
+              name: String,
+              slug: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              date_created: Time,
+              member_count: Integer,
+              name: String,
+              slug: String
+            }
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,38 @@
+module Openlayer
+  module Models
+    type workspace_update_params =
+      { invite_code: String, name: String, slug: String }
+      & Openlayer::Internal::Type::request_parameters
+
+    class WorkspaceUpdateParams < Openlayer::Internal::Type::BaseModel
+      extend Openlayer::Internal::Type::RequestParameters::Converter
+      include Openlayer::Internal::Type::RequestParameters
+
+      attr_reader invite_code: String?
+
+      def invite_code=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader slug: String?
+
+      def slug=: (String) -> String
+
+      def initialize: (
+        ?invite_code: String,
+        ?name: String,
+        ?slug: String,
+        ?request_options: Openlayer::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        invite_code: String,
+        name: String,
+        slug: String,
+        request_options: Openlayer::RequestOptions
+      }
+    end
+  end
+end

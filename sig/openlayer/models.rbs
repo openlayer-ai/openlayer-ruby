@@ -20,4 +20,10 @@ module Openlayer
   module Storage = Openlayer::Models::Storage
 
   class TestEvaluateParams = Openlayer::Models::TestEvaluateParams
+
+  class WorkspaceRetrieveParams = Openlayer::Models::WorkspaceRetrieveParams
+
+  module Workspaces = Openlayer::Models::Workspaces
+
+  class WorkspaceUpdateParams = Openlayer::Models::WorkspaceUpdateParams
 end
