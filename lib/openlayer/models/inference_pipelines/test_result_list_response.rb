@@ -27,10 +27,32 @@ module Openlayer
           #   @return [String, nil]
           required :status_message, String, api_name: :statusMessage, nil?: true
 
+          # @!attribute expected_values
+          #
+          #   @return [Array<Openlayer::Models::InferencePipelines::TestResultListResponse::Item::ExpectedValue>, nil]
+          optional :expected_values,
+                   -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Models::InferencePipelines::TestResultListResponse::Item::ExpectedValue] },
+                   api_name: :expectedValues
+
           # @!attribute goal
           #
           #   @return [Openlayer::Models::InferencePipelines::TestResultListResponse::Item::Goal, nil]
           optional :goal, -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::Goal }
+
+          # @!attribute rows
+          #   The URL to the rows of the test result.
+          #
+          #   @return [String, nil]
+          optional :rows, String
+
+          # @!attribute rows_body
+          #   The body of the rows request.
+          #
+          #   @return [Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody, nil]
+          optional :rows_body,
+                   -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody },
+                   api_name: :rowsBody,
+                   nil?: true
 
           response_only do
             # @!attribute id
@@ -82,7 +104,7 @@ module Openlayer
             optional :goal_id, String, api_name: :goalId, nil?: true
           end
 
-          # @!method initialize(id:, date_created:, date_data_ends:, date_data_starts:, date_updated:, inference_pipeline_id:, project_version_id:, status:, status_message:, goal: nil, goal_id: nil)
+          # @!method initialize(id:, date_created:, date_data_ends:, date_data_starts:, date_updated:, inference_pipeline_id:, project_version_id:, status:, status_message:, expected_values: nil, goal: nil, goal_id: nil, rows: nil, rows_body: nil)
           #   @param id [String] Project version (commit) id.
           #
           #   @param date_created [Time] The creation date.
@@ -101,9 +123,15 @@ module Openlayer
           #
           #   @param status_message [String, nil] The status message.
           #
+          #   @param expected_values [Array<Openlayer::Models::InferencePipelines::TestResultListResponse::Item::ExpectedValue>]
+          #
           #   @param goal [Openlayer::Models::InferencePipelines::TestResultListResponse::Item::Goal]
           #
           #   @param goal_id [String, nil] The test id.
+          #
+          #   @param rows [String] The URL to the rows of the test result.
+          #
+          #   @param rows_body [Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody, nil] The body of the rows request.
 
           # The status of the test.
           #
@@ -119,6 +147,33 @@ module Openlayer
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          class ExpectedValue < Openlayer::Internal::Type::BaseModel
+            # @!attribute lower_threshold
+            #   the lower threshold for the expected value
+            #
+            #   @return [Float, nil]
+            optional :lower_threshold, Float, api_name: :lowerThreshold, nil?: true
+
+            # @!attribute measurement
+            #   One of the `measurement` values in the test's thresholds
+            #
+            #   @return [String, nil]
+            optional :measurement, String
+
+            # @!attribute upper_threshold
+            #   The upper threshold for the expected value
+            #
+            #   @return [Float, nil]
+            optional :upper_threshold, Float, api_name: :upperThreshold, nil?: true
+
+            # @!method initialize(lower_threshold: nil, measurement: nil, upper_threshold: nil)
+            #   @param lower_threshold [Float, nil] the lower threshold for the expected value
+            #
+            #   @param measurement [String] One of the `measurement` values in the test's thresholds
+            #
+            #   @param upper_threshold [Float, nil] The upper threshold for the expected value
           end
 
           # @see Openlayer::Models::InferencePipelines::TestResultListResponse::Item#goal
@@ -559,6 +614,236 @@ module Openlayer
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+          end
+
+          # @see Openlayer::Models::InferencePipelines::TestResultListResponse::Item#rows_body
+          class RowsBody < Openlayer::Internal::Type::BaseModel
+            # @!attribute column_filters
+            #
+            #   @return [Array<Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter>, nil]
+            optional :column_filters,
+                     -> { Openlayer::Internal::Type::ArrayOf[union: Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter] },
+                     api_name: :columnFilters,
+                     nil?: true
+
+            # @!attribute exclude_row_id_list
+            #
+            #   @return [Array<Integer>, nil]
+            optional :exclude_row_id_list,
+                     Openlayer::Internal::Type::ArrayOf[Integer],
+                     api_name: :excludeRowIdList,
+                     nil?: true
+
+            # @!attribute not_search_query_and
+            #
+            #   @return [Array<String>, nil]
+            optional :not_search_query_and,
+                     Openlayer::Internal::Type::ArrayOf[String],
+                     api_name: :notSearchQueryAnd,
+                     nil?: true
+
+            # @!attribute not_search_query_or
+            #
+            #   @return [Array<String>, nil]
+            optional :not_search_query_or,
+                     Openlayer::Internal::Type::ArrayOf[String],
+                     api_name: :notSearchQueryOr,
+                     nil?: true
+
+            # @!attribute row_id_list
+            #
+            #   @return [Array<Integer>, nil]
+            optional :row_id_list,
+                     Openlayer::Internal::Type::ArrayOf[Integer],
+                     api_name: :rowIdList,
+                     nil?: true
+
+            # @!attribute search_query_and
+            #
+            #   @return [Array<String>, nil]
+            optional :search_query_and,
+                     Openlayer::Internal::Type::ArrayOf[String],
+                     api_name: :searchQueryAnd,
+                     nil?: true
+
+            # @!attribute search_query_or
+            #
+            #   @return [Array<String>, nil]
+            optional :search_query_or,
+                     Openlayer::Internal::Type::ArrayOf[String],
+                     api_name: :searchQueryOr,
+                     nil?: true
+
+            # @!method initialize(column_filters: nil, exclude_row_id_list: nil, not_search_query_and: nil, not_search_query_or: nil, row_id_list: nil, search_query_and: nil, search_query_or: nil)
+            #   The body of the rows request.
+            #
+            #   @param column_filters [Array<Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter>, nil]
+            #   @param exclude_row_id_list [Array<Integer>, nil]
+            #   @param not_search_query_and [Array<String>, nil]
+            #   @param not_search_query_or [Array<String>, nil]
+            #   @param row_id_list [Array<Integer>, nil]
+            #   @param search_query_and [Array<String>, nil]
+            #   @param search_query_or [Array<String>, nil]
+
+            module ColumnFilter
+              extend Openlayer::Internal::Type::Union
+
+              variant -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter }
+
+              variant -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter }
+
+              variant -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter }
+
+              class SetColumnFilter < Openlayer::Internal::Type::BaseModel
+                # @!attribute measurement
+                #   The name of the column.
+                #
+                #   @return [String]
+                required :measurement, String
+
+                # @!attribute operator
+                #
+                #   @return [Symbol, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator]
+                required :operator,
+                         enum: -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator }
+
+                # @!attribute value
+                #
+                #   @return [Array<String, Float>]
+                required :value,
+                         -> do
+                           Openlayer::Internal::Type::ArrayOf[
+                             union: Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Value
+                           ]
+                         end
+
+                # @!method initialize(measurement:, operator:, value:)
+                #   @param measurement [String] The name of the column.
+                #
+                #   @param operator [Symbol, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator]
+                #
+                #   @param value [Array<String, Float>]
+
+                # @see Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter#operator
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  CONTAINS_NONE = :contains_none
+                  CONTAINS_ANY = :contains_any
+                  CONTAINS_ALL = :contains_all
+                  ONE_OF = :one_of
+                  NONE_OF = :none_of
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+
+                module Value
+                  extend Openlayer::Internal::Type::Union
+
+                  variant String
+
+                  variant Float
+
+                  # @!method self.variants
+                  #   @return [Array(String, Float)]
+                end
+              end
+
+              class NumericColumnFilter < Openlayer::Internal::Type::BaseModel
+                # @!attribute measurement
+                #   The name of the column.
+                #
+                #   @return [String]
+                required :measurement, String
+
+                # @!attribute operator
+                #
+                #   @return [Symbol, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator]
+                required :operator,
+                         enum: -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator }
+
+                # @!attribute value
+                #
+                #   @return [Float, nil]
+                required :value, Float, nil?: true
+
+                # @!method initialize(measurement:, operator:, value:)
+                #   @param measurement [String] The name of the column.
+                #
+                #   @param operator [Symbol, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator]
+                #
+                #   @param value [Float, nil]
+
+                # @see Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter#operator
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  GREATER = :>
+                  GREATER_OR_EQUALS = :">="
+                  IS = :is
+                  LESS = :<
+                  LESS_OR_EQUALS = :"<="
+                  NOT_EQUALS = :"!="
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+              end
+
+              class StringColumnFilter < Openlayer::Internal::Type::BaseModel
+                # @!attribute measurement
+                #   The name of the column.
+                #
+                #   @return [String]
+                required :measurement, String
+
+                # @!attribute operator
+                #
+                #   @return [Symbol, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator]
+                required :operator,
+                         enum: -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator }
+
+                # @!attribute value
+                #
+                #   @return [String, Boolean]
+                required :value,
+                         union: -> { Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Value }
+
+                # @!method initialize(measurement:, operator:, value:)
+                #   @param measurement [String] The name of the column.
+                #
+                #   @param operator [Symbol, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator]
+                #
+                #   @param value [String, Boolean]
+
+                # @see Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter#operator
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  IS = :is
+                  NOT_EQUALS = :"!="
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+
+                # @see Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter#value
+                module Value
+                  extend Openlayer::Internal::Type::Union
+
+                  variant String
+
+                  variant Openlayer::Internal::Type::Boolean
+
+                  # @!method self.variants
+                  #   @return [Array(String, Boolean)]
+                end
+              end
+
+              # @!method self.variants
+              #   @return [Array(Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter)]
             end
           end
         end

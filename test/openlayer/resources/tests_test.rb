@@ -25,4 +25,19 @@ class Openlayer::Test::Resources::TestsTest < Openlayer::Test::ResourceTest
       }
     end
   end
+
+  def test_list_results
+    response = @openlayer.tests.list_results("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")
+
+    assert_pattern do
+      response => Openlayer::Models::TestListResultsResponse
+    end
+
+    assert_pattern do
+      response => {
+        items: ^(Openlayer::Internal::Type::ArrayOf[Openlayer::Models::TestListResultsResponse::Item]),
+        last_unskipped_result: Openlayer::Models::TestListResultsResponse::LastUnskippedResult | nil
+      }
+    end
+  end
 end

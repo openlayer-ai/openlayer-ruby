@@ -67,6 +67,27 @@ module Openlayer
           sig do
             returns(
               T.nilable(
+                T::Array[
+                  Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue
+                ]
+              )
+            )
+          end
+          attr_reader :expected_values
+
+          sig do
+            params(
+              expected_values:
+                T::Array[
+                  Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue::OrHash
+                ]
+            ).void
+          end
+          attr_writer :expected_values
+
+          sig do
+            returns(
+              T.nilable(
                 Openlayer::Models::Commits::TestResultListResponse::Item::Goal
               )
             )
@@ -80,6 +101,33 @@ module Openlayer
             ).void
           end
           attr_writer :goal
+
+          # The URL to the rows of the test result.
+          sig { returns(T.nilable(String)) }
+          attr_reader :rows
+
+          sig { params(rows: String).void }
+          attr_writer :rows
+
+          # The body of the rows request.
+          sig do
+            returns(
+              T.nilable(
+                Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody
+              )
+            )
+          end
+          attr_reader :rows_body
+
+          sig do
+            params(
+              rows_body:
+                T.nilable(
+                  Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::OrHash
+                )
+            ).void
+          end
+          attr_writer :rows_body
 
           # Project version (commit) id.
           sig { returns(String) }
@@ -125,9 +173,18 @@ module Openlayer
               status:
                 Openlayer::Models::Commits::TestResultListResponse::Item::Status::OrSymbol,
               status_message: T.nilable(String),
+              expected_values:
+                T::Array[
+                  Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue::OrHash
+                ],
               goal:
                 Openlayer::Models::Commits::TestResultListResponse::Item::Goal::OrHash,
-              goal_id: T.nilable(String)
+              goal_id: T.nilable(String),
+              rows: String,
+              rows_body:
+                T.nilable(
+                  Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::OrHash
+                )
             ).returns(T.attached_class)
           end
           def self.new(
@@ -149,9 +206,14 @@ module Openlayer
             status:,
             # The status message.
             status_message:,
+            expected_values: nil,
             goal: nil,
             # The test id.
-            goal_id: nil
+            goal_id: nil,
+            # The URL to the rows of the test result.
+            rows: nil,
+            # The body of the rows request.
+            rows_body: nil
           )
           end
 
@@ -168,9 +230,18 @@ module Openlayer
                 status:
                   Openlayer::Models::Commits::TestResultListResponse::Item::Status::TaggedSymbol,
                 status_message: T.nilable(String),
+                expected_values:
+                  T::Array[
+                    Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue
+                  ],
                 goal:
                   Openlayer::Models::Commits::TestResultListResponse::Item::Goal,
-                goal_id: T.nilable(String)
+                goal_id: T.nilable(String),
+                rows: String,
+                rows_body:
+                  T.nilable(
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody
+                  )
               }
             )
           end
@@ -224,6 +295,60 @@ module Openlayer
               )
             end
             def self.values
+            end
+          end
+
+          class ExpectedValue < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            # the lower threshold for the expected value
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :lower_threshold
+
+            # One of the `measurement` values in the test's thresholds
+            sig { returns(T.nilable(String)) }
+            attr_reader :measurement
+
+            sig { params(measurement: String).void }
+            attr_writer :measurement
+
+            # The upper threshold for the expected value
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :upper_threshold
+
+            sig do
+              params(
+                lower_threshold: T.nilable(Float),
+                measurement: String,
+                upper_threshold: T.nilable(Float)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # the lower threshold for the expected value
+              lower_threshold: nil,
+              # One of the `measurement` values in the test's thresholds
+              measurement: nil,
+              # The upper threshold for the expected value
+              upper_threshold: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  lower_threshold: T.nilable(Float),
+                  measurement: String,
+                  upper_threshold: T.nilable(Float)
+                }
+              )
+            end
+            def to_hash
             end
           end
 
@@ -1246,6 +1371,467 @@ module Openlayer
                 )
               end
               def self.values
+              end
+            end
+          end
+
+          class RowsBody < Openlayer::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody,
+                  Openlayer::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::Variants
+                  ]
+                )
+              )
+            end
+            attr_accessor :column_filters
+
+            sig { returns(T.nilable(T::Array[Integer])) }
+            attr_accessor :exclude_row_id_list
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :not_search_query_and
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :not_search_query_or
+
+            sig { returns(T.nilable(T::Array[Integer])) }
+            attr_accessor :row_id_list
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :search_query_and
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :search_query_or
+
+            # The body of the rows request.
+            sig do
+              params(
+                column_filters:
+                  T.nilable(
+                    T::Array[
+                      T.any(
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::OrHash,
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::OrHash,
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::OrHash
+                      )
+                    ]
+                  ),
+                exclude_row_id_list: T.nilable(T::Array[Integer]),
+                not_search_query_and: T.nilable(T::Array[String]),
+                not_search_query_or: T.nilable(T::Array[String]),
+                row_id_list: T.nilable(T::Array[Integer]),
+                search_query_and: T.nilable(T::Array[String]),
+                search_query_or: T.nilable(T::Array[String])
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              column_filters: nil,
+              exclude_row_id_list: nil,
+              not_search_query_and: nil,
+              not_search_query_or: nil,
+              row_id_list: nil,
+              search_query_and: nil,
+              search_query_or: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  column_filters:
+                    T.nilable(
+                      T::Array[
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::Variants
+                      ]
+                    ),
+                  exclude_row_id_list: T.nilable(T::Array[Integer]),
+                  not_search_query_and: T.nilable(T::Array[String]),
+                  not_search_query_or: T.nilable(T::Array[String]),
+                  row_id_list: T.nilable(T::Array[Integer]),
+                  search_query_and: T.nilable(T::Array[String]),
+                  search_query_or: T.nilable(T::Array[String])
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module ColumnFilter
+              extend Openlayer::Internal::Type::Union
+
+              Variants =
+                T.type_alias do
+                  T.any(
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter,
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter,
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter
+                  )
+                end
+
+              class SetColumnFilter < Openlayer::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter,
+                      Openlayer::Internal::AnyHash
+                    )
+                  end
+
+                # The name of the column.
+                sig { returns(String) }
+                attr_accessor :measurement
+
+                sig do
+                  returns(
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                  )
+                end
+                attr_accessor :operator
+
+                sig do
+                  returns(
+                    T::Array[
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Value::Variants
+                    ]
+                  )
+                end
+                attr_accessor :value
+
+                sig do
+                  params(
+                    measurement: String,
+                    operator:
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::OrSymbol,
+                    value:
+                      T::Array[
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Value::Variants
+                      ]
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # The name of the column.
+                  measurement:,
+                  operator:,
+                  value:
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      measurement: String,
+                      operator:
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol,
+                      value:
+                        T::Array[
+                          Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Value::Variants
+                        ]
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  CONTAINS_NONE =
+                    T.let(
+                      :contains_none,
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                    )
+                  CONTAINS_ANY =
+                    T.let(
+                      :contains_any,
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                    )
+                  CONTAINS_ALL =
+                    T.let(
+                      :contains_all,
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                    )
+                  ONE_OF =
+                    T.let(
+                      :one_of,
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                    )
+                  NONE_OF =
+                    T.let(
+                      :none_of,
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+
+                module Value
+                  extend Openlayer::Internal::Type::Union
+
+                  Variants = T.type_alias { T.any(String, Float) }
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::Value::Variants
+                      ]
+                    )
+                  end
+                  def self.variants
+                  end
+                end
+              end
+
+              class NumericColumnFilter < Openlayer::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter,
+                      Openlayer::Internal::AnyHash
+                    )
+                  end
+
+                # The name of the column.
+                sig { returns(String) }
+                attr_accessor :measurement
+
+                sig do
+                  returns(
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                  )
+                end
+                attr_accessor :operator
+
+                sig { returns(T.nilable(Float)) }
+                attr_accessor :value
+
+                sig do
+                  params(
+                    measurement: String,
+                    operator:
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::OrSymbol,
+                    value: T.nilable(Float)
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # The name of the column.
+                  measurement:,
+                  operator:,
+                  value:
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      measurement: String,
+                      operator:
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol,
+                      value: T.nilable(Float)
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  GREATER =
+                    T.let(
+                      :">",
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                    )
+                  GREATER_OR_EQUALS =
+                    T.let(
+                      :">=",
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                    )
+                  IS =
+                    T.let(
+                      :is,
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                    )
+                  LESS =
+                    T.let(
+                      :"<",
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                    )
+                  LESS_OR_EQUALS =
+                    T.let(
+                      :"<=",
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                    )
+                  NOT_EQUALS =
+                    T.let(
+                      :"!=",
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+              end
+
+              class StringColumnFilter < Openlayer::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter,
+                      Openlayer::Internal::AnyHash
+                    )
+                  end
+
+                # The name of the column.
+                sig { returns(String) }
+                attr_accessor :measurement
+
+                sig do
+                  returns(
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
+                  )
+                end
+                attr_accessor :operator
+
+                sig do
+                  returns(
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Value::Variants
+                  )
+                end
+                attr_accessor :value
+
+                sig do
+                  params(
+                    measurement: String,
+                    operator:
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator::OrSymbol,
+                    value:
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Value::Variants
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # The name of the column.
+                  measurement:,
+                  operator:,
+                  value:
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      measurement: String,
+                      operator:
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol,
+                      value:
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Value::Variants
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  IS =
+                    T.let(
+                      :is,
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
+                    )
+                  NOT_EQUALS =
+                    T.let(
+                      :"!=",
+                      Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+
+                module Value
+                  extend Openlayer::Internal::Type::Union
+
+                  Variants = T.type_alias { T.any(String, T::Boolean) }
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::Value::Variants
+                      ]
+                    )
+                  end
+                  def self.variants
+                  end
+                end
+              end
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::Variants
+                  ]
+                )
+              end
+              def self.variants
               end
             end
           end
