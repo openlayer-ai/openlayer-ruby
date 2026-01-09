@@ -28,8 +28,11 @@ module Openlayer
             project_version_id: String?,
             status: Openlayer::Models::Commits::TestResultListResponse::Item::status,
             status_message: String?,
+            expected_values: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue],
             goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal,
-            goal_id: String?
+            goal_id: String?,
+            rows: String,
+            rows_body: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody?
           }
 
         class Item < Openlayer::Internal::Type::BaseModel
@@ -37,11 +40,23 @@ module Openlayer
 
           attr_accessor status_message: String?
 
+          attr_reader expected_values: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue]?
+
+          def expected_values=: (
+            ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue]
+          ) -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue]
+
           attr_reader goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal?
 
           def goal=: (
             Openlayer::Models::Commits::TestResultListResponse::Item::Goal
           ) -> Openlayer::Models::Commits::TestResultListResponse::Item::Goal
+
+          attr_reader rows: String?
+
+          def rows=: (String) -> String
+
+          attr_accessor rows_body: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody?
 
           attr_accessor id: String
 
@@ -69,8 +84,11 @@ module Openlayer
             project_version_id: String?,
             status: Openlayer::Models::Commits::TestResultListResponse::Item::status,
             status_message: String?,
+            ?expected_values: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue],
             ?goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal,
-            ?goal_id: String?
+            ?goal_id: String?,
+            ?rows: String,
+            ?rows_body: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody?
           ) -> void
 
           def to_hash: -> {
@@ -83,8 +101,11 @@ module Openlayer
             project_version_id: String?,
             status: Openlayer::Models::Commits::TestResultListResponse::Item::status,
             status_message: String?,
+            expected_values: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::ExpectedValue],
             goal: Openlayer::Models::Commits::TestResultListResponse::Item::Goal,
-            goal_id: String?
+            goal_id: String?,
+            rows: String,
+            rows_body: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody?
           }
 
           type status = :running | :passing | :failing | :skipped | :error
@@ -99,6 +120,35 @@ module Openlayer
             ERROR: :error
 
             def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::status]
+          end
+
+          type expected_value =
+            {
+              lower_threshold: Float?,
+              measurement: String,
+              upper_threshold: Float?
+            }
+
+          class ExpectedValue < Openlayer::Internal::Type::BaseModel
+            attr_accessor lower_threshold: Float?
+
+            attr_reader measurement: String?
+
+            def measurement=: (String) -> String
+
+            attr_accessor upper_threshold: Float?
+
+            def initialize: (
+              ?lower_threshold: Float?,
+              ?measurement: String,
+              ?upper_threshold: Float?
+            ) -> void
+
+            def to_hash: -> {
+              lower_threshold: Float?,
+              measurement: String,
+              upper_threshold: Float?
+            }
           end
 
           type goal =
@@ -520,6 +570,206 @@ module Openlayer
               PERFORMANCE: :performance
 
               def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::Goal::type_]
+            end
+          end
+
+          type rows_body =
+            {
+              column_filters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::column_filter]?,
+              exclude_row_id_list: ::Array[Integer]?,
+              not_search_query_and: ::Array[String]?,
+              not_search_query_or: ::Array[String]?,
+              row_id_list: ::Array[Integer]?,
+              search_query_and: ::Array[String]?,
+              search_query_or: ::Array[String]?
+            }
+
+          class RowsBody < Openlayer::Internal::Type::BaseModel
+            attr_accessor column_filters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::column_filter]?
+
+            attr_accessor exclude_row_id_list: ::Array[Integer]?
+
+            attr_accessor not_search_query_and: ::Array[String]?
+
+            attr_accessor not_search_query_or: ::Array[String]?
+
+            attr_accessor row_id_list: ::Array[Integer]?
+
+            attr_accessor search_query_and: ::Array[String]?
+
+            attr_accessor search_query_or: ::Array[String]?
+
+            def initialize: (
+              ?column_filters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::column_filter]?,
+              ?exclude_row_id_list: ::Array[Integer]?,
+              ?not_search_query_and: ::Array[String]?,
+              ?not_search_query_or: ::Array[String]?,
+              ?row_id_list: ::Array[Integer]?,
+              ?search_query_and: ::Array[String]?,
+              ?search_query_or: ::Array[String]?
+            ) -> void
+
+            def to_hash: -> {
+              column_filters: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::column_filter]?,
+              exclude_row_id_list: ::Array[Integer]?,
+              not_search_query_and: ::Array[String]?,
+              not_search_query_or: ::Array[String]?,
+              row_id_list: ::Array[Integer]?,
+              search_query_and: ::Array[String]?,
+              search_query_or: ::Array[String]?
+            }
+
+            type column_filter =
+              Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter
+              | Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter
+              | Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter
+
+            module ColumnFilter
+              extend Openlayer::Internal::Type::Union
+
+              type set_column_filter =
+                {
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::operator,
+                  value: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::value]
+                }
+
+              class SetColumnFilter < Openlayer::Internal::Type::BaseModel
+                attr_accessor measurement: String
+
+                attr_accessor operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::operator
+
+                attr_accessor value: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::value]
+
+                def initialize: (
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::operator,
+                  value: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::value]
+                ) -> void
+
+                def to_hash: -> {
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::operator,
+                  value: ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::value]
+                }
+
+                type operator =
+                  :contains_none
+                  | :contains_any
+                  | :contains_all
+                  | :one_of
+                  | :none_of
+
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  CONTAINS_NONE: :contains_none
+                  CONTAINS_ANY: :contains_any
+                  CONTAINS_ALL: :contains_all
+                  ONE_OF: :one_of
+                  NONE_OF: :none_of
+
+                  def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::operator]
+                end
+
+                type value = String | Float
+
+                module Value
+                  extend Openlayer::Internal::Type::Union
+
+                  def self?.variants: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::SetColumnFilter::value]
+                end
+              end
+
+              type numeric_column_filter =
+                {
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::operator,
+                  value: Float?
+                }
+
+              class NumericColumnFilter < Openlayer::Internal::Type::BaseModel
+                attr_accessor measurement: String
+
+                attr_accessor operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::operator
+
+                attr_accessor value: Float?
+
+                def initialize: (
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::operator,
+                  value: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::operator,
+                  value: Float?
+                }
+
+                type operator = :> | :>= | :is | :< | :<= | :!=
+
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  GREATER: :>
+                  GREATER_OR_EQUALS: :>=
+                  IS: :is
+                  LESS: :<
+                  LESS_OR_EQUALS: :<=
+                  NOT_EQUALS: :!=
+
+                  def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::NumericColumnFilter::operator]
+                end
+              end
+
+              type string_column_filter =
+                {
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::operator,
+                  value: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::value
+                }
+
+              class StringColumnFilter < Openlayer::Internal::Type::BaseModel
+                attr_accessor measurement: String
+
+                attr_accessor operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::operator
+
+                attr_accessor value: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::value
+
+                def initialize: (
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::operator,
+                  value: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::value
+                ) -> void
+
+                def to_hash: -> {
+                  measurement: String,
+                  operator: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::operator,
+                  value: Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::value
+                }
+
+                type operator = :is | :!=
+
+                module Operator
+                  extend Openlayer::Internal::Type::Enum
+
+                  IS: :is
+                  NOT_EQUALS: :!=
+
+                  def self?.values: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::operator]
+                end
+
+                type value = String | bool
+
+                module Value
+                  extend Openlayer::Internal::Type::Union
+
+                  def self?.variants: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::ColumnFilter::StringColumnFilter::value]
+                end
+              end
+
+              def self?.variants: -> ::Array[Openlayer::Models::Commits::TestResultListResponse::Item::RowsBody::column_filter]
             end
           end
         end

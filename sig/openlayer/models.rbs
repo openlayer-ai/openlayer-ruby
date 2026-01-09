@@ -21,6 +21,8 @@ module Openlayer
 
   class TestEvaluateParams = Openlayer::Models::TestEvaluateParams
 
+  class TestListResultsParams = Openlayer::Models::TestListResultsParams
+
   class WorkspaceRetrieveParams = Openlayer::Models::WorkspaceRetrieveParams
 
   module Workspaces = Openlayer::Models::Workspaces

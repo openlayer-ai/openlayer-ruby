@@ -39,6 +39,51 @@ module Openlayer
         )
       end
 
+      # List the test results for a test.
+      #
+      # @overload list_results(test_id, end_timestamp: nil, include_insights: nil, inference_pipeline_id: nil, page: nil, per_page: nil, project_version_id: nil, start_timestamp: nil, status: nil, request_options: {})
+      #
+      # @param test_id [String] The test id.
+      #
+      # @param end_timestamp [Float] Filter for results that use data starting before the end timestamp.
+      #
+      # @param include_insights [Boolean] Include the insights linked to each test result
+      #
+      # @param inference_pipeline_id [String, nil] Retrive test results for a specific inference pipeline.
+      #
+      # @param page [Integer] The page to return in a paginated query.
+      #
+      # @param per_page [Integer] Maximum number of items to return per page.
+      #
+      # @param project_version_id [String, nil] Retrive test results for a specific project version.
+      #
+      # @param start_timestamp [Float] Filter for results that use data ending after the start timestamp.
+      #
+      # @param status [Array<String>] Filter by status(es).
+      #
+      # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Openlayer::Models::TestListResultsResponse]
+      #
+      # @see Openlayer::Models::TestListResultsParams
+      def list_results(test_id, params = {})
+        parsed, options = Openlayer::TestListResultsParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["tests/%1$s/results", test_id],
+          query: parsed.transform_keys(
+            end_timestamp: "endTimestamp",
+            include_insights: "includeInsights",
+            inference_pipeline_id: "inferencePipelineId",
+            per_page: "perPage",
+            project_version_id: "projectVersionId",
+            start_timestamp: "startTimestamp"
+          ),
+          model: Openlayer::Models::TestListResultsResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Openlayer::Client]

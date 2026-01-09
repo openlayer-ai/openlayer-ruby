@@ -33,6 +33,44 @@ module Openlayer
       )
       end
 
+      # List the test results for a test.
+      sig do
+        params(
+          test_id: String,
+          end_timestamp: Float,
+          include_insights: T::Boolean,
+          inference_pipeline_id: T.nilable(String),
+          page: Integer,
+          per_page: Integer,
+          project_version_id: T.nilable(String),
+          start_timestamp: Float,
+          status: T::Array[String],
+          request_options: Openlayer::RequestOptions::OrHash
+        ).returns(Openlayer::Models::TestListResultsResponse)
+      end
+      def list_results(
+        # The test id.
+        test_id,
+        # Filter for results that use data starting before the end timestamp.
+        end_timestamp: nil,
+        # Include the insights linked to each test result
+        include_insights: nil,
+        # Retrive test results for a specific inference pipeline.
+        inference_pipeline_id: nil,
+        # The page to return in a paginated query.
+        page: nil,
+        # Maximum number of items to return per page.
+        per_page: nil,
+        # Retrive test results for a specific project version.
+        project_version_id: nil,
+        # Filter for results that use data ending after the start timestamp.
+        start_timestamp: nil,
+        # Filter by status(es).
+        status: nil,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Openlayer::Client).returns(T.attached_class) }
       def self.new(client:)
