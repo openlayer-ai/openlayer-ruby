@@ -1,0 +1,73 @@
+module Openlayer
+  module Models
+    type test_list_results_params =
+      {
+        end_timestamp: Float,
+        include_insights: bool,
+        inference_pipeline_id: String?,
+        page: Integer,
+        per_page: Integer,
+        project_version_id: String?,
+        start_timestamp: Float,
+        status: ::Array[String]
+      }
+      & Openlayer::Internal::Type::request_parameters
+
+    class TestListResultsParams < Openlayer::Internal::Type::BaseModel
+      extend Openlayer::Internal::Type::RequestParameters::Converter
+      include Openlayer::Internal::Type::RequestParameters
+
+      attr_reader end_timestamp: Float?
+
+      def end_timestamp=: (Float) -> Float
+
+      attr_reader include_insights: bool?
+
+      def include_insights=: (bool) -> bool
+
+      attr_accessor inference_pipeline_id: String?
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      attr_reader per_page: Integer?
+
+      def per_page=: (Integer) -> Integer
+
+      attr_accessor project_version_id: String?
+
+      attr_reader start_timestamp: Float?
+
+      def start_timestamp=: (Float) -> Float
+
+      attr_reader status: ::Array[String]?
+
+      def status=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        ?end_timestamp: Float,
+        ?include_insights: bool,
+        ?inference_pipeline_id: String?,
+        ?page: Integer,
+        ?per_page: Integer,
+        ?project_version_id: String?,
+        ?start_timestamp: Float,
+        ?status: ::Array[String],
+        ?request_options: Openlayer::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        end_timestamp: Float,
+        include_insights: bool,
+        inference_pipeline_id: String?,
+        page: Integer,
+        per_page: Integer,
+        project_version_id: String?,
+        start_timestamp: Float,
+        status: ::Array[String],
+        request_options: Openlayer::RequestOptions
+      }
+    end
+  end
+end

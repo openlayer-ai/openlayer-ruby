@@ -10,6 +10,19 @@ module Openlayer
         ?request_options: Openlayer::request_opts
       ) -> Openlayer::Models::TestEvaluateResponse
 
+      def list_results: (
+        String test_id,
+        ?end_timestamp: Float,
+        ?include_insights: bool,
+        ?inference_pipeline_id: String?,
+        ?page: Integer,
+        ?per_page: Integer,
+        ?project_version_id: String?,
+        ?start_timestamp: Float,
+        ?status: ::Array[String],
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::TestListResultsResponse
+
       def initialize: (client: Openlayer::Client) -> void
     end
   end
