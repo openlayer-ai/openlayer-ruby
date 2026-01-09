@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    openlayer (0.9.1)
+    openlayer (0.10.0)
       connection_pool
 
 GEM

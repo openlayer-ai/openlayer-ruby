@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.0 (2026-01-09)
+
+Full Changelog: [v0.9.1...v0.10.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.9.1...v0.10.0)
+
+### Features
+
+* **closes OPEN-8532:** expose 'tests/{id}/results' endpoint ([9283aa5](https://github.com/openlayer-ai/openlayer-ruby/commit/9283aa5daa8dc74f26a2e17c754824f4bdc57f97))
+
 ## 0.9.1 (2026-01-08)
 
 Full Changelog: [v0.9.0...v0.9.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.9.0...v0.9.1)
