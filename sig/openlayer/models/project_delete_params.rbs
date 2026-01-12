@@ -1,0 +1,15 @@
+module Openlayer
+  module Models
+    type project_delete_params =
+      {  } & Openlayer::Internal::Type::request_parameters
+
+    class ProjectDeleteParams < Openlayer::Internal::Type::BaseModel
+      extend Openlayer::Internal::Type::RequestParameters::Converter
+      include Openlayer::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Openlayer::request_opts) -> void
+
+      def to_hash: -> { request_options: Openlayer::RequestOptions }
+    end
+  end
+end

@@ -18,6 +18,8 @@ module Openlayer
 
   ProjectCreateParams = Openlayer::Models::ProjectCreateParams
 
+  ProjectDeleteParams = Openlayer::Models::ProjectDeleteParams
+
   ProjectListParams = Openlayer::Models::ProjectListParams
 
   Projects = Openlayer::Models::Projects
