@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.1 (2026-01-12)
+
+Full Changelog: [v0.10.0...v0.10.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.0...v0.10.1)
+
+### Chores
+
+* **closes OPEN-8576:** expose delete project endpoint ([f8710ce](https://github.com/openlayer-ai/openlayer-ruby/commit/f8710cedcc4fb06b88166b36dc7727e44d0dd9f7))
+* move `cgi` into dependencies for ruby 4 ([10e2f05](https://github.com/openlayer-ai/openlayer-ruby/commit/10e2f0588e532d36103121c1022dbe64e2374d34))
+
 ## 0.10.0 (2026-01-09)
 
 Full Changelog: [v0.9.1...v0.10.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.9.1...v0.10.0)
