@@ -55,6 +55,20 @@ module Openlayer
       )
       end
 
+      # Delete a project by its ID.
+      sig do
+        params(
+          project_id: String,
+          request_options: Openlayer::RequestOptions::OrHash
+        ).void
+      end
+      def delete(
+        # The project id.
+        project_id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Openlayer::Client).returns(T.attached_class) }
       def self.new(client:)

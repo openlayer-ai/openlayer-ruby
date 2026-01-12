@@ -66,6 +66,26 @@ module Openlayer
         )
       end
 
+      # Delete a project by its ID.
+      #
+      # @overload delete(project_id, request_options: {})
+      #
+      # @param project_id [String] The project id.
+      #
+      # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [nil]
+      #
+      # @see Openlayer::Models::ProjectDeleteParams
+      def delete(project_id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["projects/%1$s", project_id],
+          model: NilClass,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [Openlayer::Client]
