@@ -45,4 +45,12 @@ class Openlayer::Test::Resources::ProjectsTest < Openlayer::Test::ResourceTest
       }
     end
   end
+
+  def test_delete
+    response = @openlayer.projects.delete("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")
+
+    assert_pattern do
+      response => nil
+    end
+  end
 end

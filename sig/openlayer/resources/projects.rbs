@@ -22,6 +22,11 @@ module Openlayer
         ?request_options: Openlayer::request_opts
       ) -> Openlayer::Models::ProjectListResponse
 
+      def delete: (
+        String project_id,
+        ?request_options: Openlayer::request_opts
+      ) -> nil
+
       def initialize: (client: Openlayer::Client) -> void
     end
   end
