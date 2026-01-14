@@ -22,9 +22,9 @@ module Openlayer
           inference_pipeline_id,
           # Query param: Specify the inference id as a query param.
           inference_id:,
-          # Body param:
+          # Body param
           row:,
-          # Body param:
+          # Body param
           config: nil,
           request_options: {}
         )
