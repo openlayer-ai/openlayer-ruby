@@ -12,9 +12,9 @@ module Openlayer
         #
         # @param inference_id [String] Query param: Specify the inference id as a query param.
         #
-        # @param row [Object] Body param:
+        # @param row [Object] Body param
         #
-        # @param config [Openlayer::Models::InferencePipelines::RowUpdateParams::Config, nil] Body param:
+        # @param config [Openlayer::Models::InferencePipelines::RowUpdateParams::Config, nil] Body param
         #
         # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
         #
