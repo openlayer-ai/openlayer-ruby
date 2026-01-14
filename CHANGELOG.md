@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.2 (2026-01-14)
+
+Full Changelog: [v0.10.1...v0.10.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.1...v0.10.2)
+
+### Chores
+
+* fix typo in descriptions ([fa53918](https://github.com/openlayer-ai/openlayer-ruby/commit/fa53918916e3f78032faf5fafdd3f62b81d5226e))
+
 ## 0.10.1 (2026-01-12)
 
 Full Changelog: [v0.10.0...v0.10.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.0...v0.10.1)
