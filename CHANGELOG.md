@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.3 (2026-01-17)
+
+Full Changelog: [v0.10.2...v0.10.3](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.2...v0.10.3)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([0bced62](https://github.com/openlayer-ai/openlayer-ruby/commit/0bced6215cd0974ba5697350885e20699d88c362))
+
 ## 0.10.2 (2026-01-14)
 
 Full Changelog: [v0.10.1...v0.10.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.1...v0.10.2)
