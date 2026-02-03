@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.4 (2026-02-03)
+
+Full Changelog: [v0.10.3...v0.10.4](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.3...v0.10.4)
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([cdd39fc](https://github.com/openlayer-ai/openlayer-ruby/commit/cdd39fc16d16f83a16464447b77c631ad4b6854c))
+
 ## 0.10.3 (2026-01-17)
 
 Full Changelog: [v0.10.2...v0.10.3](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.2...v0.10.3)
