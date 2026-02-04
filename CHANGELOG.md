@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.5 (2026-02-04)
+
+Full Changelog: [v0.10.4...v0.10.5](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.4...v0.10.5)
+
+### Chores
+
+* **docs:** remove www prefix ([28a33f9](https://github.com/openlayer-ai/openlayer-ruby/commit/28a33f938967dbe9f94cad59a8ee38ef32490cd2))
+
 ## 0.10.4 (2026-02-03)
 
 Full Changelog: [v0.10.3...v0.10.4](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.3...v0.10.4)
