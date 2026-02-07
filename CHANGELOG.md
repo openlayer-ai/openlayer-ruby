@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.6 (2026-02-07)
+
+Full Changelog: [v0.10.5...v0.10.6](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.5...v0.10.6)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([65e7b42](https://github.com/openlayer-ai/openlayer-ruby/commit/65e7b425df42b9c0a50bae22c71de4d2fad4a51a))
+
 ## 0.10.5 (2026-02-04)
 
 Full Changelog: [v0.10.4...v0.10.5](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.4...v0.10.5)
