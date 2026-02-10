@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.7 (2026-02-10)
+
+Full Changelog: [v0.10.6...v0.10.7](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.6...v0.10.7)
+
+### Chores
+
+* **closes OPEN-8647:** add endpoint to retrieve aggregated user data for inference pipelines ([5442bcb](https://github.com/openlayer-ai/openlayer-ruby/commit/5442bcbd5b6ab56d618fd36a985a7d864b65e7ae))
+
 ## 0.10.6 (2026-02-07)
 
 Full Changelog: [v0.10.5...v0.10.6](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.5...v0.10.6)
