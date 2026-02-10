@@ -87,6 +87,36 @@ module Openlayer
         )
       end
 
+      # Get aggregated user data for an inference pipeline with pagination and metadata.
+      #
+      # Returns a list of users who have interacted with the inference pipeline,
+      # including their activity statistics such as session counts, record counts, token
+      # usage, and costs.
+      #
+      # @overload retrieve_users(inference_pipeline_id, page: nil, per_page: nil, request_options: {})
+      #
+      # @param inference_pipeline_id [String] The inference pipeline id (a UUID).
+      #
+      # @param page [Integer] The page to return in a paginated query.
+      #
+      # @param per_page [Integer] Maximum number of items to return per page.
+      #
+      # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Openlayer::Models::InferencePipelineRetrieveUsersResponse]
+      #
+      # @see Openlayer::Models::InferencePipelineRetrieveUsersParams
+      def retrieve_users(inference_pipeline_id, params = {})
+        parsed, options = Openlayer::InferencePipelineRetrieveUsersParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["inference-pipelines/%1$s/users", inference_pipeline_id],
+          query: parsed.transform_keys(per_page: "perPage"),
+          model: Openlayer::Models::InferencePipelineRetrieveUsersResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Openlayer::Client]

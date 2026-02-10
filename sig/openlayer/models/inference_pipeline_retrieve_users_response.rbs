@@ -1,0 +1,67 @@
+module Openlayer
+  module Models
+    type inference_pipeline_retrieve_users_response =
+      {
+        items: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersResponse::Item]
+      }
+
+    class InferencePipelineRetrieveUsersResponse < Openlayer::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersResponse::Item]
+
+      def initialize: (
+        items: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersResponse::Item]
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersResponse::Item]
+      }
+
+      type item =
+        {
+          id: String,
+          cost: Float,
+          date_of_first_record: Time,
+          date_of_last_record: Time,
+          records: Integer,
+          sessions: Integer,
+          tokens: Float
+        }
+
+      class Item < Openlayer::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor cost: Float
+
+        attr_accessor date_of_first_record: Time
+
+        attr_accessor date_of_last_record: Time
+
+        attr_accessor records: Integer
+
+        attr_accessor sessions: Integer
+
+        attr_accessor tokens: Float
+
+        def initialize: (
+          id: String,
+          cost: Float,
+          date_of_first_record: Time,
+          date_of_last_record: Time,
+          records: Integer,
+          sessions: Integer,
+          tokens: Float
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          cost: Float,
+          date_of_first_record: Time,
+          date_of_last_record: Time,
+          records: Integer,
+          sessions: Integer,
+          tokens: Float
+        }
+      end
+    end
+  end
+end

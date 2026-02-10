@@ -26,6 +26,13 @@ module Openlayer
         ?request_options: Openlayer::request_opts
       ) -> nil
 
+      def retrieve_users: (
+        String inference_pipeline_id,
+        ?page: Integer,
+        ?per_page: Integer,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::InferencePipelineRetrieveUsersResponse
+
       def initialize: (client: Openlayer::Client) -> void
     end
   end
