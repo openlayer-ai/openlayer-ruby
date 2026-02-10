@@ -7,6 +7,8 @@ module Openlayer
 
   class InferencePipelineRetrieveParams = Openlayer::Models::InferencePipelineRetrieveParams
 
+  class InferencePipelineRetrieveUsersParams = Openlayer::Models::InferencePipelineRetrieveUsersParams
+
   module InferencePipelines = Openlayer::Models::InferencePipelines
 
   class InferencePipelineUpdateParams = Openlayer::Models::InferencePipelineUpdateParams

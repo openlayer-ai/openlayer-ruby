@@ -78,4 +78,18 @@ class Openlayer::Test::Resources::InferencePipelinesTest < Openlayer::Test::Reso
       response => nil
     end
   end
+
+  def test_retrieve_users
+    response = @openlayer.inference_pipelines.retrieve_users("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")
+
+    assert_pattern do
+      response => Openlayer::Models::InferencePipelineRetrieveUsersResponse
+    end
+
+    assert_pattern do
+      response => {
+        items: ^(Openlayer::Internal::Type::ArrayOf[Openlayer::Models::InferencePipelineRetrieveUsersResponse::Item])
+      }
+    end
+  end
 end
