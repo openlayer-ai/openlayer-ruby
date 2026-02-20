@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.8 (2026-02-20)
+
+Full Changelog: [v0.10.7...v0.10.8](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.7...v0.10.8)
+
+### Chores
+
+* update mock server docs ([31a3f7b](https://github.com/openlayer-ai/openlayer-ruby/commit/31a3f7b1d6895e644f7f2b127b9d3855770bbed2))
+
 ## 0.10.7 (2026-02-10)
 
 Full Changelog: [v0.10.6...v0.10.7](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.6...v0.10.7)
