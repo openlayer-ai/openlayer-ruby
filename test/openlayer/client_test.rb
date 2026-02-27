@@ -142,26 +142,28 @@ class OpenlayerTest < Minitest::Test
   end
 
   def test_client_retry_after_date
+    time_now = Time.now
+
     stub_request(
       :post,
       "http://localhost/inference-pipelines/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/data-stream"
     ).to_return_json(
       status: 500,
-      headers: {"retry-after" => (Time.now + 10).httpdate},
+      headers: {"retry-after" => (time_now + 10).httpdate},
       body: {}
     )
 
     openlayer = Openlayer::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
+    Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(Openlayer::Errors::InternalServerError) do
-      Thread.current.thread_variable_set(:time_now, Time.now)
       openlayer.inference_pipelines.data.stream(
         "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         config: {outputColumnName: "output"},
         rows: [{user_query: "bar", output: "bar", tokens: "bar", cost: "bar", timestamp: "bar"}]
       )
-      Thread.current.thread_variable_set(:time_now, nil)
     end
+    Thread.current.thread_variable_set(:time_now, nil)
 
     assert_requested(:any, /./, times: 2)
     assert_in_delta(10, Thread.current.thread_variable_get(:mock_sleep).last, 1.0)
