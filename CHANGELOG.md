@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.9 (2026-02-27)
+
+Full Changelog: [v0.10.8...v0.10.9](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.8...v0.10.9)
+
+### Bug Fixes
+
+* properly mock time in ruby ci tests ([a59a123](https://github.com/openlayer-ai/openlayer-ruby/commit/a59a123df184dc784fb6a67474efb6442cf7abcf))
+
 ## 0.10.8 (2026-02-20)
 
 Full Changelog: [v0.10.7...v0.10.8](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.7...v0.10.8)
