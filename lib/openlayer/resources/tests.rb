@@ -68,10 +68,11 @@ module Openlayer
       # @see Openlayer::Models::TestListResultsParams
       def list_results(test_id, params = {})
         parsed, options = Openlayer::TestListResultsParams.dump_request(params)
+        query = Openlayer::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["tests/%1$s/results", test_id],
-          query: parsed.transform_keys(
+          query: query.transform_keys(
             end_timestamp: "endTimestamp",
             include_insights: "includeInsights",
             inference_pipeline_id: "inferencePipelineId",

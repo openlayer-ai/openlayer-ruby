@@ -47,10 +47,11 @@ module Openlayer
         # @see Openlayer::Models::Workspaces::InviteListParams
         def list(workspace_id, params = {})
           parsed, options = Openlayer::Workspaces::InviteListParams.dump_request(params)
+          query = Openlayer::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["workspaces/%1$s/invites", workspace_id],
-            query: parsed.transform_keys(per_page: "perPage"),
+            query: query.transform_keys(per_page: "perPage"),
             model: Openlayer::Models::Workspaces::InviteListResponse,
             options: options
           )
