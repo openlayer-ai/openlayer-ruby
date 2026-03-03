@@ -22,12 +22,13 @@ module Openlayer
         #
         # @see Openlayer::Models::InferencePipelines::RowUpdateParams
         def update(inference_pipeline_id, params)
-          parsed, options = Openlayer::InferencePipelines::RowUpdateParams.dump_request(params)
           query_params = [:inference_id]
+          parsed, options = Openlayer::InferencePipelines::RowUpdateParams.dump_request(params)
+          query = Openlayer::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
             method: :put,
             path: ["inference-pipelines/%1$s/rows", inference_pipeline_id],
-            query: parsed.slice(*query_params).transform_keys(inference_id: "inferenceId"),
+            query: query.transform_keys(inference_id: "inferenceId"),
             body: parsed.except(*query_params),
             model: Openlayer::Models::InferencePipelines::RowUpdateResponse,
             options: options

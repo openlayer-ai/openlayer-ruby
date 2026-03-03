@@ -117,10 +117,11 @@ module Openlayer
         # @see Openlayer::Models::Projects::TestListParams
         def list(project_id, params = {})
           parsed, options = Openlayer::Projects::TestListParams.dump_request(params)
+          query = Openlayer::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["projects/%1$s/tests", project_id],
-            query: parsed.transform_keys(
+            query: query.transform_keys(
               include_archived: "includeArchived",
               origin_version_id: "originVersionId",
               per_page: "perPage",

@@ -17,10 +17,11 @@ module Openlayer
         # @see Openlayer::Models::Storage::PresignedURLCreateParams
         def create(params)
           parsed, options = Openlayer::Storage::PresignedURLCreateParams.dump_request(params)
+          query = Openlayer::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :post,
             path: "storage/presigned-url",
-            query: parsed.transform_keys(object_name: "objectName"),
+            query: query.transform_keys(object_name: "objectName"),
             model: Openlayer::Models::Storage::PresignedURLCreateResponse,
             options: options
           )
