@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.10 (2026-03-03)
+
+Full Changelog: [v0.10.9...v0.10.10](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.9...v0.10.10)
+
+### Chores
+
+* **ci:** add build step ([bea48e1](https://github.com/openlayer-ai/openlayer-ruby/commit/bea48e1f670734269e7ae5169df09c093f9f2c46))
+* **internal:** codegen related update ([650d388](https://github.com/openlayer-ai/openlayer-ruby/commit/650d388434954bcde3634c82648d05c93667317b))
+
 ## 0.10.9 (2026-02-27)
 
 Full Changelog: [v0.10.8...v0.10.9](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.8...v0.10.9)
