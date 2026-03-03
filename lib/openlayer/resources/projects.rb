@@ -57,10 +57,11 @@ module Openlayer
       # @see Openlayer::Models::ProjectListParams
       def list(params = {})
         parsed, options = Openlayer::ProjectListParams.dump_request(params)
+        query = Openlayer::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "projects",
-          query: parsed.transform_keys(per_page: "perPage", task_type: "taskType"),
+          query: query.transform_keys(per_page: "perPage", task_type: "taskType"),
           model: Openlayer::Models::ProjectListResponse,
           options: options
         )

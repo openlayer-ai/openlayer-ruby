@@ -51,10 +51,11 @@ module Openlayer
         # @see Openlayer::Models::Projects::CommitListParams
         def list(project_id, params = {})
           parsed, options = Openlayer::Projects::CommitListParams.dump_request(params)
+          query = Openlayer::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["projects/%1$s/versions", project_id],
-            query: parsed.transform_keys(per_page: "perPage"),
+            query: query.transform_keys(per_page: "perPage"),
             model: Openlayer::Models::Projects::CommitListResponse,
             options: options
           )

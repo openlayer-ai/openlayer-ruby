@@ -27,10 +27,11 @@ module Openlayer
       # @see Openlayer::Models::InferencePipelineRetrieveParams
       def retrieve(inference_pipeline_id, params = {})
         parsed, options = Openlayer::InferencePipelineRetrieveParams.dump_request(params)
+        query = Openlayer::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["inference-pipelines/%1$s", inference_pipeline_id],
-          query: parsed,
+          query: query,
           model: Openlayer::Models::InferencePipelineRetrieveResponse,
           options: options
         )
@@ -108,10 +109,11 @@ module Openlayer
       # @see Openlayer::Models::InferencePipelineRetrieveUsersParams
       def retrieve_users(inference_pipeline_id, params = {})
         parsed, options = Openlayer::InferencePipelineRetrieveUsersParams.dump_request(params)
+        query = Openlayer::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["inference-pipelines/%1$s/users", inference_pipeline_id],
-          query: parsed.transform_keys(per_page: "perPage"),
+          query: query.transform_keys(per_page: "perPage"),
           model: Openlayer::Models::InferencePipelineRetrieveUsersResponse,
           options: options
         )

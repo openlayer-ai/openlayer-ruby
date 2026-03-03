@@ -30,10 +30,11 @@ module Openlayer
         # @see Openlayer::Models::Commits::TestResultListParams
         def list(project_version_id, params = {})
           parsed, options = Openlayer::Commits::TestResultListParams.dump_request(params)
+          query = Openlayer::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["versions/%1$s/results", project_version_id],
-            query: parsed.transform_keys(include_archived: "includeArchived", per_page: "perPage"),
+            query: query.transform_keys(include_archived: "includeArchived", per_page: "perPage"),
             model: Openlayer::Models::Commits::TestResultListResponse,
             options: options
           )

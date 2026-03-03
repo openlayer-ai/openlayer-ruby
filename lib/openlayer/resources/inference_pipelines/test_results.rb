@@ -28,10 +28,11 @@ module Openlayer
         # @see Openlayer::Models::InferencePipelines::TestResultListParams
         def list(inference_pipeline_id, params = {})
           parsed, options = Openlayer::InferencePipelines::TestResultListParams.dump_request(params)
+          query = Openlayer::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["inference-pipelines/%1$s/results", inference_pipeline_id],
-            query: parsed.transform_keys(per_page: "perPage"),
+            query: query.transform_keys(per_page: "perPage"),
             model: Openlayer::Models::InferencePipelines::TestResultListResponse,
             options: options
           )
