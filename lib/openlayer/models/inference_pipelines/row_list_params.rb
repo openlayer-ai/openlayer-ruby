@@ -3,8 +3,8 @@
 module Openlayer
   module Models
     module InferencePipelines
-      # @see Openlayer::Resources::InferencePipelines::Rows#create
-      class RowCreateParams < Openlayer::Internal::Type::BaseModel
+      # @see Openlayer::Resources::InferencePipelines::Rows#list
+      class RowListParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
@@ -39,10 +39,10 @@ module Openlayer
 
         # @!attribute column_filters
         #
-        #   @return [Array<Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter>, nil]
+        #   @return [Array<Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter>, nil]
         optional :column_filters,
                  -> {
-                   Openlayer::Internal::Type::ArrayOf[union: Openlayer::InferencePipelines::RowCreateParams::ColumnFilter]
+                   Openlayer::Internal::Type::ArrayOf[union: Openlayer::InferencePipelines::RowListParams::ColumnFilter]
                  },
                  api_name: :columnFilters,
                  nil?: true
@@ -103,7 +103,7 @@ module Openlayer
         #
         #   @param sort_column [String] Name of the column to sort on
         #
-        #   @param column_filters [Array<Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter>, nil]
+        #   @param column_filters [Array<Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter>, nil]
         #
         #   @param exclude_row_id_list [Array<Integer>, nil]
         #
@@ -122,11 +122,11 @@ module Openlayer
         module ColumnFilter
           extend Openlayer::Internal::Type::Union
 
-          variant -> { Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter }
+          variant -> { Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter }
 
-          variant -> { Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter }
+          variant -> { Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter }
 
-          variant -> { Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter }
+          variant -> { Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter }
 
           class SetColumnFilter < Openlayer::Internal::Type::BaseModel
             # @!attribute measurement
@@ -137,24 +137,24 @@ module Openlayer
 
             # @!attribute operator
             #
-            #   @return [Symbol, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator]
+            #   @return [Symbol, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator]
             required :operator,
-                     enum: -> { Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator }
+                     enum: -> { Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator }
 
             # @!attribute value
             #
             #   @return [Array<String, Float>]
             required :value,
-                     -> { Openlayer::Internal::Type::ArrayOf[union: Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Value] }
+                     -> { Openlayer::Internal::Type::ArrayOf[union: Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Value] }
 
             # @!method initialize(measurement:, operator:, value:)
             #   @param measurement [String] The name of the column.
             #
-            #   @param operator [Symbol, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator]
+            #   @param operator [Symbol, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator]
             #
             #   @param value [Array<String, Float>]
 
-            # @see Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter#operator
+            # @see Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter#operator
             module Operator
               extend Openlayer::Internal::Type::Enum
 
@@ -189,9 +189,9 @@ module Openlayer
 
             # @!attribute operator
             #
-            #   @return [Symbol, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator]
+            #   @return [Symbol, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator]
             required :operator,
-                     enum: -> { Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator }
+                     enum: -> { Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator }
 
             # @!attribute value
             #
@@ -201,11 +201,11 @@ module Openlayer
             # @!method initialize(measurement:, operator:, value:)
             #   @param measurement [String] The name of the column.
             #
-            #   @param operator [Symbol, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator]
+            #   @param operator [Symbol, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator]
             #
             #   @param value [Float, nil]
 
-            # @see Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter#operator
+            # @see Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter#operator
             module Operator
               extend Openlayer::Internal::Type::Enum
 
@@ -230,24 +230,24 @@ module Openlayer
 
             # @!attribute operator
             #
-            #   @return [Symbol, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator]
+            #   @return [Symbol, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator]
             required :operator,
-                     enum: -> { Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator }
+                     enum: -> { Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator }
 
             # @!attribute value
             #
             #   @return [String, Boolean]
             required :value,
-                     union: -> { Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Value }
+                     union: -> { Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Value }
 
             # @!method initialize(measurement:, operator:, value:)
             #   @param measurement [String] The name of the column.
             #
-            #   @param operator [Symbol, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator]
+            #   @param operator [Symbol, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator]
             #
             #   @param value [String, Boolean]
 
-            # @see Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter#operator
+            # @see Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter#operator
             module Operator
               extend Openlayer::Internal::Type::Enum
 
@@ -258,7 +258,7 @@ module Openlayer
               #   @return [Array<Symbol>]
             end
 
-            # @see Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter#value
+            # @see Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter#value
             module Value
               extend Openlayer::Internal::Type::Union
 
@@ -272,7 +272,7 @@ module Openlayer
           end
 
           # @!method self.variants
-          #   @return [Array(Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter)]
+          #   @return [Array(Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter)]
         end
       end
     end

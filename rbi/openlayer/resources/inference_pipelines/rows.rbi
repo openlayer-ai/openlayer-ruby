@@ -4,6 +4,32 @@ module Openlayer
   module Resources
     class InferencePipelines
       class Rows
+        # Update an inference data point in an inference pipeline.
+        sig do
+          params(
+            inference_pipeline_id: String,
+            inference_id: String,
+            row: T.anything,
+            config:
+              T.nilable(
+                Openlayer::InferencePipelines::RowUpdateParams::Config::OrHash
+              ),
+            request_options: Openlayer::RequestOptions::OrHash
+          ).returns(Openlayer::Models::InferencePipelines::RowUpdateResponse)
+        end
+        def update(
+          # Path param: The inference pipeline id (a UUID).
+          inference_pipeline_id,
+          # Query param: Specify the inference id as a query param.
+          inference_id:,
+          # Body param
+          row:,
+          # Body param
+          config: nil,
+          request_options: {}
+        )
+        end
+
         # A list of rows for an inference pipeline.
         sig do
           params(
@@ -16,9 +42,9 @@ module Openlayer
               T.nilable(
                 T::Array[
                   T.any(
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::OrHash,
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::OrHash,
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::OrHash
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::OrHash,
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::OrHash,
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::OrHash
                   )
                 ]
               ),
@@ -29,9 +55,9 @@ module Openlayer
             search_query_and: T.nilable(T::Array[String]),
             search_query_or: T.nilable(T::Array[String]),
             request_options: Openlayer::RequestOptions::OrHash
-          ).returns(Openlayer::Models::InferencePipelines::RowCreateResponse)
+          ).returns(Openlayer::Models::InferencePipelines::RowListResponse)
         end
-        def create(
+        def list(
           # Path param: The inference pipeline id (a UUID).
           inference_pipeline_id,
           # Query param: Whether or not to sort on the sortColumn in ascending order.
@@ -56,32 +82,6 @@ module Openlayer
           search_query_and: nil,
           # Body param
           search_query_or: nil,
-          request_options: {}
-        )
-        end
-
-        # Update an inference data point in an inference pipeline.
-        sig do
-          params(
-            inference_pipeline_id: String,
-            inference_id: String,
-            row: T.anything,
-            config:
-              T.nilable(
-                Openlayer::InferencePipelines::RowUpdateParams::Config::OrHash
-              ),
-            request_options: Openlayer::RequestOptions::OrHash
-          ).returns(Openlayer::Models::InferencePipelines::RowUpdateResponse)
-        end
-        def update(
-          # Path param: The inference pipeline id (a UUID).
-          inference_pipeline_id,
-          # Query param: Specify the inference id as a query param.
-          inference_id:,
-          # Body param
-          row:,
-          # Body param
-          config: nil,
           request_options: {}
         )
         end

@@ -3,16 +3,16 @@
 module Openlayer
   module Models
     module InferencePipelines
-      # @see Openlayer::Resources::InferencePipelines::Rows#create
-      class RowCreateResponse < Openlayer::Internal::Type::BaseModel
+      # @see Openlayer::Resources::InferencePipelines::Rows#list
+      class RowListResponse < Openlayer::Internal::Type::BaseModel
         # @!attribute items
         #
-        #   @return [Array<Openlayer::Models::InferencePipelines::RowCreateResponse::Item>]
+        #   @return [Array<Openlayer::Models::InferencePipelines::RowListResponse::Item>]
         required :items,
-                 -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Models::InferencePipelines::RowCreateResponse::Item] }
+                 -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Models::InferencePipelines::RowListResponse::Item] }
 
         # @!method initialize(items:)
-        #   @param items [Array<Openlayer::Models::InferencePipelines::RowCreateResponse::Item>]
+        #   @param items [Array<Openlayer::Models::InferencePipelines::RowListResponse::Item>]
 
         class Item < Openlayer::Internal::Type::BaseModel
           # @!attribute openlayer_row_id
