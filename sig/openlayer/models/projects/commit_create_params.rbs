@@ -3,6 +3,7 @@ module Openlayer
     module Projects
       type commit_create_params =
         {
+          project_id: String,
           commit: Openlayer::Projects::CommitCreateParams::Commit,
           storage_uri: String,
           archived: bool?,
@@ -13,6 +14,8 @@ module Openlayer
       class CommitCreateParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor project_id: String
 
         attr_accessor commit: Openlayer::Projects::CommitCreateParams::Commit
 
@@ -25,6 +28,7 @@ module Openlayer
         def deployment_status=: (String) -> String
 
         def initialize: (
+          project_id: String,
           commit: Openlayer::Projects::CommitCreateParams::Commit,
           storage_uri: String,
           ?archived: bool?,
@@ -33,6 +37,7 @@ module Openlayer
         ) -> void
 
         def to_hash: -> {
+          project_id: String,
           commit: Openlayer::Projects::CommitCreateParams::Commit,
           storage_uri: String,
           archived: bool?,

@@ -2,12 +2,14 @@ module Openlayer
   module Models
     module Projects
       type commit_list_params =
-        { page: Integer, per_page: Integer }
+        { project_id: String, page: Integer, per_page: Integer }
         & Openlayer::Internal::Type::request_parameters
 
       class CommitListParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor project_id: String
 
         attr_reader page: Integer?
 
@@ -18,12 +20,14 @@ module Openlayer
         def per_page=: (Integer) -> Integer
 
         def initialize: (
+          project_id: String,
           ?page: Integer,
           ?per_page: Integer,
           ?request_options: Openlayer::request_opts
         ) -> void
 
         def to_hash: -> {
+          project_id: String,
           page: Integer,
           per_page: Integer,
           request_options: Openlayer::RequestOptions

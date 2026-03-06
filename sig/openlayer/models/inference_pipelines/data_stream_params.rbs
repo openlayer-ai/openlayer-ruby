@@ -3,6 +3,7 @@ module Openlayer
     module InferencePipelines
       type data_stream_params =
         {
+          inference_pipeline_id: String,
           config: Openlayer::Models::InferencePipelines::DataStreamParams::config,
           rows: ::Array[::Hash[Symbol, top]]
         }
@@ -12,17 +13,21 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        attr_accessor inference_pipeline_id: String
+
         attr_accessor config: Openlayer::Models::InferencePipelines::DataStreamParams::config
 
         attr_accessor rows: ::Array[::Hash[Symbol, top]]
 
         def initialize: (
+          inference_pipeline_id: String,
           config: Openlayer::Models::InferencePipelines::DataStreamParams::config,
           rows: ::Array[::Hash[Symbol, top]],
           ?request_options: Openlayer::request_opts
         ) -> void
 
         def to_hash: -> {
+          inference_pipeline_id: String,
           config: Openlayer::Models::InferencePipelines::DataStreamParams::config,
           rows: ::Array[::Hash[Symbol, top]],
           request_options: Openlayer::RequestOptions

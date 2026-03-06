@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute workspace_id
+        #
+        #   @return [String]
+        required :workspace_id, String
+
         # @!attribute emails
         #
         #   @return [Array<String>, nil]
@@ -19,7 +24,9 @@ module Openlayer
         #   @return [Symbol, Openlayer::Models::Workspaces::InviteCreateParams::Role, nil]
         optional :role, enum: -> { Openlayer::Workspaces::InviteCreateParams::Role }
 
-        # @!method initialize(emails: nil, role: nil, request_options: {})
+        # @!method initialize(workspace_id:, emails: nil, role: nil, request_options: {})
+        #   @param workspace_id [String]
+        #
         #   @param emails [Array<String>]
         #
         #   @param role [Symbol, Openlayer::Models::Workspaces::InviteCreateParams::Role] The member role.

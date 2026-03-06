@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :workspace_id
+
         sig { returns(T.nilable(T::Array[String])) }
         attr_reader :emails
 
@@ -38,12 +41,14 @@ module Openlayer
 
         sig do
           params(
+            workspace_id: String,
             emails: T::Array[String],
             role: Openlayer::Workspaces::InviteCreateParams::Role::OrSymbol,
             request_options: Openlayer::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          workspace_id:,
           emails: nil,
           # The member role.
           role: nil,
@@ -54,6 +59,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              workspace_id: String,
               emails: T::Array[String],
               role: Openlayer::Workspaces::InviteCreateParams::Role::OrSymbol,
               request_options: Openlayer::RequestOptions

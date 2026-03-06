@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute project_id
+        #
+        #   @return [String]
+        required :project_id, String
+
         # @!attribute description
         #   The inference pipeline description.
         #
@@ -38,7 +43,9 @@ module Openlayer
         #   @return [Openlayer::Models::Projects::InferencePipelineCreateParams::Workspace, nil]
         optional :workspace, -> { Openlayer::Projects::InferencePipelineCreateParams::Workspace }, nil?: true
 
-        # @!method initialize(description:, name:, data_backend: nil, project: nil, workspace: nil, request_options: {})
+        # @!method initialize(project_id:, description:, name:, data_backend: nil, project: nil, workspace: nil, request_options: {})
+        #   @param project_id [String]
+        #
         #   @param description [String, nil] The inference pipeline description.
         #
         #   @param name [String] The inference pipeline name.

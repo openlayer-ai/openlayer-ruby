@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute project_id
+        #
+        #   @return [String]
+        required :project_id, String
+
         # @!attribute name
         #   Filter list of items by name.
         #
@@ -26,7 +31,9 @@ module Openlayer
         #   @return [Integer, nil]
         optional :per_page, Integer
 
-        # @!method initialize(name: nil, page: nil, per_page: nil, request_options: {})
+        # @!method initialize(project_id:, name: nil, page: nil, per_page: nil, request_options: {})
+        #   @param project_id [String]
+        #
         #   @param name [String] Filter list of items by name.
         #
         #   @param page [Integer] The page to return in a paginated query.

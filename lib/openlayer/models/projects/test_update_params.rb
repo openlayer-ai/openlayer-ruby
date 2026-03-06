@@ -8,13 +8,19 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute project_id
+        #
+        #   @return [String]
+        required :project_id, String
+
         # @!attribute payloads
         #
         #   @return [Array<Openlayer::Models::Projects::TestUpdateParams::Payload>]
         required :payloads,
                  -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Projects::TestUpdateParams::Payload] }
 
-        # @!method initialize(payloads:, request_options: {})
+        # @!method initialize(project_id:, payloads:, request_options: {})
+        #   @param project_id [String]
         #   @param payloads [Array<Openlayer::Models::Projects::TestUpdateParams::Payload>]
         #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
 

@@ -7,6 +7,11 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
+      # @!attribute inference_pipeline_id
+      #
+      #   @return [String]
+      required :inference_pipeline_id, String
+
       # @!attribute description
       #   The inference pipeline description.
       #
@@ -26,9 +31,11 @@ module Openlayer
       #   @return [String, nil]
       optional :reference_dataset_uri, String, api_name: :referenceDatasetUri, nil?: true
 
-      # @!method initialize(description: nil, name: nil, reference_dataset_uri: nil, request_options: {})
+      # @!method initialize(inference_pipeline_id:, description: nil, name: nil, reference_dataset_uri: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Openlayer::Models::InferencePipelineUpdateParams} for more details.
+      #
+      #   @param inference_pipeline_id [String]
       #
       #   @param description [String, nil] The inference pipeline description.
       #

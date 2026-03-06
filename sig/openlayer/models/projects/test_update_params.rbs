@@ -2,21 +2,28 @@ module Openlayer
   module Models
     module Projects
       type test_update_params =
-        { payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload] }
+        {
+          project_id: String,
+          payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload]
+        }
         & Openlayer::Internal::Type::request_parameters
 
       class TestUpdateParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        attr_accessor project_id: String
+
         attr_accessor payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload]
 
         def initialize: (
+          project_id: String,
           payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload],
           ?request_options: Openlayer::request_opts
         ) -> void
 
         def to_hash: -> {
+          project_id: String,
           payloads: ::Array[Openlayer::Projects::TestUpdateParams::Payload],
           request_options: Openlayer::RequestOptions
         }

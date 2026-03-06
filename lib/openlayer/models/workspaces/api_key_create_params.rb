@@ -8,13 +8,20 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute workspace_id
+        #
+        #   @return [String]
+        required :workspace_id, String
+
         # @!attribute name
         #   The API key name.
         #
         #   @return [String, nil]
         optional :name, String, nil?: true
 
-        # @!method initialize(name: nil, request_options: {})
+        # @!method initialize(workspace_id:, name: nil, request_options: {})
+        #   @param workspace_id [String]
+        #
         #   @param name [String, nil] The API key name.
         #
         #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]

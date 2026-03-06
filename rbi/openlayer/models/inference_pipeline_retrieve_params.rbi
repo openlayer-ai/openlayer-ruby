@@ -14,6 +14,9 @@ module Openlayer
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :inference_pipeline_id
+
       # Expand specific nested objects.
       sig do
         returns(
@@ -38,6 +41,7 @@ module Openlayer
 
       sig do
         params(
+          inference_pipeline_id: String,
           expand:
             T::Array[
               Openlayer::InferencePipelineRetrieveParams::Expand::OrSymbol
@@ -46,6 +50,7 @@ module Openlayer
         ).returns(T.attached_class)
       end
       def self.new(
+        inference_pipeline_id:,
         # Expand specific nested objects.
         expand: nil,
         request_options: {}
@@ -55,6 +60,7 @@ module Openlayer
       sig do
         override.returns(
           {
+            inference_pipeline_id: String,
             expand:
               T::Array[
                 Openlayer::InferencePipelineRetrieveParams::Expand::OrSymbol

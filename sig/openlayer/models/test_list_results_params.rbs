@@ -2,6 +2,7 @@ module Openlayer
   module Models
     type test_list_results_params =
       {
+        test_id: String,
         end_timestamp: Float,
         include_insights: bool,
         inference_pipeline_id: String?,
@@ -16,6 +17,8 @@ module Openlayer
     class TestListResultsParams < Openlayer::Internal::Type::BaseModel
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
+
+      attr_accessor test_id: String
 
       attr_reader end_timestamp: Float?
 
@@ -46,6 +49,7 @@ module Openlayer
       def status=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
+        test_id: String,
         ?end_timestamp: Float,
         ?include_insights: bool,
         ?inference_pipeline_id: String?,
@@ -58,6 +62,7 @@ module Openlayer
       ) -> void
 
       def to_hash: -> {
+        test_id: String,
         end_timestamp: Float,
         include_insights: bool,
         inference_pipeline_id: String?,

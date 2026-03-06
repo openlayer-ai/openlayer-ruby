@@ -3,6 +3,7 @@ module Openlayer
     module Projects
       type test_create_params =
         {
+          project_id: String,
           description: top?,
           name: String,
           subtype: Openlayer::Models::Projects::TestCreateParams::subtype,
@@ -26,6 +27,8 @@ module Openlayer
       class TestCreateParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor project_id: String
 
         attr_accessor description: top?
 
@@ -74,6 +77,7 @@ module Openlayer
         def uses_validation_dataset=: (bool) -> bool
 
         def initialize: (
+          project_id: String,
           description: top?,
           name: String,
           subtype: Openlayer::Models::Projects::TestCreateParams::subtype,
@@ -95,6 +99,7 @@ module Openlayer
         ) -> void
 
         def to_hash: -> {
+          project_id: String,
           description: top?,
           name: String,
           subtype: Openlayer::Models::Projects::TestCreateParams::subtype,

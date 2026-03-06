@@ -7,6 +7,11 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
+      # @!attribute inference_pipeline_id
+      #
+      #   @return [String]
+      required :inference_pipeline_id, String
+
       # @!attribute expand
       #   Expand specific nested objects.
       #
@@ -14,7 +19,9 @@ module Openlayer
       optional :expand,
                -> { Openlayer::Internal::Type::ArrayOf[enum: Openlayer::InferencePipelineRetrieveParams::Expand] }
 
-      # @!method initialize(expand: nil, request_options: {})
+      # @!method initialize(inference_pipeline_id:, expand: nil, request_options: {})
+      #   @param inference_pipeline_id [String]
+      #
       #   @param expand [Array<Symbol, Openlayer::Models::InferencePipelineRetrieveParams::Expand>] Expand specific nested objects.
       #
       #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]

@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :inference_pipeline_id
+
         # The page to return in a paginated query.
         sig { returns(T.nilable(Integer)) }
         attr_reader :page
@@ -69,6 +72,7 @@ module Openlayer
 
         sig do
           params(
+            inference_pipeline_id: String,
             page: Integer,
             per_page: Integer,
             status:
@@ -79,6 +83,7 @@ module Openlayer
           ).returns(T.attached_class)
         end
         def self.new(
+          inference_pipeline_id:,
           # The page to return in a paginated query.
           page: nil,
           # Maximum number of items to return per page.
@@ -96,6 +101,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              inference_pipeline_id: String,
               page: Integer,
               per_page: Integer,
               status:

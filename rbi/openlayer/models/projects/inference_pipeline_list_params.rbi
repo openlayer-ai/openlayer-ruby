@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :project_id
+
         # Filter list of items by name.
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -38,6 +41,7 @@ module Openlayer
 
         sig do
           params(
+            project_id: String,
             name: String,
             page: Integer,
             per_page: Integer,
@@ -45,6 +49,7 @@ module Openlayer
           ).returns(T.attached_class)
         end
         def self.new(
+          project_id:,
           # Filter list of items by name.
           name: nil,
           # The page to return in a paginated query.
@@ -58,6 +63,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              project_id: String,
               name: String,
               page: Integer,
               per_page: Integer,

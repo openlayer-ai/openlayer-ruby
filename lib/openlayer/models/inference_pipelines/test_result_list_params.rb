@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute inference_pipeline_id
+        #
+        #   @return [String]
+        required :inference_pipeline_id, String
+
         # @!attribute page
         #   The page to return in a paginated query.
         #
@@ -34,9 +39,11 @@ module Openlayer
         #   @return [Symbol, Openlayer::Models::InferencePipelines::TestResultListParams::Type, nil]
         optional :type, enum: -> { Openlayer::InferencePipelines::TestResultListParams::Type }
 
-        # @!method initialize(page: nil, per_page: nil, status: nil, type: nil, request_options: {})
+        # @!method initialize(inference_pipeline_id:, page: nil, per_page: nil, status: nil, type: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::InferencePipelines::TestResultListParams} for more details.
+        #
+        #   @param inference_pipeline_id [String]
         #
         #   @param page [Integer] The page to return in a paginated query.
         #

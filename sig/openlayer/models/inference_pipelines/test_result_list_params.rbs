@@ -3,6 +3,7 @@ module Openlayer
     module InferencePipelines
       type test_result_list_params =
         {
+          inference_pipeline_id: String,
           page: Integer,
           per_page: Integer,
           status: Openlayer::Models::InferencePipelines::TestResultListParams::status,
@@ -13,6 +14,8 @@ module Openlayer
       class TestResultListParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor inference_pipeline_id: String
 
         attr_reader page: Integer?
 
@@ -35,6 +38,7 @@ module Openlayer
         ) -> Openlayer::Models::InferencePipelines::TestResultListParams::type_
 
         def initialize: (
+          inference_pipeline_id: String,
           ?page: Integer,
           ?per_page: Integer,
           ?status: Openlayer::Models::InferencePipelines::TestResultListParams::status,
@@ -43,6 +47,7 @@ module Openlayer
         ) -> void
 
         def to_hash: -> {
+          inference_pipeline_id: String,
           page: Integer,
           per_page: Integer,
           status: Openlayer::Models::InferencePipelines::TestResultListParams::status,

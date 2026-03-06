@@ -14,6 +14,9 @@ module Openlayer
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :inference_pipeline_id
+
       # The inference pipeline description.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
@@ -32,6 +35,7 @@ module Openlayer
 
       sig do
         params(
+          inference_pipeline_id: String,
           description: T.nilable(String),
           name: String,
           reference_dataset_uri: T.nilable(String),
@@ -39,6 +43,7 @@ module Openlayer
         ).returns(T.attached_class)
       end
       def self.new(
+        inference_pipeline_id:,
         # The inference pipeline description.
         description: nil,
         # The inference pipeline name.
@@ -53,6 +58,7 @@ module Openlayer
       sig do
         override.returns(
           {
+            inference_pipeline_id: String,
             description: T.nilable(String),
             name: String,
             reference_dataset_uri: T.nilable(String),
