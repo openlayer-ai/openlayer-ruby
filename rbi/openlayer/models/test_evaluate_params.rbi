@@ -11,6 +11,9 @@ module Openlayer
           T.any(Openlayer::TestEvaluateParams, Openlayer::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :test_id
+
       # End timestamp in seconds (Unix epoch)
       sig { returns(Integer) }
       attr_accessor :end_timestamp
@@ -36,6 +39,7 @@ module Openlayer
 
       sig do
         params(
+          test_id: String,
           end_timestamp: Integer,
           start_timestamp: Integer,
           inference_pipeline_id: String,
@@ -44,6 +48,7 @@ module Openlayer
         ).returns(T.attached_class)
       end
       def self.new(
+        test_id:,
         # End timestamp in seconds (Unix epoch)
         end_timestamp:,
         # Start timestamp in seconds (Unix epoch)
@@ -60,6 +65,7 @@ module Openlayer
       sig do
         override.returns(
           {
+            test_id: String,
             end_timestamp: Integer,
             start_timestamp: Integer,
             inference_pipeline_id: String,

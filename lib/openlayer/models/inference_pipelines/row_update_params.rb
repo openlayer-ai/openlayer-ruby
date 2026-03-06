@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute inference_pipeline_id
+        #
+        #   @return [String]
+        required :inference_pipeline_id, String
+
         # @!attribute inference_id
         #   Specify the inference id as a query param.
         #
@@ -24,7 +29,9 @@ module Openlayer
         #   @return [Openlayer::Models::InferencePipelines::RowUpdateParams::Config, nil]
         optional :config, -> { Openlayer::InferencePipelines::RowUpdateParams::Config }, nil?: true
 
-        # @!method initialize(inference_id:, row:, config: nil, request_options: {})
+        # @!method initialize(inference_pipeline_id:, inference_id:, row:, config: nil, request_options: {})
+        #   @param inference_pipeline_id [String]
+        #
         #   @param inference_id [String] Specify the inference id as a query param.
         #
         #   @param row [Object]

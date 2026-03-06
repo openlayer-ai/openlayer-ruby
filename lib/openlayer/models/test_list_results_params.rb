@@ -7,6 +7,11 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
+      # @!attribute test_id
+      #
+      #   @return [String]
+      required :test_id, String
+
       # @!attribute end_timestamp
       #   Filter for results that use data starting before the end timestamp.
       #
@@ -55,7 +60,9 @@ module Openlayer
       #   @return [Array<String>, nil]
       optional :status, Openlayer::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(end_timestamp: nil, include_insights: nil, inference_pipeline_id: nil, page: nil, per_page: nil, project_version_id: nil, start_timestamp: nil, status: nil, request_options: {})
+      # @!method initialize(test_id:, end_timestamp: nil, include_insights: nil, inference_pipeline_id: nil, page: nil, per_page: nil, project_version_id: nil, start_timestamp: nil, status: nil, request_options: {})
+      #   @param test_id [String]
+      #
       #   @param end_timestamp [Float] Filter for results that use data starting before the end timestamp.
       #
       #   @param include_insights [Boolean] Include the insights linked to each test result

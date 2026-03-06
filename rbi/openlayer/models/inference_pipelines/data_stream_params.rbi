@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :inference_pipeline_id
+
         # Configuration for the data stream. Depends on your **Openlayer project task
         # type**.
         sig do
@@ -35,6 +38,7 @@ module Openlayer
 
         sig do
           params(
+            inference_pipeline_id: String,
             config:
               T.any(
                 Openlayer::InferencePipelines::DataStreamParams::Config::LlmData::OrHash,
@@ -47,6 +51,7 @@ module Openlayer
           ).returns(T.attached_class)
         end
         def self.new(
+          inference_pipeline_id:,
           # Configuration for the data stream. Depends on your **Openlayer project task
           # type**.
           config:,
@@ -59,6 +64,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              inference_pipeline_id: String,
               config:
                 T.any(
                   Openlayer::InferencePipelines::DataStreamParams::Config::LlmData,

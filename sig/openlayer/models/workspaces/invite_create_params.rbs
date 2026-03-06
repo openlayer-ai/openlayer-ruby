@@ -3,6 +3,7 @@ module Openlayer
     module Workspaces
       type invite_create_params =
         {
+          workspace_id: String,
           emails: ::Array[String],
           role: Openlayer::Models::Workspaces::InviteCreateParams::role
         }
@@ -11,6 +12,8 @@ module Openlayer
       class InviteCreateParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor workspace_id: String
 
         attr_reader emails: ::Array[String]?
 
@@ -23,12 +26,14 @@ module Openlayer
         ) -> Openlayer::Models::Workspaces::InviteCreateParams::role
 
         def initialize: (
+          workspace_id: String,
           ?emails: ::Array[String],
           ?role: Openlayer::Models::Workspaces::InviteCreateParams::role,
           ?request_options: Openlayer::request_opts
         ) -> void
 
         def to_hash: -> {
+          workspace_id: String,
           emails: ::Array[String],
           role: Openlayer::Models::Workspaces::InviteCreateParams::role,
           request_options: Openlayer::RequestOptions

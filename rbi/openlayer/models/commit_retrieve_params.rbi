@@ -11,15 +11,26 @@ module Openlayer
           T.any(Openlayer::CommitRetrieveParams, Openlayer::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :project_version_id
+
       sig do
-        params(request_options: Openlayer::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          project_version_id: String,
+          request_options: Openlayer::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(project_version_id:, request_options: {})
       end
 
-      sig { override.returns({ request_options: Openlayer::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            project_version_id: String,
+            request_options: Openlayer::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

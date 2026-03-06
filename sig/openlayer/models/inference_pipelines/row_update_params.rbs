@@ -3,6 +3,7 @@ module Openlayer
     module InferencePipelines
       type row_update_params =
         {
+          inference_pipeline_id: String,
           inference_id: String,
           row: top,
           config: Openlayer::InferencePipelines::RowUpdateParams::Config?
@@ -13,6 +14,8 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        attr_accessor inference_pipeline_id: String
+
         attr_accessor inference_id: String
 
         attr_accessor row: top
@@ -20,6 +23,7 @@ module Openlayer
         attr_accessor config: Openlayer::InferencePipelines::RowUpdateParams::Config?
 
         def initialize: (
+          inference_pipeline_id: String,
           inference_id: String,
           row: top,
           ?config: Openlayer::InferencePipelines::RowUpdateParams::Config?,
@@ -27,6 +31,7 @@ module Openlayer
         ) -> void
 
         def to_hash: -> {
+          inference_pipeline_id: String,
           inference_id: String,
           row: top,
           config: Openlayer::InferencePipelines::RowUpdateParams::Config?,

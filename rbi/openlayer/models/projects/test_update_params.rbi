@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :project_id
+
         sig do
           returns(T::Array[Openlayer::Projects::TestUpdateParams::Payload])
         end
@@ -22,17 +25,19 @@ module Openlayer
 
         sig do
           params(
+            project_id: String,
             payloads:
               T::Array[Openlayer::Projects::TestUpdateParams::Payload::OrHash],
             request_options: Openlayer::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(payloads:, request_options: {})
+        def self.new(project_id:, payloads:, request_options: {})
         end
 
         sig do
           override.returns(
             {
+              project_id: String,
               payloads:
                 T::Array[Openlayer::Projects::TestUpdateParams::Payload],
               request_options: Openlayer::RequestOptions

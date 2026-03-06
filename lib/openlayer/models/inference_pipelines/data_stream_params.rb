@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute inference_pipeline_id
+        #
+        #   @return [String]
+        required :inference_pipeline_id, String
+
         # @!attribute config
         #   Configuration for the data stream. Depends on your **Openlayer project task
         #   type**.
@@ -22,9 +27,11 @@ module Openlayer
         required :rows,
                  Openlayer::Internal::Type::ArrayOf[Openlayer::Internal::Type::HashOf[Openlayer::Internal::Type::Unknown]]
 
-        # @!method initialize(config:, rows:, request_options: {})
+        # @!method initialize(inference_pipeline_id:, config:, rows:, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::InferencePipelines::DataStreamParams} for more details.
+        #
+        #   @param inference_pipeline_id [String]
         #
         #   @param config [Openlayer::Models::InferencePipelines::DataStreamParams::Config::LlmData, Openlayer::Models::InferencePipelines::DataStreamParams::Config::TabularClassificationData, Openlayer::Models::InferencePipelines::DataStreamParams::Config::TabularRegressionData, Openlayer::Models::InferencePipelines::DataStreamParams::Config::TextClassificationData] Configuration for the data stream. Depends on your \*\*Openlayer project task
         #   type

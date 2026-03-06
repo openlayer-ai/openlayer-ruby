@@ -7,7 +7,13 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute workspace_id
+      #
+      #   @return [String]
+      required :workspace_id, String
+
+      # @!method initialize(workspace_id:, request_options: {})
+      #   @param workspace_id [String]
       #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
     end
   end

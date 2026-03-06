@@ -1,12 +1,19 @@
 module Openlayer
   module Models
     type inference_pipeline_update_params =
-      { description: String?, name: String, reference_dataset_uri: String? }
+      {
+        inference_pipeline_id: String,
+        description: String?,
+        name: String,
+        reference_dataset_uri: String?
+      }
       & Openlayer::Internal::Type::request_parameters
 
     class InferencePipelineUpdateParams < Openlayer::Internal::Type::BaseModel
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
+
+      attr_accessor inference_pipeline_id: String
 
       attr_accessor description: String?
 
@@ -17,6 +24,7 @@ module Openlayer
       attr_accessor reference_dataset_uri: String?
 
       def initialize: (
+        inference_pipeline_id: String,
         ?description: String?,
         ?name: String,
         ?reference_dataset_uri: String?,
@@ -24,6 +32,7 @@ module Openlayer
       ) -> void
 
       def to_hash: -> {
+        inference_pipeline_id: String,
         description: String?,
         name: String,
         reference_dataset_uri: String?,

@@ -2,6 +2,7 @@ module Openlayer
   module Models
     type test_evaluate_params =
       {
+        test_id: String,
         end_timestamp: Integer,
         start_timestamp: Integer,
         inference_pipeline_id: String,
@@ -12,6 +13,8 @@ module Openlayer
     class TestEvaluateParams < Openlayer::Internal::Type::BaseModel
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
+
+      attr_accessor test_id: String
 
       attr_accessor end_timestamp: Integer
 
@@ -26,6 +29,7 @@ module Openlayer
       def overwrite_results=: (bool) -> bool
 
       def initialize: (
+        test_id: String,
         end_timestamp: Integer,
         start_timestamp: Integer,
         ?inference_pipeline_id: String,
@@ -34,6 +38,7 @@ module Openlayer
       ) -> void
 
       def to_hash: -> {
+        test_id: String,
         end_timestamp: Integer,
         start_timestamp: Integer,
         inference_pipeline_id: String,

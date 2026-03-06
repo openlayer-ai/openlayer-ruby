@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute project_id
+        #
+        #   @return [String]
+        required :project_id, String
+
         # @!attribute include_archived
         #   Filter for archived tests.
         #
@@ -51,9 +56,11 @@ module Openlayer
         #   @return [Boolean, nil]
         optional :uses_production_data, Openlayer::Internal::Type::Boolean, nil?: true
 
-        # @!method initialize(include_archived: nil, origin_version_id: nil, page: nil, per_page: nil, suggested: nil, type: nil, uses_production_data: nil, request_options: {})
+        # @!method initialize(project_id:, include_archived: nil, origin_version_id: nil, page: nil, per_page: nil, suggested: nil, type: nil, uses_production_data: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::Projects::TestListParams} for more details.
+        #
+        #   @param project_id [String]
         #
         #   @param include_archived [Boolean] Filter for archived tests.
         #

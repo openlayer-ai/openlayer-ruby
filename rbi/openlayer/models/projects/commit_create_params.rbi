@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :project_id
+
         # The details of a commit (project version).
         sig { returns(Openlayer::Projects::CommitCreateParams::Commit) }
         attr_reader :commit
@@ -43,6 +46,7 @@ module Openlayer
 
         sig do
           params(
+            project_id: String,
             commit: Openlayer::Projects::CommitCreateParams::Commit::OrHash,
             storage_uri: String,
             archived: T.nilable(T::Boolean),
@@ -51,6 +55,7 @@ module Openlayer
           ).returns(T.attached_class)
         end
         def self.new(
+          project_id:,
           # The details of a commit (project version).
           commit:,
           # The storage URI where the commit bundle is stored.
@@ -66,6 +71,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              project_id: String,
               commit: Openlayer::Projects::CommitCreateParams::Commit,
               storage_uri: String,
               archived: T.nilable(T::Boolean),

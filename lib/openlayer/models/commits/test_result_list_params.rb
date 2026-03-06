@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute project_version_id
+        #
+        #   @return [String]
+        required :project_version_id, String
+
         # @!attribute include_archived
         #   Filter for archived tests.
         #
@@ -40,9 +45,11 @@ module Openlayer
         #   @return [Symbol, Openlayer::Models::Commits::TestResultListParams::Type, nil]
         optional :type, enum: -> { Openlayer::Commits::TestResultListParams::Type }
 
-        # @!method initialize(include_archived: nil, page: nil, per_page: nil, status: nil, type: nil, request_options: {})
+        # @!method initialize(project_version_id:, include_archived: nil, page: nil, per_page: nil, status: nil, type: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::Commits::TestResultListParams} for more details.
+        #
+        #   @param project_version_id [String]
         #
         #   @param include_archived [Boolean] Filter for archived tests.
         #

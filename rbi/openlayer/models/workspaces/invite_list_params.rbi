@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :workspace_id
+
         # The page to return in a paginated query.
         sig { returns(T.nilable(Integer)) }
         attr_reader :page
@@ -31,12 +34,14 @@ module Openlayer
 
         sig do
           params(
+            workspace_id: String,
             page: Integer,
             per_page: Integer,
             request_options: Openlayer::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          workspace_id:,
           # The page to return in a paginated query.
           page: nil,
           # Maximum number of items to return per page.
@@ -48,6 +53,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              workspace_id: String,
               page: Integer,
               per_page: Integer,
               request_options: Openlayer::RequestOptions

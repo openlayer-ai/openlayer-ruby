@@ -15,17 +15,22 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :workspace_id
+
         # The API key name.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
         sig do
           params(
+            workspace_id: String,
             name: T.nilable(String),
             request_options: Openlayer::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          workspace_id:,
           # The API key name.
           name: nil,
           request_options: {}
@@ -35,6 +40,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              workspace_id: String,
               name: T.nilable(String),
               request_options: Openlayer::RequestOptions
             }

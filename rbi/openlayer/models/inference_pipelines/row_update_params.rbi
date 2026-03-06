@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :inference_pipeline_id
+
         # Specify the inference id as a query param.
         sig { returns(String) }
         attr_accessor :inference_id
@@ -41,6 +44,7 @@ module Openlayer
 
         sig do
           params(
+            inference_pipeline_id: String,
             inference_id: String,
             row: T.anything,
             config:
@@ -51,6 +55,7 @@ module Openlayer
           ).returns(T.attached_class)
         end
         def self.new(
+          inference_pipeline_id:,
           # Specify the inference id as a query param.
           inference_id:,
           row:,
@@ -62,6 +67,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              inference_pipeline_id: String,
               inference_id: String,
               row: T.anything,
               config:
