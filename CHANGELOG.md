@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.11.0 (2026-03-06)
+
+Full Changelog: [v0.10.10...v0.11.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.10...v0.11.0)
+
+### Features
+
+* **api:** update POST /rows to use list method name ([1b2c6a7](https://github.com/openlayer-ai/openlayer-ruby/commit/1b2c6a7b659c077f84c1955240f15bafbb0b4fdc))
+* **closes OPEN-9425:** document /rows endpoint in API reference and … ([8e97947](https://github.com/openlayer-ai/openlayer-ruby/commit/8e97947e922bc17197da629d0f18c667bea5a2c8))
+
+
+### Chores
+
+* **internal:** codegen related update ([022946b](https://github.com/openlayer-ai/openlayer-ruby/commit/022946b2c462faac6d93f2a355630e876496652a))
+* **test:** do not count install time for mock server timeout ([2ad2d84](https://github.com/openlayer-ai/openlayer-ruby/commit/2ad2d8406083af78d956fb74e4a19fcdb6c8e0bd))
+
 ## 0.10.10 (2026-03-03)
 
 Full Changelog: [v0.10.9...v0.10.10](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.10.9...v0.10.10)
