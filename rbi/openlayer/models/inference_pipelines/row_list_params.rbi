@@ -3,14 +3,14 @@
 module Openlayer
   module Models
     module InferencePipelines
-      class RowCreateParams < Openlayer::Internal::Type::BaseModel
+      class RowListParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Openlayer::InferencePipelines::RowCreateParams,
+              Openlayer::InferencePipelines::RowListParams,
               Openlayer::Internal::AnyHash
             )
           end
@@ -51,9 +51,9 @@ module Openlayer
             T.nilable(
               T::Array[
                 T.any(
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter
                 )
               ]
             )
@@ -90,9 +90,9 @@ module Openlayer
               T.nilable(
                 T::Array[
                   T.any(
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::OrHash,
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::OrHash,
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::OrHash
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::OrHash,
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::OrHash,
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::OrHash
                   )
                 ]
               ),
@@ -138,9 +138,9 @@ module Openlayer
                 T.nilable(
                   T::Array[
                     T.any(
-                      Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter,
-                      Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter,
-                      Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter
+                      Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter,
+                      Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter,
+                      Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter
                     )
                   ]
                 ),
@@ -163,9 +163,9 @@ module Openlayer
           Variants =
             T.type_alias do
               T.any(
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter,
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter,
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter,
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter,
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter
               )
             end
 
@@ -173,7 +173,7 @@ module Openlayer
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter,
                   Openlayer::Internal::AnyHash
                 )
               end
@@ -184,7 +184,7 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::OrSymbol
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::OrSymbol
               )
             end
             attr_accessor :operator
@@ -192,7 +192,7 @@ module Openlayer
             sig do
               returns(
                 T::Array[
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Value::Variants
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Value::Variants
                 ]
               )
             end
@@ -202,10 +202,10 @@ module Openlayer
               params(
                 measurement: String,
                 operator:
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::OrSymbol,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::OrSymbol,
                 value:
                   T::Array[
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Value::Variants
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Value::Variants
                   ]
               ).returns(T.attached_class)
             end
@@ -222,10 +222,10 @@ module Openlayer
                 {
                   measurement: String,
                   operator:
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::OrSymbol,
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::OrSymbol,
                   value:
                     T::Array[
-                      Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Value::Variants
+                      Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Value::Variants
                     ]
                 }
               )
@@ -240,7 +240,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -248,33 +248,33 @@ module Openlayer
               CONTAINS_NONE =
                 T.let(
                   :contains_none,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
                 )
               CONTAINS_ANY =
                 T.let(
                   :contains_any,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
                 )
               CONTAINS_ALL =
                 T.let(
                   :contains_all,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
                 )
               ONE_OF =
                 T.let(
                   :one_of,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
                 )
               NONE_OF =
                 T.let(
                   :none_of,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Operator::TaggedSymbol
                   ]
                 )
               end
@@ -290,7 +290,7 @@ module Openlayer
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::SetColumnFilter::Value::Variants
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::SetColumnFilter::Value::Variants
                   ]
                 )
               end
@@ -303,7 +303,7 @@ module Openlayer
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter,
                   Openlayer::Internal::AnyHash
                 )
               end
@@ -314,7 +314,7 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::OrSymbol
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::OrSymbol
               )
             end
             attr_accessor :operator
@@ -326,7 +326,7 @@ module Openlayer
               params(
                 measurement: String,
                 operator:
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::OrSymbol,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::OrSymbol,
                 value: T.nilable(Float)
               ).returns(T.attached_class)
             end
@@ -343,7 +343,7 @@ module Openlayer
                 {
                   measurement: String,
                   operator:
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::OrSymbol,
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::OrSymbol,
                   value: T.nilable(Float)
                 }
               )
@@ -358,7 +358,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -366,38 +366,38 @@ module Openlayer
               GREATER =
                 T.let(
                   :">",
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
                 )
               GREATER_OR_EQUALS =
                 T.let(
                   :">=",
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
                 )
               IS =
                 T.let(
                   :is,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
                 )
               LESS =
                 T.let(
                   :"<",
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
                 )
               LESS_OR_EQUALS =
                 T.let(
                   :"<=",
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
                 )
               NOT_EQUALS =
                 T.let(
                   :"!=",
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::NumericColumnFilter::Operator::TaggedSymbol
                   ]
                 )
               end
@@ -410,7 +410,7 @@ module Openlayer
             OrHash =
               T.type_alias do
                 T.any(
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter,
                   Openlayer::Internal::AnyHash
                 )
               end
@@ -421,14 +421,14 @@ module Openlayer
 
             sig do
               returns(
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator::OrSymbol
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator::OrSymbol
               )
             end
             attr_accessor :operator
 
             sig do
               returns(
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Value::Variants
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Value::Variants
               )
             end
             attr_accessor :value
@@ -437,9 +437,9 @@ module Openlayer
               params(
                 measurement: String,
                 operator:
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator::OrSymbol,
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator::OrSymbol,
                 value:
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Value::Variants
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Value::Variants
               ).returns(T.attached_class)
             end
             def self.new(
@@ -455,9 +455,9 @@ module Openlayer
                 {
                   measurement: String,
                   operator:
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator::OrSymbol,
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator::OrSymbol,
                   value:
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Value::Variants
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Value::Variants
                 }
               )
             end
@@ -471,7 +471,7 @@ module Openlayer
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -479,18 +479,18 @@ module Openlayer
               IS =
                 T.let(
                   :is,
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
                 )
               NOT_EQUALS =
                 T.let(
                   :"!=",
-                  Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
+                  Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Operator::TaggedSymbol
                   ]
                 )
               end
@@ -506,7 +506,7 @@ module Openlayer
               sig do
                 override.returns(
                   T::Array[
-                    Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::StringColumnFilter::Value::Variants
+                    Openlayer::InferencePipelines::RowListParams::ColumnFilter::StringColumnFilter::Value::Variants
                   ]
                 )
               end
@@ -518,7 +518,7 @@ module Openlayer
           sig do
             override.returns(
               T::Array[
-                Openlayer::InferencePipelines::RowCreateParams::ColumnFilter::Variants
+                Openlayer::InferencePipelines::RowListParams::ColumnFilter::Variants
               ]
             )
           end

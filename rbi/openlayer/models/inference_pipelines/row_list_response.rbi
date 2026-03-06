@@ -3,11 +3,11 @@
 module Openlayer
   module Models
     module InferencePipelines
-      class RowCreateResponse < Openlayer::Internal::Type::BaseModel
+      class RowListResponse < Openlayer::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Openlayer::Models::InferencePipelines::RowCreateResponse,
+              Openlayer::Models::InferencePipelines::RowListResponse,
               Openlayer::Internal::AnyHash
             )
           end
@@ -15,7 +15,7 @@ module Openlayer
         sig do
           returns(
             T::Array[
-              Openlayer::Models::InferencePipelines::RowCreateResponse::Item
+              Openlayer::Models::InferencePipelines::RowListResponse::Item
             ]
           )
         end
@@ -25,7 +25,7 @@ module Openlayer
           params(
             items:
               T::Array[
-                Openlayer::Models::InferencePipelines::RowCreateResponse::Item::OrHash
+                Openlayer::Models::InferencePipelines::RowListResponse::Item::OrHash
               ]
           ).returns(T.attached_class)
         end
@@ -37,7 +37,7 @@ module Openlayer
             {
               items:
                 T::Array[
-                  Openlayer::Models::InferencePipelines::RowCreateResponse::Item
+                  Openlayer::Models::InferencePipelines::RowListResponse::Item
                 ]
             }
           )
@@ -49,7 +49,7 @@ module Openlayer
           OrHash =
             T.type_alias do
               T.any(
-                Openlayer::Models::InferencePipelines::RowCreateResponse::Item,
+                Openlayer::Models::InferencePipelines::RowListResponse::Item,
                 Openlayer::Internal::AnyHash
               )
             end
