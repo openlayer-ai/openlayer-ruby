@@ -2,12 +2,14 @@ module Openlayer
   module Models
     module Projects
       type inference_pipeline_list_params =
-        { name: String, page: Integer, per_page: Integer }
+        { project_id: String, name: String, page: Integer, per_page: Integer }
         & Openlayer::Internal::Type::request_parameters
 
       class InferencePipelineListParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor project_id: String
 
         attr_reader name: String?
 
@@ -22,6 +24,7 @@ module Openlayer
         def per_page=: (Integer) -> Integer
 
         def initialize: (
+          project_id: String,
           ?name: String,
           ?page: Integer,
           ?per_page: Integer,
@@ -29,6 +32,7 @@ module Openlayer
         ) -> void
 
         def to_hash: -> {
+          project_id: String,
           name: String,
           page: Integer,
           per_page: Integer,

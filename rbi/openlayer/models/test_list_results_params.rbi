@@ -11,6 +11,9 @@ module Openlayer
           T.any(Openlayer::TestListResultsParams, Openlayer::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :test_id
+
       # Filter for results that use data starting before the end timestamp.
       sig { returns(T.nilable(Float)) }
       attr_reader :end_timestamp
@@ -63,6 +66,7 @@ module Openlayer
 
       sig do
         params(
+          test_id: String,
           end_timestamp: Float,
           include_insights: T::Boolean,
           inference_pipeline_id: T.nilable(String),
@@ -75,6 +79,7 @@ module Openlayer
         ).returns(T.attached_class)
       end
       def self.new(
+        test_id:,
         # Filter for results that use data starting before the end timestamp.
         end_timestamp: nil,
         # Include the insights linked to each test result
@@ -98,6 +103,7 @@ module Openlayer
       sig do
         override.returns(
           {
+            test_id: String,
             end_timestamp: Float,
             include_insights: T::Boolean,
             inference_pipeline_id: T.nilable(String),

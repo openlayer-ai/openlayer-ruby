@@ -11,15 +11,23 @@ module Openlayer
           T.any(Openlayer::ProjectDeleteParams, Openlayer::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :project_id
+
       sig do
-        params(request_options: Openlayer::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          project_id: String,
+          request_options: Openlayer::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(project_id:, request_options: {})
       end
 
-      sig { override.returns({ request_options: Openlayer::RequestOptions }) }
+      sig do
+        override.returns(
+          { project_id: String, request_options: Openlayer::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

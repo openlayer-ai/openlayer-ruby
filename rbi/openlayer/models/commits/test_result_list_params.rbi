@@ -15,6 +15,9 @@ module Openlayer
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :project_version_id
+
         # Filter for archived tests.
         sig { returns(T.nilable(T::Boolean)) }
         attr_reader :include_archived
@@ -72,6 +75,7 @@ module Openlayer
 
         sig do
           params(
+            project_version_id: String,
             include_archived: T::Boolean,
             page: Integer,
             per_page: Integer,
@@ -81,6 +85,7 @@ module Openlayer
           ).returns(T.attached_class)
         end
         def self.new(
+          project_version_id:,
           # Filter for archived tests.
           include_archived: nil,
           # The page to return in a paginated query.
@@ -100,6 +105,7 @@ module Openlayer
         sig do
           override.returns(
             {
+              project_version_id: String,
               include_archived: T::Boolean,
               page: Integer,
               per_page: Integer,

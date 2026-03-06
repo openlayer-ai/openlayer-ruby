@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute project_id
+        #
+        #   @return [String]
+        required :project_id, String
+
         # @!attribute commit
         #   The details of a commit (project version).
         #
@@ -32,7 +37,9 @@ module Openlayer
         #   @return [String, nil]
         optional :deployment_status, String, api_name: :deploymentStatus
 
-        # @!method initialize(commit:, storage_uri:, archived: nil, deployment_status: nil, request_options: {})
+        # @!method initialize(project_id:, commit:, storage_uri:, archived: nil, deployment_status: nil, request_options: {})
+        #   @param project_id [String]
+        #
         #   @param commit [Openlayer::Models::Projects::CommitCreateParams::Commit] The details of a commit (project version).
         #
         #   @param storage_uri [String] The storage URI where the commit bundle is stored.

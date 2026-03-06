@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute workspace_id
+        #
+        #   @return [String]
+        required :workspace_id, String
+
         # @!attribute page
         #   The page to return in a paginated query.
         #
@@ -20,7 +25,9 @@ module Openlayer
         #   @return [Integer, nil]
         optional :per_page, Integer
 
-        # @!method initialize(page: nil, per_page: nil, request_options: {})
+        # @!method initialize(workspace_id:, page: nil, per_page: nil, request_options: {})
+        #   @param workspace_id [String]
+        #
         #   @param page [Integer] The page to return in a paginated query.
         #
         #   @param per_page [Integer] Maximum number of items to return per page.

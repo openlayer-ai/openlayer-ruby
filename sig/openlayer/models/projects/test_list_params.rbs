@@ -3,6 +3,7 @@ module Openlayer
     module Projects
       type test_list_params =
         {
+          project_id: String,
           include_archived: bool,
           origin_version_id: String?,
           page: Integer,
@@ -16,6 +17,8 @@ module Openlayer
       class TestListParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor project_id: String
 
         attr_reader include_archived: bool?
 
@@ -44,6 +47,7 @@ module Openlayer
         attr_accessor uses_production_data: bool?
 
         def initialize: (
+          project_id: String,
           ?include_archived: bool,
           ?origin_version_id: String?,
           ?page: Integer,
@@ -55,6 +59,7 @@ module Openlayer
         ) -> void
 
         def to_hash: -> {
+          project_id: String,
           include_archived: bool,
           origin_version_id: String?,
           page: Integer,

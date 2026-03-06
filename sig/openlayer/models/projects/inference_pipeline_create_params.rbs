@@ -3,6 +3,7 @@ module Openlayer
     module Projects
       type inference_pipeline_create_params =
         {
+          project_id: String,
           description: String?,
           name: String,
           data_backend: Openlayer::Models::Projects::InferencePipelineCreateParams::data_backend?,
@@ -15,6 +16,8 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        attr_accessor project_id: String
+
         attr_accessor description: String?
 
         attr_accessor name: String
@@ -26,6 +29,7 @@ module Openlayer
         attr_accessor workspace: Openlayer::Projects::InferencePipelineCreateParams::Workspace?
 
         def initialize: (
+          project_id: String,
           description: String?,
           name: String,
           ?data_backend: Openlayer::Models::Projects::InferencePipelineCreateParams::data_backend?,
@@ -35,6 +39,7 @@ module Openlayer
         ) -> void
 
         def to_hash: -> {
+          project_id: String,
           description: String?,
           name: String,
           data_backend: Openlayer::Models::Projects::InferencePipelineCreateParams::data_backend?,

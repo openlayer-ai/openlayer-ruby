@@ -7,6 +7,11 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
+      # @!attribute workspace_id
+      #
+      #   @return [String]
+      required :workspace_id, String
+
       # @!attribute invite_code
       #   The workspace invite code.
       #
@@ -25,7 +30,9 @@ module Openlayer
       #   @return [String, nil]
       optional :slug, String
 
-      # @!method initialize(invite_code: nil, name: nil, slug: nil, request_options: {})
+      # @!method initialize(workspace_id:, invite_code: nil, name: nil, slug: nil, request_options: {})
+      #   @param workspace_id [String]
+      #
       #   @param invite_code [String] The workspace invite code.
       #
       #   @param name [String] The workspace name.

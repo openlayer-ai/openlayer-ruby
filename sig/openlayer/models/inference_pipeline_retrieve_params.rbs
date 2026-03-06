@@ -2,6 +2,7 @@ module Openlayer
   module Models
     type inference_pipeline_retrieve_params =
       {
+        inference_pipeline_id: String,
         expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]
       }
       & Openlayer::Internal::Type::request_parameters
@@ -10,6 +11,8 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
+      attr_accessor inference_pipeline_id: String
+
       attr_reader expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]?
 
       def expand=: (
@@ -17,11 +20,13 @@ module Openlayer
       ) -> ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand]
 
       def initialize: (
+        inference_pipeline_id: String,
         ?expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand],
         ?request_options: Openlayer::request_opts
       ) -> void
 
       def to_hash: -> {
+        inference_pipeline_id: String,
         expand: ::Array[Openlayer::Models::InferencePipelineRetrieveParams::expand],
         request_options: Openlayer::RequestOptions
       }

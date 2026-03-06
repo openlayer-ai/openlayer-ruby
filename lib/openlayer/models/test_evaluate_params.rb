@@ -7,6 +7,11 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
+      # @!attribute test_id
+      #
+      #   @return [String]
+      required :test_id, String
+
       # @!attribute end_timestamp
       #   End timestamp in seconds (Unix epoch)
       #
@@ -32,9 +37,11 @@ module Openlayer
       #   @return [Boolean, nil]
       optional :overwrite_results, Openlayer::Internal::Type::Boolean, api_name: :overwriteResults
 
-      # @!method initialize(end_timestamp:, start_timestamp:, inference_pipeline_id: nil, overwrite_results: nil, request_options: {})
+      # @!method initialize(test_id:, end_timestamp:, start_timestamp:, inference_pipeline_id: nil, overwrite_results: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Openlayer::Models::TestEvaluateParams} for more details.
+      #
+      #   @param test_id [String]
       #
       #   @param end_timestamp [Integer] End timestamp in seconds (Unix epoch)
       #

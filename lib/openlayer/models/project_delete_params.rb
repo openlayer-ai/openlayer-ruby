@@ -7,7 +7,13 @@ module Openlayer
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute project_id
+      #
+      #   @return [String]
+      required :project_id, String
+
+      # @!method initialize(project_id:, request_options: {})
+      #   @param project_id [String]
       #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
     end
   end

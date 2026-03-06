@@ -11,6 +11,9 @@ module Openlayer
           T.any(Openlayer::WorkspaceUpdateParams, Openlayer::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :workspace_id
+
       # The workspace invite code.
       sig { returns(T.nilable(String)) }
       attr_reader :invite_code
@@ -34,6 +37,7 @@ module Openlayer
 
       sig do
         params(
+          workspace_id: String,
           invite_code: String,
           name: String,
           slug: String,
@@ -41,6 +45,7 @@ module Openlayer
         ).returns(T.attached_class)
       end
       def self.new(
+        workspace_id:,
         # The workspace invite code.
         invite_code: nil,
         # The workspace name.
@@ -54,6 +59,7 @@ module Openlayer
       sig do
         override.returns(
           {
+            workspace_id: String,
             invite_code: String,
             name: String,
             slug: String,

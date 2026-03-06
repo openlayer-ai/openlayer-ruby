@@ -8,6 +8,11 @@ module Openlayer
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
+        # @!attribute project_id
+        #
+        #   @return [String]
+        required :project_id, String
+
         # @!attribute description
         #   The test description.
         #
@@ -129,9 +134,11 @@ module Openlayer
                  Openlayer::Internal::Type::Boolean,
                  api_name: :usesValidationDataset
 
-        # @!method initialize(description:, name:, subtype:, thresholds:, type:, archived: nil, default_to_all_pipelines: nil, delay_window: nil, evaluation_window: nil, exclude_pipelines: nil, include_historical_data: nil, include_pipelines: nil, uses_ml_model: nil, uses_production_data: nil, uses_reference_dataset: nil, uses_training_dataset: nil, uses_validation_dataset: nil, request_options: {})
+        # @!method initialize(project_id:, description:, name:, subtype:, thresholds:, type:, archived: nil, default_to_all_pipelines: nil, delay_window: nil, evaluation_window: nil, exclude_pipelines: nil, include_historical_data: nil, include_pipelines: nil, uses_ml_model: nil, uses_production_data: nil, uses_reference_dataset: nil, uses_training_dataset: nil, uses_validation_dataset: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::Projects::TestCreateParams} for more details.
+        #
+        #   @param project_id [String]
         #
         #   @param description [Object, nil] The test description.
         #
