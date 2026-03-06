@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "openlayer", "~> 0.10.10"
+gem "openlayer", "~> 0.11.0"
 ```
 
 <!-- x-release-please-end -->
