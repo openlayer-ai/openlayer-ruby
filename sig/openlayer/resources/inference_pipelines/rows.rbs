@@ -2,6 +2,22 @@ module Openlayer
   module Resources
     class InferencePipelines
       class Rows
+        def create: (
+          String inference_pipeline_id,
+          ?asc: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?sort_column: String,
+          ?column_filters: ::Array[Openlayer::Models::InferencePipelines::RowCreateParams::column_filter]?,
+          ?exclude_row_id_list: ::Array[Integer]?,
+          ?not_search_query_and: ::Array[String]?,
+          ?not_search_query_or: ::Array[String]?,
+          ?row_id_list: ::Array[Integer]?,
+          ?search_query_and: ::Array[String]?,
+          ?search_query_or: ::Array[String]?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::InferencePipelines::RowCreateResponse
+
         def update: (
           String inference_pipeline_id,
           inference_id: String,

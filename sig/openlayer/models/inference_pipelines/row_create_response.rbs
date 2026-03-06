@@ -1,0 +1,32 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type row_create_response =
+        {
+          items: ::Array[Openlayer::Models::InferencePipelines::RowCreateResponse::Item]
+        }
+
+      class RowCreateResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Openlayer::Models::InferencePipelines::RowCreateResponse::Item]
+
+        def initialize: (
+          items: ::Array[Openlayer::Models::InferencePipelines::RowCreateResponse::Item]
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Openlayer::Models::InferencePipelines::RowCreateResponse::Item]
+        }
+
+        type item = { openlayer_row_id: Integer }
+
+        class Item < Openlayer::Internal::Type::BaseModel
+          attr_accessor openlayer_row_id: Integer
+
+          def initialize: (openlayer_row_id: Integer) -> void
+
+          def to_hash: -> { openlayer_row_id: Integer }
+        end
+      end
+    end
+  end
+end
