@@ -47,6 +47,8 @@ module Openlayer
 
   InferencePipelineRetrieveParams = Openlayer::Models::InferencePipelineRetrieveParams
 
+  InferencePipelineRetrieveSessionsParams = Openlayer::Models::InferencePipelineRetrieveSessionsParams
+
   InferencePipelineRetrieveUsersParams = Openlayer::Models::InferencePipelineRetrieveUsersParams
 
   InferencePipelines = Openlayer::Models::InferencePipelines
