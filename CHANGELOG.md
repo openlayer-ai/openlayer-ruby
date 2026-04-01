@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.0 (2026-04-01)
+
+Full Changelog: [v0.11.2...v0.12.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.11.2...v0.12.0)
+
+### Features
+
+* Cid/fetching endpoints ([8295c08](https://github.com/openlayer-ai/openlayer-ruby/commit/8295c08689e01d33e8b21fd93028da4df3e8269f))
+
 ## 0.11.2 (2026-04-01)
 
 Full Changelog: [v0.11.1...v0.11.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.11.1...v0.11.2)
