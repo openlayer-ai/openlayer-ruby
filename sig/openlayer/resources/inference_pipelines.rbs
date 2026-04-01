@@ -26,10 +26,35 @@ module Openlayer
         ?request_options: Openlayer::request_opts
       ) -> nil
 
-      def retrieve_users: (
+      def retrieve_sessions: (
         String inference_pipeline_id,
+        ?asc: bool,
         ?page: Integer,
         ?per_page: Integer,
+        ?sort_column: String,
+        ?column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::column_filter]?,
+        ?exclude_row_id_list: ::Array[Integer]?,
+        ?not_search_query_and: ::Array[String]?,
+        ?not_search_query_or: ::Array[String]?,
+        ?row_id_list: ::Array[Integer]?,
+        ?search_query_and: ::Array[String]?,
+        ?search_query_or: ::Array[String]?,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::InferencePipelineRetrieveSessionsResponse
+
+      def retrieve_users: (
+        String inference_pipeline_id,
+        ?asc: bool,
+        ?page: Integer,
+        ?per_page: Integer,
+        ?sort_column: String,
+        ?column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::column_filter]?,
+        ?exclude_row_id_list: ::Array[Integer]?,
+        ?not_search_query_and: ::Array[String]?,
+        ?not_search_query_or: ::Array[String]?,
+        ?row_id_list: ::Array[Integer]?,
+        ?search_query_and: ::Array[String]?,
+        ?search_query_or: ::Array[String]?,
         ?request_options: Openlayer::request_opts
       ) -> Openlayer::Models::InferencePipelineRetrieveUsersResponse
 

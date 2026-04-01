@@ -1,13 +1,13 @@
 module Openlayer
   module Models
-    type inference_pipeline_retrieve_users_params =
+    type inference_pipeline_retrieve_sessions_params =
       {
         inference_pipeline_id: String,
         asc: bool,
         page: Integer,
         per_page: Integer,
         sort_column: String,
-        column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::column_filter]?,
+        column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::column_filter]?,
         exclude_row_id_list: ::Array[Integer]?,
         not_search_query_and: ::Array[String]?,
         not_search_query_or: ::Array[String]?,
@@ -17,7 +17,7 @@ module Openlayer
       }
       & Openlayer::Internal::Type::request_parameters
 
-    class InferencePipelineRetrieveUsersParams < Openlayer::Internal::Type::BaseModel
+    class InferencePipelineRetrieveSessionsParams < Openlayer::Internal::Type::BaseModel
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
@@ -39,7 +39,7 @@ module Openlayer
 
       def sort_column=: (String) -> String
 
-      attr_accessor column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::column_filter]?
+      attr_accessor column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::column_filter]?
 
       attr_accessor exclude_row_id_list: ::Array[Integer]?
 
@@ -59,7 +59,7 @@ module Openlayer
         ?page: Integer,
         ?per_page: Integer,
         ?sort_column: String,
-        ?column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::column_filter]?,
+        ?column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::column_filter]?,
         ?exclude_row_id_list: ::Array[Integer]?,
         ?not_search_query_and: ::Array[String]?,
         ?not_search_query_or: ::Array[String]?,
@@ -75,7 +75,7 @@ module Openlayer
         page: Integer,
         per_page: Integer,
         sort_column: String,
-        column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::column_filter]?,
+        column_filters: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::column_filter]?,
         exclude_row_id_list: ::Array[Integer]?,
         not_search_query_and: ::Array[String]?,
         not_search_query_or: ::Array[String]?,
@@ -86,9 +86,9 @@ module Openlayer
       }
 
       type column_filter =
-        Openlayer::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter
-        | Openlayer::InferencePipelineRetrieveUsersParams::ColumnFilter::NumericColumnFilter
-        | Openlayer::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter
+        Openlayer::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter
+        | Openlayer::InferencePipelineRetrieveSessionsParams::ColumnFilter::NumericColumnFilter
+        | Openlayer::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter
 
       module ColumnFilter
         extend Openlayer::Internal::Type::Union
@@ -96,27 +96,27 @@ module Openlayer
         type set_column_filter =
           {
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::operator,
-            value: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::value]
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::operator,
+            value: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::value]
           }
 
         class SetColumnFilter < Openlayer::Internal::Type::BaseModel
           attr_accessor measurement: String
 
-          attr_accessor operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::operator
+          attr_accessor operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::operator
 
-          attr_accessor value: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::value]
+          attr_accessor value: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::value]
 
           def initialize: (
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::operator,
-            value: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::value]
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::operator,
+            value: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::value]
           ) -> void
 
           def to_hash: -> {
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::operator,
-            value: ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::value]
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::operator,
+            value: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::value]
           }
 
           type operator =
@@ -131,7 +131,7 @@ module Openlayer
             ONE_OF: :one_of
             NONE_OF: :none_of
 
-            def self?.values: -> ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::operator]
+            def self?.values: -> ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::operator]
           end
 
           type value = String | Float
@@ -139,33 +139,33 @@ module Openlayer
           module Value
             extend Openlayer::Internal::Type::Union
 
-            def self?.variants: -> ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter::value]
+            def self?.variants: -> ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter::value]
           end
         end
 
         type numeric_column_filter =
           {
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::NumericColumnFilter::operator,
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::NumericColumnFilter::operator,
             value: Float?
           }
 
         class NumericColumnFilter < Openlayer::Internal::Type::BaseModel
           attr_accessor measurement: String
 
-          attr_accessor operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::NumericColumnFilter::operator
+          attr_accessor operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::NumericColumnFilter::operator
 
           attr_accessor value: Float?
 
           def initialize: (
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::NumericColumnFilter::operator,
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::NumericColumnFilter::operator,
             value: Float?
           ) -> void
 
           def to_hash: -> {
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::NumericColumnFilter::operator,
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::NumericColumnFilter::operator,
             value: Float?
           }
 
@@ -181,34 +181,34 @@ module Openlayer
             LESS_OR_EQUALS: :<=
             NOT_EQUALS: :!=
 
-            def self?.values: -> ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::NumericColumnFilter::operator]
+            def self?.values: -> ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::NumericColumnFilter::operator]
           end
         end
 
         type string_column_filter =
           {
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::operator,
-            value: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::value
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::operator,
+            value: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::value
           }
 
         class StringColumnFilter < Openlayer::Internal::Type::BaseModel
           attr_accessor measurement: String
 
-          attr_accessor operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::operator
+          attr_accessor operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::operator
 
-          attr_accessor value: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::value
+          attr_accessor value: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::value
 
           def initialize: (
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::operator,
-            value: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::value
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::operator,
+            value: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::value
           ) -> void
 
           def to_hash: -> {
             measurement: String,
-            operator: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::operator,
-            value: Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::value
+            operator: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::operator,
+            value: Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::value
           }
 
           type operator = :is | :!=
@@ -219,7 +219,7 @@ module Openlayer
             IS: :is
             NOT_EQUALS: :!=
 
-            def self?.values: -> ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::operator]
+            def self?.values: -> ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::operator]
           end
 
           type value = String | bool
@@ -227,11 +227,11 @@ module Openlayer
           module Value
             extend Openlayer::Internal::Type::Union
 
-            def self?.variants: -> ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter::value]
+            def self?.variants: -> ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter::value]
           end
         end
 
-        def self?.variants: -> ::Array[Openlayer::Models::InferencePipelineRetrieveUsersParams::column_filter]
+        def self?.variants: -> ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsParams::column_filter]
       end
     end
   end

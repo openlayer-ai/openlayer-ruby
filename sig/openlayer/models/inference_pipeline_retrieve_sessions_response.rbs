@@ -1,0 +1,92 @@
+module Openlayer
+  module Models
+    type inference_pipeline_retrieve_sessions_response =
+      {
+        items: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsResponse::Item]
+      }
+
+    class InferencePipelineRetrieveSessionsResponse < Openlayer::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsResponse::Item]
+
+      def initialize: (
+        items: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsResponse::Item]
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Openlayer::Models::InferencePipelineRetrieveSessionsResponse::Item]
+      }
+
+      type item =
+        {
+          id: String,
+          cost: Float,
+          date_created: Time,
+          date_of_first_record: Time,
+          date_of_last_record: Time,
+          duration: Float,
+          first_record: ::Hash[Symbol, top],
+          last_record: ::Hash[Symbol, top],
+          latency: Float,
+          records: Integer,
+          tokens: Float,
+          user_ids: ::Array[String]
+        }
+
+      class Item < Openlayer::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor cost: Float
+
+        attr_accessor date_created: Time
+
+        attr_accessor date_of_first_record: Time
+
+        attr_accessor date_of_last_record: Time
+
+        attr_accessor duration: Float
+
+        attr_accessor first_record: ::Hash[Symbol, top]
+
+        attr_accessor last_record: ::Hash[Symbol, top]
+
+        attr_accessor latency: Float
+
+        attr_accessor records: Integer
+
+        attr_accessor tokens: Float
+
+        attr_accessor user_ids: ::Array[String]
+
+        def initialize: (
+          id: String,
+          cost: Float,
+          date_created: Time,
+          date_of_first_record: Time,
+          date_of_last_record: Time,
+          duration: Float,
+          first_record: ::Hash[Symbol, top],
+          last_record: ::Hash[Symbol, top],
+          latency: Float,
+          records: Integer,
+          tokens: Float,
+          user_ids: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          cost: Float,
+          date_created: Time,
+          date_of_first_record: Time,
+          date_of_last_record: Time,
+          duration: Float,
+          first_record: ::Hash[Symbol, top],
+          last_record: ::Hash[Symbol, top],
+          latency: Float,
+          records: Integer,
+          tokens: Float,
+          user_ids: ::Array[String]
+        }
+      end
+    end
+  end
+end
