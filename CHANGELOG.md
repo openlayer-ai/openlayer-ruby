@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.11.2 (2026-04-01)
+
+Full Changelog: [v0.11.1...v0.11.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.11.1...v0.11.2)
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([a90bfa7](https://github.com/openlayer-ai/openlayer-ruby/commit/a90bfa710bb3a147c4fd3111277b68b90c01c045))
+* **internal:** correct multipart form field name encoding ([c24ad06](https://github.com/openlayer-ai/openlayer-ruby/commit/c24ad0620d508c3cfd145cf19d2d40ab901b35eb))
+* variable name typo ([19d1897](https://github.com/openlayer-ai/openlayer-ruby/commit/19d189791f600b61eccf061d440082f4e382b2e7))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([8e5f101](https://github.com/openlayer-ai/openlayer-ruby/commit/8e5f1015976b3ba55d72f9e5cb39325f2811f344))
+* **ci:** support opting out of skipping builds on metadata-only commits ([13a5bb1](https://github.com/openlayer-ai/openlayer-ruby/commit/13a5bb13c5a0a2c3faf30f8411275f3738270084))
+* **internal:** tweak CI branches ([b95bc79](https://github.com/openlayer-ai/openlayer-ruby/commit/b95bc79023ccd19d272e07135656e0aa07d6fecb))
+* **internal:** update gitignore ([505f7b6](https://github.com/openlayer-ai/openlayer-ruby/commit/505f7b6bd6324aec3272ce3b03926211d9e8f1bf))
+* **tests:** bump steady to v0.19.4 ([1768e99](https://github.com/openlayer-ai/openlayer-ruby/commit/1768e99b6ae5cfd9fd4c9629c075e0a1f9cbf5b8))
+* **tests:** bump steady to v0.19.5 ([95ea180](https://github.com/openlayer-ai/openlayer-ruby/commit/95ea180eb1948e3825c33762ad3f9a056d613868))
+* **tests:** bump steady to v0.19.6 ([0223b02](https://github.com/openlayer-ai/openlayer-ruby/commit/0223b0225c2fb18f91d84dca822e43481157dd3a))
+* **tests:** bump steady to v0.19.7 ([f4894d6](https://github.com/openlayer-ai/openlayer-ruby/commit/f4894d67465dd4630515906b439420b7dd435c22))
+* **tests:** bump steady to v0.20.1 ([825869e](https://github.com/openlayer-ai/openlayer-ruby/commit/825869e4c7e722a3ae8460289498c59e584702f3))
+* **tests:** bump steady to v0.20.2 ([e576f39](https://github.com/openlayer-ai/openlayer-ruby/commit/e576f39c822911696172907d72ece4033534529d))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([80fd726](https://github.com/openlayer-ai/openlayer-ruby/commit/80fd7262b08c8b30a1e639ccfc9e53a3534542c7))
+
 ## 0.11.1 (2026-03-08)
 
 Full Changelog: [v0.11.0...v0.11.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.11.0...v0.11.1)
