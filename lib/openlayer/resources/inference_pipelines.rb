@@ -88,19 +88,89 @@ module Openlayer
         )
       end
 
+      # Get aggregated session data for an inference pipeline with pagination and
+      # metadata.
+      #
+      # Returns a list of sessions for the inference pipeline, including activity
+      # statistics such as record counts, token usage, cost, latency, and the first and
+      # last records.
+      #
+      # @overload retrieve_sessions(inference_pipeline_id, asc: nil, page: nil, per_page: nil, sort_column: nil, column_filters: nil, exclude_row_id_list: nil, not_search_query_and: nil, not_search_query_or: nil, row_id_list: nil, search_query_and: nil, search_query_or: nil, request_options: {})
+      #
+      # @param inference_pipeline_id [String] Path param: The inference pipeline id (a UUID).
+      #
+      # @param asc [Boolean] Query param: Whether or not to sort on the sortColumn in ascending order.
+      #
+      # @param page [Integer] Query param: The page to return in a paginated query.
+      #
+      # @param per_page [Integer] Query param: Maximum number of items to return per page.
+      #
+      # @param sort_column [String] Query param: Name of the column to sort on
+      #
+      # @param column_filters [Array<Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelineRetrieveSessionsParams::ColumnFilter::StringColumnFilter>, nil] Body param
+      #
+      # @param exclude_row_id_list [Array<Integer>, nil] Body param
+      #
+      # @param not_search_query_and [Array<String>, nil] Body param
+      #
+      # @param not_search_query_or [Array<String>, nil] Body param
+      #
+      # @param row_id_list [Array<Integer>, nil] Body param
+      #
+      # @param search_query_and [Array<String>, nil] Body param
+      #
+      # @param search_query_or [Array<String>, nil] Body param
+      #
+      # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Openlayer::Models::InferencePipelineRetrieveSessionsResponse]
+      #
+      # @see Openlayer::Models::InferencePipelineRetrieveSessionsParams
+      def retrieve_sessions(inference_pipeline_id, params = {})
+        query_params = [:asc, :page, :per_page, :sort_column]
+        parsed, options = Openlayer::InferencePipelineRetrieveSessionsParams.dump_request(params)
+        query = Openlayer::Internal::Util.encode_query_params(parsed.slice(*query_params))
+        @client.request(
+          method: :post,
+          path: ["inference-pipelines/%1$s/sessions", inference_pipeline_id],
+          query: query.transform_keys(per_page: "perPage", sort_column: "sortColumn"),
+          body: parsed.except(*query_params),
+          model: Openlayer::Models::InferencePipelineRetrieveSessionsResponse,
+          options: options
+        )
+      end
+
       # Get aggregated user data for an inference pipeline with pagination and metadata.
       #
       # Returns a list of users who have interacted with the inference pipeline,
       # including their activity statistics such as session counts, record counts, token
       # usage, and costs.
       #
-      # @overload retrieve_users(inference_pipeline_id, page: nil, per_page: nil, request_options: {})
+      # @overload retrieve_users(inference_pipeline_id, asc: nil, page: nil, per_page: nil, sort_column: nil, column_filters: nil, exclude_row_id_list: nil, not_search_query_and: nil, not_search_query_or: nil, row_id_list: nil, search_query_and: nil, search_query_or: nil, request_options: {})
       #
-      # @param inference_pipeline_id [String] The inference pipeline id (a UUID).
+      # @param inference_pipeline_id [String] Path param: The inference pipeline id (a UUID).
       #
-      # @param page [Integer] The page to return in a paginated query.
+      # @param asc [Boolean] Query param: Whether or not to sort on the sortColumn in ascending order.
       #
-      # @param per_page [Integer] Maximum number of items to return per page.
+      # @param page [Integer] Query param: The page to return in a paginated query.
+      #
+      # @param per_page [Integer] Query param: Maximum number of items to return per page.
+      #
+      # @param sort_column [String] Query param: Name of the column to sort on
+      #
+      # @param column_filters [Array<Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::SetColumnFilter, Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::NumericColumnFilter, Openlayer::Models::InferencePipelineRetrieveUsersParams::ColumnFilter::StringColumnFilter>, nil] Body param
+      #
+      # @param exclude_row_id_list [Array<Integer>, nil] Body param
+      #
+      # @param not_search_query_and [Array<String>, nil] Body param
+      #
+      # @param not_search_query_or [Array<String>, nil] Body param
+      #
+      # @param row_id_list [Array<Integer>, nil] Body param
+      #
+      # @param search_query_and [Array<String>, nil] Body param
+      #
+      # @param search_query_or [Array<String>, nil] Body param
       #
       # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -108,12 +178,14 @@ module Openlayer
       #
       # @see Openlayer::Models::InferencePipelineRetrieveUsersParams
       def retrieve_users(inference_pipeline_id, params = {})
+        query_params = [:asc, :page, :per_page, :sort_column]
         parsed, options = Openlayer::InferencePipelineRetrieveUsersParams.dump_request(params)
-        query = Openlayer::Internal::Util.encode_query_params(parsed)
+        query = Openlayer::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
-          method: :get,
+          method: :post,
           path: ["inference-pipelines/%1$s/users", inference_pipeline_id],
-          query: query.transform_keys(per_page: "perPage"),
+          query: query.transform_keys(per_page: "perPage", sort_column: "sortColumn"),
+          body: parsed.except(*query_params),
           model: Openlayer::Models::InferencePipelineRetrieveUsersResponse,
           options: options
         )
