@@ -2,6 +2,12 @@ module Openlayer
   module Resources
     class InferencePipelines
       class Rows
+        def retrieve: (
+          String inference_id,
+          inference_pipeline_id: String,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::InferencePipelines::RowRetrieveResponse
+
         def update: (
           String inference_pipeline_id,
           inference_id: String,
@@ -25,6 +31,12 @@ module Openlayer
           ?search_query_or: ::Array[String]?,
           ?request_options: Openlayer::request_opts
         ) -> Openlayer::Models::InferencePipelines::RowListResponse
+
+        def delete: (
+          String inference_id,
+          inference_pipeline_id: String,
+          ?request_options: Openlayer::request_opts
+        ) -> nil
 
         def initialize: (client: Openlayer::Client) -> void
       end

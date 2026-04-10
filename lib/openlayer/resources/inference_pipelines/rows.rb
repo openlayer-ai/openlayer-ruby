@@ -4,6 +4,33 @@ module Openlayer
   module Resources
     class InferencePipelines
       class Rows
+        # Fetch a single inference pipeline row by inference ID, including OTel steps.
+        #
+        # @overload retrieve(inference_id, inference_pipeline_id:, request_options: {})
+        #
+        # @param inference_id [String]
+        #
+        # @param inference_pipeline_id [String] The inference pipeline id (a UUID).
+        #
+        # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Openlayer::Models::InferencePipelines::RowRetrieveResponse]
+        #
+        # @see Openlayer::Models::InferencePipelines::RowRetrieveParams
+        def retrieve(inference_id, params)
+          parsed, options = Openlayer::InferencePipelines::RowRetrieveParams.dump_request(params)
+          inference_pipeline_id =
+            parsed.delete(:inference_pipeline_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :get,
+            path: ["inference-pipelines/%1$s/rows/%2$s", inference_pipeline_id, inference_id],
+            model: Openlayer::Models::InferencePipelines::RowRetrieveResponse,
+            options: options
+          )
+        end
+
         # Update an inference data point in an inference pipeline.
         #
         # @overload update(inference_pipeline_id, inference_id:, row:, config: nil, request_options: {})
@@ -78,6 +105,34 @@ module Openlayer
             query: query.transform_keys(per_page: "perPage", sort_column: "sortColumn"),
             body: parsed.except(*query_params),
             model: Openlayer::Models::InferencePipelines::RowListResponse,
+            options: options
+          )
+        end
+
+        # Delete a single inference pipeline row by inference ID. Only project admins can
+        # perform this action.
+        #
+        # @overload delete(inference_id, inference_pipeline_id:, request_options: {})
+        #
+        # @param inference_id [String]
+        #
+        # @param inference_pipeline_id [String] The inference pipeline id (a UUID).
+        #
+        # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [nil]
+        #
+        # @see Openlayer::Models::InferencePipelines::RowDeleteParams
+        def delete(inference_id, params)
+          parsed, options = Openlayer::InferencePipelines::RowDeleteParams.dump_request(params)
+          inference_pipeline_id =
+            parsed.delete(:inference_pipeline_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :delete,
+            path: ["inference-pipelines/%1$s/rows/%2$s", inference_pipeline_id, inference_id],
+            model: NilClass,
             options: options
           )
         end
