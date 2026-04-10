@@ -4,6 +4,22 @@ module Openlayer
   module Resources
     class InferencePipelines
       class Rows
+        # Fetch a single inference pipeline row by inference ID, including OTel steps.
+        sig do
+          params(
+            inference_id: String,
+            inference_pipeline_id: String,
+            request_options: Openlayer::RequestOptions::OrHash
+          ).returns(Openlayer::Models::InferencePipelines::RowRetrieveResponse)
+        end
+        def retrieve(
+          inference_id,
+          # The inference pipeline id (a UUID).
+          inference_pipeline_id:,
+          request_options: {}
+        )
+        end
+
         # Update an inference data point in an inference pipeline.
         sig do
           params(
@@ -82,6 +98,23 @@ module Openlayer
           search_query_and: nil,
           # Body param
           search_query_or: nil,
+          request_options: {}
+        )
+        end
+
+        # Delete a single inference pipeline row by inference ID. Only project admins can
+        # perform this action.
+        sig do
+          params(
+            inference_id: String,
+            inference_pipeline_id: String,
+            request_options: Openlayer::RequestOptions::OrHash
+          ).void
+        end
+        def delete(
+          inference_id,
+          # The inference pipeline id (a UUID).
+          inference_pipeline_id:,
           request_options: {}
         )
         end
