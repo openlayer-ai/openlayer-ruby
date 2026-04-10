@@ -1,0 +1,30 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type row_delete_params =
+        { inference_pipeline_id: String, inference_id: String }
+        & Openlayer::Internal::Type::request_parameters
+
+      class RowDeleteParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor inference_pipeline_id: String
+
+        attr_accessor inference_id: String
+
+        def initialize: (
+          inference_pipeline_id: String,
+          inference_id: String,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          inference_pipeline_id: String,
+          inference_id: String,
+          request_options: Openlayer::RequestOptions
+        }
+      end
+    end
+  end
+end

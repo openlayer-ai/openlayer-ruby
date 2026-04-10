@@ -1,0 +1,21 @@
+module Openlayer
+  module Models
+    module InferencePipelines
+      type row_retrieve_response = { row: top, success: bool }
+
+      class RowRetrieveResponse < Openlayer::Internal::Type::BaseModel
+        attr_reader row: top?
+
+        def row=: (top) -> top
+
+        attr_reader success: bool?
+
+        def success=: (bool) -> bool
+
+        def initialize: (?row: top, ?success: bool) -> void
+
+        def to_hash: -> { row: top, success: bool }
+      end
+    end
+  end
+end
