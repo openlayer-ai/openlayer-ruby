@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.12.1 (2026-04-10)
+
+Full Changelog: [v0.12.0...v0.12.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.12.0...v0.12.1)
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([c8b1646](https://github.com/openlayer-ai/openlayer-ruby/commit/c8b16466f4d3c51e4aee14d34fc823e51bd949c4))
+
+
+### Documentation
+
+* **closes OPEN-9953:** expose endpoints to get and delete a row ([232488e](https://github.com/openlayer-ai/openlayer-ruby/commit/232488ec3989f0233017e289973125c5d489f247))
+
 ## 0.12.0 (2026-04-01)
 
 Full Changelog: [v0.11.2...v0.12.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.11.2...v0.12.0)
