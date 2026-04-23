@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.2 (2026-04-23)
+
+Full Changelog: [v0.12.1...v0.12.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.12.1...v0.12.2)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([2e983a3](https://github.com/openlayer-ai/openlayer-ruby/commit/2e983a37d41f9f1142c3a032dc41caa9bbf7693a))
+* **tests:** bump steady to v0.22.1 ([ee10dc8](https://github.com/openlayer-ai/openlayer-ruby/commit/ee10dc840f02d9ecaf0038817ea54fc33b6957c9))
+
 ## 0.12.1 (2026-04-10)
 
 Full Changelog: [v0.12.0...v0.12.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.12.0...v0.12.1)
