@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.0 (2026-05-07)
+
+Full Changelog: [v0.12.2...v0.13.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.12.2...v0.13.0)
+
+### Features
+
+* support setting headers via env ([9818ac9](https://github.com/openlayer-ai/openlayer-ruby/commit/9818ac9cea9643c819533ff310982db22883bdae))
+
 ## 0.12.2 (2026-04-23)
 
 Full Changelog: [v0.12.1...v0.12.2](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.12.1...v0.12.2)
