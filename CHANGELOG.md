@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.1 (2026-05-14)
+
+Full Changelog: [v0.13.0...v0.13.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.13.0...v0.13.1)
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([cd44915](https://github.com/openlayer-ai/openlayer-ruby/commit/cd44915000d0ae58ac459cb8798ea7418603d1f0))
+
 ## 0.13.0 (2026-05-07)
 
 Full Changelog: [v0.12.2...v0.13.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.12.2...v0.13.0)
