@@ -21,15 +21,25 @@ module Openlayer
     #   Openlayer::Integrations::GoogleConversationalSearchTracer.trace_client(
     #     google_client,
     #     openlayer_client: openlayer,
-    #     inference_pipeline_id: 'your-pipeline-id'
+    #     inference_pipeline_id: 'your-pipeline-id',
+    #     additional_columns: { environment: 'production' }
     #   )
     #
-    #   # Now all answer_query calls are automatically traced
+    #   # Now all answer_query calls are automatically traced! Pass
+    #   # additional_columns on an individual call to attach data (like your
+    #   # own trace ID) to just that row; it takes precedence over the
+    #   # static defaults above on a key conflict.
     #   response = google_client.answer_query(
     #     serving_config: "projects/.../servingConfigs/default",
-    #     query: { text: "What is the meaning of life?" }
+    #     query: { text: "What is the meaning of life?" },
+    #     additional_columns: { trace_id: "abc-123" }
     #   )
     class GoogleConversationalSearchTracer
+      # Row keys computed by this tracer. Any key in a caller-supplied
+      # additional_columns hash matching one of these is dropped, so custom
+      # data can never overwrite core trace fields.
+      RESERVED_ROW_KEYS = [:query, :answer, :latency_ms, :timestamp, :metadata, :steps, :context, :session_id, :user_id].freeze
+
       # Enable tracing on a Google ConversationalSearchService client
       #
       # @param client [Google::Cloud::DiscoveryEngine::V1::ConversationalSearchService::Client]
@@ -42,8 +52,12 @@ module Openlayer
       #   Optional session ID to use for all traces. Takes precedence over auto-extracted sessions.
       # @param user_id [String, nil]
       #   Optional user ID to use for all traces.
+      # @param additional_columns [Hash, nil]
+      #   Optional static column values merged into every trace sent through this client (e.g. `{ environment: 'production' }`).
+      #   A value passed to an individual answer_query call takes precedence over these on a key conflict. Keys colliding
+      #   with a reserved row column (query, answer, latency_ms, timestamp, metadata, steps, context, session_id, user_id) are dropped.
       # @return [void]
-      def self.trace_client(client, openlayer_client:, inference_pipeline_id:, session_id: nil, user_id: nil)
+      def self.trace_client(client, openlayer_client:, inference_pipeline_id:, session_id: nil, user_id: nil, additional_columns: {})
         # Store original method reference
         original_answer_query = client.method(:answer_query)
 
@@ -51,6 +65,10 @@ module Openlayer
         client.define_singleton_method(:answer_query) do |*args, **kwargs, &block|
           # Capture start time
           start_time = Time.now
+
+          # Extract per-call additional columns before forwarding to the
+          # real client; Google's client never sees this key
+          call_additional_columns = kwargs.delete(:additional_columns)
 
           # Execute the original method
           response = original_answer_query.call(*args, **kwargs, &block)
@@ -69,7 +87,9 @@ module Openlayer
               openlayer_client: openlayer_client,
               inference_pipeline_id: inference_pipeline_id,
               session_id: session_id,
-              user_id: user_id
+              user_id: user_id,
+              additional_columns: additional_columns,
+              call_additional_columns: call_additional_columns
             )
           rescue StandardError => e
             # Never break the user's application due to tracing errors
@@ -95,8 +115,10 @@ module Openlayer
       # @param inference_pipeline_id [String] Pipeline ID
       # @param session_id [String, nil] Optional session ID (takes precedence over auto-extracted)
       # @param user_id [String, nil] Optional user ID
+      # @param additional_columns [Hash, nil] Optional static column values (see {.trace_client})
+      # @param call_additional_columns [Hash, nil] Optional per-call column values; takes precedence over additional_columns
       # @return [void]
-      def self.send_trace(args:, kwargs:, response:, start_time:, end_time:, openlayer_client:, inference_pipeline_id:, session_id: nil, user_id: nil)
+      def self.send_trace(args:, kwargs:, response:, start_time:, end_time:, openlayer_client:, inference_pipeline_id:, session_id: nil, user_id: nil, additional_columns: {}, call_additional_columns: {})
         # Calculate latency
         latency_ms = ((end_time - start_time) * 1000).round(2)
 
@@ -198,6 +220,12 @@ module Openlayer
           trace_data[:rows][0][:user_id] = final_user_id
           trace_data[:config][:userIdColumnName] = "user_id"
         end
+
+        # Merge additional columns (per-call values take precedence over
+        # static defaults; keys colliding with reserved row columns are
+        # dropped so custom data can never corrupt core trace fields)
+        extra_columns = resolve_additional_columns(additional_columns, call_additional_columns)
+        trace_data[:rows][0].merge!(extra_columns) unless extra_columns.empty?
 
         # Send to Openlayer
         openlayer_client
@@ -594,6 +622,45 @@ module Openlayer
         nil
       end
 
+      # Merge static and per-call additional columns into a single Hash of
+      # extra row columns. Call-level values take precedence over static
+      # ones on key conflict, and any key colliding with a reserved row
+      # column is dropped.
+      #
+      # @param static_columns [Object] Value passed to trace_client (expected Hash)
+      # @param call_columns [Object] Value passed to an individual answer_query call (expected Hash)
+      # @return [Hash] Extra columns safe to merge onto a trace row
+      def self.resolve_additional_columns(static_columns, call_columns)
+        merged = normalize_additional_columns(static_columns).merge(normalize_additional_columns(call_columns))
+
+        merged.each_with_object({}) do |(key, value), result|
+          if RESERVED_ROW_KEYS.include?(key)
+            warn_if_debug("[Openlayer] additional_columns key :#{key} collides with a reserved column and was ignored")
+          else
+            result[key] = value
+          end
+        end
+      end
+
+      # Normalize an additional_columns value into a Hash with Symbol keys.
+      # Non-Hash input (or a key that can't be a Symbol) is dropped rather
+      # than raising, so a caller mistake can never break tracing.
+      #
+      # @param columns [Object] Expected to be a Hash of column name => value
+      # @return [Hash]
+      def self.normalize_additional_columns(columns)
+        return {} unless columns.is_a?(Hash)
+
+        columns.each_with_object({}) do |(key, value), result|
+          next unless key.respond_to?(:to_sym)
+
+          result[key.to_sym] = value
+        end
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to normalize additional columns: #{e.message}")
+        {}
+      end
+
       # Safely extract a field from an object
       #
       # @param obj [Object] Object to extract from
@@ -659,6 +726,8 @@ module Openlayer
                            :extract_session,
                            :extract_user_pseudo_id,
                            :extract_query_understanding_info,
+                           :resolve_additional_columns,
+                           :normalize_additional_columns,
                            :safe_extract,
                            :safe_count,
                            :extract_timestamp
