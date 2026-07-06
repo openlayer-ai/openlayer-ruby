@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.14.0 (2026-07-06)
+
+Full Changelog: [v0.13.1...v0.14.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.13.1...v0.14.0)
+
+### Features
+
+* **closes OPEN-11569:** support additional columns in ConversationalSearchService tracer ([e5cd8df](https://github.com/openlayer-ai/openlayer-ruby/commit/e5cd8df9335795f7296b394ea007caea3b090475))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([1778b7d](https://github.com/openlayer-ai/openlayer-ruby/commit/1778b7d71ddf2c244be71648141b84666f81addd))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([f8781d0](https://github.com/openlayer-ai/openlayer-ruby/commit/f8781d074e80fc95497513b400c601e246998729))
+
 ## 0.13.1 (2026-05-14)
 
 Full Changelog: [v0.13.0...v0.13.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.13.0...v0.13.1)
