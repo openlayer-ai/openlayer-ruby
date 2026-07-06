@@ -13,19 +13,83 @@ end
 class Openlayer::Test::Integrations::GoogleConversationalSearchTracerTest < Minitest::Test
   Tracer = Openlayer::Integrations::GoogleConversationalSearchTracer
 
-  class FakeAnswer
-    attr_reader :answer_text
+  class FakeDocumentMetadata
+    attr_reader :document, :uri, :title
 
-    def initialize(answer_text)
+    def initialize(document: nil, uri: nil, title: nil)
+      @document = document
+      @uri = uri
+      @title = title
+    end
+  end
+
+  class FakeChunkInfo
+    attr_reader :content, :relevance_score, :document_metadata
+
+    def initialize(content: nil, relevance_score: nil, document_metadata: nil)
+      @content = content
+      @relevance_score = relevance_score
+      @document_metadata = document_metadata
+    end
+  end
+
+  class FakeStructuredDocumentInfo
+    attr_reader :document, :struct_data, :title, :uri
+
+    def initialize(document: nil, struct_data: nil, title: nil, uri: nil)
+      @document = document
+      @struct_data = struct_data
+      @title = title
+      @uri = uri
+    end
+  end
+
+  class FakeChunkContent
+    attr_reader :content
+
+    def initialize(content: nil)
+      @content = content
+    end
+  end
+
+  class FakeUnstructuredDocumentInfo
+    attr_reader :document, :uri, :title, :chunk_contents
+
+    def initialize(document: nil, uri: nil, title: nil, chunk_contents: [])
+      @document = document
+      @uri = uri
+      @title = title
+      @chunk_contents = chunk_contents
+    end
+  end
+
+  # Duck-types Discovery Engine's Answer::Reference, whose `content` field is
+  # a oneof: exactly one of chunk_info / structured_document_info /
+  # unstructured_document_info is non-nil, mirroring real protobuf behavior.
+  class FakeReference
+    attr_reader :chunk_info, :structured_document_info, :unstructured_document_info
+
+    def initialize(chunk_info: nil, structured_document_info: nil, unstructured_document_info: nil)
+      @chunk_info = chunk_info
+      @structured_document_info = structured_document_info
+      @unstructured_document_info = unstructured_document_info
+    end
+  end
+
+  class FakeAnswer
+    attr_reader :answer_text, :references
+
+    def initialize(answer_text, references: [])
       @answer_text = answer_text
+      @references = references
     end
   end
 
   class FakeResponse
     attr_reader :answer
 
-    def initialize(answer_text)
-      @answer = FakeAnswer.new(answer_text)
+    def initialize(answer_text, references: [])
+      @answer = FakeAnswer.new(answer_text, references: references)
     end
   end
 
@@ -140,5 +204,94 @@ class Openlayer::Test::Integrations::GoogleConversationalSearchTracerTest < Mini
 
     assert_equal("hi", response.answer.answer_text)
     assert_equal("abc-123", @openlayer_client.last_row[:trace_id])
+  end
+
+  def test_chunk_info_reference_is_preserved
+    reference = FakeReference.new(
+      chunk_info: FakeChunkInfo.new(
+        content: "chunk text",
+        relevance_score: 0.9,
+        document_metadata: FakeDocumentMetadata.new(document: "doc-1", uri: "https://a.test", title: "A")
+      )
+    )
+    row = trace_row(response: FakeResponse.new("hi", references: [reference]))
+
+    references = row[:steps][0][:references]
+    assert_equal(1, references.length)
+    assert_equal("chunk text", references[0][:content])
+    assert_equal(["chunk text"], row[:context])
+  end
+
+  def test_structured_document_info_reference_is_preserved
+    document_id = "projects/example/dataStores/example/documents/example-doc"
+    reference = FakeReference.new(
+      structured_document_info: FakeStructuredDocumentInfo.new(
+        document: document_id,
+        uri: "https://example.test/doc",
+        title: "Example structured document",
+        struct_data: {kind: "example"}
+      )
+    )
+    row = trace_row(response: FakeResponse.new("hi", references: [reference]))
+
+    references = row[:steps][0][:references]
+    assert_equal(1, references.length)
+    assert_equal(document_id, references[0][:document_id])
+    assert_equal("https://example.test/doc", references[0][:uri])
+    assert_equal("Example structured document", references[0][:title])
+    assert_equal({kind: "example"}, references[0][:struct_data])
+  end
+
+  def test_unstructured_document_info_reference_is_preserved
+    reference = FakeReference.new(
+      unstructured_document_info: FakeUnstructuredDocumentInfo.new(
+        document: "doc-2",
+        uri: "https://b.test",
+        title: "B",
+        chunk_contents: [
+          FakeChunkContent.new(content: "chunk one"),
+          FakeChunkContent.new(content: "chunk two")
+        ]
+      )
+    )
+    row = trace_row(response: FakeResponse.new("hi", references: [reference]))
+
+    references = row[:steps][0][:references]
+    assert_equal(1, references.length)
+    assert_equal("doc-2", references[0][:document_id])
+    assert_equal("https://b.test", references[0][:uri])
+    assert_equal("B", references[0][:title])
+    assert_equal("chunk one\nchunk two", references[0][:content])
+    assert_equal(["chunk one\nchunk two"], row[:context])
+  end
+
+  def test_reference_with_no_known_variant_is_skipped_without_raising
+    row = trace_row(response: FakeResponse.new("hi", references: [FakeReference.new]))
+
+    assert_nil(row[:steps][0][:references])
+    assert_nil(row[:context])
+  end
+
+  def test_mixed_reference_variants_are_all_preserved_in_order
+    chunk_ref = FakeReference.new(chunk_info: FakeChunkInfo.new(content: "chunk"))
+    structured_ref = FakeReference.new(
+      structured_document_info: FakeStructuredDocumentInfo.new(title: "Structured")
+    )
+    row = trace_row(response: FakeResponse.new("hi", references: [chunk_ref, structured_ref]))
+
+    references = row[:steps][0][:references]
+    assert_equal(2, references.length)
+    assert_equal("chunk", references[0][:content])
+    assert_equal("Structured", references[1][:title])
+  end
+
+  def test_references_count_metadata_matches_traced_references_for_structured_document_info
+    reference = FakeReference.new(
+      structured_document_info: FakeStructuredDocumentInfo.new(title: "Structured")
+    )
+    row = trace_row(response: FakeResponse.new("hi", references: [reference]))
+
+    assert_equal(1, row[:steps][0][:metadata][:references_count])
+    assert_equal(1, row[:steps][0][:references].length)
   end
 end
