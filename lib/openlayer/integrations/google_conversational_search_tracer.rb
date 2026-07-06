@@ -345,6 +345,9 @@ module Openlayer
 
       # Extract references from answer
       #
+      # Each reference's `content` is a oneof: exactly one of chunk_info,
+      # structured_document_info, or unstructured_document_info is present.
+      #
       # @param answer [Object] Answer object from response
       # @return [Array<Hash>, nil] Array of reference hashes or nil
       def self.extract_references(answer)
@@ -354,23 +357,83 @@ module Openlayer
         return nil if references.nil? || !references.respond_to?(:each_with_index)
 
         references.each_with_index.map do |reference, index|
-          chunk_info = safe_extract(reference, :chunk_info)
-          next nil if chunk_info.nil?
-
-          doc_metadata = safe_extract(chunk_info, :document_metadata)
-
-          {
-            reference_id: index.to_s,
-            content: safe_extract(chunk_info, :content),
-            relevance_score: safe_extract(chunk_info, :relevance_score)&.to_f,
-            document_id: doc_metadata ? safe_extract(doc_metadata, :document) : nil,
-            uri: doc_metadata ? safe_extract(doc_metadata, :uri) : nil,
-            title: doc_metadata ? safe_extract(doc_metadata, :title) : nil
-          }.compact
+          extract_reference(reference, index)
         end.compact
       rescue StandardError => e
         warn_if_debug("[Openlayer] Failed to extract references: #{e.message}")
         nil
+      end
+
+      # Extract a single reference hash from whichever `content` oneof
+      # variant is present on it
+      #
+      # @param reference [Object] Reference object
+      # @param index [Integer] Reference's index in the references array
+      # @return [Hash, nil] Reference hash, or nil if no known variant is set
+      def self.extract_reference(reference, index)
+        if (chunk_info = safe_extract(reference, :chunk_info))
+          extract_chunk_info_reference(chunk_info, index)
+        elsif (structured_document_info = safe_extract(reference, :structured_document_info))
+          extract_structured_document_info_reference(structured_document_info, index)
+        elsif (unstructured_document_info = safe_extract(reference, :unstructured_document_info))
+          extract_unstructured_document_info_reference(unstructured_document_info, index)
+        end
+      rescue StandardError => e
+        warn_if_debug("[Openlayer] Failed to extract reference: #{e.message}")
+        nil
+      end
+
+      # Build a reference hash from a ChunkInfo variant
+      #
+      # @param chunk_info [Object] ChunkInfo object
+      # @param index [Integer] Reference's index in the references array
+      # @return [Hash] Reference hash
+      def self.extract_chunk_info_reference(chunk_info, index)
+        doc_metadata = safe_extract(chunk_info, :document_metadata)
+
+        {
+          reference_id: index.to_s,
+          content: safe_extract(chunk_info, :content),
+          relevance_score: safe_extract(chunk_info, :relevance_score)&.to_f,
+          document_id: doc_metadata ? safe_extract(doc_metadata, :document) : nil,
+          uri: doc_metadata ? safe_extract(doc_metadata, :uri) : nil,
+          title: doc_metadata ? safe_extract(doc_metadata, :title) : nil
+        }.compact
+      end
+
+      # Build a reference hash from a StructuredDocumentInfo variant
+      #
+      # @param structured_document_info [Object] StructuredDocumentInfo object
+      # @param index [Integer] Reference's index in the references array
+      # @return [Hash] Reference hash
+      def self.extract_structured_document_info_reference(structured_document_info, index)
+        {
+          reference_id: index.to_s,
+          document_id: safe_extract(structured_document_info, :document),
+          uri: safe_extract(structured_document_info, :uri),
+          title: safe_extract(structured_document_info, :title),
+          struct_data: safe_extract(structured_document_info, :struct_data)
+        }.compact
+      end
+
+      # Build a reference hash from an UnstructuredDocumentInfo variant
+      #
+      # @param unstructured_document_info [Object] UnstructuredDocumentInfo object
+      # @param index [Integer] Reference's index in the references array
+      # @return [Hash] Reference hash
+      def self.extract_unstructured_document_info_reference(unstructured_document_info, index)
+        chunk_contents = safe_extract(unstructured_document_info, :chunk_contents)
+        content = if chunk_contents.respond_to?(:map)
+          chunk_contents.map { |chunk| safe_extract(chunk, :content) }.compact.join("\n")
+        end
+
+        {
+          reference_id: index.to_s,
+          content: (content unless content.nil? || content.empty?),
+          document_id: safe_extract(unstructured_document_info, :document),
+          uri: safe_extract(unstructured_document_info, :uri),
+          title: safe_extract(unstructured_document_info, :title)
+        }.compact
       end
 
       # Extract related questions from answer
@@ -717,6 +780,10 @@ module Openlayer
                            :extract_citations,
                            :extract_citation_sources,
                            :extract_references,
+                           :extract_reference,
+                           :extract_chunk_info_reference,
+                           :extract_structured_document_info_reference,
+                           :extract_unstructured_document_info_reference,
                            :extract_related_questions,
                            :extract_steps,
                            :extract_step_data,
