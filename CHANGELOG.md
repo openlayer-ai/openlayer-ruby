@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0 (2026-07-18)
+
+Full Changelog: [v0.14.1...v0.15.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.14.1...v0.15.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([1e2b0dd](https://github.com/openlayer-ai/openlayer-ruby/commit/1e2b0dd15c04284222bb259bd5dd5b31537beaec))
+
 ## 0.14.1 (2026-07-06)
 
 Full Changelog: [v0.14.0...v0.14.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.14.0...v0.14.1)
