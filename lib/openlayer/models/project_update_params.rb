@@ -2,22 +2,15 @@
 
 module Openlayer
   module Models
-    # @see Openlayer::Resources::Projects#create
-    class ProjectCreateParams < Openlayer::Internal::Type::BaseModel
+    # @see Openlayer::Resources::Projects#update
+    class ProjectUpdateParams < Openlayer::Internal::Type::BaseModel
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
-      # @!attribute name
-      #   The project name.
+      # @!attribute project_id
       #
       #   @return [String]
-      required :name, String
-
-      # @!attribute task_type
-      #   The task type of the project.
-      #
-      #   @return [Symbol, Openlayer::Models::ProjectCreateParams::TaskType]
-      required :task_type, enum: -> { Openlayer::ProjectCreateParams::TaskType }, api_name: :taskType
+      required :project_id, String
 
       # @!attribute data_retention_days
       #   Number of days to retain monitoring data for this project. Null means data is
@@ -44,19 +37,23 @@ module Openlayer
       #   @return [Array<String>, nil]
       optional :model_types, Openlayer::Internal::Type::ArrayOf[String], api_name: :modelTypes, nil?: true
 
+      # @!attribute name
+      #   The project name.
+      #
+      #   @return [String, nil]
+      optional :name, String
+
       # @!attribute purpose
       #   What the system in this project is intended to do.
       #
       #   @return [String, nil]
       optional :purpose, String, nil?: true
 
-      # @!method initialize(name:, task_type:, data_retention_days: nil, description: nil, model_developer: nil, model_types: nil, purpose: nil, request_options: {})
+      # @!method initialize(project_id:, data_retention_days: nil, description: nil, model_developer: nil, model_types: nil, name: nil, purpose: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
-      #   {Openlayer::Models::ProjectCreateParams} for more details.
+      #   {Openlayer::Models::ProjectUpdateParams} for more details.
       #
-      #   @param name [String] The project name.
-      #
-      #   @param task_type [Symbol, Openlayer::Models::ProjectCreateParams::TaskType] The task type of the project.
+      #   @param project_id [String]
       #
       #   @param data_retention_days [Integer, nil] Number of days to retain monitoring data for this project. Null means data is re
       #
@@ -66,22 +63,11 @@ module Openlayer
       #
       #   @param model_types [Array<String>, nil] The kinds of model used in this project.
       #
+      #   @param name [String] The project name.
+      #
       #   @param purpose [String, nil] What the system in this project is intended to do.
       #
       #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
-
-      # The task type of the project.
-      module TaskType
-        extend Openlayer::Internal::Type::Enum
-
-        LLM_BASE = :"llm-base"
-        TABULAR_CLASSIFICATION = :"tabular-classification"
-        TABULAR_REGRESSION = :"tabular-regression"
-        TEXT_CLASSIFICATION = :"text-classification"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

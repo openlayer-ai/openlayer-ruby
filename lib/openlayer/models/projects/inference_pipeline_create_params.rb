@@ -671,18 +671,55 @@ module Openlayer
                    enum: -> { Openlayer::Projects::InferencePipelineCreateParams::Project::TaskType },
                    api_name: :taskType
 
+          # @!attribute data_retention_days
+          #   Number of days to retain monitoring data for this project. Null means data is
+          #   retained indefinitely.
+          #
+          #   @return [Integer, nil]
+          optional :data_retention_days, Integer, api_name: :dataRetentionDays, nil?: true
+
           # @!attribute description
           #   The project description.
           #
           #   @return [String, nil]
           optional :description, String, nil?: true
 
-          # @!method initialize(name:, task_type:, description: nil)
+          # @!attribute model_developer
+          #   Who developed the model used in this project.
+          #
+          #   @return [String, nil]
+          optional :model_developer, String, api_name: :modelDeveloper, nil?: true
+
+          # @!attribute model_types
+          #   The kinds of model used in this project.
+          #
+          #   @return [Array<String>, nil]
+          optional :model_types, Openlayer::Internal::Type::ArrayOf[String], api_name: :modelTypes, nil?: true
+
+          # @!attribute purpose
+          #   What the system in this project is intended to do.
+          #
+          #   @return [String, nil]
+          optional :purpose, String, nil?: true
+
+          # @!method initialize(name:, task_type:, data_retention_days: nil, description: nil, model_developer: nil, model_types: nil, purpose: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Openlayer::Models::Projects::InferencePipelineCreateParams::Project} for more
+          #   details.
+          #
           #   @param name [String] The project name.
           #
           #   @param task_type [Symbol, Openlayer::Models::Projects::InferencePipelineCreateParams::Project::TaskType] The task type of the project.
           #
+          #   @param data_retention_days [Integer, nil] Number of days to retain monitoring data for this project. Null means data is re
+          #
           #   @param description [String, nil] The project description.
+          #
+          #   @param model_developer [String, nil] Who developed the model used in this project.
+          #
+          #   @param model_types [Array<String>, nil] The kinds of model used in this project.
+          #
+          #   @param purpose [String, nil] What the system in this project is intended to do.
 
           # @see Openlayer::Models::Projects::InferencePipelineCreateParams::Project#links
           class Links < Openlayer::Internal::Type::BaseModel

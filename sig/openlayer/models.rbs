@@ -23,6 +23,8 @@ module Openlayer
 
   module Projects = Openlayer::Models::Projects
 
+  class ProjectUpdateParams = Openlayer::Models::ProjectUpdateParams
+
   module Storage = Openlayer::Models::Storage
 
   class TestEvaluateParams = Openlayer::Models::TestEvaluateParams

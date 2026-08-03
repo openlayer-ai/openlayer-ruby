@@ -2,22 +2,17 @@
 
 module Openlayer
   module Models
-    class ProjectCreateParams < Openlayer::Internal::Type::BaseModel
+    class ProjectUpdateParams < Openlayer::Internal::Type::BaseModel
       extend Openlayer::Internal::Type::RequestParameters::Converter
       include Openlayer::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Openlayer::ProjectCreateParams, Openlayer::Internal::AnyHash)
+          T.any(Openlayer::ProjectUpdateParams, Openlayer::Internal::AnyHash)
         end
 
-      # The project name.
       sig { returns(String) }
-      attr_accessor :name
-
-      # The task type of the project.
-      sig { returns(Openlayer::ProjectCreateParams::TaskType::OrSymbol) }
-      attr_accessor :task_type
+      attr_accessor :project_id
 
       # Number of days to retain monitoring data for this project. Null means data is
       # retained indefinitely.
@@ -36,27 +31,31 @@ module Openlayer
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :model_types
 
+      # The project name.
+      sig { returns(T.nilable(String)) }
+      attr_reader :name
+
+      sig { params(name: String).void }
+      attr_writer :name
+
       # What the system in this project is intended to do.
       sig { returns(T.nilable(String)) }
       attr_accessor :purpose
 
       sig do
         params(
-          name: String,
-          task_type: Openlayer::ProjectCreateParams::TaskType::OrSymbol,
+          project_id: String,
           data_retention_days: T.nilable(Integer),
           description: T.nilable(String),
           model_developer: T.nilable(String),
           model_types: T.nilable(T::Array[String]),
+          name: String,
           purpose: T.nilable(String),
           request_options: Openlayer::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The project name.
-        name:,
-        # The task type of the project.
-        task_type:,
+        project_id:,
         # Number of days to retain monitoring data for this project. Null means data is
         # retained indefinitely.
         data_retention_days: nil,
@@ -66,6 +65,8 @@ module Openlayer
         model_developer: nil,
         # The kinds of model used in this project.
         model_types: nil,
+        # The project name.
+        name: nil,
         # What the system in this project is intended to do.
         purpose: nil,
         request_options: {}
@@ -75,58 +76,18 @@ module Openlayer
       sig do
         override.returns(
           {
-            name: String,
-            task_type: Openlayer::ProjectCreateParams::TaskType::OrSymbol,
+            project_id: String,
             data_retention_days: T.nilable(Integer),
             description: T.nilable(String),
             model_developer: T.nilable(String),
             model_types: T.nilable(T::Array[String]),
+            name: String,
             purpose: T.nilable(String),
             request_options: Openlayer::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The task type of the project.
-      module TaskType
-        extend Openlayer::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Openlayer::ProjectCreateParams::TaskType)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        LLM_BASE =
-          T.let(
-            :"llm-base",
-            Openlayer::ProjectCreateParams::TaskType::TaggedSymbol
-          )
-        TABULAR_CLASSIFICATION =
-          T.let(
-            :"tabular-classification",
-            Openlayer::ProjectCreateParams::TaskType::TaggedSymbol
-          )
-        TABULAR_REGRESSION =
-          T.let(
-            :"tabular-regression",
-            Openlayer::ProjectCreateParams::TaskType::TaggedSymbol
-          )
-        TEXT_CLASSIFICATION =
-          T.let(
-            :"text-classification",
-            Openlayer::ProjectCreateParams::TaskType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[Openlayer::ProjectCreateParams::TaskType::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end
