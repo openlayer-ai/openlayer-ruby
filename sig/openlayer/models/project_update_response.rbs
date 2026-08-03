@@ -1,6 +1,6 @@
 module Openlayer
   module Models
-    type project_create_response =
+    type project_update_response =
       {
         id: String,
         creator_id: String?,
@@ -9,25 +9,25 @@ module Openlayer
         development_goal_count: Integer,
         goal_count: Integer,
         inference_pipeline_count: Integer,
-        links: Openlayer::Models::ProjectCreateResponse::Links,
+        links: Openlayer::Models::ProjectUpdateResponse::Links,
         monitoring_goal_count: Integer,
         name: String,
-        source: Openlayer::Models::ProjectCreateResponse::source?,
-        task_type: Openlayer::Models::ProjectCreateResponse::task_type,
+        source: Openlayer::Models::ProjectUpdateResponse::source?,
+        task_type: Openlayer::Models::ProjectUpdateResponse::task_type,
         version_count: Integer,
         workspace_id: String?,
         data_retention_days: Integer?,
         description: String?,
-        git_repo: Openlayer::Models::ProjectCreateResponse::GitRepo?,
+        git_repo: Openlayer::Models::ProjectUpdateResponse::GitRepo?,
         model_developer: String?,
         model_types: ::Array[String]?,
         purpose: String?
       }
 
-    class ProjectCreateResponse < Openlayer::Internal::Type::BaseModel
+    class ProjectUpdateResponse < Openlayer::Internal::Type::BaseModel
       attr_accessor name: String
 
-      attr_accessor task_type: Openlayer::Models::ProjectCreateResponse::task_type
+      attr_accessor task_type: Openlayer::Models::ProjectUpdateResponse::task_type
 
       attr_accessor data_retention_days: Integer?
 
@@ -53,17 +53,17 @@ module Openlayer
 
       attr_accessor inference_pipeline_count: Integer
 
-      attr_accessor links: Openlayer::Models::ProjectCreateResponse::Links
+      attr_accessor links: Openlayer::Models::ProjectUpdateResponse::Links
 
       attr_accessor monitoring_goal_count: Integer
 
-      attr_accessor source: Openlayer::Models::ProjectCreateResponse::source?
+      attr_accessor source: Openlayer::Models::ProjectUpdateResponse::source?
 
       attr_accessor version_count: Integer
 
       attr_accessor workspace_id: String?
 
-      attr_accessor git_repo: Openlayer::Models::ProjectCreateResponse::GitRepo?
+      attr_accessor git_repo: Openlayer::Models::ProjectUpdateResponse::GitRepo?
 
       def initialize: (
         id: String,
@@ -73,16 +73,16 @@ module Openlayer
         development_goal_count: Integer,
         goal_count: Integer,
         inference_pipeline_count: Integer,
-        links: Openlayer::Models::ProjectCreateResponse::Links,
+        links: Openlayer::Models::ProjectUpdateResponse::Links,
         monitoring_goal_count: Integer,
         name: String,
-        source: Openlayer::Models::ProjectCreateResponse::source?,
-        task_type: Openlayer::Models::ProjectCreateResponse::task_type,
+        source: Openlayer::Models::ProjectUpdateResponse::source?,
+        task_type: Openlayer::Models::ProjectUpdateResponse::task_type,
         version_count: Integer,
         workspace_id: String?,
         ?data_retention_days: Integer?,
         ?description: String?,
-        ?git_repo: Openlayer::Models::ProjectCreateResponse::GitRepo?,
+        ?git_repo: Openlayer::Models::ProjectUpdateResponse::GitRepo?,
         ?model_developer: String?,
         ?model_types: ::Array[String]?,
         ?purpose: String?
@@ -96,16 +96,16 @@ module Openlayer
         development_goal_count: Integer,
         goal_count: Integer,
         inference_pipeline_count: Integer,
-        links: Openlayer::Models::ProjectCreateResponse::Links,
+        links: Openlayer::Models::ProjectUpdateResponse::Links,
         monitoring_goal_count: Integer,
         name: String,
-        source: Openlayer::Models::ProjectCreateResponse::source?,
-        task_type: Openlayer::Models::ProjectCreateResponse::task_type,
+        source: Openlayer::Models::ProjectUpdateResponse::source?,
+        task_type: Openlayer::Models::ProjectUpdateResponse::task_type,
         version_count: Integer,
         workspace_id: String?,
         data_retention_days: Integer?,
         description: String?,
-        git_repo: Openlayer::Models::ProjectCreateResponse::GitRepo?,
+        git_repo: Openlayer::Models::ProjectUpdateResponse::GitRepo?,
         model_developer: String?,
         model_types: ::Array[String]?,
         purpose: String?
@@ -130,7 +130,7 @@ module Openlayer
         API: :api
         NULL: :null
 
-        def self?.values: -> ::Array[Openlayer::Models::ProjectCreateResponse::source]
+        def self?.values: -> ::Array[Openlayer::Models::ProjectUpdateResponse::source]
       end
 
       type task_type =
@@ -147,7 +147,7 @@ module Openlayer
         TABULAR_REGRESSION: :"tabular-regression"
         TEXT_CLASSIFICATION: :"text-classification"
 
-        def self?.values: -> ::Array[Openlayer::Models::ProjectCreateResponse::task_type]
+        def self?.values: -> ::Array[Openlayer::Models::ProjectUpdateResponse::task_type]
       end
 
       type git_repo =

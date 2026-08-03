@@ -618,8 +618,12 @@ module Openlayer
           task_type: Openlayer::Models::InferencePipelineUpdateResponse::Project::task_type,
           version_count: Integer,
           workspace_id: String?,
+          data_retention_days: Integer?,
           description: String?,
-          git_repo: Openlayer::Models::InferencePipelineUpdateResponse::Project::GitRepo?
+          git_repo: Openlayer::Models::InferencePipelineUpdateResponse::Project::GitRepo?,
+          model_developer: String?,
+          model_types: ::Array[String]?,
+          purpose: String?
         }
 
       class Project < Openlayer::Internal::Type::BaseModel
@@ -627,7 +631,15 @@ module Openlayer
 
         attr_accessor task_type: Openlayer::Models::InferencePipelineUpdateResponse::Project::task_type
 
+        attr_accessor data_retention_days: Integer?
+
         attr_accessor description: String?
+
+        attr_accessor model_developer: String?
+
+        attr_accessor model_types: ::Array[String]?
+
+        attr_accessor purpose: String?
 
         attr_accessor id: String
 
@@ -670,8 +682,12 @@ module Openlayer
           task_type: Openlayer::Models::InferencePipelineUpdateResponse::Project::task_type,
           version_count: Integer,
           workspace_id: String?,
+          ?data_retention_days: Integer?,
           ?description: String?,
-          ?git_repo: Openlayer::Models::InferencePipelineUpdateResponse::Project::GitRepo?
+          ?git_repo: Openlayer::Models::InferencePipelineUpdateResponse::Project::GitRepo?,
+          ?model_developer: String?,
+          ?model_types: ::Array[String]?,
+          ?purpose: String?
         ) -> void
 
         def to_hash: -> {
@@ -689,8 +705,12 @@ module Openlayer
           task_type: Openlayer::Models::InferencePipelineUpdateResponse::Project::task_type,
           version_count: Integer,
           workspace_id: String?,
+          data_retention_days: Integer?,
           description: String?,
-          git_repo: Openlayer::Models::InferencePipelineUpdateResponse::Project::GitRepo?
+          git_repo: Openlayer::Models::InferencePipelineUpdateResponse::Project::GitRepo?,
+          model_developer: String?,
+          model_types: ::Array[String]?,
+          purpose: String?
         }
 
         type links = { app: String }

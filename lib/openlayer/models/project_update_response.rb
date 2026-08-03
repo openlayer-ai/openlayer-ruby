@@ -2,8 +2,8 @@
 
 module Openlayer
   module Models
-    # @see Openlayer::Resources::Projects#create
-    class ProjectCreateResponse < Openlayer::Internal::Type::BaseModel
+    # @see Openlayer::Resources::Projects#update
+    class ProjectUpdateResponse < Openlayer::Internal::Type::BaseModel
       # @!attribute name
       #   The project name.
       #
@@ -13,8 +13,8 @@ module Openlayer
       # @!attribute task_type
       #   The task type of the project.
       #
-      #   @return [Symbol, Openlayer::Models::ProjectCreateResponse::TaskType]
-      required :task_type, enum: -> { Openlayer::Models::ProjectCreateResponse::TaskType }, api_name: :taskType
+      #   @return [Symbol, Openlayer::Models::ProjectUpdateResponse::TaskType]
+      required :task_type, enum: -> { Openlayer::Models::ProjectUpdateResponse::TaskType }, api_name: :taskType
 
       # @!attribute data_retention_days
       #   Number of days to retain monitoring data for this project. Null means data is
@@ -93,8 +93,8 @@ module Openlayer
         # @!attribute links
         #   Links to the project.
         #
-        #   @return [Openlayer::Models::ProjectCreateResponse::Links]
-        required :links, -> { Openlayer::Models::ProjectCreateResponse::Links }
+        #   @return [Openlayer::Models::ProjectUpdateResponse::Links]
+        required :links, -> { Openlayer::Models::ProjectUpdateResponse::Links }
 
         # @!attribute monitoring_goal_count
         #   The number of tests in the monitoring mode of the project.
@@ -105,8 +105,8 @@ module Openlayer
         # @!attribute source
         #   The source of the project.
         #
-        #   @return [Symbol, Openlayer::Models::ProjectCreateResponse::Source, nil]
-        required :source, enum: -> { Openlayer::Models::ProjectCreateResponse::Source }, nil?: true
+        #   @return [Symbol, Openlayer::Models::ProjectUpdateResponse::Source, nil]
+        required :source, enum: -> { Openlayer::Models::ProjectUpdateResponse::Source }, nil?: true
 
         # @!attribute version_count
         #   The number of versions (commits) in the project.
@@ -122,16 +122,16 @@ module Openlayer
 
         # @!attribute git_repo
         #
-        #   @return [Openlayer::Models::ProjectCreateResponse::GitRepo, nil]
+        #   @return [Openlayer::Models::ProjectUpdateResponse::GitRepo, nil]
         optional :git_repo,
-                 -> { Openlayer::Models::ProjectCreateResponse::GitRepo },
+                 -> { Openlayer::Models::ProjectUpdateResponse::GitRepo },
                  api_name: :gitRepo,
                  nil?: true
       end
 
       # @!method initialize(id:, creator_id:, date_created:, date_updated:, development_goal_count:, goal_count:, inference_pipeline_count:, links:, monitoring_goal_count:, name:, source:, task_type:, version_count:, workspace_id:, data_retention_days: nil, description: nil, git_repo: nil, model_developer: nil, model_types: nil, purpose: nil)
       #   Some parameter documentations has been truncated, see
-      #   {Openlayer::Models::ProjectCreateResponse} for more details.
+      #   {Openlayer::Models::ProjectUpdateResponse} for more details.
       #
       #   @param id [String] The project id.
       #
@@ -147,15 +147,15 @@ module Openlayer
       #
       #   @param inference_pipeline_count [Integer] The number of inference pipelines in the project.
       #
-      #   @param links [Openlayer::Models::ProjectCreateResponse::Links] Links to the project.
+      #   @param links [Openlayer::Models::ProjectUpdateResponse::Links] Links to the project.
       #
       #   @param monitoring_goal_count [Integer] The number of tests in the monitoring mode of the project.
       #
       #   @param name [String] The project name.
       #
-      #   @param source [Symbol, Openlayer::Models::ProjectCreateResponse::Source, nil] The source of the project.
+      #   @param source [Symbol, Openlayer::Models::ProjectUpdateResponse::Source, nil] The source of the project.
       #
-      #   @param task_type [Symbol, Openlayer::Models::ProjectCreateResponse::TaskType] The task type of the project.
+      #   @param task_type [Symbol, Openlayer::Models::ProjectUpdateResponse::TaskType] The task type of the project.
       #
       #   @param version_count [Integer] The number of versions (commits) in the project.
       #
@@ -165,7 +165,7 @@ module Openlayer
       #
       #   @param description [String, nil] The project description.
       #
-      #   @param git_repo [Openlayer::Models::ProjectCreateResponse::GitRepo, nil]
+      #   @param git_repo [Openlayer::Models::ProjectUpdateResponse::GitRepo, nil]
       #
       #   @param model_developer [String, nil] Who developed the model used in this project.
       #
@@ -173,7 +173,7 @@ module Openlayer
       #
       #   @param purpose [String, nil] What the system in this project is intended to do.
 
-      # @see Openlayer::Models::ProjectCreateResponse#links
+      # @see Openlayer::Models::ProjectUpdateResponse#links
       class Links < Openlayer::Internal::Type::BaseModel
         # @!attribute app
         #
@@ -188,7 +188,7 @@ module Openlayer
 
       # The source of the project.
       #
-      # @see Openlayer::Models::ProjectCreateResponse#source
+      # @see Openlayer::Models::ProjectUpdateResponse#source
       module Source
         extend Openlayer::Internal::Type::Enum
 
@@ -202,7 +202,7 @@ module Openlayer
 
       # The task type of the project.
       #
-      # @see Openlayer::Models::ProjectCreateResponse#task_type
+      # @see Openlayer::Models::ProjectUpdateResponse#task_type
       module TaskType
         extend Openlayer::Internal::Type::Enum
 
@@ -215,7 +215,7 @@ module Openlayer
         #   @return [Array<Symbol>]
       end
 
-      # @see Openlayer::Models::ProjectCreateResponse#git_repo
+      # @see Openlayer::Models::ProjectUpdateResponse#git_repo
       class GitRepo < Openlayer::Internal::Type::BaseModel
         # @!attribute git_account_id
         #

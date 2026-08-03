@@ -1229,16 +1229,37 @@ module Openlayer
           end
           attr_accessor :task_type
 
+          # Number of days to retain monitoring data for this project. Null means data is
+          # retained indefinitely.
+          sig { returns(T.nilable(Integer)) }
+          attr_accessor :data_retention_days
+
           # The project description.
           sig { returns(T.nilable(String)) }
           attr_accessor :description
+
+          # Who developed the model used in this project.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :model_developer
+
+          # The kinds of model used in this project.
+          sig { returns(T.nilable(T::Array[String])) }
+          attr_accessor :model_types
+
+          # What the system in this project is intended to do.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :purpose
 
           sig do
             params(
               name: String,
               task_type:
                 Openlayer::Projects::InferencePipelineCreateParams::Project::TaskType::OrSymbol,
-              description: T.nilable(String)
+              data_retention_days: T.nilable(Integer),
+              description: T.nilable(String),
+              model_developer: T.nilable(String),
+              model_types: T.nilable(T::Array[String]),
+              purpose: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -1246,8 +1267,17 @@ module Openlayer
             name:,
             # The task type of the project.
             task_type:,
+            # Number of days to retain monitoring data for this project. Null means data is
+            # retained indefinitely.
+            data_retention_days: nil,
             # The project description.
-            description: nil
+            description: nil,
+            # Who developed the model used in this project.
+            model_developer: nil,
+            # The kinds of model used in this project.
+            model_types: nil,
+            # What the system in this project is intended to do.
+            purpose: nil
           )
           end
 
@@ -1273,11 +1303,15 @@ module Openlayer
                   Openlayer::Projects::InferencePipelineCreateParams::Project::TaskType::OrSymbol,
                 version_count: Integer,
                 workspace_id: T.nilable(String),
+                data_retention_days: T.nilable(Integer),
                 description: T.nilable(String),
                 git_repo:
                   T.nilable(
                     Openlayer::Projects::InferencePipelineCreateParams::Project::GitRepo
-                  )
+                  ),
+                model_developer: T.nilable(String),
+                model_types: T.nilable(T::Array[String]),
+                purpose: T.nilable(String)
               }
             )
           end

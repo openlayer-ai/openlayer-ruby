@@ -12,15 +12,26 @@ module Openlayer
       # @return [Openlayer::Resources::Projects::Tests]
       attr_reader :tests
 
+      # Some parameter documentations has been truncated, see
+      # {Openlayer::Models::ProjectCreateParams} for more details.
+      #
       # Create a project in your workspace.
       #
-      # @overload create(name:, task_type:, description: nil, request_options: {})
+      # @overload create(name:, task_type:, data_retention_days: nil, description: nil, model_developer: nil, model_types: nil, purpose: nil, request_options: {})
       #
       # @param name [String] The project name.
       #
       # @param task_type [Symbol, Openlayer::Models::ProjectCreateParams::TaskType] The task type of the project.
       #
+      # @param data_retention_days [Integer, nil] Number of days to retain monitoring data for this project. Null means data is re
+      #
       # @param description [String, nil] The project description.
+      #
+      # @param model_developer [String, nil] Who developed the model used in this project.
+      #
+      # @param model_types [Array<String>, nil] The kinds of model used in this project.
+      #
+      # @param purpose [String, nil] What the system in this project is intended to do.
       #
       # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -34,6 +45,43 @@ module Openlayer
           path: "projects",
           body: parsed,
           model: Openlayer::Models::ProjectCreateResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {Openlayer::Models::ProjectUpdateParams} for more details.
+      #
+      # Update a project's metadata.
+      #
+      # @overload update(project_id, data_retention_days: nil, description: nil, model_developer: nil, model_types: nil, name: nil, purpose: nil, request_options: {})
+      #
+      # @param project_id [String] The project id.
+      #
+      # @param data_retention_days [Integer, nil] Number of days to retain monitoring data for this project. Null means data is re
+      #
+      # @param description [String, nil] The project description.
+      #
+      # @param model_developer [String, nil] Who developed the model used in this project.
+      #
+      # @param model_types [Array<String>, nil] The kinds of model used in this project.
+      #
+      # @param name [String] The project name.
+      #
+      # @param purpose [String, nil] What the system in this project is intended to do.
+      #
+      # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Openlayer::Models::ProjectUpdateResponse]
+      #
+      # @see Openlayer::Models::ProjectUpdateParams
+      def update(project_id, params = {})
+        parsed, options = Openlayer::ProjectUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["projects/%1$s", project_id],
+          body: parsed,
+          model: Openlayer::Models::ProjectUpdateResponse,
           options: options
         )
       end
