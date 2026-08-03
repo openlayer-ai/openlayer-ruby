@@ -10,9 +10,24 @@ module Openlayer
       def create: (
         name: String,
         task_type: Openlayer::Models::ProjectCreateParams::task_type,
+        ?data_retention_days: Integer?,
         ?description: String?,
+        ?model_developer: String?,
+        ?model_types: ::Array[String]?,
+        ?purpose: String?,
         ?request_options: Openlayer::request_opts
       ) -> Openlayer::Models::ProjectCreateResponse
+
+      def update: (
+        String project_id,
+        ?data_retention_days: Integer?,
+        ?description: String?,
+        ?model_developer: String?,
+        ?model_types: ::Array[String]?,
+        ?name: String,
+        ?purpose: String?,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::ProjectUpdateResponse
 
       def list: (
         ?name: String,

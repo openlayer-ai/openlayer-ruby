@@ -26,8 +26,45 @@ class Openlayer::Test::Resources::ProjectsTest < Openlayer::Test::ResourceTest
         task_type: Openlayer::Models::ProjectCreateResponse::TaskType,
         version_count: Integer,
         workspace_id: String | nil,
+        data_retention_days: Integer | nil,
         description: String | nil,
-        git_repo: Openlayer::Models::ProjectCreateResponse::GitRepo | nil
+        git_repo: Openlayer::Models::ProjectCreateResponse::GitRepo | nil,
+        model_developer: String | nil,
+        model_types: ^(Openlayer::Internal::Type::ArrayOf[String]) | nil,
+        purpose: String | nil
+      }
+    end
+  end
+
+  def test_update
+    response = @openlayer.projects.update("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")
+
+    assert_pattern do
+      response => Openlayer::Models::ProjectUpdateResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        creator_id: String | nil,
+        date_created: Time,
+        date_updated: Time,
+        development_goal_count: Integer,
+        goal_count: Integer,
+        inference_pipeline_count: Integer,
+        links: Openlayer::Models::ProjectUpdateResponse::Links,
+        monitoring_goal_count: Integer,
+        name: String,
+        source: Openlayer::Models::ProjectUpdateResponse::Source | nil,
+        task_type: Openlayer::Models::ProjectUpdateResponse::TaskType,
+        version_count: Integer,
+        workspace_id: String | nil,
+        data_retention_days: Integer | nil,
+        description: String | nil,
+        git_repo: Openlayer::Models::ProjectUpdateResponse::GitRepo | nil,
+        model_developer: String | nil,
+        model_types: ^(Openlayer::Internal::Type::ArrayOf[String]) | nil,
+        purpose: String | nil
       }
     end
   end

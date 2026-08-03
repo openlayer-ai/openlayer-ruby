@@ -698,11 +698,36 @@ module Openlayer
                  enum: -> { Openlayer::Models::InferencePipelineUpdateResponse::Project::TaskType },
                  api_name: :taskType
 
+        # @!attribute data_retention_days
+        #   Number of days to retain monitoring data for this project. Null means data is
+        #   retained indefinitely.
+        #
+        #   @return [Integer, nil]
+        optional :data_retention_days, Integer, api_name: :dataRetentionDays, nil?: true
+
         # @!attribute description
         #   The project description.
         #
         #   @return [String, nil]
         optional :description, String, nil?: true
+
+        # @!attribute model_developer
+        #   Who developed the model used in this project.
+        #
+        #   @return [String, nil]
+        optional :model_developer, String, api_name: :modelDeveloper, nil?: true
+
+        # @!attribute model_types
+        #   The kinds of model used in this project.
+        #
+        #   @return [Array<String>, nil]
+        optional :model_types, Openlayer::Internal::Type::ArrayOf[String], api_name: :modelTypes, nil?: true
+
+        # @!attribute purpose
+        #   What the system in this project is intended to do.
+        #
+        #   @return [String, nil]
+        optional :purpose, String, nil?: true
 
         response_only do
           # @!attribute id
@@ -788,7 +813,10 @@ module Openlayer
                    nil?: true
         end
 
-        # @!method initialize(id:, creator_id:, date_created:, date_updated:, development_goal_count:, goal_count:, inference_pipeline_count:, links:, monitoring_goal_count:, name:, source:, task_type:, version_count:, workspace_id:, description: nil, git_repo: nil)
+        # @!method initialize(id:, creator_id:, date_created:, date_updated:, development_goal_count:, goal_count:, inference_pipeline_count:, links:, monitoring_goal_count:, name:, source:, task_type:, version_count:, workspace_id:, data_retention_days: nil, description: nil, git_repo: nil, model_developer: nil, model_types: nil, purpose: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Openlayer::Models::InferencePipelineUpdateResponse::Project} for more details.
+        #
         #   @param id [String] The project id.
         #
         #   @param creator_id [String, nil] The project creator id.
@@ -817,9 +845,17 @@ module Openlayer
         #
         #   @param workspace_id [String, nil] The workspace id.
         #
+        #   @param data_retention_days [Integer, nil] Number of days to retain monitoring data for this project. Null means data is re
+        #
         #   @param description [String, nil] The project description.
         #
         #   @param git_repo [Openlayer::Models::InferencePipelineUpdateResponse::Project::GitRepo, nil]
+        #
+        #   @param model_developer [String, nil] Who developed the model used in this project.
+        #
+        #   @param model_types [Array<String>, nil] The kinds of model used in this project.
+        #
+        #   @param purpose [String, nil] What the system in this project is intended to do.
 
         # @see Openlayer::Models::InferencePipelineUpdateResponse::Project#links
         class Links < Openlayer::Internal::Type::BaseModel

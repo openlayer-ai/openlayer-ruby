@@ -2,11 +2,11 @@
 
 module Openlayer
   module Models
-    class ProjectCreateResponse < Openlayer::Internal::Type::BaseModel
+    class ProjectUpdateResponse < Openlayer::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Openlayer::Models::ProjectCreateResponse,
+            Openlayer::Models::ProjectUpdateResponse,
             Openlayer::Internal::AnyHash
           )
         end
@@ -18,7 +18,7 @@ module Openlayer
       # The task type of the project.
       sig do
         returns(
-          Openlayer::Models::ProjectCreateResponse::TaskType::TaggedSymbol
+          Openlayer::Models::ProjectUpdateResponse::TaskType::TaggedSymbol
         )
       end
       attr_accessor :task_type
@@ -73,12 +73,12 @@ module Openlayer
       attr_accessor :inference_pipeline_count
 
       # Links to the project.
-      sig { returns(Openlayer::Models::ProjectCreateResponse::Links) }
+      sig { returns(Openlayer::Models::ProjectUpdateResponse::Links) }
       attr_reader :links
 
       sig do
         params(
-          links: Openlayer::Models::ProjectCreateResponse::Links::OrHash
+          links: Openlayer::Models::ProjectUpdateResponse::Links::OrHash
         ).void
       end
       attr_writer :links
@@ -91,7 +91,7 @@ module Openlayer
       sig do
         returns(
           T.nilable(
-            Openlayer::Models::ProjectCreateResponse::Source::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::Source::TaggedSymbol
           )
         )
       end
@@ -106,14 +106,14 @@ module Openlayer
       attr_accessor :workspace_id
 
       sig do
-        returns(T.nilable(Openlayer::Models::ProjectCreateResponse::GitRepo))
+        returns(T.nilable(Openlayer::Models::ProjectUpdateResponse::GitRepo))
       end
       attr_reader :git_repo
 
       sig do
         params(
           git_repo:
-            T.nilable(Openlayer::Models::ProjectCreateResponse::GitRepo::OrHash)
+            T.nilable(Openlayer::Models::ProjectUpdateResponse::GitRepo::OrHash)
         ).void
       end
       attr_writer :git_repo
@@ -127,22 +127,22 @@ module Openlayer
           development_goal_count: Integer,
           goal_count: Integer,
           inference_pipeline_count: Integer,
-          links: Openlayer::Models::ProjectCreateResponse::Links::OrHash,
+          links: Openlayer::Models::ProjectUpdateResponse::Links::OrHash,
           monitoring_goal_count: Integer,
           name: String,
           source:
             T.nilable(
-              Openlayer::Models::ProjectCreateResponse::Source::OrSymbol
+              Openlayer::Models::ProjectUpdateResponse::Source::OrSymbol
             ),
           task_type:
-            Openlayer::Models::ProjectCreateResponse::TaskType::OrSymbol,
+            Openlayer::Models::ProjectUpdateResponse::TaskType::OrSymbol,
           version_count: Integer,
           workspace_id: T.nilable(String),
           data_retention_days: T.nilable(Integer),
           description: T.nilable(String),
           git_repo:
             T.nilable(
-              Openlayer::Models::ProjectCreateResponse::GitRepo::OrHash
+              Openlayer::Models::ProjectUpdateResponse::GitRepo::OrHash
             ),
           model_developer: T.nilable(String),
           model_types: T.nilable(T::Array[String]),
@@ -203,21 +203,21 @@ module Openlayer
             development_goal_count: Integer,
             goal_count: Integer,
             inference_pipeline_count: Integer,
-            links: Openlayer::Models::ProjectCreateResponse::Links,
+            links: Openlayer::Models::ProjectUpdateResponse::Links,
             monitoring_goal_count: Integer,
             name: String,
             source:
               T.nilable(
-                Openlayer::Models::ProjectCreateResponse::Source::TaggedSymbol
+                Openlayer::Models::ProjectUpdateResponse::Source::TaggedSymbol
               ),
             task_type:
-              Openlayer::Models::ProjectCreateResponse::TaskType::TaggedSymbol,
+              Openlayer::Models::ProjectUpdateResponse::TaskType::TaggedSymbol,
             version_count: Integer,
             workspace_id: T.nilable(String),
             data_retention_days: T.nilable(Integer),
             description: T.nilable(String),
             git_repo:
-              T.nilable(Openlayer::Models::ProjectCreateResponse::GitRepo),
+              T.nilable(Openlayer::Models::ProjectUpdateResponse::GitRepo),
             model_developer: T.nilable(String),
             model_types: T.nilable(T::Array[String]),
             purpose: T.nilable(String)
@@ -231,7 +231,7 @@ module Openlayer
         OrHash =
           T.type_alias do
             T.any(
-              Openlayer::Models::ProjectCreateResponse::Links,
+              Openlayer::Models::ProjectUpdateResponse::Links,
               Openlayer::Internal::AnyHash
             )
           end
@@ -255,30 +255,30 @@ module Openlayer
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, Openlayer::Models::ProjectCreateResponse::Source)
+            T.all(Symbol, Openlayer::Models::ProjectUpdateResponse::Source)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         WEB =
           T.let(
             :web,
-            Openlayer::Models::ProjectCreateResponse::Source::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::Source::TaggedSymbol
           )
         API =
           T.let(
             :api,
-            Openlayer::Models::ProjectCreateResponse::Source::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::Source::TaggedSymbol
           )
         NULL =
           T.let(
             :null,
-            Openlayer::Models::ProjectCreateResponse::Source::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::Source::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              Openlayer::Models::ProjectCreateResponse::Source::TaggedSymbol
+              Openlayer::Models::ProjectUpdateResponse::Source::TaggedSymbol
             ]
           )
         end
@@ -292,35 +292,35 @@ module Openlayer
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, Openlayer::Models::ProjectCreateResponse::TaskType)
+            T.all(Symbol, Openlayer::Models::ProjectUpdateResponse::TaskType)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         LLM_BASE =
           T.let(
             :"llm-base",
-            Openlayer::Models::ProjectCreateResponse::TaskType::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::TaskType::TaggedSymbol
           )
         TABULAR_CLASSIFICATION =
           T.let(
             :"tabular-classification",
-            Openlayer::Models::ProjectCreateResponse::TaskType::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::TaskType::TaggedSymbol
           )
         TABULAR_REGRESSION =
           T.let(
             :"tabular-regression",
-            Openlayer::Models::ProjectCreateResponse::TaskType::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::TaskType::TaggedSymbol
           )
         TEXT_CLASSIFICATION =
           T.let(
             :"text-classification",
-            Openlayer::Models::ProjectCreateResponse::TaskType::TaggedSymbol
+            Openlayer::Models::ProjectUpdateResponse::TaskType::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              Openlayer::Models::ProjectCreateResponse::TaskType::TaggedSymbol
+              Openlayer::Models::ProjectUpdateResponse::TaskType::TaggedSymbol
             ]
           )
         end
@@ -332,7 +332,7 @@ module Openlayer
         OrHash =
           T.type_alias do
             T.any(
-              Openlayer::Models::ProjectCreateResponse::GitRepo,
+              Openlayer::Models::ProjectUpdateResponse::GitRepo,
               Openlayer::Internal::AnyHash
             )
           end

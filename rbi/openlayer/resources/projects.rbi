@@ -17,7 +17,11 @@ module Openlayer
         params(
           name: String,
           task_type: Openlayer::ProjectCreateParams::TaskType::OrSymbol,
+          data_retention_days: T.nilable(Integer),
           description: T.nilable(String),
+          model_developer: T.nilable(String),
+          model_types: T.nilable(T::Array[String]),
+          purpose: T.nilable(String),
           request_options: Openlayer::RequestOptions::OrHash
         ).returns(Openlayer::Models::ProjectCreateResponse)
       end
@@ -26,8 +30,50 @@ module Openlayer
         name:,
         # The task type of the project.
         task_type:,
+        # Number of days to retain monitoring data for this project. Null means data is
+        # retained indefinitely.
+        data_retention_days: nil,
         # The project description.
         description: nil,
+        # Who developed the model used in this project.
+        model_developer: nil,
+        # The kinds of model used in this project.
+        model_types: nil,
+        # What the system in this project is intended to do.
+        purpose: nil,
+        request_options: {}
+      )
+      end
+
+      # Update a project's metadata.
+      sig do
+        params(
+          project_id: String,
+          data_retention_days: T.nilable(Integer),
+          description: T.nilable(String),
+          model_developer: T.nilable(String),
+          model_types: T.nilable(T::Array[String]),
+          name: String,
+          purpose: T.nilable(String),
+          request_options: Openlayer::RequestOptions::OrHash
+        ).returns(Openlayer::Models::ProjectUpdateResponse)
+      end
+      def update(
+        # The project id.
+        project_id,
+        # Number of days to retain monitoring data for this project. Null means data is
+        # retained indefinitely.
+        data_retention_days: nil,
+        # The project description.
+        description: nil,
+        # Who developed the model used in this project.
+        model_developer: nil,
+        # The kinds of model used in this project.
+        model_types: nil,
+        # The project name.
+        name: nil,
+        # What the system in this project is intended to do.
+        purpose: nil,
         request_options: {}
       )
       end
