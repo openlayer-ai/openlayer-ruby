@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.1 (2026-08-20)
+
+Full Changelog: [v0.15.0...v0.15.1](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.15.0...v0.15.1)
+
+### Chores
+
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([13bce4e](https://github.com/openlayer-ai/openlayer-ruby/commit/13bce4ee5406cf25d9355cdc61be0873f58f5b39))
+
 ## 0.15.0 (2026-08-03)
 
 Full Changelog: [v0.14.1...v0.15.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.14.1...v0.15.0)
