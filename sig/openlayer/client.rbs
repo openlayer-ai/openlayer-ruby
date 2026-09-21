@@ -22,6 +22,10 @@ module Openlayer
 
     attr_reader tests: Openlayer::Resources::Tests
 
+    attr_reader background_tasks: Openlayer::Resources::BackgroundTasks
+
+    attr_reader governance: Openlayer::Resources::Governance
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

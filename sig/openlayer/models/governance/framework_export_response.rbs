@@ -1,0 +1,21 @@
+module Openlayer
+  module Models
+    module Governance
+      type framework_export_response =
+        { task_result_id: String, task_result_url: String }
+
+      class FrameworkExportResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor task_result_id: String
+
+        attr_accessor task_result_url: String
+
+        def initialize: (
+          task_result_id: String,
+          task_result_url: String
+        ) -> void
+
+        def to_hash: -> { task_result_id: String, task_result_url: String }
+      end
+    end
+  end
+end

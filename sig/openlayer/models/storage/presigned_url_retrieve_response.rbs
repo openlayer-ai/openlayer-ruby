@@ -1,0 +1,15 @@
+module Openlayer
+  module Models
+    module Storage
+      type presigned_url_retrieve_response = { url: String }
+
+      class PresignedURLRetrieveResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        def initialize: (url: String) -> void
+
+        def to_hash: -> { url: String }
+      end
+    end
+  end
+end

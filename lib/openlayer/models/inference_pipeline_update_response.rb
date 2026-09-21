@@ -878,7 +878,6 @@ module Openlayer
 
           WEB = :web
           API = :api
-          NULL = :null
 
           # @!method self.values
           #   @return [Array<Symbol>]

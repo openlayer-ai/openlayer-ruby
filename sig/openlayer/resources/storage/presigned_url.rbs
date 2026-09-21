@@ -7,6 +7,11 @@ module Openlayer
           ?request_options: Openlayer::request_opts
         ) -> Openlayer::Models::Storage::PresignedURLCreateResponse
 
+        def retrieve: (
+          storage_uri: String,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Storage::PresignedURLRetrieveResponse
+
         def initialize: (client: Openlayer::Client) -> void
       end
     end

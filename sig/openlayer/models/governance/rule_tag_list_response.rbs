@@ -1,0 +1,74 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_tag_list_response =
+        {
+          items: ::Array[Openlayer::Models::Governance::RuleTagListResponse::Item]
+        }
+
+      class RuleTagListResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Openlayer::Models::Governance::RuleTagListResponse::Item]
+
+        def initialize: (
+          items: ::Array[Openlayer::Models::Governance::RuleTagListResponse::Item]
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Openlayer::Models::Governance::RuleTagListResponse::Item]
+        }
+
+        type item =
+          {
+            id: String,
+            creator_id: String?,
+            date_created: Time,
+            date_updated: Time,
+            immutable: bool,
+            name: String,
+            workspace_id: String,
+            color: String?
+          }
+
+        class Item < Openlayer::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor color: String?
+
+          attr_accessor id: String
+
+          attr_accessor creator_id: String?
+
+          attr_accessor date_created: Time
+
+          attr_accessor date_updated: Time
+
+          attr_accessor immutable: bool
+
+          attr_accessor workspace_id: String
+
+          def initialize: (
+            id: String,
+            creator_id: String?,
+            date_created: Time,
+            date_updated: Time,
+            immutable: bool,
+            name: String,
+            workspace_id: String,
+            ?color: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            creator_id: String?,
+            date_created: Time,
+            date_updated: Time,
+            immutable: bool,
+            name: String,
+            workspace_id: String,
+            color: String?
+          }
+        end
+      end
+    end
+  end
+end

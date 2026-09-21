@@ -31,6 +31,12 @@ module Openlayer
     sig { returns(Openlayer::Resources::Tests) }
     attr_reader :tests
 
+    sig { returns(Openlayer::Resources::BackgroundTasks) }
+    attr_reader :background_tasks
+
+    sig { returns(Openlayer::Resources::Governance) }
+    attr_reader :governance
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

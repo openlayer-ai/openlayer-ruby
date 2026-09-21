@@ -1,0 +1,120 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_create_params =
+        {
+          workspace_id: String,
+          name: String,
+          scope: Openlayer::Models::Governance::RuleCreateParams::scope,
+          type: Openlayer::Models::Governance::RuleCreateParams::type_,
+          assignee_id: String?,
+          automation_params: ::Hash[Symbol, top]?,
+          automation_type: String?,
+          deactivated: bool,
+          description: String?,
+          evidence_type: Openlayer::Models::Governance::RuleCreateParams::evidence_type?,
+          renewal_cadence_days: Integer?,
+          tag_ids: ::Array[String]?
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class RuleCreateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor workspace_id: String
+
+        attr_accessor name: String
+
+        attr_accessor scope: Openlayer::Models::Governance::RuleCreateParams::scope
+
+        attr_accessor type: Openlayer::Models::Governance::RuleCreateParams::type_
+
+        attr_accessor assignee_id: String?
+
+        attr_accessor automation_params: ::Hash[Symbol, top]?
+
+        attr_accessor automation_type: String?
+
+        attr_reader deactivated: bool?
+
+        def deactivated=: (bool) -> bool
+
+        attr_accessor description: String?
+
+        attr_accessor evidence_type: Openlayer::Models::Governance::RuleCreateParams::evidence_type?
+
+        attr_accessor renewal_cadence_days: Integer?
+
+        attr_accessor tag_ids: ::Array[String]?
+
+        def initialize: (
+          workspace_id: String,
+          name: String,
+          scope: Openlayer::Models::Governance::RuleCreateParams::scope,
+          type: Openlayer::Models::Governance::RuleCreateParams::type_,
+          ?assignee_id: String?,
+          ?automation_params: ::Hash[Symbol, top]?,
+          ?automation_type: String?,
+          ?deactivated: bool,
+          ?description: String?,
+          ?evidence_type: Openlayer::Models::Governance::RuleCreateParams::evidence_type?,
+          ?renewal_cadence_days: Integer?,
+          ?tag_ids: ::Array[String]?,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          workspace_id: String,
+          name: String,
+          scope: Openlayer::Models::Governance::RuleCreateParams::scope,
+          type: Openlayer::Models::Governance::RuleCreateParams::type_,
+          assignee_id: String?,
+          automation_params: ::Hash[Symbol, top]?,
+          automation_type: String?,
+          deactivated: bool,
+          description: String?,
+          evidence_type: Openlayer::Models::Governance::RuleCreateParams::evidence_type?,
+          renewal_cadence_days: Integer?,
+          tag_ids: ::Array[String]?,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type scope = :project | :workspace
+
+        module Scope
+          extend Openlayer::Internal::Type::Enum
+
+          PROJECT: :project
+          WORKSPACE: :workspace
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleCreateParams::scope]
+        end
+
+        type type_ = :platform | :evidence
+
+        module Type
+          extend Openlayer::Internal::Type::Enum
+
+          PLATFORM: :platform
+          EVIDENCE: :evidence
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleCreateParams::type_]
+        end
+
+        type evidence_type = :document | :text | :url | :categoryValue
+
+        module EvidenceType
+          extend Openlayer::Internal::Type::Enum
+
+          DOCUMENT: :document
+          TEXT: :text
+          URL: :url
+          CATEGORY_VALUE: :categoryValue
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleCreateParams::evidence_type]
+        end
+      end
+    end
+  end
+end

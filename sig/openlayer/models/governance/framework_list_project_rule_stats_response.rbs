@@ -1,0 +1,232 @@
+module Openlayer
+  module Models
+    module Governance
+      type framework_list_project_rule_stats_response =
+        {
+          items: ::Array[Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item]
+        }
+
+      class FrameworkListProjectRuleStatsResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item]
+
+        def initialize: (
+          items: ::Array[Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item]
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item]
+        }
+
+        type item =
+          {
+            project_id: String,
+            project_name: String,
+            task_type: String,
+            total: Integer,
+            total_due_soon: Integer,
+            total_error: Integer,
+            total_failing: Integer,
+            total_passing: Integer,
+            total_pending: Integer,
+            total_running: Integer,
+            total_skipped: Integer,
+            by_rule_type: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType
+          }
+
+        class Item < Openlayer::Internal::Type::BaseModel
+          attr_accessor project_id: String
+
+          attr_accessor project_name: String
+
+          attr_accessor task_type: String
+
+          attr_accessor total: Integer
+
+          attr_accessor total_due_soon: Integer
+
+          attr_accessor total_error: Integer
+
+          attr_accessor total_failing: Integer
+
+          attr_accessor total_passing: Integer
+
+          attr_accessor total_pending: Integer
+
+          attr_accessor total_running: Integer
+
+          attr_accessor total_skipped: Integer
+
+          attr_reader by_rule_type: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType?
+
+          def by_rule_type=: (
+            Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType
+          ) -> Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType
+
+          def initialize: (
+            project_id: String,
+            project_name: String,
+            task_type: String,
+            total: Integer,
+            total_due_soon: Integer,
+            total_error: Integer,
+            total_failing: Integer,
+            total_passing: Integer,
+            total_pending: Integer,
+            total_running: Integer,
+            total_skipped: Integer,
+            ?by_rule_type: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType
+          ) -> void
+
+          def to_hash: -> {
+            project_id: String,
+            project_name: String,
+            task_type: String,
+            total: Integer,
+            total_due_soon: Integer,
+            total_error: Integer,
+            total_failing: Integer,
+            total_passing: Integer,
+            total_pending: Integer,
+            total_running: Integer,
+            total_skipped: Integer,
+            by_rule_type: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType
+          }
+
+          type by_rule_type =
+            {
+              evidence: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Evidence,
+              platform: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Platform
+            }
+
+          class ByRuleType < Openlayer::Internal::Type::BaseModel
+            attr_reader evidence: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Evidence?
+
+            def evidence=: (
+              Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Evidence
+            ) -> Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Evidence
+
+            attr_reader platform: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Platform?
+
+            def platform=: (
+              Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Platform
+            ) -> Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Platform
+
+            def initialize: (
+              ?evidence: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Evidence,
+              ?platform: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Platform
+            ) -> void
+
+            def to_hash: -> {
+              evidence: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Evidence,
+              platform: Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse::Item::ByRuleType::Platform
+            }
+
+            type evidence =
+              {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+
+            class Evidence < Openlayer::Internal::Type::BaseModel
+              attr_accessor total: Integer
+
+              attr_accessor total_due_soon: Integer
+
+              attr_accessor total_error: Integer
+
+              attr_accessor total_failing: Integer
+
+              attr_accessor total_passing: Integer
+
+              attr_accessor total_pending: Integer
+
+              attr_accessor total_running: Integer
+
+              attr_accessor total_skipped: Integer
+
+              def initialize: (
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              ) -> void
+
+              def to_hash: -> {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+            end
+
+            type platform =
+              {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+
+            class Platform < Openlayer::Internal::Type::BaseModel
+              attr_accessor total: Integer
+
+              attr_accessor total_due_soon: Integer
+
+              attr_accessor total_error: Integer
+
+              attr_accessor total_failing: Integer
+
+              attr_accessor total_passing: Integer
+
+              attr_accessor total_pending: Integer
+
+              attr_accessor total_running: Integer
+
+              attr_accessor total_skipped: Integer
+
+              def initialize: (
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              ) -> void
+
+              def to_hash: -> {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+            end
+          end
+        end
+      end
+    end
+  end
+end

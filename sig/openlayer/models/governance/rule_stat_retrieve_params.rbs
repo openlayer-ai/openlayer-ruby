@@ -1,0 +1,38 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_stat_retrieve_params =
+        { workspace_id: String, framework_id: String, project_id: String }
+        & Openlayer::Internal::Type::request_parameters
+
+      class RuleStatRetrieveParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor workspace_id: String
+
+        attr_reader framework_id: String?
+
+        def framework_id=: (String) -> String
+
+        attr_reader project_id: String?
+
+        def project_id=: (String) -> String
+
+        def initialize: (
+          workspace_id: String,
+          ?framework_id: String,
+          ?project_id: String,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          workspace_id: String,
+          framework_id: String,
+          project_id: String,
+          request_options: Openlayer::RequestOptions
+        }
+      end
+    end
+  end
+end

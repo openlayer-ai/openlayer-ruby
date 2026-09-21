@@ -1363,11 +1363,6 @@ module Openlayer
                 :api,
                 Openlayer::Projects::InferencePipelineCreateParams::Project::Source::TaggedSymbol
               )
-            NULL =
-              T.let(
-                :null,
-                Openlayer::Projects::InferencePipelineCreateParams::Project::Source::TaggedSymbol
-              )
 
             sig do
               override.returns(

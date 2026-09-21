@@ -1,0 +1,16 @@
+module Openlayer
+  module Resources
+    class Governance
+      class RuleTags
+        def list: (
+          String workspace_id,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::RuleTagListResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

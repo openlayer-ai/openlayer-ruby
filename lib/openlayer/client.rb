@@ -36,6 +36,12 @@ module Openlayer
     # @return [Openlayer::Resources::Tests]
     attr_reader :tests
 
+    # @return [Openlayer::Resources::BackgroundTasks]
+    attr_reader :background_tasks
+
+    # @return [Openlayer::Resources::Governance]
+    attr_reader :governance
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -99,6 +105,8 @@ module Openlayer
       @inference_pipelines = Openlayer::Resources::InferencePipelines.new(client: self)
       @storage = Openlayer::Resources::Storage.new(client: self)
       @tests = Openlayer::Resources::Tests.new(client: self)
+      @background_tasks = Openlayer::Resources::BackgroundTasks.new(client: self)
+      @governance = Openlayer::Resources::Governance.new(client: self)
     end
   end
 end

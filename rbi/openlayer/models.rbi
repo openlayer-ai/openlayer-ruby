@@ -1,9 +1,13 @@
 # typed: strong
 
 module Openlayer
+  BackgroundTaskRetrieveParams = Openlayer::Models::BackgroundTaskRetrieveParams
+
   CommitRetrieveParams = Openlayer::Models::CommitRetrieveParams
 
   Commits = Openlayer::Models::Commits
+
+  Governance = Openlayer::Models::Governance
 
   InferencePipelineDeleteParams =
     Openlayer::Models::InferencePipelineDeleteParams

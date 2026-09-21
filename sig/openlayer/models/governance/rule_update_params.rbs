@@ -1,0 +1,62 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_update_params =
+        {
+          rule_id: String,
+          assignee_id: String?,
+          deactivated: bool,
+          description: String?,
+          name: String,
+          renewal_cadence_days: Integer?,
+          tag_ids: ::Array[String]?
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class RuleUpdateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor rule_id: String
+
+        attr_accessor assignee_id: String?
+
+        attr_reader deactivated: bool?
+
+        def deactivated=: (bool) -> bool
+
+        attr_accessor description: String?
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_accessor renewal_cadence_days: Integer?
+
+        attr_accessor tag_ids: ::Array[String]?
+
+        def initialize: (
+          rule_id: String,
+          ?assignee_id: String?,
+          ?deactivated: bool,
+          ?description: String?,
+          ?name: String,
+          ?renewal_cadence_days: Integer?,
+          ?tag_ids: ::Array[String]?,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          rule_id: String,
+          assignee_id: String?,
+          deactivated: bool,
+          description: String?,
+          name: String,
+          renewal_cadence_days: Integer?,
+          tag_ids: ::Array[String]?,
+          request_options: Openlayer::RequestOptions
+        }
+      end
+    end
+  end
+end

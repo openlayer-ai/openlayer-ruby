@@ -1,0 +1,24 @@
+module Openlayer
+  module Resources
+    class Governance
+      class Frameworks
+        class Documents
+          def retrieve: (
+            String document_id,
+            framework_id: String,
+            ?request_options: Openlayer::request_opts
+          ) -> Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse
+
+          def list: (
+            String framework_id,
+            ?page: Integer,
+            ?per_page: Integer,
+            ?request_options: Openlayer::request_opts
+          ) -> Openlayer::Models::Governance::Frameworks::DocumentListResponse
+
+          def initialize: (client: Openlayer::Client) -> void
+        end
+      end
+    end
+  end
+end

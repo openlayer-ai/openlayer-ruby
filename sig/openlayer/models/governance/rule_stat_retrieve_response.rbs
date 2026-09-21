@@ -1,0 +1,434 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_stat_retrieve_response =
+        {
+          rule_results: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults,
+          rules: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules
+        }
+
+      class RuleStatRetrieveResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor rule_results: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults
+
+        attr_accessor rules: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules
+
+        def initialize: (
+          rule_results: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults,
+          rules: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules
+        ) -> void
+
+        def to_hash: -> {
+          rule_results: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults,
+          rules: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules
+        }
+
+        type rule_results =
+          {
+            total: Integer,
+            total_due_soon: Integer,
+            total_error: Integer,
+            total_failing: Integer,
+            total_passing: Integer,
+            total_pending: Integer,
+            total_running: Integer,
+            total_skipped: Integer,
+            by_rule_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope,
+            by_rule_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType
+          }
+
+        class RuleResults < Openlayer::Internal::Type::BaseModel
+          attr_accessor total: Integer
+
+          attr_accessor total_due_soon: Integer
+
+          attr_accessor total_error: Integer
+
+          attr_accessor total_failing: Integer
+
+          attr_accessor total_passing: Integer
+
+          attr_accessor total_pending: Integer
+
+          attr_accessor total_running: Integer
+
+          attr_accessor total_skipped: Integer
+
+          attr_reader by_rule_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope?
+
+          def by_rule_scope=: (
+            Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope
+          ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope
+
+          attr_reader by_rule_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType?
+
+          def by_rule_type=: (
+            Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType
+          ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType
+
+          def initialize: (
+            total: Integer,
+            total_due_soon: Integer,
+            total_error: Integer,
+            total_failing: Integer,
+            total_passing: Integer,
+            total_pending: Integer,
+            total_running: Integer,
+            total_skipped: Integer,
+            ?by_rule_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope,
+            ?by_rule_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType
+          ) -> void
+
+          def to_hash: -> {
+            total: Integer,
+            total_due_soon: Integer,
+            total_error: Integer,
+            total_failing: Integer,
+            total_passing: Integer,
+            total_pending: Integer,
+            total_running: Integer,
+            total_skipped: Integer,
+            by_rule_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope,
+            by_rule_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType
+          }
+
+          type by_rule_scope =
+            {
+              project: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Project,
+              workspace: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Workspace
+            }
+
+          class ByRuleScope < Openlayer::Internal::Type::BaseModel
+            attr_reader project: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Project?
+
+            def project=: (
+              Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Project
+            ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Project
+
+            attr_reader workspace: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Workspace?
+
+            def workspace=: (
+              Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Workspace
+            ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Workspace
+
+            def initialize: (
+              ?project: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Project,
+              ?workspace: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Workspace
+            ) -> void
+
+            def to_hash: -> {
+              project: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Project,
+              workspace: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleScope::Workspace
+            }
+
+            type project =
+              {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+
+            class Project < Openlayer::Internal::Type::BaseModel
+              attr_accessor total: Integer
+
+              attr_accessor total_due_soon: Integer
+
+              attr_accessor total_error: Integer
+
+              attr_accessor total_failing: Integer
+
+              attr_accessor total_passing: Integer
+
+              attr_accessor total_pending: Integer
+
+              attr_accessor total_running: Integer
+
+              attr_accessor total_skipped: Integer
+
+              def initialize: (
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              ) -> void
+
+              def to_hash: -> {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+            end
+
+            type workspace =
+              {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+
+            class Workspace < Openlayer::Internal::Type::BaseModel
+              attr_accessor total: Integer
+
+              attr_accessor total_due_soon: Integer
+
+              attr_accessor total_error: Integer
+
+              attr_accessor total_failing: Integer
+
+              attr_accessor total_passing: Integer
+
+              attr_accessor total_pending: Integer
+
+              attr_accessor total_running: Integer
+
+              attr_accessor total_skipped: Integer
+
+              def initialize: (
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              ) -> void
+
+              def to_hash: -> {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+            end
+          end
+
+          type by_rule_type =
+            {
+              evidence: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Evidence,
+              platform: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Platform
+            }
+
+          class ByRuleType < Openlayer::Internal::Type::BaseModel
+            attr_reader evidence: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Evidence?
+
+            def evidence=: (
+              Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Evidence
+            ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Evidence
+
+            attr_reader platform: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Platform?
+
+            def platform=: (
+              Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Platform
+            ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Platform
+
+            def initialize: (
+              ?evidence: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Evidence,
+              ?platform: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Platform
+            ) -> void
+
+            def to_hash: -> {
+              evidence: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Evidence,
+              platform: Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults::ByRuleType::Platform
+            }
+
+            type evidence =
+              {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+
+            class Evidence < Openlayer::Internal::Type::BaseModel
+              attr_accessor total: Integer
+
+              attr_accessor total_due_soon: Integer
+
+              attr_accessor total_error: Integer
+
+              attr_accessor total_failing: Integer
+
+              attr_accessor total_passing: Integer
+
+              attr_accessor total_pending: Integer
+
+              attr_accessor total_running: Integer
+
+              attr_accessor total_skipped: Integer
+
+              def initialize: (
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              ) -> void
+
+              def to_hash: -> {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+            end
+
+            type platform =
+              {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+
+            class Platform < Openlayer::Internal::Type::BaseModel
+              attr_accessor total: Integer
+
+              attr_accessor total_due_soon: Integer
+
+              attr_accessor total_error: Integer
+
+              attr_accessor total_failing: Integer
+
+              attr_accessor total_passing: Integer
+
+              attr_accessor total_pending: Integer
+
+              attr_accessor total_running: Integer
+
+              attr_accessor total_skipped: Integer
+
+              def initialize: (
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              ) -> void
+
+              def to_hash: -> {
+                total: Integer,
+                total_due_soon: Integer,
+                total_error: Integer,
+                total_failing: Integer,
+                total_passing: Integer,
+                total_pending: Integer,
+                total_running: Integer,
+                total_skipped: Integer
+              }
+            end
+          end
+        end
+
+        type rules =
+          {
+            by_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByScope,
+            by_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByType,
+            total: Integer
+          }
+
+        class Rules < Openlayer::Internal::Type::BaseModel
+          attr_reader by_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByScope?
+
+          def by_scope=: (
+            Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByScope
+          ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByScope
+
+          attr_reader by_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByType?
+
+          def by_type=: (
+            Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByType
+          ) -> Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByType
+
+          attr_reader total: Integer?
+
+          def total=: (Integer) -> Integer
+
+          def initialize: (
+            ?by_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByScope,
+            ?by_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByType,
+            ?total: Integer
+          ) -> void
+
+          def to_hash: -> {
+            by_scope: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByScope,
+            by_type: Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules::ByType,
+            total: Integer
+          }
+
+          type by_scope = { project: Integer, workspace: Integer }
+
+          class ByScope < Openlayer::Internal::Type::BaseModel
+            attr_reader project: Integer?
+
+            def project=: (Integer) -> Integer
+
+            attr_reader workspace: Integer?
+
+            def workspace=: (Integer) -> Integer
+
+            def initialize: (?project: Integer, ?workspace: Integer) -> void
+
+            def to_hash: -> { project: Integer, workspace: Integer }
+          end
+
+          type by_type = { evidence: Integer, platform: Integer }
+
+          class ByType < Openlayer::Internal::Type::BaseModel
+            attr_reader evidence: Integer?
+
+            def evidence=: (Integer) -> Integer
+
+            attr_reader platform: Integer?
+
+            def platform=: (Integer) -> Integer
+
+            def initialize: (?evidence: Integer, ?platform: Integer) -> void
+
+            def to_hash: -> { evidence: Integer, platform: Integer }
+          end
+        end
+      end
+    end
+  end
+end

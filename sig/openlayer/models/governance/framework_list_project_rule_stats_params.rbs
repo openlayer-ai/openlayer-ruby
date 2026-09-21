@@ -1,0 +1,87 @@
+module Openlayer
+  module Models
+    module Governance
+      type framework_list_project_rule_stats_params =
+        {
+          framework_id: String,
+          asc: bool,
+          page: Integer,
+          per_page: Integer,
+          sort_column: Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class FrameworkListProjectRuleStatsParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor framework_id: String
+
+        attr_reader asc: bool?
+
+        def asc=: (bool) -> bool
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader per_page: Integer?
+
+        def per_page=: (Integer) -> Integer
+
+        attr_reader sort_column: Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column?
+
+        def sort_column=: (
+          Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column
+        ) -> Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column
+
+        def initialize: (
+          framework_id: String,
+          ?asc: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?sort_column: Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          framework_id: String,
+          asc: bool,
+          page: Integer,
+          per_page: Integer,
+          sort_column: Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type sort_column =
+          :projectName
+          | :total
+          | :overallCompletion
+          | :totalPassing
+          | :totalFailing
+          | :totalSkipped
+          | :totalRunning
+          | :totalError
+          | :totalPending
+          | :totalDueSoon
+
+        module SortColumn
+          extend Openlayer::Internal::Type::Enum
+
+          PROJECT_NAME: :projectName
+          TOTAL: :total
+          OVERALL_COMPLETION: :overallCompletion
+          TOTAL_PASSING: :totalPassing
+          TOTAL_FAILING: :totalFailing
+          TOTAL_SKIPPED: :totalSkipped
+          TOTAL_RUNNING: :totalRunning
+          TOTAL_ERROR: :totalError
+          TOTAL_PENDING: :totalPending
+          TOTAL_DUE_SOON: :totalDueSoon
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column]
+        end
+      end
+    end
+  end
+end

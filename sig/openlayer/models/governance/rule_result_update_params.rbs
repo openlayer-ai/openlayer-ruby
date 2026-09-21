@@ -1,0 +1,165 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_result_update_params =
+        {
+          rule_result_id: String,
+          assignee_id: String?,
+          blocked_by: ::Array[Openlayer::Governance::RuleResultUpdateParams::BlockedBy],
+          blocking: ::Array[Openlayer::Governance::RuleResultUpdateParams::Blocking],
+          deactivated: bool,
+          deactivated_reason: String?
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class RuleResultUpdateParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor rule_result_id: String
+
+        attr_accessor assignee_id: String?
+
+        attr_reader blocked_by: ::Array[Openlayer::Governance::RuleResultUpdateParams::BlockedBy]?
+
+        def blocked_by=: (
+          ::Array[Openlayer::Governance::RuleResultUpdateParams::BlockedBy]
+        ) -> ::Array[Openlayer::Governance::RuleResultUpdateParams::BlockedBy]
+
+        attr_reader blocking: ::Array[Openlayer::Governance::RuleResultUpdateParams::Blocking]?
+
+        def blocking=: (
+          ::Array[Openlayer::Governance::RuleResultUpdateParams::Blocking]
+        ) -> ::Array[Openlayer::Governance::RuleResultUpdateParams::Blocking]
+
+        attr_reader deactivated: bool?
+
+        def deactivated=: (bool) -> bool
+
+        attr_accessor deactivated_reason: String?
+
+        def initialize: (
+          rule_result_id: String,
+          ?assignee_id: String?,
+          ?blocked_by: ::Array[Openlayer::Governance::RuleResultUpdateParams::BlockedBy],
+          ?blocking: ::Array[Openlayer::Governance::RuleResultUpdateParams::Blocking],
+          ?deactivated: bool,
+          ?deactivated_reason: String?,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          rule_result_id: String,
+          assignee_id: String?,
+          blocked_by: ::Array[Openlayer::Governance::RuleResultUpdateParams::BlockedBy],
+          blocking: ::Array[Openlayer::Governance::RuleResultUpdateParams::Blocking],
+          deactivated: bool,
+          deactivated_reason: String?,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type blocked_by =
+          {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::status
+          }
+
+        class BlockedBy < Openlayer::Internal::Type::BaseModel
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_reader status: Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::status?
+
+          def status=: (
+            Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::status
+          ) -> Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::status
+
+          def initialize: (
+            ?id: String,
+            ?status: Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::status
+          }
+
+          type status =
+            :running
+            | :passing
+            | :failing
+            | :skipped
+            | :error
+            | :pending
+            | :due_soon
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            RUNNING: :running
+            PASSING: :passing
+            FAILING: :failing
+            SKIPPED: :skipped
+            ERROR: :error
+            PENDING: :pending
+            DUE_SOON: :due_soon
+
+            def self?.values: -> ::Array[Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::status]
+          end
+        end
+
+        type blocking =
+          {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::status
+          }
+
+        class Blocking < Openlayer::Internal::Type::BaseModel
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_reader status: Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::status?
+
+          def status=: (
+            Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::status
+          ) -> Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::status
+
+          def initialize: (
+            ?id: String,
+            ?status: Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::status
+          }
+
+          type status =
+            :running
+            | :passing
+            | :failing
+            | :skipped
+            | :error
+            | :pending
+            | :due_soon
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            RUNNING: :running
+            PASSING: :passing
+            FAILING: :failing
+            SKIPPED: :skipped
+            ERROR: :error
+            PENDING: :pending
+            DUE_SOON: :due_soon
+
+            def self?.values: -> ::Array[Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::status]
+          end
+        end
+      end
+    end
+  end
+end

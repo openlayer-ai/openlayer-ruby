@@ -1,0 +1,418 @@
+module Openlayer
+  module Models
+    module Governance
+      module Frameworks
+        type document_retrieve_response =
+          {
+            id: String,
+            date_created: Time,
+            date_updated: Time,
+            framework_id: String,
+            title: String,
+            sections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section]
+          }
+
+        class DocumentRetrieveResponse < Openlayer::Internal::Type::BaseModel
+          attr_accessor title: String
+
+          attr_accessor id: String
+
+          attr_accessor date_created: Time
+
+          attr_accessor date_updated: Time
+
+          attr_accessor framework_id: String
+
+          attr_reader sections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section]?
+
+          def sections=: (
+            ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section]
+          ) -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section]
+
+          def initialize: (
+            id: String,
+            date_created: Time,
+            date_updated: Time,
+            framework_id: String,
+            title: String,
+            ?sections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section]
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            date_created: Time,
+            date_updated: Time,
+            framework_id: String,
+            title: String,
+            sections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section]
+          }
+
+          type section =
+            {
+              id: String,
+              document_id: String,
+              number: String,
+              sort_order: Integer,
+              title: String,
+              rule_count: Integer,
+              rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule],
+              subsections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection],
+              text: String?
+            }
+
+          class Section < Openlayer::Internal::Type::BaseModel
+            attr_accessor number: String
+
+            attr_accessor sort_order: Integer
+
+            attr_accessor title: String
+
+            attr_accessor text: String?
+
+            attr_accessor id: String
+
+            attr_accessor document_id: String
+
+            attr_reader rule_count: Integer?
+
+            def rule_count=: (Integer) -> Integer
+
+            attr_reader rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule]?
+
+            def rules=: (
+              ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule]
+            ) -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule]
+
+            attr_reader subsections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection]?
+
+            def subsections=: (
+              ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection]
+            ) -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection]
+
+            def initialize: (
+              id: String,
+              document_id: String,
+              number: String,
+              sort_order: Integer,
+              title: String,
+              ?rule_count: Integer,
+              ?rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule],
+              ?subsections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection],
+              ?text: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              document_id: String,
+              number: String,
+              sort_order: Integer,
+              title: String,
+              rule_count: Integer,
+              rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule],
+              subsections: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection],
+              text: String?
+            }
+
+            type rule =
+              {
+                id: String,
+                name: String,
+                scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::scope,
+                type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::type_,
+                automation_params: ::Hash[Symbol, top]?,
+                automation_type: String?,
+                date_created: Time,
+                date_updated: Time,
+                deactivated: bool,
+                description: String?,
+                evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::evidence_type?,
+                immutable: bool,
+                renewal_cadence_days: Integer?
+              }
+
+            class Rule < Openlayer::Internal::Type::BaseModel
+              attr_accessor name: String
+
+              attr_accessor scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::scope
+
+              attr_accessor type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::type_
+
+              attr_accessor automation_params: ::Hash[Symbol, top]?
+
+              attr_accessor automation_type: String?
+
+              attr_reader deactivated: bool?
+
+              def deactivated=: (bool) -> bool
+
+              attr_accessor description: String?
+
+              attr_accessor evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::evidence_type?
+
+              attr_accessor renewal_cadence_days: Integer?
+
+              attr_accessor id: String
+
+              attr_reader date_created: Time?
+
+              def date_created=: (Time) -> Time
+
+              attr_reader date_updated: Time?
+
+              def date_updated=: (Time) -> Time
+
+              attr_reader immutable: bool?
+
+              def immutable=: (bool) -> bool
+
+              def initialize: (
+                id: String,
+                name: String,
+                scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::scope,
+                type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::type_,
+                ?automation_params: ::Hash[Symbol, top]?,
+                ?automation_type: String?,
+                ?date_created: Time,
+                ?date_updated: Time,
+                ?deactivated: bool,
+                ?description: String?,
+                ?evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::evidence_type?,
+                ?immutable: bool,
+                ?renewal_cadence_days: Integer?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                name: String,
+                scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::scope,
+                type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::type_,
+                automation_params: ::Hash[Symbol, top]?,
+                automation_type: String?,
+                date_created: Time,
+                date_updated: Time,
+                deactivated: bool,
+                description: String?,
+                evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::evidence_type?,
+                immutable: bool,
+                renewal_cadence_days: Integer?
+              }
+
+              type scope = :project | :workspace
+
+              module Scope
+                extend Openlayer::Internal::Type::Enum
+
+                PROJECT: :project
+                WORKSPACE: :workspace
+
+                def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::scope]
+              end
+
+              type type_ = :platform | :evidence
+
+              module Type
+                extend Openlayer::Internal::Type::Enum
+
+                PLATFORM: :platform
+                EVIDENCE: :evidence
+
+                def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::type_]
+              end
+
+              type evidence_type = :document | :text | :url | :categoryValue
+
+              module EvidenceType
+                extend Openlayer::Internal::Type::Enum
+
+                DOCUMENT: :document
+                TEXT: :text
+                URL: :url
+                CATEGORY_VALUE: :categoryValue
+
+                def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Rule::evidence_type]
+              end
+            end
+
+            type subsection =
+              {
+                id: String,
+                number: String,
+                section_id: String,
+                sort_order: Integer,
+                title: String,
+                rule_count: Integer,
+                rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule],
+                text: String?
+              }
+
+            class Subsection < Openlayer::Internal::Type::BaseModel
+              attr_accessor number: String
+
+              attr_accessor sort_order: Integer
+
+              attr_accessor title: String
+
+              attr_accessor text: String?
+
+              attr_accessor id: String
+
+              attr_accessor section_id: String
+
+              attr_reader rule_count: Integer?
+
+              def rule_count=: (Integer) -> Integer
+
+              attr_reader rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule]?
+
+              def rules=: (
+                ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule]
+              ) -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule]
+
+              def initialize: (
+                id: String,
+                number: String,
+                section_id: String,
+                sort_order: Integer,
+                title: String,
+                ?rule_count: Integer,
+                ?rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule],
+                ?text: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                number: String,
+                section_id: String,
+                sort_order: Integer,
+                title: String,
+                rule_count: Integer,
+                rules: ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule],
+                text: String?
+              }
+
+              type rule =
+                {
+                  id: String,
+                  name: String,
+                  scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::scope,
+                  type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::type_,
+                  automation_params: ::Hash[Symbol, top]?,
+                  automation_type: String?,
+                  date_created: Time,
+                  date_updated: Time,
+                  deactivated: bool,
+                  description: String?,
+                  evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::evidence_type?,
+                  immutable: bool,
+                  renewal_cadence_days: Integer?
+                }
+
+              class Rule < Openlayer::Internal::Type::BaseModel
+                attr_accessor name: String
+
+                attr_accessor scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::scope
+
+                attr_accessor type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::type_
+
+                attr_accessor automation_params: ::Hash[Symbol, top]?
+
+                attr_accessor automation_type: String?
+
+                attr_reader deactivated: bool?
+
+                def deactivated=: (bool) -> bool
+
+                attr_accessor description: String?
+
+                attr_accessor evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::evidence_type?
+
+                attr_accessor renewal_cadence_days: Integer?
+
+                attr_accessor id: String
+
+                attr_reader date_created: Time?
+
+                def date_created=: (Time) -> Time
+
+                attr_reader date_updated: Time?
+
+                def date_updated=: (Time) -> Time
+
+                attr_reader immutable: bool?
+
+                def immutable=: (bool) -> bool
+
+                def initialize: (
+                  id: String,
+                  name: String,
+                  scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::scope,
+                  type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::type_,
+                  ?automation_params: ::Hash[Symbol, top]?,
+                  ?automation_type: String?,
+                  ?date_created: Time,
+                  ?date_updated: Time,
+                  ?deactivated: bool,
+                  ?description: String?,
+                  ?evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::evidence_type?,
+                  ?immutable: bool,
+                  ?renewal_cadence_days: Integer?
+                ) -> void
+
+                def to_hash: -> {
+                  id: String,
+                  name: String,
+                  scope: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::scope,
+                  type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::type_,
+                  automation_params: ::Hash[Symbol, top]?,
+                  automation_type: String?,
+                  date_created: Time,
+                  date_updated: Time,
+                  deactivated: bool,
+                  description: String?,
+                  evidence_type: Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::evidence_type?,
+                  immutable: bool,
+                  renewal_cadence_days: Integer?
+                }
+
+                type scope = :project | :workspace
+
+                module Scope
+                  extend Openlayer::Internal::Type::Enum
+
+                  PROJECT: :project
+                  WORKSPACE: :workspace
+
+                  def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::scope]
+                end
+
+                type type_ = :platform | :evidence
+
+                module Type
+                  extend Openlayer::Internal::Type::Enum
+
+                  PLATFORM: :platform
+                  EVIDENCE: :evidence
+
+                  def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::type_]
+                end
+
+                type evidence_type = :document | :text | :url | :categoryValue
+
+                module EvidenceType
+                  extend Openlayer::Internal::Type::Enum
+
+                  DOCUMENT: :document
+                  TEXT: :text
+                  URL: :url
+                  CATEGORY_VALUE: :categoryValue
+
+                  def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::DocumentRetrieveResponse::Section::Subsection::Rule::evidence_type]
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

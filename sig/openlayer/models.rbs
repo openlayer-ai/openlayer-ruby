@@ -1,7 +1,11 @@
 module Openlayer
+  class BackgroundTaskRetrieveParams = Openlayer::Models::BackgroundTaskRetrieveParams
+
   class CommitRetrieveParams = Openlayer::Models::CommitRetrieveParams
 
   module Commits = Openlayer::Models::Commits
+
+  module Governance = Openlayer::Models::Governance
 
   class InferencePipelineDeleteParams = Openlayer::Models::InferencePipelineDeleteParams
 

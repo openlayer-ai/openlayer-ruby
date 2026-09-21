@@ -1,0 +1,88 @@
+module Openlayer
+  module Resources
+    class Governance
+      class Frameworks
+        attr_reader documents: Openlayer::Resources::Governance::Frameworks::Documents
+
+        attr_reader sections: Openlayer::Resources::Governance::Frameworks::Sections
+
+        attr_reader subsections: Openlayer::Resources::Governance::Frameworks::Subsections
+
+        def create: (
+          String workspace_id,
+          name: String,
+          ?description: String?,
+          ?enabled: bool,
+          ?project_selector: Openlayer::Governance::FrameworkCreateParams::ProjectSelector?,
+          ?tags: ::Array[String],
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkCreateResponse
+
+        def retrieve: (
+          String framework_id,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkRetrieveResponse
+
+        def update: (
+          String framework_id,
+          ?avatar: Openlayer::Governance::FrameworkUpdateParams::Avatar?,
+          ?description: String?,
+          ?enabled: bool,
+          ?extended_description: ::Hash[Symbol, top]?,
+          ?href: String?,
+          ?name: String,
+          ?project_selector: Openlayer::Governance::FrameworkUpdateParams::ProjectSelector?,
+          ?tags: ::Array[String],
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkUpdateResponse
+
+        def list: (
+          String workspace_id,
+          ?asc: bool,
+          ?completion_operator: Openlayer::Models::Governance::FrameworkListParams::completion_operator,
+          ?completion_value: Integer,
+          ?enabled: bool,
+          ?include_rule_stats: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?project_id: String,
+          ?search_query: String,
+          ?sort_column: Openlayer::Models::Governance::FrameworkListParams::sort_column,
+          ?tags: ::Array[String],
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkListResponse
+
+        def export: (
+          String framework_id,
+          ?project_id: String?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkExportResponse
+
+        def list_project_rule_stats: (
+          String framework_id,
+          ?asc: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?sort_column: Openlayer::Models::Governance::FrameworkListProjectRuleStatsParams::sort_column,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkListProjectRuleStatsResponse
+
+        def list_projects: (
+          String framework_id,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkListProjectsResponse
+
+        def list_rules: (
+          String framework_id,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::FrameworkListRulesResponse
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

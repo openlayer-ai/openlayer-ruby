@@ -18,4 +18,18 @@ class Openlayer::Test::Resources::Storage::PresignedURLTest < Openlayer::Test::R
       }
     end
   end
+
+  def test_retrieve_required_params
+    response = @openlayer.storage.presigned_url.retrieve(storage_uri: "storageUri")
+
+    assert_pattern do
+      response => Openlayer::Models::Storage::PresignedURLRetrieveResponse
+    end
+
+    assert_pattern do
+      response => {
+        url: String
+      }
+    end
+  end
 end

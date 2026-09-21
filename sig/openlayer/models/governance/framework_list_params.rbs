@@ -1,0 +1,145 @@
+module Openlayer
+  module Models
+    module Governance
+      type framework_list_params =
+        {
+          workspace_id: String,
+          asc: bool,
+          completion_operator: Openlayer::Models::Governance::FrameworkListParams::completion_operator,
+          completion_value: Integer,
+          enabled: bool,
+          include_rule_stats: bool,
+          page: Integer,
+          per_page: Integer,
+          project_id: String,
+          search_query: String,
+          sort_column: Openlayer::Models::Governance::FrameworkListParams::sort_column,
+          tags: ::Array[String]
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class FrameworkListParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor workspace_id: String
+
+        attr_reader asc: bool?
+
+        def asc=: (bool) -> bool
+
+        attr_reader completion_operator: Openlayer::Models::Governance::FrameworkListParams::completion_operator?
+
+        def completion_operator=: (
+          Openlayer::Models::Governance::FrameworkListParams::completion_operator
+        ) -> Openlayer::Models::Governance::FrameworkListParams::completion_operator
+
+        attr_reader completion_value: Integer?
+
+        def completion_value=: (Integer) -> Integer
+
+        attr_reader enabled: bool?
+
+        def enabled=: (bool) -> bool
+
+        attr_reader include_rule_stats: bool?
+
+        def include_rule_stats=: (bool) -> bool
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader per_page: Integer?
+
+        def per_page=: (Integer) -> Integer
+
+        attr_reader project_id: String?
+
+        def project_id=: (String) -> String
+
+        attr_reader search_query: String?
+
+        def search_query=: (String) -> String
+
+        attr_reader sort_column: Openlayer::Models::Governance::FrameworkListParams::sort_column?
+
+        def sort_column=: (
+          Openlayer::Models::Governance::FrameworkListParams::sort_column
+        ) -> Openlayer::Models::Governance::FrameworkListParams::sort_column
+
+        attr_reader tags: ::Array[String]?
+
+        def tags=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          workspace_id: String,
+          ?asc: bool,
+          ?completion_operator: Openlayer::Models::Governance::FrameworkListParams::completion_operator,
+          ?completion_value: Integer,
+          ?enabled: bool,
+          ?include_rule_stats: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?project_id: String,
+          ?search_query: String,
+          ?sort_column: Openlayer::Models::Governance::FrameworkListParams::sort_column,
+          ?tags: ::Array[String],
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          workspace_id: String,
+          asc: bool,
+          completion_operator: Openlayer::Models::Governance::FrameworkListParams::completion_operator,
+          completion_value: Integer,
+          enabled: bool,
+          include_rule_stats: bool,
+          page: Integer,
+          per_page: Integer,
+          project_id: String,
+          search_query: String,
+          sort_column: Openlayer::Models::Governance::FrameworkListParams::sort_column,
+          tags: ::Array[String],
+          request_options: Openlayer::RequestOptions
+        }
+
+        type completion_operator = :is | :> | :>= | :< | :<= | :!=
+
+        module CompletionOperator
+          extend Openlayer::Internal::Type::Enum
+
+          IS: :is
+          GREATER: :>
+          GREATER_OR_EQUALS: :>=
+          LESS: :<
+          LESS_OR_EQUALS: :<=
+          NOT_EQUALS: :!=
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::FrameworkListParams::completion_operator]
+        end
+
+        type sort_column =
+          :name
+          | :enabled
+          | :dateCreated
+          | :dateUpdated
+          | :overallCompletion
+          | :projectCompletionBuckets
+
+        module SortColumn
+          extend Openlayer::Internal::Type::Enum
+
+          NAME: :name
+          ENABLED: :enabled
+          DATE_CREATED: :dateCreated
+          DATE_UPDATED: :dateUpdated
+          OVERALL_COMPLETION: :overallCompletion
+          PROJECT_COMPLETION_BUCKETS: :projectCompletionBuckets
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::FrameworkListParams::sort_column]
+        end
+      end
+    end
+  end
+end
