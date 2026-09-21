@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.16.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.15.0...v0.16.0) (2026-09-21)
+
+
+### Features
+
+* **governance:** add the governance write endpoints and generate governance SDK methods ([e5cb5d9](https://github.com/openlayer-ai/openlayer-ruby/commit/e5cb5d9fab46bb429e9356bbd858aed9545b7c44))
+* initial stlc build ([3fdcbcc](https://github.com/openlayer-ai/openlayer-ruby/commit/3fdcbccd3863e2d21a590517c60031919c88e59e))
+* **stlc:** add stlc workspace and CI automation ([83d35a9](https://github.com/openlayer-ai/openlayer-ruby/commit/83d35a941482daba7c53b262c5b62864e3a8b090))
+
+
+### Chores
+
+* **ci:** point stlc workflows at openlayer-ai ([54b22ff](https://github.com/openlayer-ai/openlayer-ruby/commit/54b22ffedd33139788fec2b4a8db0ca0048a8f13))
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([13bce4e](https://github.com/openlayer-ai/openlayer-ruby/commit/13bce4ee5406cf25d9355cdc61be0873f58f5b39))
+* merge next into main to re-anchor the stlc integrated trunk ([19af091](https://github.com/openlayer-ai/openlayer-ruby/commit/19af0919ec69ece14ec67338e51dad71737f82a4))
+
+
+### Documentation
+
+* **closes OPEN-9410:** expose the governance framework endpoints ([235106d](https://github.com/openlayer-ai/openlayer-ruby/commit/235106d83727df6a51ecc9c14dd1a42af2618a30))
+
 ## 0.15.0 (2026-08-03)
 
 Full Changelog: [v0.14.1...v0.15.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.14.1...v0.15.0)
