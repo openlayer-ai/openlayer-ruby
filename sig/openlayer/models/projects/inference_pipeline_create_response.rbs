@@ -724,14 +724,13 @@ module Openlayer
             def to_hash: -> { app: String }
           end
 
-          type source = :web | :api | :null
+          type source = :web | :api
 
           module Source
             extend Openlayer::Internal::Type::Enum
 
             WEB: :web
             API: :api
-            NULL: :null
 
             def self?.values: -> ::Array[Openlayer::Models::Projects::InferencePipelineCreateResponse::Project::source]
           end
