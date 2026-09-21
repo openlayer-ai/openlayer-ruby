@@ -1,0 +1,22 @@
+module Openlayer
+  module Resources
+    class Governance
+      class Frameworks
+        class Subsections
+          def list_rules: (
+            String subsection_id,
+            framework_id: String,
+            ?include_results: bool,
+            ?page: Integer,
+            ?per_page: Integer,
+            ?project_id: String,
+            ?status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesParams::status,
+            ?request_options: Openlayer::request_opts
+          ) -> Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse
+
+          def initialize: (client: Openlayer::Client) -> void
+        end
+      end
+    end
+  end
+end

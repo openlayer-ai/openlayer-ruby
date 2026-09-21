@@ -1,0 +1,55 @@
+module Openlayer
+  module Models
+    type background_task_retrieve_response =
+      {
+        id: String,
+        complete: bool,
+        date_created: Time,
+        date_updated: Time,
+        name: String,
+        progress: Float,
+        error: String?,
+        outputs: top?
+      }
+
+    class BackgroundTaskRetrieveResponse < Openlayer::Internal::Type::BaseModel
+      attr_accessor complete: bool
+
+      attr_accessor progress: Float
+
+      attr_accessor error: String?
+
+      attr_accessor outputs: top?
+
+      attr_accessor id: String
+
+      attr_accessor date_created: Time
+
+      attr_accessor date_updated: Time
+
+      attr_accessor name: String
+
+      def initialize: (
+        id: String,
+        complete: bool,
+        date_created: Time,
+        date_updated: Time,
+        name: String,
+        progress: Float,
+        ?error: String?,
+        ?outputs: top?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        complete: bool,
+        date_created: Time,
+        date_updated: Time,
+        name: String,
+        progress: Float,
+        error: String?,
+        outputs: top?
+      }
+    end
+  end
+end

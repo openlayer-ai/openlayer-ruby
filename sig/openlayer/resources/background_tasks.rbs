@@ -1,0 +1,12 @@
+module Openlayer
+  module Resources
+    class BackgroundTasks
+      def retrieve: (
+        String task_id,
+        ?request_options: Openlayer::request_opts
+      ) -> Openlayer::Models::BackgroundTaskRetrieveResponse
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end

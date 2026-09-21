@@ -1,0 +1,228 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_list_params =
+        {
+          workspace_id: String,
+          asc: bool,
+          assignee_id: String,
+          deactivated: bool,
+          enabled_framework_only: bool,
+          framework_id: String,
+          group: Openlayer::Models::Governance::RuleListParams::group,
+          include_results: bool,
+          include_unframed: bool,
+          page: Integer,
+          per_page: Integer,
+          project_id: String,
+          scope: Openlayer::Models::Governance::RuleListParams::scope,
+          search_query: String,
+          sort_by: Openlayer::Models::Governance::RuleListParams::sort_by,
+          status: Openlayer::Models::Governance::RuleListParams::status,
+          tags: ::Array[String],
+          type: Openlayer::Models::Governance::RuleListParams::type_
+        }
+        & Openlayer::Internal::Type::request_parameters
+
+      class RuleListParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor workspace_id: String
+
+        attr_reader asc: bool?
+
+        def asc=: (bool) -> bool
+
+        attr_reader assignee_id: String?
+
+        def assignee_id=: (String) -> String
+
+        attr_reader deactivated: bool?
+
+        def deactivated=: (bool) -> bool
+
+        attr_reader enabled_framework_only: bool?
+
+        def enabled_framework_only=: (bool) -> bool
+
+        attr_reader framework_id: String?
+
+        def framework_id=: (String) -> String
+
+        attr_reader group: Openlayer::Models::Governance::RuleListParams::group?
+
+        def group=: (
+          Openlayer::Models::Governance::RuleListParams::group
+        ) -> Openlayer::Models::Governance::RuleListParams::group
+
+        attr_reader include_results: bool?
+
+        def include_results=: (bool) -> bool
+
+        attr_reader include_unframed: bool?
+
+        def include_unframed=: (bool) -> bool
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader per_page: Integer?
+
+        def per_page=: (Integer) -> Integer
+
+        attr_reader project_id: String?
+
+        def project_id=: (String) -> String
+
+        attr_reader scope: Openlayer::Models::Governance::RuleListParams::scope?
+
+        def scope=: (
+          Openlayer::Models::Governance::RuleListParams::scope
+        ) -> Openlayer::Models::Governance::RuleListParams::scope
+
+        attr_reader search_query: String?
+
+        def search_query=: (String) -> String
+
+        attr_reader sort_by: Openlayer::Models::Governance::RuleListParams::sort_by?
+
+        def sort_by=: (
+          Openlayer::Models::Governance::RuleListParams::sort_by
+        ) -> Openlayer::Models::Governance::RuleListParams::sort_by
+
+        attr_reader status: Openlayer::Models::Governance::RuleListParams::status?
+
+        def status=: (
+          Openlayer::Models::Governance::RuleListParams::status
+        ) -> Openlayer::Models::Governance::RuleListParams::status
+
+        attr_reader tags: ::Array[String]?
+
+        def tags=: (::Array[String]) -> ::Array[String]
+
+        attr_reader type: Openlayer::Models::Governance::RuleListParams::type_?
+
+        def type=: (
+          Openlayer::Models::Governance::RuleListParams::type_
+        ) -> Openlayer::Models::Governance::RuleListParams::type_
+
+        def initialize: (
+          workspace_id: String,
+          ?asc: bool,
+          ?assignee_id: String,
+          ?deactivated: bool,
+          ?enabled_framework_only: bool,
+          ?framework_id: String,
+          ?group: Openlayer::Models::Governance::RuleListParams::group,
+          ?include_results: bool,
+          ?include_unframed: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?project_id: String,
+          ?scope: Openlayer::Models::Governance::RuleListParams::scope,
+          ?search_query: String,
+          ?sort_by: Openlayer::Models::Governance::RuleListParams::sort_by,
+          ?status: Openlayer::Models::Governance::RuleListParams::status,
+          ?tags: ::Array[String],
+          ?type: Openlayer::Models::Governance::RuleListParams::type_,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          workspace_id: String,
+          asc: bool,
+          assignee_id: String,
+          deactivated: bool,
+          enabled_framework_only: bool,
+          framework_id: String,
+          group: Openlayer::Models::Governance::RuleListParams::group,
+          include_results: bool,
+          include_unframed: bool,
+          page: Integer,
+          per_page: Integer,
+          project_id: String,
+          scope: Openlayer::Models::Governance::RuleListParams::scope,
+          search_query: String,
+          sort_by: Openlayer::Models::Governance::RuleListParams::sort_by,
+          status: Openlayer::Models::Governance::RuleListParams::status,
+          tags: ::Array[String],
+          type: Openlayer::Models::Governance::RuleListParams::type_,
+          request_options: Openlayer::RequestOptions
+        }
+
+        type group = :open | :excluded | :done
+
+        module Group
+          extend Openlayer::Internal::Type::Enum
+
+          OPEN: :open
+          EXCLUDED: :excluded
+          DONE: :done
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleListParams::group]
+        end
+
+        type scope = :project | :workspace
+
+        module Scope
+          extend Openlayer::Internal::Type::Enum
+
+          PROJECT: :project
+          WORKSPACE: :workspace
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleListParams::scope]
+        end
+
+        type sort_by = :name | :status | :frameworks | :scope | :dateCreated
+
+        module SortBy
+          extend Openlayer::Internal::Type::Enum
+
+          NAME: :name
+          STATUS: :status
+          FRAMEWORKS: :frameworks
+          SCOPE: :scope
+          DATE_CREATED: :dateCreated
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleListParams::sort_by]
+        end
+
+        type status =
+          :running
+          | :passing
+          | :failing
+          | :skipped
+          | :error
+          | :pending
+          | :due_soon
+
+        module Status
+          extend Openlayer::Internal::Type::Enum
+
+          RUNNING: :running
+          PASSING: :passing
+          FAILING: :failing
+          SKIPPED: :skipped
+          ERROR: :error
+          PENDING: :pending
+          DUE_SOON: :due_soon
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleListParams::status]
+        end
+
+        type type_ = :platform | :evidence
+
+        module Type
+          extend Openlayer::Internal::Type::Enum
+
+          PLATFORM: :platform
+          EVIDENCE: :evidence
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleListParams::type_]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Openlayer
+  module Models
+    module Storage
+      type presigned_url_retrieve_params =
+        { storage_uri: String } & Openlayer::Internal::Type::request_parameters
+
+      class PresignedURLRetrieveParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor storage_uri: String
+
+        def initialize: (
+          storage_uri: String,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          storage_uri: String,
+          request_options: Openlayer::RequestOptions
+        }
+      end
+    end
+  end
+end

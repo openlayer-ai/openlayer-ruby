@@ -6,6 +6,14 @@ module Openlayer
       module Commits
       end
 
+      module Frameworks
+      end
+
+      module Governance
+        module Frameworks
+        end
+      end
+
       module InferencePipelines
       end
 

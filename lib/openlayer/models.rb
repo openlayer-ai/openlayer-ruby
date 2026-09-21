@@ -39,9 +39,13 @@ module Openlayer
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
+  BackgroundTaskRetrieveParams = Openlayer::Models::BackgroundTaskRetrieveParams
+
   CommitRetrieveParams = Openlayer::Models::CommitRetrieveParams
 
   Commits = Openlayer::Models::Commits
+
+  Governance = Openlayer::Models::Governance
 
   InferencePipelineDeleteParams = Openlayer::Models::InferencePipelineDeleteParams
 

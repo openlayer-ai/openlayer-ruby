@@ -1,0 +1,549 @@
+module Openlayer
+  module Models
+    module Governance
+      module Frameworks
+        type subsection_list_rules_response =
+          {
+            items: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item]
+          }
+
+        class SubsectionListRulesResponse < Openlayer::Internal::Type::BaseModel
+          attr_accessor items: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item]
+
+          def initialize: (
+            items: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item]
+          ) -> void
+
+          def to_hash: -> {
+            items: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item]
+          }
+
+          type item =
+            {
+              id: String,
+              date_created: Time,
+              date_updated: Time,
+              name: String,
+              scope: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::scope,
+              type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::type_,
+              workspace_id: String,
+              assignee_id: String?,
+              automation_params: ::Hash[Symbol, top]?,
+              automation_type: String?,
+              deactivated: bool,
+              description: String?,
+              evidence_type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::evidence_type?,
+              frameworks: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework],
+              immutable: bool,
+              renewal_cadence_days: Integer?,
+              results: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result],
+              results_summary: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::ResultsSummary?,
+              tag_ids: ::Array[String]?,
+              tags: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Tag]?
+            }
+
+          class Item < Openlayer::Internal::Type::BaseModel
+            attr_accessor name: String
+
+            attr_accessor scope: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::scope
+
+            attr_accessor type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::type_
+
+            attr_accessor assignee_id: String?
+
+            attr_accessor automation_params: ::Hash[Symbol, top]?
+
+            attr_accessor automation_type: String?
+
+            attr_reader deactivated: bool?
+
+            def deactivated=: (bool) -> bool
+
+            attr_accessor description: String?
+
+            attr_accessor evidence_type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::evidence_type?
+
+            attr_accessor renewal_cadence_days: Integer?
+
+            attr_accessor id: String
+
+            attr_accessor date_created: Time
+
+            attr_accessor date_updated: Time
+
+            attr_accessor workspace_id: String
+
+            attr_reader frameworks: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework]?
+
+            def frameworks=: (
+              ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework]
+            ) -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework]
+
+            attr_reader immutable: bool?
+
+            def immutable=: (bool) -> bool
+
+            attr_reader results: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result]?
+
+            def results=: (
+              ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result]
+            ) -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result]
+
+            attr_accessor results_summary: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::ResultsSummary?
+
+            attr_accessor tags: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Tag]?
+
+            def initialize: (
+              id: String,
+              date_created: Time,
+              date_updated: Time,
+              name: String,
+              scope: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::scope,
+              type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::type_,
+              workspace_id: String,
+              ?assignee_id: String?,
+              ?automation_params: ::Hash[Symbol, top]?,
+              ?automation_type: String?,
+              ?deactivated: bool,
+              ?description: String?,
+              ?evidence_type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::evidence_type?,
+              ?frameworks: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework],
+              ?immutable: bool,
+              ?renewal_cadence_days: Integer?,
+              ?results: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result],
+              ?results_summary: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::ResultsSummary?,
+              ?tags: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Tag]?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              date_created: Time,
+              date_updated: Time,
+              name: String,
+              scope: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::scope,
+              type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::type_,
+              workspace_id: String,
+              assignee_id: String?,
+              automation_params: ::Hash[Symbol, top]?,
+              automation_type: String?,
+              deactivated: bool,
+              description: String?,
+              evidence_type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::evidence_type?,
+              frameworks: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework],
+              immutable: bool,
+              renewal_cadence_days: Integer?,
+              results: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result],
+              results_summary: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::ResultsSummary?,
+              tag_ids: ::Array[String]?,
+              tags: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Tag]?
+            }
+
+            type scope = :project | :workspace
+
+            module Scope
+              extend Openlayer::Internal::Type::Enum
+
+              PROJECT: :project
+              WORKSPACE: :workspace
+
+              def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::scope]
+            end
+
+            type type_ = :platform | :evidence
+
+            module Type
+              extend Openlayer::Internal::Type::Enum
+
+              PLATFORM: :platform
+              EVIDENCE: :evidence
+
+              def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::type_]
+            end
+
+            type evidence_type = :document | :text | :url | :categoryValue
+
+            module EvidenceType
+              extend Openlayer::Internal::Type::Enum
+
+              DOCUMENT: :document
+              TEXT: :text
+              URL: :url
+              CATEGORY_VALUE: :categoryValue
+
+              def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::evidence_type]
+            end
+
+            type framework =
+              {
+                id: String,
+                avatar: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar?,
+                built_in_slug: String?,
+                enabled: bool,
+                name: String
+              }
+
+            class Framework < Openlayer::Internal::Type::BaseModel
+              attr_accessor avatar: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar?
+
+              attr_accessor built_in_slug: String?
+
+              attr_accessor enabled: bool
+
+              attr_accessor name: String
+
+              attr_accessor id: String
+
+              def initialize: (
+                id: String,
+                avatar: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar?,
+                built_in_slug: String?,
+                enabled: bool,
+                name: String
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                avatar: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar?,
+                built_in_slug: String?,
+                enabled: bool,
+                name: String
+              }
+
+              type avatar =
+                {
+                  type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar::type_,
+                  value: String
+                }
+
+              class Avatar < Openlayer::Internal::Type::BaseModel
+                attr_accessor type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar::type_
+
+                attr_accessor value: String
+
+                def initialize: (
+                  type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar::type_,
+                  value: String
+                ) -> void
+
+                def to_hash: -> {
+                  type: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar::type_,
+                  value: String
+                }
+
+                type type_ = :emoji | :imageUrl | :builtinImage
+
+                module Type
+                  extend Openlayer::Internal::Type::Enum
+
+                  EMOJI: :emoji
+                  IMAGE_URL: :imageUrl
+                  BUILTIN_IMAGE: :builtinImage
+
+                  def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Framework::Avatar::type_]
+                end
+              end
+            end
+
+            type result =
+              {
+                id: String,
+                date_created: Time,
+                date_updated: Time,
+                deactivated: bool,
+                rule_id: String,
+                status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::status,
+                workspace_id: String,
+                assignee_id: String?,
+                blocked_by: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy],
+                blocking: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking],
+                date_last_evaluated: Time?,
+                date_of_latest_evidence: Time?,
+                date_of_next_evaluation: Time?,
+                date_of_renewal: Time?,
+                deactivated_reason: String?,
+                project_id: String?,
+                status_message: String?
+              }
+
+            class Result < Openlayer::Internal::Type::BaseModel
+              attr_accessor deactivated: bool
+
+              attr_accessor status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::status
+
+              attr_accessor assignee_id: String?
+
+              attr_reader blocked_by: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy]?
+
+              def blocked_by=: (
+                ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy]
+              ) -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy]
+
+              attr_reader blocking: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking]?
+
+              def blocking=: (
+                ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking]
+              ) -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking]
+
+              attr_accessor deactivated_reason: String?
+
+              attr_accessor status_message: String?
+
+              attr_accessor id: String
+
+              attr_accessor date_created: Time
+
+              attr_accessor date_updated: Time
+
+              attr_accessor rule_id: String
+
+              attr_accessor workspace_id: String
+
+              attr_accessor date_last_evaluated: Time?
+
+              attr_accessor date_of_latest_evidence: Time?
+
+              attr_accessor date_of_next_evaluation: Time?
+
+              attr_accessor date_of_renewal: Time?
+
+              attr_accessor project_id: String?
+
+              def initialize: (
+                id: String,
+                date_created: Time,
+                date_updated: Time,
+                deactivated: bool,
+                rule_id: String,
+                status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::status,
+                workspace_id: String,
+                ?assignee_id: String?,
+                ?blocked_by: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy],
+                ?blocking: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking],
+                ?date_last_evaluated: Time?,
+                ?date_of_latest_evidence: Time?,
+                ?date_of_next_evaluation: Time?,
+                ?date_of_renewal: Time?,
+                ?deactivated_reason: String?,
+                ?project_id: String?,
+                ?status_message: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                date_created: Time,
+                date_updated: Time,
+                deactivated: bool,
+                rule_id: String,
+                status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::status,
+                workspace_id: String,
+                assignee_id: String?,
+                blocked_by: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy],
+                blocking: ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking],
+                date_last_evaluated: Time?,
+                date_of_latest_evidence: Time?,
+                date_of_next_evaluation: Time?,
+                date_of_renewal: Time?,
+                deactivated_reason: String?,
+                project_id: String?,
+                status_message: String?
+              }
+
+              type status =
+                :running
+                | :passing
+                | :failing
+                | :skipped
+                | :error
+                | :pending
+                | :due_soon
+
+              module Status
+                extend Openlayer::Internal::Type::Enum
+
+                RUNNING: :running
+                PASSING: :passing
+                FAILING: :failing
+                SKIPPED: :skipped
+                ERROR: :error
+                PENDING: :pending
+                DUE_SOON: :due_soon
+
+                def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::status]
+              end
+
+              type blocked_by =
+                {
+                  id: String,
+                  status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy::status
+                }
+
+              class BlockedBy < Openlayer::Internal::Type::BaseModel
+                attr_reader id: String?
+
+                def id=: (String) -> String
+
+                attr_reader status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy::status?
+
+                def status=: (
+                  Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy::status
+                ) -> Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy::status
+
+                def initialize: (
+                  ?id: String,
+                  ?status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy::status
+                ) -> void
+
+                def to_hash: -> {
+                  id: String,
+                  status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy::status
+                }
+
+                type status =
+                  :running
+                  | :passing
+                  | :failing
+                  | :skipped
+                  | :error
+                  | :pending
+                  | :due_soon
+
+                module Status
+                  extend Openlayer::Internal::Type::Enum
+
+                  RUNNING: :running
+                  PASSING: :passing
+                  FAILING: :failing
+                  SKIPPED: :skipped
+                  ERROR: :error
+                  PENDING: :pending
+                  DUE_SOON: :due_soon
+
+                  def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::BlockedBy::status]
+                end
+              end
+
+              type blocking =
+                {
+                  id: String,
+                  status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking::status
+                }
+
+              class Blocking < Openlayer::Internal::Type::BaseModel
+                attr_reader id: String?
+
+                def id=: (String) -> String
+
+                attr_reader status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking::status?
+
+                def status=: (
+                  Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking::status
+                ) -> Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking::status
+
+                def initialize: (
+                  ?id: String,
+                  ?status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking::status
+                ) -> void
+
+                def to_hash: -> {
+                  id: String,
+                  status: Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking::status
+                }
+
+                type status =
+                  :running
+                  | :passing
+                  | :failing
+                  | :skipped
+                  | :error
+                  | :pending
+                  | :due_soon
+
+                module Status
+                  extend Openlayer::Internal::Type::Enum
+
+                  RUNNING: :running
+                  PASSING: :passing
+                  FAILING: :failing
+                  SKIPPED: :skipped
+                  ERROR: :error
+                  PENDING: :pending
+                  DUE_SOON: :due_soon
+
+                  def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SubsectionListRulesResponse::Item::Result::Blocking::status]
+                end
+              end
+            end
+
+            type results_summary = { passing: Integer, total: Integer }
+
+            class ResultsSummary < Openlayer::Internal::Type::BaseModel
+              attr_reader passing: Integer?
+
+              def passing=: (Integer) -> Integer
+
+              attr_reader total: Integer?
+
+              def total=: (Integer) -> Integer
+
+              def initialize: (?passing: Integer, ?total: Integer) -> void
+
+              def to_hash: -> { passing: Integer, total: Integer }
+            end
+
+            type tag =
+              {
+                id: String,
+                creator_id: String?,
+                date_created: Time,
+                date_updated: Time,
+                immutable: bool,
+                name: String,
+                workspace_id: String,
+                color: String?
+              }
+
+            class Tag < Openlayer::Internal::Type::BaseModel
+              attr_accessor name: String
+
+              attr_accessor color: String?
+
+              attr_accessor id: String
+
+              attr_accessor creator_id: String?
+
+              attr_accessor date_created: Time
+
+              attr_accessor date_updated: Time
+
+              attr_accessor immutable: bool
+
+              attr_accessor workspace_id: String
+
+              def initialize: (
+                id: String,
+                creator_id: String?,
+                date_created: Time,
+                date_updated: Time,
+                immutable: bool,
+                name: String,
+                workspace_id: String,
+                ?color: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                creator_id: String?,
+                date_created: Time,
+                date_updated: Time,
+                immutable: bool,
+                name: String,
+                workspace_id: String,
+                color: String?
+              }
+            end
+          end
+        end
+      end
+    end
+  end
+end

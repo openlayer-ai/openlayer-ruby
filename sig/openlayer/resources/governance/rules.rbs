@@ -1,0 +1,68 @@
+module Openlayer
+  module Resources
+    class Governance
+      class Rules
+        def create: (
+          String workspace_id,
+          name: String,
+          scope: Openlayer::Models::Governance::RuleCreateParams::scope,
+          type: Openlayer::Models::Governance::RuleCreateParams::type_,
+          ?assignee_id: String?,
+          ?automation_params: ::Hash[Symbol, top]?,
+          ?automation_type: String?,
+          ?deactivated: bool,
+          ?description: String?,
+          ?evidence_type: Openlayer::Models::Governance::RuleCreateParams::evidence_type?,
+          ?renewal_cadence_days: Integer?,
+          ?tag_ids: ::Array[String]?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::RuleCreateResponse
+
+        def retrieve: (
+          String rule_id,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::RuleRetrieveResponse
+
+        def update: (
+          String rule_id,
+          ?assignee_id: String?,
+          ?deactivated: bool,
+          ?description: String?,
+          ?name: String,
+          ?renewal_cadence_days: Integer?,
+          ?tag_ids: ::Array[String]?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::RuleUpdateResponse
+
+        def list: (
+          String workspace_id,
+          ?asc: bool,
+          ?assignee_id: String,
+          ?deactivated: bool,
+          ?enabled_framework_only: bool,
+          ?framework_id: String,
+          ?group: Openlayer::Models::Governance::RuleListParams::group,
+          ?include_results: bool,
+          ?include_unframed: bool,
+          ?page: Integer,
+          ?per_page: Integer,
+          ?project_id: String,
+          ?scope: Openlayer::Models::Governance::RuleListParams::scope,
+          ?search_query: String,
+          ?sort_by: Openlayer::Models::Governance::RuleListParams::sort_by,
+          ?status: Openlayer::Models::Governance::RuleListParams::status,
+          ?tags: ::Array[String],
+          ?type: Openlayer::Models::Governance::RuleListParams::type_,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Governance::RuleListResponse
+
+        def delete: (
+          String rule_id,
+          ?request_options: Openlayer::request_opts
+        ) -> nil
+
+        def initialize: (client: Openlayer::Client) -> void
+      end
+    end
+  end
+end

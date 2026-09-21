@@ -1,0 +1,17 @@
+module Openlayer
+  module Resources
+    class Governance
+      attr_reader frameworks: Openlayer::Resources::Governance::Frameworks
+
+      attr_reader rules: Openlayer::Resources::Governance::Rules
+
+      attr_reader rule_results: Openlayer::Resources::Governance::RuleResults
+
+      attr_reader rule_stats: Openlayer::Resources::Governance::RuleStats
+
+      attr_reader rule_tags: Openlayer::Resources::Governance::RuleTags
+
+      def initialize: (client: Openlayer::Client) -> void
+    end
+  end
+end

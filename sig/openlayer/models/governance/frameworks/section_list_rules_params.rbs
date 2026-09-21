@@ -1,0 +1,102 @@
+module Openlayer
+  module Models
+    module Governance
+      module Frameworks
+        type section_list_rules_params =
+          {
+            framework_id: String,
+            section_id: String,
+            include_results: bool,
+            include_subsection_rules: bool,
+            page: Integer,
+            per_page: Integer,
+            project_id: String,
+            status: Openlayer::Models::Governance::Frameworks::SectionListRulesParams::status
+          }
+          & Openlayer::Internal::Type::request_parameters
+
+        class SectionListRulesParams < Openlayer::Internal::Type::BaseModel
+          extend Openlayer::Internal::Type::RequestParameters::Converter
+          include Openlayer::Internal::Type::RequestParameters
+
+          attr_accessor framework_id: String
+
+          attr_accessor section_id: String
+
+          attr_reader include_results: bool?
+
+          def include_results=: (bool) -> bool
+
+          attr_reader include_subsection_rules: bool?
+
+          def include_subsection_rules=: (bool) -> bool
+
+          attr_reader page: Integer?
+
+          def page=: (Integer) -> Integer
+
+          attr_reader per_page: Integer?
+
+          def per_page=: (Integer) -> Integer
+
+          attr_reader project_id: String?
+
+          def project_id=: (String) -> String
+
+          attr_reader status: Openlayer::Models::Governance::Frameworks::SectionListRulesParams::status?
+
+          def status=: (
+            Openlayer::Models::Governance::Frameworks::SectionListRulesParams::status
+          ) -> Openlayer::Models::Governance::Frameworks::SectionListRulesParams::status
+
+          def initialize: (
+            framework_id: String,
+            section_id: String,
+            ?include_results: bool,
+            ?include_subsection_rules: bool,
+            ?page: Integer,
+            ?per_page: Integer,
+            ?project_id: String,
+            ?status: Openlayer::Models::Governance::Frameworks::SectionListRulesParams::status,
+            ?request_options: Openlayer::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            framework_id: String,
+            section_id: String,
+            include_results: bool,
+            include_subsection_rules: bool,
+            page: Integer,
+            per_page: Integer,
+            project_id: String,
+            status: Openlayer::Models::Governance::Frameworks::SectionListRulesParams::status,
+            request_options: Openlayer::RequestOptions
+          }
+
+          type status =
+            :running
+            | :passing
+            | :failing
+            | :skipped
+            | :error
+            | :pending
+            | :due_soon
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            RUNNING: :running
+            PASSING: :passing
+            FAILING: :failing
+            SKIPPED: :skipped
+            ERROR: :error
+            PENDING: :pending
+            DUE_SOON: :due_soon
+
+            def self?.values: -> ::Array[Openlayer::Models::Governance::Frameworks::SectionListRulesParams::status]
+          end
+        end
+      end
+    end
+  end
+end

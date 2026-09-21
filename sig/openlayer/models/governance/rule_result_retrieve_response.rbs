@@ -1,0 +1,235 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_result_retrieve_response =
+        {
+          id: String,
+          date_created: Time,
+          date_updated: Time,
+          deactivated: bool,
+          rule_id: String,
+          status: Openlayer::Models::Governance::RuleResultRetrieveResponse::status,
+          workspace_id: String,
+          assignee_id: String?,
+          blocked_by: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy],
+          blocking: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking],
+          date_last_evaluated: Time?,
+          date_of_latest_evidence: Time?,
+          date_of_next_evaluation: Time?,
+          date_of_renewal: Time?,
+          deactivated_reason: String?,
+          project_id: String?,
+          status_message: String?
+        }
+
+      class RuleResultRetrieveResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor deactivated: bool
+
+        attr_accessor status: Openlayer::Models::Governance::RuleResultRetrieveResponse::status
+
+        attr_accessor assignee_id: String?
+
+        attr_reader blocked_by: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy]?
+
+        def blocked_by=: (
+          ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy]
+        ) -> ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy]
+
+        attr_reader blocking: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking]?
+
+        def blocking=: (
+          ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking]
+        ) -> ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking]
+
+        attr_accessor deactivated_reason: String?
+
+        attr_accessor status_message: String?
+
+        attr_accessor id: String
+
+        attr_accessor date_created: Time
+
+        attr_accessor date_updated: Time
+
+        attr_accessor rule_id: String
+
+        attr_accessor workspace_id: String
+
+        attr_accessor date_last_evaluated: Time?
+
+        attr_accessor date_of_latest_evidence: Time?
+
+        attr_accessor date_of_next_evaluation: Time?
+
+        attr_accessor date_of_renewal: Time?
+
+        attr_accessor project_id: String?
+
+        def initialize: (
+          id: String,
+          date_created: Time,
+          date_updated: Time,
+          deactivated: bool,
+          rule_id: String,
+          status: Openlayer::Models::Governance::RuleResultRetrieveResponse::status,
+          workspace_id: String,
+          ?assignee_id: String?,
+          ?blocked_by: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy],
+          ?blocking: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking],
+          ?date_last_evaluated: Time?,
+          ?date_of_latest_evidence: Time?,
+          ?date_of_next_evaluation: Time?,
+          ?date_of_renewal: Time?,
+          ?deactivated_reason: String?,
+          ?project_id: String?,
+          ?status_message: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          date_created: Time,
+          date_updated: Time,
+          deactivated: bool,
+          rule_id: String,
+          status: Openlayer::Models::Governance::RuleResultRetrieveResponse::status,
+          workspace_id: String,
+          assignee_id: String?,
+          blocked_by: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy],
+          blocking: ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking],
+          date_last_evaluated: Time?,
+          date_of_latest_evidence: Time?,
+          date_of_next_evaluation: Time?,
+          date_of_renewal: Time?,
+          deactivated_reason: String?,
+          project_id: String?,
+          status_message: String?
+        }
+
+        type status =
+          :running
+          | :passing
+          | :failing
+          | :skipped
+          | :error
+          | :pending
+          | :due_soon
+
+        module Status
+          extend Openlayer::Internal::Type::Enum
+
+          RUNNING: :running
+          PASSING: :passing
+          FAILING: :failing
+          SKIPPED: :skipped
+          ERROR: :error
+          PENDING: :pending
+          DUE_SOON: :due_soon
+
+          def self?.values: -> ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::status]
+        end
+
+        type blocked_by =
+          {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy::status
+          }
+
+        class BlockedBy < Openlayer::Internal::Type::BaseModel
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_reader status: Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy::status?
+
+          def status=: (
+            Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy::status
+          ) -> Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy::status
+
+          def initialize: (
+            ?id: String,
+            ?status: Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy::status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy::status
+          }
+
+          type status =
+            :running
+            | :passing
+            | :failing
+            | :skipped
+            | :error
+            | :pending
+            | :due_soon
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            RUNNING: :running
+            PASSING: :passing
+            FAILING: :failing
+            SKIPPED: :skipped
+            ERROR: :error
+            PENDING: :pending
+            DUE_SOON: :due_soon
+
+            def self?.values: -> ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::BlockedBy::status]
+          end
+        end
+
+        type blocking =
+          {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking::status
+          }
+
+        class Blocking < Openlayer::Internal::Type::BaseModel
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_reader status: Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking::status?
+
+          def status=: (
+            Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking::status
+          ) -> Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking::status
+
+          def initialize: (
+            ?id: String,
+            ?status: Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking::status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            status: Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking::status
+          }
+
+          type status =
+            :running
+            | :passing
+            | :failing
+            | :skipped
+            | :error
+            | :pending
+            | :due_soon
+
+          module Status
+            extend Openlayer::Internal::Type::Enum
+
+            RUNNING: :running
+            PASSING: :passing
+            FAILING: :failing
+            SKIPPED: :skipped
+            ERROR: :error
+            PENDING: :pending
+            DUE_SOON: :due_soon
+
+            def self?.values: -> ::Array[Openlayer::Models::Governance::RuleResultRetrieveResponse::Blocking::status]
+          end
+        end
+      end
+    end
+  end
+end

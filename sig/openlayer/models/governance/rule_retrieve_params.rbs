@@ -1,0 +1,25 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_retrieve_params =
+        { rule_id: String } & Openlayer::Internal::Type::request_parameters
+
+      class RuleRetrieveParams < Openlayer::Internal::Type::BaseModel
+        extend Openlayer::Internal::Type::RequestParameters::Converter
+        include Openlayer::Internal::Type::RequestParameters
+
+        attr_accessor rule_id: String
+
+        def initialize: (
+          rule_id: String,
+          ?request_options: Openlayer::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          rule_id: String,
+          request_options: Openlayer::RequestOptions
+        }
+      end
+    end
+  end
+end

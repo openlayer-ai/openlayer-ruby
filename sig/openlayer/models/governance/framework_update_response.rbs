@@ -1,0 +1,293 @@
+module Openlayer
+  module Models
+    module Governance
+      type framework_update_response =
+        {
+          id: String,
+          date_created: Time,
+          date_updated: Time,
+          enabled: bool,
+          name: String,
+          tags: ::Array[String],
+          workspace_id: String,
+          avatar: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar?,
+          built_in_slug: String?,
+          creator_id: String?,
+          description: String?,
+          extended_description: ::Hash[Symbol, top]?,
+          href: String?,
+          immutable: bool,
+          project_selector: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector?,
+          rule_stats: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats
+        }
+
+      class FrameworkUpdateResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor enabled: bool
+
+        attr_accessor name: String
+
+        attr_accessor tags: ::Array[String]
+
+        attr_accessor avatar: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar?
+
+        attr_accessor built_in_slug: String?
+
+        attr_accessor description: String?
+
+        attr_accessor extended_description: ::Hash[Symbol, top]?
+
+        attr_accessor href: String?
+
+        attr_accessor project_selector: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector?
+
+        attr_accessor id: String
+
+        attr_accessor date_created: Time
+
+        attr_accessor date_updated: Time
+
+        attr_accessor workspace_id: String
+
+        attr_accessor creator_id: String?
+
+        attr_reader immutable: bool?
+
+        def immutable=: (bool) -> bool
+
+        attr_reader rule_stats: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats?
+
+        def rule_stats=: (
+          Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats
+        ) -> Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats
+
+        def initialize: (
+          id: String,
+          date_created: Time,
+          date_updated: Time,
+          enabled: bool,
+          name: String,
+          tags: ::Array[String],
+          workspace_id: String,
+          ?avatar: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar?,
+          ?built_in_slug: String?,
+          ?creator_id: String?,
+          ?description: String?,
+          ?extended_description: ::Hash[Symbol, top]?,
+          ?href: String?,
+          ?immutable: bool,
+          ?project_selector: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector?,
+          ?rule_stats: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          date_created: Time,
+          date_updated: Time,
+          enabled: bool,
+          name: String,
+          tags: ::Array[String],
+          workspace_id: String,
+          avatar: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar?,
+          built_in_slug: String?,
+          creator_id: String?,
+          description: String?,
+          extended_description: ::Hash[Symbol, top]?,
+          href: String?,
+          immutable: bool,
+          project_selector: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector?,
+          rule_stats: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats
+        }
+
+        type avatar =
+          {
+            type: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar::type_,
+            value: String
+          }
+
+        class Avatar < Openlayer::Internal::Type::BaseModel
+          attr_accessor type: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar::type_
+
+          attr_accessor value: String
+
+          def initialize: (
+            type: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar::type_,
+            value: String
+          ) -> void
+
+          def to_hash: -> {
+            type: Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar::type_,
+            value: String
+          }
+
+          type type_ = :emoji | :imageUrl | :builtinImage
+
+          module Type
+            extend Openlayer::Internal::Type::Enum
+
+            EMOJI: :emoji
+            IMAGE_URL: :imageUrl
+            BUILTIN_IMAGE: :builtinImage
+
+            def self?.values: -> ::Array[Openlayer::Models::Governance::FrameworkUpdateResponse::Avatar::type_]
+          end
+        end
+
+        type project_selector =
+          {
+            match: ::Array[Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match]?
+          }
+
+        class ProjectSelector < Openlayer::Internal::Type::BaseModel
+          attr_accessor match: ::Array[Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match]?
+
+          def initialize: (
+            ?match: ::Array[Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match]?
+          ) -> void
+
+          def to_hash: -> {
+            match: ::Array[Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match]?
+          }
+
+          type match =
+            {
+              property: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match::property,
+              value: top,
+              operator: String
+            }
+
+          class Match < Openlayer::Internal::Type::BaseModel
+            attr_accessor property: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match::property
+
+            attr_accessor value: top
+
+            attr_reader operator: String?
+
+            def operator=: (String) -> String
+
+            def initialize: (
+              property: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match::property,
+              value: top,
+              ?operator: String
+            ) -> void
+
+            def to_hash: -> {
+              property: Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match::property,
+              value: top,
+              operator: String
+            }
+
+            type property =
+              :taskType
+              | :riskLevel
+              | :riskTotalScore
+              | :name
+              | :ownerId
+              | :modelTypes
+
+            module Property
+              extend Openlayer::Internal::Type::Enum
+
+              TASK_TYPE: :taskType
+              RISK_LEVEL: :riskLevel
+              RISK_TOTAL_SCORE: :riskTotalScore
+              NAME: :name
+              OWNER_ID: :ownerId
+              MODEL_TYPES: :modelTypes
+
+              def self?.values: -> ::Array[Openlayer::Models::Governance::FrameworkUpdateResponse::ProjectSelector::Match::property]
+            end
+          end
+        end
+
+        type rule_stats =
+          {
+            project_completion: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::ProjectCompletion,
+            rule_results: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::RuleResults
+          }
+
+        class RuleStats < Openlayer::Internal::Type::BaseModel
+          attr_accessor project_completion: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::ProjectCompletion
+
+          attr_accessor rule_results: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::RuleResults
+
+          def initialize: (
+            project_completion: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::ProjectCompletion,
+            rule_results: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::RuleResults
+          ) -> void
+
+          def to_hash: -> {
+            project_completion: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::ProjectCompletion,
+            rule_results: Openlayer::Models::Governance::FrameworkUpdateResponse::RuleStats::RuleResults
+          }
+
+          type project_completion =
+            { high: Integer, low: Integer, mid: Integer }
+
+          class ProjectCompletion < Openlayer::Internal::Type::BaseModel
+            attr_accessor high: Integer
+
+            attr_accessor low: Integer
+
+            attr_accessor mid: Integer
+
+            def initialize: (high: Integer, low: Integer, mid: Integer) -> void
+
+            def to_hash: -> { high: Integer, low: Integer, mid: Integer }
+          end
+
+          type rule_results =
+            {
+              total: Integer,
+              total_due_soon: Integer,
+              total_error: Integer,
+              total_failing: Integer,
+              total_passing: Integer,
+              total_pending: Integer,
+              total_running: Integer,
+              total_skipped: Integer
+            }
+
+          class RuleResults < Openlayer::Internal::Type::BaseModel
+            attr_accessor total: Integer
+
+            attr_accessor total_due_soon: Integer
+
+            attr_accessor total_error: Integer
+
+            attr_accessor total_failing: Integer
+
+            attr_accessor total_passing: Integer
+
+            attr_accessor total_pending: Integer
+
+            attr_accessor total_running: Integer
+
+            attr_accessor total_skipped: Integer
+
+            def initialize: (
+              total: Integer,
+              total_due_soon: Integer,
+              total_error: Integer,
+              total_failing: Integer,
+              total_passing: Integer,
+              total_pending: Integer,
+              total_running: Integer,
+              total_skipped: Integer
+            ) -> void
+
+            def to_hash: -> {
+              total: Integer,
+              total_due_soon: Integer,
+              total_error: Integer,
+              total_failing: Integer,
+              total_passing: Integer,
+              total_pending: Integer,
+              total_running: Integer,
+              total_skipped: Integer
+            }
+          end
+        end
+      end
+    end
+  end
+end

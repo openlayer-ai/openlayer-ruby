@@ -1,0 +1,62 @@
+module Openlayer
+  module Models
+    module Governance
+      type rule_result_create_evidence_response =
+        {
+          id: String,
+          creator_id: String?,
+          date_created: Time,
+          date_updated: Time,
+          description: String?,
+          name: String?,
+          storage_uri: String?,
+          text: String?,
+          url: String?
+        }
+
+      class RuleResultCreateEvidenceResponse < Openlayer::Internal::Type::BaseModel
+        attr_accessor description: String?
+
+        attr_accessor name: String?
+
+        attr_accessor storage_uri: String?
+
+        attr_accessor text: String?
+
+        attr_accessor url: String?
+
+        attr_accessor id: String
+
+        attr_accessor creator_id: String?
+
+        attr_accessor date_created: Time
+
+        attr_accessor date_updated: Time
+
+        def initialize: (
+          id: String,
+          creator_id: String?,
+          date_created: Time,
+          date_updated: Time,
+          ?description: String?,
+          ?name: String?,
+          ?storage_uri: String?,
+          ?text: String?,
+          ?url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          creator_id: String?,
+          date_created: Time,
+          date_updated: Time,
+          description: String?,
+          name: String?,
+          storage_uri: String?,
+          text: String?,
+          url: String?
+        }
+      end
+    end
+  end
+end
