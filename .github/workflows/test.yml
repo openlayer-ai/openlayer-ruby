@@ -1,0 +1,85 @@
+# Separate from the generated ci.yml. stlc keeps workflow files across builds, but
+# `stlc build --rewrite-scaffold` would drop this one; re-add it after such a run.
+name: Tests
+on:
+  # No job-level `if:` (unlike ci.yml): a job skipped on pull_request counts as passing
+  # for required checks, and the PRs to gate (promote, release-please) are same-repo.
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # A new PR push cancels the old run. Other runs get a group per commit: GitHub also
+  # cancels a queued run when a newer one joins its group, and a cancelled run on main
+  # would fail the required check for a good commit.
+  group: test-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  custom-tests:
+    timeout-minutes: 10
+    name: custom tests and gem build (ruby 3.2)
+    runs-on: ${{ startsWith(github.repository, 'stainless-sdks/') && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      # Same setup as ci.yml: no ruby-version, so .ruby-version decides.
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
+        with:
+          bundler-cache: false
+      - run: bundle install
+
+      # The hand-written tracer tests use fakes, not the mock server, so a mock or spec
+      # problem doesn't hide their result. The Rakefile runs whatever TEST matches, so an
+      # empty glob would pass: check that it still finds tests.
+      - name: Run integration tests
+        run: |
+          test -n "$(find test/openlayer/integrations -name '*_test.rb')"
+          bundle exec rake test TEST='test/openlayer/integrations/**/*_test.rb'
+
+      - name: Build gem
+        run: bundle exec rake build:gem
+
+  test:
+    timeout-minutes: 10
+    name: full suite (ruby 3.2)
+    runs-on: ${{ startsWith(github.repository, 'stainless-sdks/') && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
+        with:
+          bundler-cache: false
+      - run: bundle install
+
+      # scripts/mock runs the Steady mock server through `npm exec`.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+
+      # The port makes scripts/test export TEST_API_BASE_URL (127.0.0.1) instead of
+      # leaving test_helper.rb on its localhost:4010 fallback.
+      - name: Run tests
+        run: ./scripts/test
+        env:
+          STAINLESS_MOCK_PORT: '4010'
+
+  # The one check to require in rulesets, so jobs can be added or renamed freely.
+  # always(), not !cancelled(): a skipped required check would count as passing.
+  required:
+    if: always()
+    needs: [custom-tests, test]
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - run: test "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped') }}" = false
