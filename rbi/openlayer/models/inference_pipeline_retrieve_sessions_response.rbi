@@ -105,6 +105,8 @@ module Openlayer
         sig { returns(T::Array[String]) }
         attr_accessor :user_ids
 
+        # A session in an inference pipeline, with its activity stats: record counts,
+        # token usage, cost, latency, and its first and last records.
         sig do
           params(
             id: String,

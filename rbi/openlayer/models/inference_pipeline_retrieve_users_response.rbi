@@ -85,6 +85,8 @@ module Openlayer
         sig { returns(Float) }
         attr_accessor :tokens
 
+        # A user who has interacted with an inference pipeline, with their activity stats:
+        # session and record counts, token usage, and cost.
         sig do
           params(
             id: String,

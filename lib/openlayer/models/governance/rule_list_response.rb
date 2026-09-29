@@ -23,14 +23,16 @@ module Openlayer
 
           # @!attribute scope
           #   Whether the rule is evaluated once for the whole workspace, or once per project
-          #   the rule's frameworks apply to.
+          #   the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+          #   the rule is created.
           #
           #   @return [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Scope]
           required :scope, enum: -> { Openlayer::Models::Governance::RuleListResponse::Item::Scope }
 
           # @!attribute type
           #   `platform` rules are evaluated automatically from the state of your Openlayer
-          #   workspace. `evidence` rules are satisfied by attaching evidence.
+          #   workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+          #   rule is created.
           #
           #   @return [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Type]
           required :type, enum: -> { Openlayer::Models::Governance::RuleListResponse::Item::Type }
@@ -42,7 +44,8 @@ module Openlayer
           optional :assignee_id, String, api_name: :assigneeId, nil?: true
 
           # @!attribute automation_params
-          #   Configuration for the platform check, when the automation takes parameters.
+          #   Configuration for the platform check, when the automation takes parameters. Omit
+          #   or `null` for evidence rules. Fixed once the rule is created.
           #
           #   @return [Hash{Symbol=>Object}, nil]
           optional :automation_params,
@@ -52,8 +55,9 @@ module Openlayer
 
           # @!attribute automation_type
           #   Which workspace signal a platform rule checks, for example
-          #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-          #   evidence rules.
+          #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+          #   platform rules; omit or `null` for evidence rules. Fixed once the rule is
+          #   created.
           #
           #   @return [String, nil]
           optional :automation_type, String, api_name: :automationType, nil?: true
@@ -71,7 +75,8 @@ module Openlayer
           optional :description, String, nil?: true
 
           # @!attribute evidence_type
-          #   The kind of evidence that satisfies the rule. `null` for platform rules.
+          #   The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+          #   `null` for platform rules. Fixed once the rule is created.
           #
           #   @return [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::EvidenceType, nil]
           optional :evidence_type,
@@ -81,7 +86,8 @@ module Openlayer
 
           # @!attribute renewal_cadence_days
           #   How often evidence must be renewed, in days. Once evidence is older than this,
-          #   the rule result becomes `due_soon` and then `failing`.
+          #   the rule result becomes `due_soon` and then `failing`. The window restarts
+          #   whenever evidence is attached. Omit or `null` for platform rules.
           #
           #   @return [Integer, nil]
           optional :renewal_cadence_days, Integer, api_name: :renewalCadenceDays, nil?: true
@@ -119,7 +125,8 @@ module Openlayer
                      -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Models::Governance::RuleListResponse::Item::Framework] }
 
             # @!attribute immutable
-            #   Whether the rule is managed by Openlayer and cannot be edited.
+            #   Whether the rule is managed by Openlayer. These rules can't be renamed or
+            #   deleted; set `deactivated` to exclude one from compliance instead.
             #
             #   @return [Boolean, nil]
             optional :immutable, Openlayer::Internal::Type::Boolean
@@ -155,6 +162,11 @@ module Openlayer
           #   Some parameter documentations has been truncated, see
           #   {Openlayer::Models::Governance::RuleListResponse::Item} for more details.
           #
+          #   A single requirement Openlayer tracks. `platform` rules are evaluated
+          #   automatically from the state of your workspace, and `evidence` rules are
+          #   satisfied by attaching evidence. A rule can belong to several frameworks, or to
+          #   none.
+          #
           #   @param id [String] The rule id.
           #
           #   @param date_created [Time] The creation date.
@@ -171,7 +183,7 @@ module Openlayer
           #
           #   @param assignee_id [String, nil] The user responsible for satisfying the rule.
           #
-          #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters.
+          #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters. Omit
           #
           #   @param automation_type [String, nil] Which workspace signal a platform rule checks, for example `monitoring_mode_enab
           #
@@ -179,11 +191,11 @@ module Openlayer
           #
           #   @param description [String, nil] What the rule requires.
           #
-          #   @param evidence_type [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::EvidenceType, nil] The kind of evidence that satisfies the rule. `null` for platform rules.
+          #   @param evidence_type [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::EvidenceType, nil] The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
           #
           #   @param frameworks [Array<Openlayer::Models::Governance::RuleListResponse::Item::Framework>] The frameworks that include this rule.
           #
-          #   @param immutable [Boolean] Whether the rule is managed by Openlayer and cannot be edited.
+          #   @param immutable [Boolean] Whether the rule is managed by Openlayer. These rules can't be renamed or delete
           #
           #   @param renewal_cadence_days [Integer, nil] How often evidence must be renewed, in days. Once evidence is older than this, t
           #
@@ -194,7 +206,8 @@ module Openlayer
           #   @param tags [Array<Openlayer::Models::Governance::RuleListResponse::Item::Tag>, nil] The rule tags associated with the rule.
 
           # Whether the rule is evaluated once for the whole workspace, or once per project
-          # the rule's frameworks apply to.
+          # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+          # the rule is created.
           #
           # @see Openlayer::Models::Governance::RuleListResponse::Item#scope
           module Scope
@@ -208,7 +221,8 @@ module Openlayer
           end
 
           # `platform` rules are evaluated automatically from the state of your Openlayer
-          # workspace. `evidence` rules are satisfied by attaching evidence.
+          # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+          # rule is created.
           #
           # @see Openlayer::Models::Governance::RuleListResponse::Item#type
           module Type
@@ -221,7 +235,8 @@ module Openlayer
             #   @return [Array<Symbol>]
           end
 
-          # The kind of evidence that satisfies the rule. `null` for platform rules.
+          # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+          # `null` for platform rules. Fixed once the rule is created.
           #
           # @see Openlayer::Models::Governance::RuleListResponse::Item#evidence_type
           module EvidenceType
@@ -325,13 +340,15 @@ module Openlayer
 
           class Result < Openlayer::Internal::Type::BaseModel
             # @!attribute deactivated
-            #   Whether this result is excluded from compliance calculations.
+            #   Whether this result is excluded from compliance calculations. Excludes just this
+            #   result, without deactivating the rule everywhere.
             #
             #   @return [Boolean]
             required :deactivated, Openlayer::Internal::Type::Boolean
 
             # @!attribute status
-            #   The compliance status of the rule for this entity.
+            #   The compliance status of the rule for this entity. Computed by Openlayer and
+            #   can't be set directly.
             #
             #   @return [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::Status]
             required :status, enum: -> { Openlayer::Models::Governance::RuleListResponse::Item::Result::Status }
@@ -358,7 +375,7 @@ module Openlayer
                      -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Models::Governance::RuleListResponse::Item::Result::Blocking] }
 
             # @!attribute deactivated_reason
-            #   Why the result was excluded.
+            #   Why the result was excluded. Required when setting `deactivated` to `true`.
             #
             #   @return [String, nil]
             optional :deactivated_reason, String, api_name: :deactivatedReason, nil?: true
@@ -432,17 +449,24 @@ module Openlayer
             end
 
             # @!method initialize(id:, date_created:, date_updated:, deactivated:, rule_id:, status:, workspace_id:, assignee_id: nil, blocked_by: nil, blocking: nil, date_last_evaluated: nil, date_of_latest_evidence: nil, date_of_next_evaluation: nil, date_of_renewal: nil, deactivated_reason: nil, project_id: nil, status_message: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {Openlayer::Models::Governance::RuleListResponse::Item::Result} for more
+            #   details.
+            #
+            #   The compliance status of one rule for one entity: a project for project-scoped
+            #   rules, or the workspace for workspace-scoped rules.
+            #
             #   @param id [String] The rule result id.
             #
             #   @param date_created [Time] The creation date.
             #
             #   @param date_updated [Time] The last update date.
             #
-            #   @param deactivated [Boolean] Whether this result is excluded from compliance calculations.
+            #   @param deactivated [Boolean] Whether this result is excluded from compliance calculations. Excludes just this
             #
             #   @param rule_id [String] The rule this result belongs to.
             #
-            #   @param status [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::Status] The compliance status of the rule for this entity.
+            #   @param status [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::Status] The compliance status of the rule for this entity. Computed by Openlayer and can
             #
             #   @param workspace_id [String] The id of the workspace the rule result belongs to.
             #
@@ -460,13 +484,14 @@ module Openlayer
             #
             #   @param date_of_renewal [Time, nil] When the evidence must be renewed. Evidence rules with a renewal cadence only.
             #
-            #   @param deactivated_reason [String, nil] Why the result was excluded.
+            #   @param deactivated_reason [String, nil] Why the result was excluded. Required when setting `deactivated` to `true`.
             #
             #   @param project_id [String, nil] The project this result was evaluated for. `null` for workspace-scoped rules.
             #
             #   @param status_message [String, nil] A human-readable explanation of the status.
 
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             #
             # @see Openlayer::Models::Governance::RuleListResponse::Item::Result#status
             module Status
@@ -491,18 +516,24 @@ module Openlayer
               optional :id, String
 
               # @!attribute status
-              #   The compliance status of the rule for this entity.
+              #   The compliance status of the rule for this entity. Computed by Openlayer and
+              #   can't be set directly.
               #
               #   @return [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::BlockedBy::Status, nil]
               optional :status,
                        enum: -> { Openlayer::Models::Governance::RuleListResponse::Item::Result::BlockedBy::Status }
 
               # @!method initialize(id: nil, status: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Openlayer::Models::Governance::RuleListResponse::Item::Result::BlockedBy} for
+              #   more details.
+              #
               #   @param id [String]
               #
-              #   @param status [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::BlockedBy::Status] The compliance status of the rule for this entity.
+              #   @param status [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::BlockedBy::Status] The compliance status of the rule for this entity. Computed by Openlayer and can
 
-              # The compliance status of the rule for this entity.
+              # The compliance status of the rule for this entity. Computed by Openlayer and
+              # can't be set directly.
               #
               # @see Openlayer::Models::Governance::RuleListResponse::Item::Result::BlockedBy#status
               module Status
@@ -528,18 +559,24 @@ module Openlayer
               optional :id, String
 
               # @!attribute status
-              #   The compliance status of the rule for this entity.
+              #   The compliance status of the rule for this entity. Computed by Openlayer and
+              #   can't be set directly.
               #
               #   @return [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::Blocking::Status, nil]
               optional :status,
                        enum: -> { Openlayer::Models::Governance::RuleListResponse::Item::Result::Blocking::Status }
 
               # @!method initialize(id: nil, status: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Openlayer::Models::Governance::RuleListResponse::Item::Result::Blocking} for
+              #   more details.
+              #
               #   @param id [String]
               #
-              #   @param status [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::Blocking::Status] The compliance status of the rule for this entity.
+              #   @param status [Symbol, Openlayer::Models::Governance::RuleListResponse::Item::Result::Blocking::Status] The compliance status of the rule for this entity. Computed by Openlayer and can
 
-              # The compliance status of the rule for this entity.
+              # The compliance status of the rule for this entity. Computed by Openlayer and
+              # can't be set directly.
               #
               # @see Openlayer::Models::Governance::RuleListResponse::Item::Result::Blocking#status
               module Status
@@ -618,7 +655,7 @@ module Openlayer
               required :date_updated, Time, api_name: :dateUpdated
 
               # @!attribute immutable
-              #   Whether the tag is managed by Openlayer and cannot be edited or deleted.
+              #   Whether the tag is managed by Openlayer. These tags can't be deleted.
               #
               #   @return [Boolean]
               required :immutable, Openlayer::Internal::Type::Boolean
@@ -631,6 +668,9 @@ module Openlayer
             end
 
             # @!method initialize(id:, creator_id:, date_created:, date_updated:, immutable:, name:, workspace_id:, color: nil)
+            #   A label that groups rules across frameworks, for example by team or control
+            #   family.
+            #
             #   @param id [String] The rule tag id.
             #
             #   @param creator_id [String, nil] The user who created the tag. `null` for tags that ship with Openlayer.
@@ -639,7 +679,7 @@ module Openlayer
             #
             #   @param date_updated [Time] The last update date.
             #
-            #   @param immutable [Boolean] Whether the tag is managed by Openlayer and cannot be edited or deleted.
+            #   @param immutable [Boolean] Whether the tag is managed by Openlayer. These tags can't be deleted.
             #
             #   @param name [String] The tag name.
             #

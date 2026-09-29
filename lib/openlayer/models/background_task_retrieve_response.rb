@@ -61,6 +61,10 @@ module Openlayer
       #   Some parameter documentations has been truncated, see
       #   {Openlayer::Models::BackgroundTaskRetrieveResponse} for more details.
       #
+      #   A job queued by an endpoint that can't answer within one request, such as a
+      #   framework export. Poll it until `complete` is `true`, then read what it produced
+      #   from `outputs`.
+      #
       #   @param id [String] The background task id.
       #
       #   @param complete [Boolean] Whether the task has finished. Check this before reading `outputs`.

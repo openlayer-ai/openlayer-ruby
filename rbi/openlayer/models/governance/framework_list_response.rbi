@@ -144,7 +144,8 @@ module Openlayer
           sig { returns(T.nilable(String)) }
           attr_accessor :creator_id
 
-          # Whether the framework definition is managed by Openlayer and cannot be edited.
+          # Whether the framework definition is managed by Openlayer. For these frameworks
+          # only `enabled`, `tags`, and `projectSelector` can be changed.
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :immutable
 
@@ -171,6 +172,9 @@ module Openlayer
           end
           attr_writer :rule_stats
 
+          # A set of rules, drawn from a regulation, a standard, or your own internal
+          # policy, that Openlayer tracks compliance against. Openlayer ships built-in
+          # frameworks, and you can create your own.
           sig do
             params(
               id: String,
@@ -228,7 +232,8 @@ module Openlayer
             extended_description: nil,
             # A link to the external standard or regulation the framework is based on.
             href: nil,
-            # Whether the framework definition is managed by Openlayer and cannot be edited.
+            # Whether the framework definition is managed by Openlayer. For these frameworks
+            # only `enabled`, `tags`, and `projectSelector` can be changed.
             immutable: nil,
             # Determines which projects the framework applies to. An empty or `null` `match`
             # array applies the framework to every project in the workspace.

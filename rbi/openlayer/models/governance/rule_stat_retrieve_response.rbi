@@ -45,6 +45,9 @@ module Openlayer
         end
         attr_writer :rules
 
+        # Counts of rules and their results by status. Narrowed by the request's filters,
+        # so `frameworkId` gives one framework's compliance and `projectId` gives one
+        # project's.
         sig do
           params(
             rule_results:

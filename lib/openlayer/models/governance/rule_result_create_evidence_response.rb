@@ -19,7 +19,8 @@ module Openlayer
 
         # @!attribute storage_uri
         #   Where the uploaded file is stored. Set when the rule's `evidenceType` is
-        #   `document`.
+        #   `document`. Upload the file first with `POST /storage/presigned-url` and send
+        #   the storage URI it returns.
         #
         #   @return [String, nil]
         optional :storage_uri, String, api_name: :storageUri, nil?: true
@@ -66,6 +67,10 @@ module Openlayer
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::Governance::RuleResultCreateEvidenceResponse} for more
         #   details.
+        #
+        #   Evidence attached to a rule result to satisfy an evidence rule. Which field
+        #   holds it depends on the rule's `evidenceType`: `storageUri` for a document,
+        #   `text` for a written statement, or `url` for a link.
         #
         #   @param id [String] The evidence id.
         #

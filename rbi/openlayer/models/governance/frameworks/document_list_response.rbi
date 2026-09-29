@@ -98,6 +98,8 @@ module Openlayer
             end
             attr_writer :sections
 
+            # The text of the standard a framework is based on, split into sections and
+            # subsections, with the rules mapped to each part.
             sig do
               params(
                 id: String,
@@ -311,7 +313,8 @@ module Openlayer
                 attr_accessor :name
 
                 # Whether the rule is evaluated once for the whole workspace, or once per project
-                # the rule's frameworks apply to.
+                # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                # the rule is created.
                 sig do
                   returns(
                     Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::Scope::TaggedSymbol
@@ -320,7 +323,8 @@ module Openlayer
                 attr_accessor :scope
 
                 # `platform` rules are evaluated automatically from the state of your Openlayer
-                # workspace. `evidence` rules are satisfied by attaching evidence.
+                # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                # rule is created.
                 sig do
                   returns(
                     Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::Type::TaggedSymbol
@@ -328,13 +332,15 @@ module Openlayer
                 end
                 attr_accessor :type
 
-                # Configuration for the platform check, when the automation takes parameters.
+                # Configuration for the platform check, when the automation takes parameters. Omit
+                # or `null` for evidence rules. Fixed once the rule is created.
                 sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
                 attr_accessor :automation_params
 
                 # Which workspace signal a platform rule checks, for example
-                # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-                # evidence rules.
+                # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+                # platform rules; omit or `null` for evidence rules. Fixed once the rule is
+                # created.
                 sig { returns(T.nilable(String)) }
                 attr_accessor :automation_type
 
@@ -349,7 +355,8 @@ module Openlayer
                 sig { returns(T.nilable(String)) }
                 attr_accessor :description
 
-                # The kind of evidence that satisfies the rule. `null` for platform rules.
+                # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                # `null` for platform rules. Fixed once the rule is created.
                 sig do
                   returns(
                     T.nilable(
@@ -360,7 +367,8 @@ module Openlayer
                 attr_accessor :evidence_type
 
                 # How often evidence must be renewed, in days. Once evidence is older than this,
-                # the rule result becomes `due_soon` and then `failing`.
+                # the rule result becomes `due_soon` and then `failing`. The window restarts
+                # whenever evidence is attached. Omit or `null` for platform rules.
                 sig { returns(T.nilable(Integer)) }
                 attr_accessor :renewal_cadence_days
 
@@ -382,7 +390,8 @@ module Openlayer
                 sig { params(date_updated: Time).void }
                 attr_writer :date_updated
 
-                # Whether the rule is managed by Openlayer and cannot be edited.
+                # Whether the rule is managed by Openlayer. These rules can't be renamed or
+                # deleted; set `deactivated` to exclude one from compliance instead.
                 sig { returns(T.nilable(T::Boolean)) }
                 attr_reader :immutable
 
@@ -417,16 +426,20 @@ module Openlayer
                   # The rule name.
                   name:,
                   # Whether the rule is evaluated once for the whole workspace, or once per project
-                  # the rule's frameworks apply to.
+                  # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                  # the rule is created.
                   scope:,
                   # `platform` rules are evaluated automatically from the state of your Openlayer
-                  # workspace. `evidence` rules are satisfied by attaching evidence.
+                  # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                  # rule is created.
                   type:,
-                  # Configuration for the platform check, when the automation takes parameters.
+                  # Configuration for the platform check, when the automation takes parameters. Omit
+                  # or `null` for evidence rules. Fixed once the rule is created.
                   automation_params: nil,
                   # Which workspace signal a platform rule checks, for example
-                  # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-                  # evidence rules.
+                  # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+                  # platform rules; omit or `null` for evidence rules. Fixed once the rule is
+                  # created.
                   automation_type: nil,
                   # The creation date.
                   date_created: nil,
@@ -436,12 +449,15 @@ module Openlayer
                   deactivated: nil,
                   # What the rule requires.
                   description: nil,
-                  # The kind of evidence that satisfies the rule. `null` for platform rules.
+                  # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                  # `null` for platform rules. Fixed once the rule is created.
                   evidence_type: nil,
-                  # Whether the rule is managed by Openlayer and cannot be edited.
+                  # Whether the rule is managed by Openlayer. These rules can't be renamed or
+                  # deleted; set `deactivated` to exclude one from compliance instead.
                   immutable: nil,
                   # How often evidence must be renewed, in days. Once evidence is older than this,
-                  # the rule result becomes `due_soon` and then `failing`.
+                  # the rule result becomes `due_soon` and then `failing`. The window restarts
+                  # whenever evidence is attached. Omit or `null` for platform rules.
                   renewal_cadence_days: nil
                 )
                 end
@@ -474,7 +490,8 @@ module Openlayer
                 end
 
                 # Whether the rule is evaluated once for the whole workspace, or once per project
-                # the rule's frameworks apply to.
+                # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                # the rule is created.
                 module Scope
                   extend Openlayer::Internal::Type::Enum
 
@@ -510,7 +527,8 @@ module Openlayer
                 end
 
                 # `platform` rules are evaluated automatically from the state of your Openlayer
-                # workspace. `evidence` rules are satisfied by attaching evidence.
+                # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                # rule is created.
                 module Type
                   extend Openlayer::Internal::Type::Enum
 
@@ -545,7 +563,8 @@ module Openlayer
                   end
                 end
 
-                # The kind of evidence that satisfies the rule. `null` for platform rules.
+                # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                # `null` for platform rules. Fixed once the rule is created.
                 module EvidenceType
                   extend Openlayer::Internal::Type::Enum
 
@@ -653,6 +672,8 @@ module Openlayer
                 end
                 attr_writer :rules
 
+                # A subsection usually states one individual requirement of the standard, so it is
+                # where you see which rules cover a specific clause.
                 sig do
                   params(
                     id: String,
@@ -722,7 +743,8 @@ module Openlayer
                   attr_accessor :name
 
                   # Whether the rule is evaluated once for the whole workspace, or once per project
-                  # the rule's frameworks apply to.
+                  # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                  # the rule is created.
                   sig do
                     returns(
                       Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::Scope::TaggedSymbol
@@ -731,7 +753,8 @@ module Openlayer
                   attr_accessor :scope
 
                   # `platform` rules are evaluated automatically from the state of your Openlayer
-                  # workspace. `evidence` rules are satisfied by attaching evidence.
+                  # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                  # rule is created.
                   sig do
                     returns(
                       Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::Type::TaggedSymbol
@@ -739,13 +762,15 @@ module Openlayer
                   end
                   attr_accessor :type
 
-                  # Configuration for the platform check, when the automation takes parameters.
+                  # Configuration for the platform check, when the automation takes parameters. Omit
+                  # or `null` for evidence rules. Fixed once the rule is created.
                   sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
                   attr_accessor :automation_params
 
                   # Which workspace signal a platform rule checks, for example
-                  # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-                  # evidence rules.
+                  # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+                  # platform rules; omit or `null` for evidence rules. Fixed once the rule is
+                  # created.
                   sig { returns(T.nilable(String)) }
                   attr_accessor :automation_type
 
@@ -760,7 +785,8 @@ module Openlayer
                   sig { returns(T.nilable(String)) }
                   attr_accessor :description
 
-                  # The kind of evidence that satisfies the rule. `null` for platform rules.
+                  # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                  # `null` for platform rules. Fixed once the rule is created.
                   sig do
                     returns(
                       T.nilable(
@@ -771,7 +797,8 @@ module Openlayer
                   attr_accessor :evidence_type
 
                   # How often evidence must be renewed, in days. Once evidence is older than this,
-                  # the rule result becomes `due_soon` and then `failing`.
+                  # the rule result becomes `due_soon` and then `failing`. The window restarts
+                  # whenever evidence is attached. Omit or `null` for platform rules.
                   sig { returns(T.nilable(Integer)) }
                   attr_accessor :renewal_cadence_days
 
@@ -793,7 +820,8 @@ module Openlayer
                   sig { params(date_updated: Time).void }
                   attr_writer :date_updated
 
-                  # Whether the rule is managed by Openlayer and cannot be edited.
+                  # Whether the rule is managed by Openlayer. These rules can't be renamed or
+                  # deleted; set `deactivated` to exclude one from compliance instead.
                   sig { returns(T.nilable(T::Boolean)) }
                   attr_reader :immutable
 
@@ -828,16 +856,20 @@ module Openlayer
                     # The rule name.
                     name:,
                     # Whether the rule is evaluated once for the whole workspace, or once per project
-                    # the rule's frameworks apply to.
+                    # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                    # the rule is created.
                     scope:,
                     # `platform` rules are evaluated automatically from the state of your Openlayer
-                    # workspace. `evidence` rules are satisfied by attaching evidence.
+                    # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                    # rule is created.
                     type:,
-                    # Configuration for the platform check, when the automation takes parameters.
+                    # Configuration for the platform check, when the automation takes parameters. Omit
+                    # or `null` for evidence rules. Fixed once the rule is created.
                     automation_params: nil,
                     # Which workspace signal a platform rule checks, for example
-                    # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-                    # evidence rules.
+                    # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+                    # platform rules; omit or `null` for evidence rules. Fixed once the rule is
+                    # created.
                     automation_type: nil,
                     # The creation date.
                     date_created: nil,
@@ -847,12 +879,15 @@ module Openlayer
                     deactivated: nil,
                     # What the rule requires.
                     description: nil,
-                    # The kind of evidence that satisfies the rule. `null` for platform rules.
+                    # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                    # `null` for platform rules. Fixed once the rule is created.
                     evidence_type: nil,
-                    # Whether the rule is managed by Openlayer and cannot be edited.
+                    # Whether the rule is managed by Openlayer. These rules can't be renamed or
+                    # deleted; set `deactivated` to exclude one from compliance instead.
                     immutable: nil,
                     # How often evidence must be renewed, in days. Once evidence is older than this,
-                    # the rule result becomes `due_soon` and then `failing`.
+                    # the rule result becomes `due_soon` and then `failing`. The window restarts
+                    # whenever evidence is attached. Omit or `null` for platform rules.
                     renewal_cadence_days: nil
                   )
                   end
@@ -886,7 +921,8 @@ module Openlayer
                   end
 
                   # Whether the rule is evaluated once for the whole workspace, or once per project
-                  # the rule's frameworks apply to.
+                  # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                  # the rule is created.
                   module Scope
                     extend Openlayer::Internal::Type::Enum
 
@@ -922,7 +958,8 @@ module Openlayer
                   end
 
                   # `platform` rules are evaluated automatically from the state of your Openlayer
-                  # workspace. `evidence` rules are satisfied by attaching evidence.
+                  # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                  # rule is created.
                   module Type
                     extend Openlayer::Internal::Type::Enum
 
@@ -957,7 +994,8 @@ module Openlayer
                     end
                   end
 
-                  # The kind of evidence that satisfies the rule. `null` for platform rules.
+                  # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                  # `null` for platform rules. Fixed once the rule is created.
                   module EvidenceType
                     extend Openlayer::Internal::Type::Enum
 

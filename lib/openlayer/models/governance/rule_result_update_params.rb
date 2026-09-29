@@ -37,18 +37,22 @@ module Openlayer
                  -> { Openlayer::Internal::Type::ArrayOf[Openlayer::Governance::RuleResultUpdateParams::Blocking] }
 
         # @!attribute deactivated
-        #   Whether this result is excluded from compliance calculations.
+        #   Whether this result is excluded from compliance calculations. Excludes just this
+        #   result, without deactivating the rule everywhere.
         #
         #   @return [Boolean, nil]
         optional :deactivated, Openlayer::Internal::Type::Boolean
 
         # @!attribute deactivated_reason
-        #   Why the result was excluded.
+        #   Why the result was excluded. Required when setting `deactivated` to `true`.
         #
         #   @return [String, nil]
         optional :deactivated_reason, String, api_name: :deactivatedReason, nil?: true
 
         # @!method initialize(rule_result_id:, assignee_id: nil, blocked_by: nil, blocking: nil, deactivated: nil, deactivated_reason: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Openlayer::Models::Governance::RuleResultUpdateParams} for more details.
+        #
         #   @param rule_result_id [String]
         #
         #   @param assignee_id [String, nil] The user responsible for this result.
@@ -57,9 +61,9 @@ module Openlayer
         #
         #   @param blocking [Array<Openlayer::Models::Governance::RuleResultUpdateParams::Blocking>] Rule results that this one blocks.
         #
-        #   @param deactivated [Boolean] Whether this result is excluded from compliance calculations.
+        #   @param deactivated [Boolean] Whether this result is excluded from compliance calculations. Excludes just this
         #
-        #   @param deactivated_reason [String, nil] Why the result was excluded.
+        #   @param deactivated_reason [String, nil] Why the result was excluded. Required when setting `deactivated` to `true`.
         #
         #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
 
@@ -70,17 +74,23 @@ module Openlayer
           optional :id, String
 
           # @!attribute status
-          #   The compliance status of the rule for this entity.
+          #   The compliance status of the rule for this entity. Computed by Openlayer and
+          #   can't be set directly.
           #
           #   @return [Symbol, Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::Status, nil]
           optional :status, enum: -> { Openlayer::Governance::RuleResultUpdateParams::BlockedBy::Status }
 
           # @!method initialize(id: nil, status: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy} for more
+          #   details.
+          #
           #   @param id [String]
           #
-          #   @param status [Symbol, Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::Status] The compliance status of the rule for this entity.
+          #   @param status [Symbol, Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy::Status] The compliance status of the rule for this entity. Computed by Openlayer and can
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           #
           # @see Openlayer::Models::Governance::RuleResultUpdateParams::BlockedBy#status
           module Status
@@ -106,17 +116,23 @@ module Openlayer
           optional :id, String
 
           # @!attribute status
-          #   The compliance status of the rule for this entity.
+          #   The compliance status of the rule for this entity. Computed by Openlayer and
+          #   can't be set directly.
           #
           #   @return [Symbol, Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::Status, nil]
           optional :status, enum: -> { Openlayer::Governance::RuleResultUpdateParams::Blocking::Status }
 
           # @!method initialize(id: nil, status: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Openlayer::Models::Governance::RuleResultUpdateParams::Blocking} for more
+          #   details.
+          #
           #   @param id [String]
           #
-          #   @param status [Symbol, Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::Status] The compliance status of the rule for this entity.
+          #   @param status [Symbol, Openlayer::Models::Governance::RuleResultUpdateParams::Blocking::Status] The compliance status of the rule for this entity. Computed by Openlayer and can
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           #
           # @see Openlayer::Models::Governance::RuleResultUpdateParams::Blocking#status
           module Status

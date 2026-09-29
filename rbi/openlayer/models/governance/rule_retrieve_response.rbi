@@ -17,7 +17,8 @@ module Openlayer
         attr_accessor :name
 
         # Whether the rule is evaluated once for the whole workspace, or once per project
-        # the rule's frameworks apply to.
+        # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+        # the rule is created.
         sig do
           returns(
             Openlayer::Models::Governance::RuleRetrieveResponse::Scope::TaggedSymbol
@@ -26,7 +27,8 @@ module Openlayer
         attr_accessor :scope
 
         # `platform` rules are evaluated automatically from the state of your Openlayer
-        # workspace. `evidence` rules are satisfied by attaching evidence.
+        # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+        # rule is created.
         sig do
           returns(
             Openlayer::Models::Governance::RuleRetrieveResponse::Type::TaggedSymbol
@@ -38,13 +40,15 @@ module Openlayer
         sig { returns(T.nilable(String)) }
         attr_accessor :assignee_id
 
-        # Configuration for the platform check, when the automation takes parameters.
+        # Configuration for the platform check, when the automation takes parameters. Omit
+        # or `null` for evidence rules. Fixed once the rule is created.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :automation_params
 
         # Which workspace signal a platform rule checks, for example
-        # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-        # evidence rules.
+        # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+        # platform rules; omit or `null` for evidence rules. Fixed once the rule is
+        # created.
         sig { returns(T.nilable(String)) }
         attr_accessor :automation_type
 
@@ -59,7 +63,8 @@ module Openlayer
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
-        # The kind of evidence that satisfies the rule. `null` for platform rules.
+        # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+        # `null` for platform rules. Fixed once the rule is created.
         sig do
           returns(
             T.nilable(
@@ -70,7 +75,8 @@ module Openlayer
         attr_accessor :evidence_type
 
         # How often evidence must be renewed, in days. Once evidence is older than this,
-        # the rule result becomes `due_soon` and then `failing`.
+        # the rule result becomes `due_soon` and then `failing`. The window restarts
+        # whenever evidence is attached. Omit or `null` for platform rules.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :renewal_cadence_days
 
@@ -112,7 +118,8 @@ module Openlayer
         end
         attr_writer :frameworks
 
-        # Whether the rule is managed by Openlayer and cannot be edited.
+        # Whether the rule is managed by Openlayer. These rules can't be renamed or
+        # deleted; set `deactivated` to exclude one from compliance instead.
         sig { returns(T.nilable(T::Boolean)) }
         attr_reader :immutable
 
@@ -173,6 +180,10 @@ module Openlayer
         end
         attr_accessor :tags
 
+        # A single requirement Openlayer tracks. `platform` rules are evaluated
+        # automatically from the state of your workspace, and `evidence` rules are
+        # satisfied by attaching evidence. A rule can belong to several frameworks, or to
+        # none.
         sig do
           params(
             id: String,
@@ -225,33 +236,40 @@ module Openlayer
           # The rule name.
           name:,
           # Whether the rule is evaluated once for the whole workspace, or once per project
-          # the rule's frameworks apply to.
+          # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+          # the rule is created.
           scope:,
           # `platform` rules are evaluated automatically from the state of your Openlayer
-          # workspace. `evidence` rules are satisfied by attaching evidence.
+          # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+          # rule is created.
           type:,
           # The id of the workspace the rule belongs to.
           workspace_id:,
           # The user responsible for satisfying the rule.
           assignee_id: nil,
-          # Configuration for the platform check, when the automation takes parameters.
+          # Configuration for the platform check, when the automation takes parameters. Omit
+          # or `null` for evidence rules. Fixed once the rule is created.
           automation_params: nil,
           # Which workspace signal a platform rule checks, for example
-          # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-          # evidence rules.
+          # `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+          # platform rules; omit or `null` for evidence rules. Fixed once the rule is
+          # created.
           automation_type: nil,
           # Whether the rule is excluded from compliance calculations.
           deactivated: nil,
           # What the rule requires.
           description: nil,
-          # The kind of evidence that satisfies the rule. `null` for platform rules.
+          # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+          # `null` for platform rules. Fixed once the rule is created.
           evidence_type: nil,
           # The frameworks that include this rule.
           frameworks: nil,
-          # Whether the rule is managed by Openlayer and cannot be edited.
+          # Whether the rule is managed by Openlayer. These rules can't be renamed or
+          # deleted; set `deactivated` to exclude one from compliance instead.
           immutable: nil,
           # How often evidence must be renewed, in days. Once evidence is older than this,
-          # the rule result becomes `due_soon` and then `failing`.
+          # the rule result becomes `due_soon` and then `failing`. The window restarts
+          # whenever evidence is attached. Omit or `null` for platform rules.
           renewal_cadence_days: nil,
           # The rule's results, one per entity the rule is evaluated against. Only returned
           # when `includeResults` is `true`.
@@ -313,7 +331,8 @@ module Openlayer
         end
 
         # Whether the rule is evaluated once for the whole workspace, or once per project
-        # the rule's frameworks apply to.
+        # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+        # the rule is created.
         module Scope
           extend Openlayer::Internal::Type::Enum
 
@@ -349,7 +368,8 @@ module Openlayer
         end
 
         # `platform` rules are evaluated automatically from the state of your Openlayer
-        # workspace. `evidence` rules are satisfied by attaching evidence.
+        # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+        # rule is created.
         module Type
           extend Openlayer::Internal::Type::Enum
 
@@ -384,7 +404,8 @@ module Openlayer
           end
         end
 
-        # The kind of evidence that satisfies the rule. `null` for platform rules.
+        # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+        # `null` for platform rules. Fixed once the rule is created.
         module EvidenceType
           extend Openlayer::Internal::Type::Enum
 
@@ -615,11 +636,13 @@ module Openlayer
               )
             end
 
-          # Whether this result is excluded from compliance calculations.
+          # Whether this result is excluded from compliance calculations. Excludes just this
+          # result, without deactivating the rule everywhere.
           sig { returns(T::Boolean) }
           attr_accessor :deactivated
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           sig do
             returns(
               Openlayer::Models::Governance::RuleRetrieveResponse::Result::Status::TaggedSymbol
@@ -675,7 +698,7 @@ module Openlayer
           end
           attr_writer :blocking
 
-          # Why the result was excluded.
+          # Why the result was excluded. Required when setting `deactivated` to `true`.
           sig { returns(T.nilable(String)) }
           attr_accessor :deactivated_reason
 
@@ -723,6 +746,8 @@ module Openlayer
           sig { returns(T.nilable(String)) }
           attr_accessor :project_id
 
+          # The compliance status of one rule for one entity: a project for project-scoped
+          # rules, or the workspace for workspace-scoped rules.
           sig do
             params(
               id: String,
@@ -758,11 +783,13 @@ module Openlayer
             date_created:,
             # The last update date.
             date_updated:,
-            # Whether this result is excluded from compliance calculations.
+            # Whether this result is excluded from compliance calculations. Excludes just this
+            # result, without deactivating the rule everywhere.
             deactivated:,
             # The rule this result belongs to.
             rule_id:,
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             status:,
             # The id of the workspace the rule result belongs to.
             workspace_id:,
@@ -780,7 +807,7 @@ module Openlayer
             date_of_next_evaluation: nil,
             # When the evidence must be renewed. Evidence rules with a renewal cadence only.
             date_of_renewal: nil,
-            # Why the result was excluded.
+            # Why the result was excluded. Required when setting `deactivated` to `true`.
             deactivated_reason: nil,
             # The project this result was evaluated for. `null` for workspace-scoped rules.
             project_id: nil,
@@ -822,7 +849,8 @@ module Openlayer
           def to_hash
           end
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           module Status
             extend Openlayer::Internal::Type::Enum
 
@@ -897,7 +925,8 @@ module Openlayer
             sig { params(id: String).void }
             attr_writer :id
 
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             sig do
               returns(
                 T.nilable(
@@ -924,7 +953,8 @@ module Openlayer
             end
             def self.new(
               id: nil,
-              # The compliance status of the rule for this entity.
+              # The compliance status of the rule for this entity. Computed by Openlayer and
+              # can't be set directly.
               status: nil
             )
             end
@@ -941,7 +971,8 @@ module Openlayer
             def to_hash
             end
 
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             module Status
               extend Openlayer::Internal::Type::Enum
 
@@ -1017,7 +1048,8 @@ module Openlayer
             sig { params(id: String).void }
             attr_writer :id
 
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             sig do
               returns(
                 T.nilable(
@@ -1044,7 +1076,8 @@ module Openlayer
             end
             def self.new(
               id: nil,
-              # The compliance status of the rule for this entity.
+              # The compliance status of the rule for this entity. Computed by Openlayer and
+              # can't be set directly.
               status: nil
             )
             end
@@ -1061,7 +1094,8 @@ module Openlayer
             def to_hash
             end
 
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             module Status
               extend Openlayer::Internal::Type::Enum
 
@@ -1190,7 +1224,7 @@ module Openlayer
           sig { returns(Time) }
           attr_accessor :date_updated
 
-          # Whether the tag is managed by Openlayer and cannot be edited or deleted.
+          # Whether the tag is managed by Openlayer. These tags can't be deleted.
           sig { returns(T::Boolean) }
           attr_accessor :immutable
 
@@ -1198,6 +1232,8 @@ module Openlayer
           sig { returns(String) }
           attr_accessor :workspace_id
 
+          # A label that groups rules across frameworks, for example by team or control
+          # family.
           sig do
             params(
               id: String,
@@ -1219,7 +1255,7 @@ module Openlayer
             date_created:,
             # The last update date.
             date_updated:,
-            # Whether the tag is managed by Openlayer and cannot be edited or deleted.
+            # Whether the tag is managed by Openlayer. These tags can't be deleted.
             immutable:,
             # The tag name.
             name:,

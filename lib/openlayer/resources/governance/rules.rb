@@ -7,19 +7,7 @@ module Openlayer
         # Some parameter documentations has been truncated, see
         # {Openlayer::Models::Governance::RuleCreateParams} for more details.
         #
-        # Create a governance rule in a workspace.
-        #
-        # A rule is one requirement. Its `type` decides how it is satisfied, and the two
-        # types accept different fields:
-        #
-        # - `platform` rules are evaluated automatically from the state of your workspace.
-        #   Set `automationType` to the signal to check. Their `scope` must be `project`,
-        #   and `evidenceType` and `renewalCadenceDays` must be omitted or `null`.
-        # - `evidence` rules are satisfied by attaching evidence. Set `evidenceType` to
-        #   the kind of evidence that satisfies them. `automationType` and
-        #   `automationParams` must be omitted or `null`.
-        #
-        # A new rule belongs to no framework. Map it to one from the Openlayer app.
+        # Create a rule in a workspace.
         #
         # @overload create(workspace_id, name:, scope:, type:, assignee_id: nil, automation_params: nil, automation_type: nil, deactivated: nil, description: nil, evidence_type: nil, renewal_cadence_days: nil, tag_ids: nil, request_options: {})
         #
@@ -33,7 +21,7 @@ module Openlayer
         #
         # @param assignee_id [String, nil] The user responsible for satisfying the rule.
         #
-        # @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters.
+        # @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters. Omit
         #
         # @param automation_type [String, nil] Which workspace signal a platform rule checks, for example `monitoring_mode_enab
         #
@@ -41,7 +29,7 @@ module Openlayer
         #
         # @param description [String, nil] What the rule requires.
         #
-        # @param evidence_type [Symbol, Openlayer::Models::Governance::RuleCreateParams::EvidenceType, nil] The kind of evidence that satisfies the rule. `null` for platform rules.
+        # @param evidence_type [Symbol, Openlayer::Models::Governance::RuleCreateParams::EvidenceType, nil] The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
         #
         # @param renewal_cadence_days [Integer, nil] How often evidence must be renewed, in days. Once evidence is older than this, t
         #
@@ -63,8 +51,7 @@ module Openlayer
           )
         end
 
-        # Retrieve a governance rule by its id, including the frameworks it belongs to and
-        # its tags.
+        # Retrieve a rule with its frameworks and tags.
         #
         # @overload retrieve(rule_id, request_options: {})
         #
@@ -87,12 +74,7 @@ module Openlayer
         # Some parameter documentations has been truncated, see
         # {Openlayer::Models::Governance::RuleUpdateParams} for more details.
         #
-        # Update a governance rule. Only the fields you send are changed.
-        #
-        # Rules that ship with Openlayer report `immutable: true` and cannot be edited.
-        #
-        # A rule's `scope`, `type`, `evidenceType`, and automation are fixed once it
-        # exists -- create a new rule instead of converting one.
+        # Update a rule.
         #
         # @overload update(rule_id, assignee_id: nil, deactivated: nil, description: nil, name: nil, renewal_cadence_days: nil, tag_ids: nil, request_options: {})
         #
@@ -129,16 +111,7 @@ module Openlayer
         # Some parameter documentations has been truncated, see
         # {Openlayer::Models::Governance::RuleListParams} for more details.
         #
-        # List the governance rules in a workspace.
-        #
-        # A rule is a single requirement Openlayer tracks. `platform` rules are evaluated
-        # automatically from the state of your workspace; `evidence` rules are satisfied
-        # by attaching evidence. A rule can belong to several frameworks at once, and
-        # rules that belong to none are returned too unless you pass
-        # `includeUnframed=false`.
-        #
-        # Pass `includeResults=true` to get each rule's compliance results inline instead
-        # of fetching them separately.
+        # List the rules in a workspace.
         #
         # @overload list(workspace_id, asc: nil, assignee_id: nil, deactivated: nil, enabled_framework_only: nil, framework_id: nil, group: nil, include_results: nil, include_unframed: nil, page: nil, per_page: nil, project_id: nil, scope: nil, search_query: nil, sort_by: nil, status: nil, tags: nil, type: nil, request_options: {})
         #
@@ -205,11 +178,7 @@ module Openlayer
           )
         end
 
-        # Delete a governance rule and its rule results.
-        #
-        # Only rules you created can be deleted. Rules that ship with Openlayer report
-        # `immutable: true` and cannot be deleted -- exclude one from compliance by
-        # setting `deactivated` with `PUT /rules/{ruleId}` instead.
+        # Delete a rule and its results.
         #
         # @overload delete(rule_id, request_options: {})
         #

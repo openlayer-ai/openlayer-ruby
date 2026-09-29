@@ -41,7 +41,8 @@ module Openlayer
         attr_writer :name
 
         # How often evidence must be renewed, in days. Once evidence is older than this,
-        # the rule result becomes `due_soon` and then `failing`.
+        # the rule result becomes `due_soon` and then `failing`. The window restarts
+        # whenever evidence is attached. Omit or `null` for platform rules.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :renewal_cadence_days
 
@@ -74,7 +75,8 @@ module Openlayer
           # The rule name.
           name: nil,
           # How often evidence must be renewed, in days. Once evidence is older than this,
-          # the rule result becomes `due_soon` and then `failing`.
+          # the rule result becomes `due_soon` and then `failing`. The window restarts
+          # whenever evidence is attached. Omit or `null` for platform rules.
           renewal_cadence_days: nil,
           # The ids of the rule tags to associate with the rule. Replaces the rule's tags.
           # Read them back from `tags`, and list the tags available in the workspace with

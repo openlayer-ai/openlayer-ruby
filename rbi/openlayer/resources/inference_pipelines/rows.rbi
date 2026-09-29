@@ -4,7 +4,7 @@ module Openlayer
   module Resources
     class InferencePipelines
       class Rows
-        # Fetch a single inference pipeline row by inference ID, including OTel steps.
+        # Retrieve a row by inference ID, including OTel steps.
         sig do
           params(
             inference_id: String,
@@ -20,7 +20,7 @@ module Openlayer
         )
         end
 
-        # Update an inference data point in an inference pipeline.
+        # Update a row in an inference pipeline.
         sig do
           params(
             inference_pipeline_id: String,
@@ -46,7 +46,7 @@ module Openlayer
         )
         end
 
-        # A list of rows for an inference pipeline.
+        # List the rows in an inference pipeline.
         sig do
           params(
             inference_pipeline_id: String,
@@ -102,8 +102,7 @@ module Openlayer
         )
         end
 
-        # Delete a single inference pipeline row by inference ID. Only project admins can
-        # perform this action.
+        # Delete a row by inference ID.
         sig do
           params(
             inference_id: String,

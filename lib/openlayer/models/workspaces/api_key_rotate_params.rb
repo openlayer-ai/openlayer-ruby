@@ -22,13 +22,17 @@ module Openlayer
         #   When the key stops authenticating. `null` means the key never expires. Set when
         #   the key is created or rotated, and must be in the future. When the request is
         #   authenticated with an API key that expires, the result can't be later than that
-        #   key's expiry.
+        #   key's expiry. On create, omit it to inherit that expiry. On rotate, omit it to
+        #   keep the current one. It can't be changed with an update; rotate the key
+        #   instead.
         #
         #   @return [Time, nil]
         optional :expires_at, Time, api_name: :expiresAt, nil?: true
 
         # @!attribute grace_period_hours
-        #   Hours the previous secret keeps authenticating.
+        #   Hours the previous secret keeps authenticating. The default of 0 retires it
+        #   immediately. It never outlives `expiresAt`. Only one previous secret is kept, so
+        #   rotating again during a grace period retires the older one immediately.
         #
         #   @return [Integer, nil]
         optional :grace_period_hours, Integer, api_name: :gracePeriodHours
@@ -43,7 +47,7 @@ module Openlayer
         #
         #   @param expires_at [Time, nil] When the key stops authenticating. `null` means the key never expires. Set when
         #
-        #   @param grace_period_hours [Integer] Hours the previous secret keeps authenticating.
+        #   @param grace_period_hours [Integer] Hours the previous secret keeps authenticating. The default of 0 retires it imme
         #
         #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
       end

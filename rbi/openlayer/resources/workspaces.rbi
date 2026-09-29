@@ -9,7 +9,7 @@ module Openlayer
       sig { returns(Openlayer::Resources::Workspaces::APIKeys) }
       attr_reader :api_keys
 
-      # Retrieve a workspace by its ID.
+      # Retrieve a workspace.
       sig do
         params(
           workspace_id: String,

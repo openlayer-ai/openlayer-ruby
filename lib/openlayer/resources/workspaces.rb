@@ -9,7 +9,7 @@ module Openlayer
       # @return [Openlayer::Resources::Workspaces::APIKeys]
       attr_reader :api_keys
 
-      # Retrieve a workspace by its ID.
+      # Retrieve a workspace.
       #
       # @overload retrieve(workspace_id, request_options: {})
       #

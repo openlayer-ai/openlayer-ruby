@@ -6,10 +6,7 @@ module Openlayer
       # Some parameter documentations has been truncated, see
       # {Openlayer::Models::TestEvaluateParams} for more details.
       #
-      # Triggers one-off evaluation of a specific monitoring test for a custom timestamp
-      # range. This allows evaluating tests for historical data or custom time periods
-      # outside the regular evaluation window schedule. It also allows overwriting the
-      # existing test results.
+      # Evaluate a test over a custom time range.
       #
       # @overload evaluate(test_id, end_timestamp:, start_timestamp:, inference_pipeline_id: nil, overwrite_results: nil, request_options: {})
       #

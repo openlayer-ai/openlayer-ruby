@@ -23,7 +23,7 @@ module Openlayer
         )
         end
 
-        # Retrieve a list of invites in a workspace.
+        # List the invites in a workspace.
         sig do
           params(
             workspace_id: String,

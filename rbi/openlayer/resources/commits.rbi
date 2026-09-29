@@ -6,7 +6,7 @@ module Openlayer
       sig { returns(Openlayer::Resources::Commits::TestResults) }
       attr_reader :test_results
 
-      # Retrieve a project version (commit) by its id.
+      # Retrieve a project commit.
       sig do
         params(
           project_version_id: String,

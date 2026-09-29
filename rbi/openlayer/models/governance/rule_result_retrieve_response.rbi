@@ -12,11 +12,13 @@ module Openlayer
             )
           end
 
-        # Whether this result is excluded from compliance calculations.
+        # Whether this result is excluded from compliance calculations. Excludes just this
+        # result, without deactivating the rule everywhere.
         sig { returns(T::Boolean) }
         attr_accessor :deactivated
 
-        # The compliance status of the rule for this entity.
+        # The compliance status of the rule for this entity. Computed by Openlayer and
+        # can't be set directly.
         sig do
           returns(
             Openlayer::Models::Governance::RuleResultRetrieveResponse::Status::TaggedSymbol
@@ -72,7 +74,7 @@ module Openlayer
         end
         attr_writer :blocking
 
-        # Why the result was excluded.
+        # Why the result was excluded. Required when setting `deactivated` to `true`.
         sig { returns(T.nilable(String)) }
         attr_accessor :deactivated_reason
 
@@ -120,6 +122,8 @@ module Openlayer
         sig { returns(T.nilable(String)) }
         attr_accessor :project_id
 
+        # The compliance status of one rule for one entity: a project for project-scoped
+        # rules, or the workspace for workspace-scoped rules.
         sig do
           params(
             id: String,
@@ -155,11 +159,13 @@ module Openlayer
           date_created:,
           # The last update date.
           date_updated:,
-          # Whether this result is excluded from compliance calculations.
+          # Whether this result is excluded from compliance calculations. Excludes just this
+          # result, without deactivating the rule everywhere.
           deactivated:,
           # The rule this result belongs to.
           rule_id:,
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           status:,
           # The id of the workspace the rule result belongs to.
           workspace_id:,
@@ -177,7 +183,7 @@ module Openlayer
           date_of_next_evaluation: nil,
           # When the evidence must be renewed. Evidence rules with a renewal cadence only.
           date_of_renewal: nil,
-          # Why the result was excluded.
+          # Why the result was excluded. Required when setting `deactivated` to `true`.
           deactivated_reason: nil,
           # The project this result was evaluated for. `null` for workspace-scoped rules.
           project_id: nil,
@@ -219,7 +225,8 @@ module Openlayer
         def to_hash
         end
 
-        # The compliance status of the rule for this entity.
+        # The compliance status of the rule for this entity. Computed by Openlayer and
+        # can't be set directly.
         module Status
           extend Openlayer::Internal::Type::Enum
 
@@ -294,7 +301,8 @@ module Openlayer
           sig { params(id: String).void }
           attr_writer :id
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           sig do
             returns(
               T.nilable(
@@ -321,7 +329,8 @@ module Openlayer
           end
           def self.new(
             id: nil,
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             status: nil
           )
           end
@@ -338,7 +347,8 @@ module Openlayer
           def to_hash
           end
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           module Status
             extend Openlayer::Internal::Type::Enum
 
@@ -414,7 +424,8 @@ module Openlayer
           sig { params(id: String).void }
           attr_writer :id
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           sig do
             returns(
               T.nilable(
@@ -441,7 +452,8 @@ module Openlayer
           end
           def self.new(
             id: nil,
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             status: nil
           )
           end
@@ -458,7 +470,8 @@ module Openlayer
           def to_hash
           end
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           module Status
             extend Openlayer::Internal::Type::Enum
 

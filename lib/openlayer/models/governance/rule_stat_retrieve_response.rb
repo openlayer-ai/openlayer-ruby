@@ -24,6 +24,10 @@ module Openlayer
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::Governance::RuleStatRetrieveResponse} for more details.
         #
+        #   Counts of rules and their results by status. Narrowed by the request's filters,
+        #   so `frameworkId` gives one framework's compliance and `projectId` gives one
+        #   project's.
+        #
         #   @param rule_results [Openlayer::Models::Governance::RuleStatRetrieveResponse::RuleResults] Counts of rule results, after any filters in the request, with breakdowns by the
         #
         #   @param rules [Openlayer::Models::Governance::RuleStatRetrieveResponse::Rules] Counts of the rules themselves, after any filters in the request.
