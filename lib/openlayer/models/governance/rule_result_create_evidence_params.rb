@@ -27,7 +27,8 @@ module Openlayer
 
         # @!attribute storage_uri
         #   Where the uploaded file is stored. Set when the rule's `evidenceType` is
-        #   `document`.
+        #   `document`. Upload the file first with `POST /storage/presigned-url` and send
+        #   the storage URI it returns.
         #
         #   @return [String, nil]
         optional :storage_uri, String, api_name: :storageUri, nil?: true

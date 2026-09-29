@@ -12,7 +12,7 @@ module Openlayer
       sig { returns(Openlayer::Resources::InferencePipelines::TestResults) }
       attr_reader :test_results
 
-      # Retrieve inference pipeline.
+      # Retrieve an inference pipeline.
       sig do
         params(
           inference_pipeline_id: String,
@@ -32,7 +32,7 @@ module Openlayer
       )
       end
 
-      # Update inference pipeline.
+      # Update an inference pipeline.
       sig do
         params(
           inference_pipeline_id: String,
@@ -56,7 +56,7 @@ module Openlayer
       )
       end
 
-      # Delete inference pipeline.
+      # Delete an inference pipeline.
       sig do
         params(
           inference_pipeline_id: String,
@@ -70,12 +70,7 @@ module Openlayer
       )
       end
 
-      # Get aggregated session data for an inference pipeline with pagination and
-      # metadata.
-      #
-      # Returns a list of sessions for the inference pipeline, including activity
-      # statistics such as record counts, token usage, cost, latency, and the first and
-      # last records.
+      # List the sessions in an inference pipeline, with their stats.
       sig do
         params(
           inference_pipeline_id: String,
@@ -131,11 +126,7 @@ module Openlayer
       )
       end
 
-      # Get aggregated user data for an inference pipeline with pagination and metadata.
-      #
-      # Returns a list of users who have interacted with the inference pipeline,
-      # including their activity statistics such as session counts, record counts, token
-      # usage, and costs.
+      # List the users of an inference pipeline, with their stats.
       sig do
         params(
           inference_pipeline_id: String,

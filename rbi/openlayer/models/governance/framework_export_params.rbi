@@ -18,7 +18,9 @@ module Openlayer
         sig { returns(String) }
         attr_accessor :framework_id
 
-        # Scope the export to this project. It must belong to the framework.
+        # Scope the export to this project. It must belong to the framework. Omit it for
+        # the workspace-wide view across every project in the framework, including
+        # workspace-scoped rules.
         sig { returns(T.nilable(String)) }
         attr_accessor :project_id
 
@@ -31,7 +33,9 @@ module Openlayer
         end
         def self.new(
           framework_id:,
-          # Scope the export to this project. It must belong to the framework.
+          # Scope the export to this project. It must belong to the framework. Omit it for
+          # the workspace-wide view across every project in the framework, including
+          # workspace-scoped rules.
           project_id: nil,
           request_options: {}
         )

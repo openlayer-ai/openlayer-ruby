@@ -7,10 +7,7 @@ module Openlayer
         # Some parameter documentations has been truncated, see
         # {Openlayer::Models::Workspaces::APIKeyCreateParams} for more details.
         #
-        # Create a new API key in a workspace. The full secret is returned in `secret`,
-        # only in this response. Optionally set `expiresAt`. When you authenticate with an
-        # API key that expires, the new key can't outlive it: omit `expiresAt` to inherit
-        # that expiry, and a later expiry (or `null`) is rejected with 400.
+        # Create a new API key.
         #
         # @overload create(workspace_id, expires_at: nil, name: nil, request_options: {})
         #
@@ -36,8 +33,7 @@ module Openlayer
           )
         end
 
-        # Retrieve one of your API keys, with its lifecycle status. The secret is never
-        # returned; `secureKey` is an obfuscated hint.
+        # Retrieve an API key.
         #
         # @overload retrieve(api_key_id, workspace_id:, request_options: {})
         #
@@ -64,9 +60,7 @@ module Openlayer
           )
         end
 
-        # Rename one of your API keys. A key's expiry can't be updated; rotate the key
-        # with a new `expiresAt` instead, so extending a key's life always issues a new
-        # secret.
+        # Rename an API key.
         #
         # @overload update(api_key_id, workspace_id:, name: nil, request_options: {})
         #
@@ -96,8 +90,7 @@ module Openlayer
           )
         end
 
-        # List the API keys you own in a workspace, with their lifecycle status. Secrets
-        # are never returned; `secureKey` is an obfuscated hint.
+        # List your API keys in a workspace.
         #
         # @overload list(workspace_id, request_options: {})
         #
@@ -117,8 +110,7 @@ module Openlayer
           )
         end
 
-        # Delete one of your API keys. Every secret for the key stops working immediately,
-        # including a previous secret still in its rotation grace period.
+        # Delete an API key.
         #
         # @overload delete(api_key_id, workspace_id:, request_options: {})
         #
@@ -148,13 +140,7 @@ module Openlayer
         # Some parameter documentations has been truncated, see
         # {Openlayer::Models::Workspaces::APIKeyRotateParams} for more details.
         #
-        # Replace an API key's secret now. The new secret is returned in `secret`, only in
-        # this response. Send `expiresAt` to change the key's expiry (`null` for never);
-        # omit it to keep the current one. The previous secret keeps authenticating for
-        # `gracePeriodHours` (default 0, so it stops working immediately), and never past
-        # `expiresAt`. The key keeps its id and name. Expired keys cannot be rotated. Only
-        # one previous secret is kept, so rotating again during a grace period retires the
-        # older one immediately.
+        # Replace an API key's secret.
         #
         # @overload rotate(api_key_id, workspace_id:, expires_at: nil, grace_period_hours: nil, request_options: {})
         #
@@ -164,7 +150,7 @@ module Openlayer
         #
         # @param expires_at [Time, nil] Body param: When the key stops authenticating. `null` means the key never expire
         #
-        # @param grace_period_hours [Integer] Body param: Hours the previous secret keeps authenticating.
+        # @param grace_period_hours [Integer] Body param: Hours the previous secret keeps authenticating. The default of 0 ret
         #
         # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
         #

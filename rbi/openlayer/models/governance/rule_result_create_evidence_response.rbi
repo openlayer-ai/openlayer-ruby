@@ -21,7 +21,8 @@ module Openlayer
         attr_accessor :name
 
         # Where the uploaded file is stored. Set when the rule's `evidenceType` is
-        # `document`.
+        # `document`. Upload the file first with `POST /storage/presigned-url` and send
+        # the storage URI it returns.
         sig { returns(T.nilable(String)) }
         attr_accessor :storage_uri
 
@@ -49,6 +50,9 @@ module Openlayer
         sig { returns(Time) }
         attr_accessor :date_updated
 
+        # Evidence attached to a rule result to satisfy an evidence rule. Which field
+        # holds it depends on the rule's `evidenceType`: `storageUri` for a document,
+        # `text` for a written statement, or `url` for a link.
         sig do
           params(
             id: String,
@@ -76,7 +80,8 @@ module Openlayer
           # The evidence name.
           name: nil,
           # Where the uploaded file is stored. Set when the rule's `evidenceType` is
-          # `document`.
+          # `document`. Upload the file first with `POST /storage/presigned-url` and send
+          # the storage URI it returns.
           storage_uri: nil,
           # The evidence text. Set when the rule's `evidenceType` is `text`.
           text: nil,

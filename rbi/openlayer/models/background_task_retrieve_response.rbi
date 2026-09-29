@@ -46,6 +46,9 @@ module Openlayer
       sig { returns(String) }
       attr_accessor :name
 
+      # A job queued by an endpoint that can't answer within one request, such as a
+      # framework export. Poll it until `complete` is `true`, then read what it produced
+      # from `outputs`.
       sig do
         params(
           id: String,

@@ -5,11 +5,7 @@ module Openlayer
     class Governance
       class Frameworks
         class Sections
-          # List the rules mapped to a section of a framework document.
-          #
-          # Pass `includeSubsectionRules=true` to also return the rules mapped to the
-          # section's subsections, which is how you get every rule covering a requirement
-          # and everything under it.
+          # List the rules mapped to a document section.
           sig do
             params(
               section_id: String,

@@ -58,6 +58,9 @@ module Openlayer
         required :tokens, Float
 
         # @!method initialize(id:, cost:, date_of_first_record:, date_of_last_record:, records:, sessions:, tokens:)
+        #   A user who has interacted with an inference pipeline, with their activity stats:
+        #   session and record counts, token usage, and cost.
+        #
         #   @param id [String] The unique user identifier
         #
         #   @param cost [Float] Total cost for this user

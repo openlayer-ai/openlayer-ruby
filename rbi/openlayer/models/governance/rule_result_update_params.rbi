@@ -62,14 +62,15 @@ module Openlayer
         end
         attr_writer :blocking
 
-        # Whether this result is excluded from compliance calculations.
+        # Whether this result is excluded from compliance calculations. Excludes just this
+        # result, without deactivating the rule everywhere.
         sig { returns(T.nilable(T::Boolean)) }
         attr_reader :deactivated
 
         sig { params(deactivated: T::Boolean).void }
         attr_writer :deactivated
 
-        # Why the result was excluded.
+        # Why the result was excluded. Required when setting `deactivated` to `true`.
         sig { returns(T.nilable(String)) }
         attr_accessor :deactivated_reason
 
@@ -98,9 +99,10 @@ module Openlayer
           blocked_by: nil,
           # Rule results that this one blocks.
           blocking: nil,
-          # Whether this result is excluded from compliance calculations.
+          # Whether this result is excluded from compliance calculations. Excludes just this
+          # result, without deactivating the rule everywhere.
           deactivated: nil,
-          # Why the result was excluded.
+          # Why the result was excluded. Required when setting `deactivated` to `true`.
           deactivated_reason: nil,
           request_options: {}
         )
@@ -143,7 +145,8 @@ module Openlayer
           sig { params(id: String).void }
           attr_writer :id
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           sig do
             returns(
               T.nilable(
@@ -170,7 +173,8 @@ module Openlayer
           end
           def self.new(
             id: nil,
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             status: nil
           )
           end
@@ -187,7 +191,8 @@ module Openlayer
           def to_hash
           end
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           module Status
             extend Openlayer::Internal::Type::Enum
 
@@ -263,7 +268,8 @@ module Openlayer
           sig { params(id: String).void }
           attr_writer :id
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           sig do
             returns(
               T.nilable(
@@ -290,7 +296,8 @@ module Openlayer
           end
           def self.new(
             id: nil,
-            # The compliance status of the rule for this entity.
+            # The compliance status of the rule for this entity. Computed by Openlayer and
+            # can't be set directly.
             status: nil
           )
           end
@@ -307,7 +314,8 @@ module Openlayer
           def to_hash
           end
 
-          # The compliance status of the rule for this entity.
+          # The compliance status of the rule for this entity. Computed by Openlayer and
+          # can't be set directly.
           module Status
             extend Openlayer::Internal::Type::Enum
 

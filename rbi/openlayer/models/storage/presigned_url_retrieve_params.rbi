@@ -15,7 +15,8 @@ module Openlayer
             )
           end
 
-        # The object's storage uri.
+        # The object's storage uri, for example `outputs.storageUri` from a framework
+        # export's background task.
         sig { returns(String) }
         attr_accessor :storage_uri
 
@@ -26,7 +27,8 @@ module Openlayer
           ).returns(T.attached_class)
         end
         def self.new(
-          # The object's storage uri.
+          # The object's storage uri, for example `outputs.storageUri` from a framework
+          # export's background task.
           storage_uri:,
           request_options: {}
         )

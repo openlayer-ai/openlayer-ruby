@@ -53,7 +53,7 @@ module Openlayer
             required :date_updated, Time, api_name: :dateUpdated
 
             # @!attribute immutable
-            #   Whether the tag is managed by Openlayer and cannot be edited or deleted.
+            #   Whether the tag is managed by Openlayer. These tags can't be deleted.
             #
             #   @return [Boolean]
             required :immutable, Openlayer::Internal::Type::Boolean
@@ -66,6 +66,9 @@ module Openlayer
           end
 
           # @!method initialize(id:, creator_id:, date_created:, date_updated:, immutable:, name:, workspace_id:, color: nil)
+          #   A label that groups rules across frameworks, for example by team or control
+          #   family.
+          #
           #   @param id [String] The rule tag id.
           #
           #   @param creator_id [String, nil] The user who created the tag. `null` for tags that ship with Openlayer.
@@ -74,7 +77,7 @@ module Openlayer
           #
           #   @param date_updated [Time] The last update date.
           #
-          #   @param immutable [Boolean] Whether the tag is managed by Openlayer and cannot be edited or deleted.
+          #   @param immutable [Boolean] Whether the tag is managed by Openlayer. These tags can't be deleted.
           #
           #   @param name [String] The tag name.
           #

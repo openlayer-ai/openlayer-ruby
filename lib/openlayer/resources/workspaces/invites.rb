@@ -30,7 +30,7 @@ module Openlayer
           )
         end
 
-        # Retrieve a list of invites in a workspace.
+        # List the invites in a workspace.
         #
         # @overload list(workspace_id, page: nil, per_page: nil, request_options: {})
         #

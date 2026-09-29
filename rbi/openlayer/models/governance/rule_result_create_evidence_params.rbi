@@ -27,7 +27,8 @@ module Openlayer
         attr_accessor :name
 
         # Where the uploaded file is stored. Set when the rule's `evidenceType` is
-        # `document`.
+        # `document`. Upload the file first with `POST /storage/presigned-url` and send
+        # the storage URI it returns.
         sig { returns(T.nilable(String)) }
         attr_accessor :storage_uri
 
@@ -57,7 +58,8 @@ module Openlayer
           # The evidence name.
           name: nil,
           # Where the uploaded file is stored. Set when the rule's `evidenceType` is
-          # `document`.
+          # `document`. Upload the file first with `POST /storage/presigned-url` and send
+          # the storage URI it returns.
           storage_uri: nil,
           # The evidence text. Set when the rule's `evidenceType` is `text`.
           text: nil,

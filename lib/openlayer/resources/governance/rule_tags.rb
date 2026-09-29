@@ -6,10 +6,6 @@ module Openlayer
       class RuleTags
         # List the rule tags in a workspace.
         #
-        # Tags group rules across frameworks, for example by team or by control family.
-        # Use the ids returned here with the `tags` filter on
-        # [List rules](/api-reference/rest/governance/list-rules).
-        #
         # @overload list(workspace_id, page: nil, per_page: nil, request_options: {})
         #
         # @param workspace_id [String] The workspace id.

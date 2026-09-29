@@ -61,6 +61,9 @@ module Openlayer
             #   {Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item} for more
             #   details.
             #
+            #   The text of the standard a framework is based on, split into sections and
+            #   subsections, with the rules mapped to each part.
+            #
             #   @param id [String] The document id.
             #
             #   @param date_created [Time] The creation date.
@@ -165,7 +168,8 @@ module Openlayer
 
                 # @!attribute scope
                 #   Whether the rule is evaluated once for the whole workspace, or once per project
-                #   the rule's frameworks apply to.
+                #   the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                #   the rule is created.
                 #
                 #   @return [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::Scope]
                 required :scope,
@@ -173,14 +177,16 @@ module Openlayer
 
                 # @!attribute type
                 #   `platform` rules are evaluated automatically from the state of your Openlayer
-                #   workspace. `evidence` rules are satisfied by attaching evidence.
+                #   workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                #   rule is created.
                 #
                 #   @return [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::Type]
                 required :type,
                          enum: -> { Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::Type }
 
                 # @!attribute automation_params
-                #   Configuration for the platform check, when the automation takes parameters.
+                #   Configuration for the platform check, when the automation takes parameters. Omit
+                #   or `null` for evidence rules. Fixed once the rule is created.
                 #
                 #   @return [Hash{Symbol=>Object}, nil]
                 optional :automation_params,
@@ -190,8 +196,9 @@ module Openlayer
 
                 # @!attribute automation_type
                 #   Which workspace signal a platform rule checks, for example
-                #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-                #   evidence rules.
+                #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+                #   platform rules; omit or `null` for evidence rules. Fixed once the rule is
+                #   created.
                 #
                 #   @return [String, nil]
                 optional :automation_type, String, api_name: :automationType, nil?: true
@@ -209,7 +216,8 @@ module Openlayer
                 optional :description, String, nil?: true
 
                 # @!attribute evidence_type
-                #   The kind of evidence that satisfies the rule. `null` for platform rules.
+                #   The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                #   `null` for platform rules. Fixed once the rule is created.
                 #
                 #   @return [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::EvidenceType, nil]
                 optional :evidence_type,
@@ -219,7 +227,8 @@ module Openlayer
 
                 # @!attribute renewal_cadence_days
                 #   How often evidence must be renewed, in days. Once evidence is older than this,
-                #   the rule result becomes `due_soon` and then `failing`.
+                #   the rule result becomes `due_soon` and then `failing`. The window restarts
+                #   whenever evidence is attached. Omit or `null` for platform rules.
                 #
                 #   @return [Integer, nil]
                 optional :renewal_cadence_days, Integer, api_name: :renewalCadenceDays, nil?: true
@@ -244,7 +253,8 @@ module Openlayer
                   optional :date_updated, Time, api_name: :dateUpdated
 
                   # @!attribute immutable
-                  #   Whether the rule is managed by Openlayer and cannot be edited.
+                  #   Whether the rule is managed by Openlayer. These rules can't be renamed or
+                  #   deleted; set `deactivated` to exclude one from compliance instead.
                   #
                   #   @return [Boolean, nil]
                   optional :immutable, Openlayer::Internal::Type::Boolean
@@ -263,7 +273,7 @@ module Openlayer
                 #
                 #   @param type [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::Type] `platform` rules are evaluated automatically from the state of your Openlayer wo
                 #
-                #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters.
+                #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters. Omit
                 #
                 #   @param automation_type [String, nil] Which workspace signal a platform rule checks, for example `monitoring_mode_enab
                 #
@@ -275,14 +285,15 @@ module Openlayer
                 #
                 #   @param description [String, nil] What the rule requires.
                 #
-                #   @param evidence_type [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::EvidenceType, nil] The kind of evidence that satisfies the rule. `null` for platform rules.
+                #   @param evidence_type [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule::EvidenceType, nil] The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
                 #
-                #   @param immutable [Boolean] Whether the rule is managed by Openlayer and cannot be edited.
+                #   @param immutable [Boolean] Whether the rule is managed by Openlayer. These rules can't be renamed or delete
                 #
                 #   @param renewal_cadence_days [Integer, nil] How often evidence must be renewed, in days. Once evidence is older than this, t
 
                 # Whether the rule is evaluated once for the whole workspace, or once per project
-                # the rule's frameworks apply to.
+                # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                # the rule is created.
                 #
                 # @see Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule#scope
                 module Scope
@@ -296,7 +307,8 @@ module Openlayer
                 end
 
                 # `platform` rules are evaluated automatically from the state of your Openlayer
-                # workspace. `evidence` rules are satisfied by attaching evidence.
+                # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                # rule is created.
                 #
                 # @see Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule#type
                 module Type
@@ -309,7 +321,8 @@ module Openlayer
                   #   @return [Array<Symbol>]
                 end
 
-                # The kind of evidence that satisfies the rule. `null` for platform rules.
+                # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                # `null` for platform rules. Fixed once the rule is created.
                 #
                 # @see Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Rule#evidence_type
                 module EvidenceType
@@ -378,6 +391,9 @@ module Openlayer
                 end
 
                 # @!method initialize(id:, number:, section_id:, sort_order:, title:, rule_count: nil, rules: nil, text: nil)
+                #   A subsection usually states one individual requirement of the standard, so it is
+                #   where you see which rules cover a specific clause.
+                #
                 #   @param id [String] The subsection id.
                 #
                 #   @param number [String] The subsection number as it appears in the source standard.
@@ -403,7 +419,8 @@ module Openlayer
 
                   # @!attribute scope
                   #   Whether the rule is evaluated once for the whole workspace, or once per project
-                  #   the rule's frameworks apply to.
+                  #   the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                  #   the rule is created.
                   #
                   #   @return [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::Scope]
                   required :scope,
@@ -411,14 +428,16 @@ module Openlayer
 
                   # @!attribute type
                   #   `platform` rules are evaluated automatically from the state of your Openlayer
-                  #   workspace. `evidence` rules are satisfied by attaching evidence.
+                  #   workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                  #   rule is created.
                   #
                   #   @return [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::Type]
                   required :type,
                            enum: -> { Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::Type }
 
                   # @!attribute automation_params
-                  #   Configuration for the platform check, when the automation takes parameters.
+                  #   Configuration for the platform check, when the automation takes parameters. Omit
+                  #   or `null` for evidence rules. Fixed once the rule is created.
                   #
                   #   @return [Hash{Symbol=>Object}, nil]
                   optional :automation_params,
@@ -428,8 +447,9 @@ module Openlayer
 
                   # @!attribute automation_type
                   #   Which workspace signal a platform rule checks, for example
-                  #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-                  #   evidence rules.
+                  #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+                  #   platform rules; omit or `null` for evidence rules. Fixed once the rule is
+                  #   created.
                   #
                   #   @return [String, nil]
                   optional :automation_type, String, api_name: :automationType, nil?: true
@@ -447,7 +467,8 @@ module Openlayer
                   optional :description, String, nil?: true
 
                   # @!attribute evidence_type
-                  #   The kind of evidence that satisfies the rule. `null` for platform rules.
+                  #   The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                  #   `null` for platform rules. Fixed once the rule is created.
                   #
                   #   @return [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::EvidenceType, nil]
                   optional :evidence_type,
@@ -457,7 +478,8 @@ module Openlayer
 
                   # @!attribute renewal_cadence_days
                   #   How often evidence must be renewed, in days. Once evidence is older than this,
-                  #   the rule result becomes `due_soon` and then `failing`.
+                  #   the rule result becomes `due_soon` and then `failing`. The window restarts
+                  #   whenever evidence is attached. Omit or `null` for platform rules.
                   #
                   #   @return [Integer, nil]
                   optional :renewal_cadence_days, Integer, api_name: :renewalCadenceDays, nil?: true
@@ -482,7 +504,8 @@ module Openlayer
                     optional :date_updated, Time, api_name: :dateUpdated
 
                     # @!attribute immutable
-                    #   Whether the rule is managed by Openlayer and cannot be edited.
+                    #   Whether the rule is managed by Openlayer. These rules can't be renamed or
+                    #   deleted; set `deactivated` to exclude one from compliance instead.
                     #
                     #   @return [Boolean, nil]
                     optional :immutable, Openlayer::Internal::Type::Boolean
@@ -501,7 +524,7 @@ module Openlayer
                   #
                   #   @param type [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::Type] `platform` rules are evaluated automatically from the state of your Openlayer wo
                   #
-                  #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters.
+                  #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters. Omit
                   #
                   #   @param automation_type [String, nil] Which workspace signal a platform rule checks, for example `monitoring_mode_enab
                   #
@@ -513,14 +536,15 @@ module Openlayer
                   #
                   #   @param description [String, nil] What the rule requires.
                   #
-                  #   @param evidence_type [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::EvidenceType, nil] The kind of evidence that satisfies the rule. `null` for platform rules.
+                  #   @param evidence_type [Symbol, Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule::EvidenceType, nil] The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
                   #
-                  #   @param immutable [Boolean] Whether the rule is managed by Openlayer and cannot be edited.
+                  #   @param immutable [Boolean] Whether the rule is managed by Openlayer. These rules can't be renamed or delete
                   #
                   #   @param renewal_cadence_days [Integer, nil] How often evidence must be renewed, in days. Once evidence is older than this, t
 
                   # Whether the rule is evaluated once for the whole workspace, or once per project
-                  # the rule's frameworks apply to.
+                  # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+                  # the rule is created.
                   #
                   # @see Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule#scope
                   module Scope
@@ -534,7 +558,8 @@ module Openlayer
                   end
 
                   # `platform` rules are evaluated automatically from the state of your Openlayer
-                  # workspace. `evidence` rules are satisfied by attaching evidence.
+                  # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+                  # rule is created.
                   #
                   # @see Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule#type
                   module Type
@@ -547,7 +572,8 @@ module Openlayer
                     #   @return [Array<Symbol>]
                   end
 
-                  # The kind of evidence that satisfies the rule. `null` for platform rules.
+                  # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+                  # `null` for platform rules. Fixed once the rule is created.
                   #
                   # @see Openlayer::Models::Governance::Frameworks::DocumentListResponse::Item::Section::Subsection::Rule#evidence_type
                   module EvidenceType

@@ -101,7 +101,8 @@ module Openlayer
           optional :creator_id, String, api_name: :creatorId, nil?: true
 
           # @!attribute immutable
-          #   Whether the framework definition is managed by Openlayer and cannot be edited.
+          #   Whether the framework definition is managed by Openlayer. For these frameworks
+          #   only `enabled`, `tags`, and `projectSelector` can be changed.
           #
           #   @return [Boolean, nil]
           optional :immutable, Openlayer::Internal::Type::Boolean
@@ -120,6 +121,10 @@ module Openlayer
         # @!method initialize(id:, date_created:, date_updated:, enabled:, name:, tags:, workspace_id:, avatar: nil, built_in_slug: nil, creator_id: nil, description: nil, extended_description: nil, href: nil, immutable: nil, project_selector: nil, rule_stats: nil)
         #   Some parameter documentations has been truncated, see
         #   {Openlayer::Models::Governance::FrameworkRetrieveResponse} for more details.
+        #
+        #   A set of rules, drawn from a regulation, a standard, or your own internal
+        #   policy, that Openlayer tracks compliance against. Openlayer ships built-in
+        #   frameworks, and you can create your own.
         #
         #   @param id [String] The framework id.
         #
@@ -148,7 +153,7 @@ module Openlayer
         #
         #   @param href [String, nil] A link to the external standard or regulation the framework is based on.
         #
-        #   @param immutable [Boolean] Whether the framework definition is managed by Openlayer and cannot be edited.
+        #   @param immutable [Boolean] Whether the framework definition is managed by Openlayer. For these frameworks o
         #
         #   @param project_selector [Openlayer::Models::Governance::FrameworkRetrieveResponse::ProjectSelector, nil] Determines which projects the framework applies to. An empty or `null` `match` a
         #

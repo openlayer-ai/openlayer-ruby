@@ -76,7 +76,7 @@ module Openlayer
           sig { returns(Time) }
           attr_accessor :date_updated
 
-          # Whether the tag is managed by Openlayer and cannot be edited or deleted.
+          # Whether the tag is managed by Openlayer. These tags can't be deleted.
           sig { returns(T::Boolean) }
           attr_accessor :immutable
 
@@ -84,6 +84,8 @@ module Openlayer
           sig { returns(String) }
           attr_accessor :workspace_id
 
+          # A label that groups rules across frameworks, for example by team or control
+          # family.
           sig do
             params(
               id: String,
@@ -105,7 +107,7 @@ module Openlayer
             date_created:,
             # The last update date.
             date_updated:,
-            # Whether the tag is managed by Openlayer and cannot be edited or deleted.
+            # Whether the tag is managed by Openlayer. These tags can't be deleted.
             immutable:,
             # The tag name.
             name:,

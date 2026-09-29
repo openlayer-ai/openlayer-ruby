@@ -39,7 +39,8 @@ module Openlayer
 
         # @!attribute renewal_cadence_days
         #   How often evidence must be renewed, in days. Once evidence is older than this,
-        #   the rule result becomes `due_soon` and then `failing`.
+        #   the rule result becomes `due_soon` and then `failing`. The window restarts
+        #   whenever evidence is attached. Omit or `null` for platform rules.
         #
         #   @return [Integer, nil]
         optional :renewal_cadence_days, Integer, api_name: :renewalCadenceDays, nil?: true

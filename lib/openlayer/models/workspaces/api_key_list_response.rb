@@ -8,7 +8,9 @@ module Openlayer
         #   When the key stops authenticating. `null` means the key never expires. Set when
         #   the key is created or rotated, and must be in the future. When the request is
         #   authenticated with an API key that expires, the result can't be later than that
-        #   key's expiry.
+        #   key's expiry. On create, omit it to inherit that expiry. On rotate, omit it to
+        #   keep the current one. It can't be changed with an update; rotate the key
+        #   instead.
         #
         #   @return [Time, nil]
         optional :expires_at, Time, api_name: :expiresAt, nil?: true
@@ -54,8 +56,8 @@ module Openlayer
           # @!attribute status
           #   The key's lifecycle state. `active`: the current secret authenticates.
           #   `rotating`: the key was rotated and the previous secret still authenticates
-          #   until `previousKeyExpiresAt`. `expired`: `expiresAt` has passed and no secret
-          #   authenticates.
+          #   until `previousKeyExpiresAt`. `expired`: `expiresAt` has passed, no secret
+          #   authenticates, and the key can't be rotated.
           #
           #   @return [Symbol, Openlayer::Models::Workspaces::APIKeyListResponseItem::Status]
           required :status, enum: -> { Openlayer::Models::Workspaces::APIKeyListResponseItem::Status }
@@ -108,8 +110,8 @@ module Openlayer
 
         # The key's lifecycle state. `active`: the current secret authenticates.
         # `rotating`: the key was rotated and the previous secret still authenticates
-        # until `previousKeyExpiresAt`. `expired`: `expiresAt` has passed and no secret
-        # authenticates.
+        # until `previousKeyExpiresAt`. `expired`: `expiresAt` has passed, no secret
+        # authenticates, and the key can't be rotated.
         #
         # @see Openlayer::Models::Workspaces::APIKeyListResponseItem#status
         module Status

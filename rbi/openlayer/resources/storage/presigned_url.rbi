@@ -4,7 +4,7 @@ module Openlayer
   module Resources
     class Storage
       class PresignedURL
-        # Retrieve a presigned url to post storage artifacts.
+        # Get a presigned url to upload a file.
         sig do
           params(
             object_name: String,
@@ -18,16 +18,7 @@ module Openlayer
         )
         end
 
-        # Exchange a `storageUri` for a short-lived presigned url you can download the
-        # object from.
-        #
-        # Use it to collect anything the platform stored on your behalf -- for example the
-        # archive a framework export leaves behind, whose `storageUri` comes back in the
-        # background task's `outputs`.
-        #
-        # The workspace is taken from the API key, so there is nothing else to send. The
-        # url is only issued for objects your workspace owns, and `404` covers both "no
-        # such object" and "not yours".
+        # Get a short-lived download url for a stored object.
         sig do
           params(
             storage_uri: String,
@@ -35,7 +26,8 @@ module Openlayer
           ).returns(Openlayer::Models::Storage::PresignedURLRetrieveResponse)
         end
         def retrieve(
-          # The object's storage uri.
+          # The object's storage uri, for example `outputs.storageUri` from a framework
+          # export's background task.
           storage_uri:,
           request_options: {}
         )

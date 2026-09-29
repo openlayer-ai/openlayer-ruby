@@ -21,7 +21,9 @@ module Openlayer
         # When the key stops authenticating. `null` means the key never expires. Set when
         # the key is created or rotated, and must be in the future. When the request is
         # authenticated with an API key that expires, the result can't be later than that
-        # key's expiry.
+        # key's expiry. On create, omit it to inherit that expiry. On rotate, omit it to
+        # keep the current one. It can't be changed with an update; rotate the key
+        # instead.
         sig { returns(T.nilable(Time)) }
         attr_accessor :expires_at
 
@@ -42,7 +44,9 @@ module Openlayer
           # When the key stops authenticating. `null` means the key never expires. Set when
           # the key is created or rotated, and must be in the future. When the request is
           # authenticated with an API key that expires, the result can't be later than that
-          # key's expiry.
+          # key's expiry. On create, omit it to inherit that expiry. On rotate, omit it to
+          # keep the current one. It can't be changed with an update; rotate the key
+          # instead.
           expires_at: nil,
           # The API key name.
           name: nil,

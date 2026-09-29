@@ -7,7 +7,7 @@ module Openlayer
         # Some parameter documentations has been truncated, see
         # {Openlayer::Models::Projects::TestCreateParams} for more details.
         #
-        # Create a test.
+        # Create a test in a project.
         #
         # @overload create(project_id, description:, name:, subtype:, thresholds:, type:, archived: nil, default_to_all_pipelines: nil, delay_window: nil, evaluation_window: nil, exclude_pipelines: nil, include_historical_data: nil, include_pipelines: nil, uses_ml_model: nil, uses_production_data: nil, uses_reference_dataset: nil, uses_training_dataset: nil, uses_validation_dataset: nil, request_options: {})
         #
@@ -63,7 +63,7 @@ module Openlayer
           )
         end
 
-        # Update tests.
+        # Update tests in a project.
         #
         # @overload update(project_id, payloads:, request_options: {})
         #
@@ -90,7 +90,7 @@ module Openlayer
         # Some parameter documentations has been truncated, see
         # {Openlayer::Models::Projects::TestListParams} for more details.
         #
-        # List tests under a project.
+        # List the tests in a project.
         #
         # @overload list(project_id, include_archived: nil, origin_version_id: nil, page: nil, per_page: nil, suggested: nil, type: nil, uses_production_data: nil, request_options: {})
         #

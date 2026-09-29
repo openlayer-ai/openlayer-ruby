@@ -21,14 +21,16 @@ module Openlayer
 
         # @!attribute scope
         #   Whether the rule is evaluated once for the whole workspace, or once per project
-        #   the rule's frameworks apply to.
+        #   the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+        #   the rule is created.
         #
         #   @return [Symbol, Openlayer::Models::Governance::RuleCreateParams::Scope]
         required :scope, enum: -> { Openlayer::Governance::RuleCreateParams::Scope }
 
         # @!attribute type
         #   `platform` rules are evaluated automatically from the state of your Openlayer
-        #   workspace. `evidence` rules are satisfied by attaching evidence.
+        #   workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+        #   rule is created.
         #
         #   @return [Symbol, Openlayer::Models::Governance::RuleCreateParams::Type]
         required :type, enum: -> { Openlayer::Governance::RuleCreateParams::Type }
@@ -40,7 +42,8 @@ module Openlayer
         optional :assignee_id, String, api_name: :assigneeId, nil?: true
 
         # @!attribute automation_params
-        #   Configuration for the platform check, when the automation takes parameters.
+        #   Configuration for the platform check, when the automation takes parameters. Omit
+        #   or `null` for evidence rules. Fixed once the rule is created.
         #
         #   @return [Hash{Symbol=>Object}, nil]
         optional :automation_params,
@@ -50,8 +53,9 @@ module Openlayer
 
         # @!attribute automation_type
         #   Which workspace signal a platform rule checks, for example
-        #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. `null` for
-        #   evidence rules.
+        #   `monitoring_mode_enabled`, `test_setup`, or `project_owner_set`. Set it for
+        #   platform rules; omit or `null` for evidence rules. Fixed once the rule is
+        #   created.
         #
         #   @return [String, nil]
         optional :automation_type, String, api_name: :automationType, nil?: true
@@ -69,7 +73,8 @@ module Openlayer
         optional :description, String, nil?: true
 
         # @!attribute evidence_type
-        #   The kind of evidence that satisfies the rule. `null` for platform rules.
+        #   The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+        #   `null` for platform rules. Fixed once the rule is created.
         #
         #   @return [Symbol, Openlayer::Models::Governance::RuleCreateParams::EvidenceType, nil]
         optional :evidence_type,
@@ -79,7 +84,8 @@ module Openlayer
 
         # @!attribute renewal_cadence_days
         #   How often evidence must be renewed, in days. Once evidence is older than this,
-        #   the rule result becomes `due_soon` and then `failing`.
+        #   the rule result becomes `due_soon` and then `failing`. The window restarts
+        #   whenever evidence is attached. Omit or `null` for platform rules.
         #
         #   @return [Integer, nil]
         optional :renewal_cadence_days, Integer, api_name: :renewalCadenceDays, nil?: true
@@ -106,7 +112,7 @@ module Openlayer
         #
         #   @param assignee_id [String, nil] The user responsible for satisfying the rule.
         #
-        #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters.
+        #   @param automation_params [Hash{Symbol=>Object}, nil] Configuration for the platform check, when the automation takes parameters. Omit
         #
         #   @param automation_type [String, nil] Which workspace signal a platform rule checks, for example `monitoring_mode_enab
         #
@@ -114,7 +120,7 @@ module Openlayer
         #
         #   @param description [String, nil] What the rule requires.
         #
-        #   @param evidence_type [Symbol, Openlayer::Models::Governance::RuleCreateParams::EvidenceType, nil] The kind of evidence that satisfies the rule. `null` for platform rules.
+        #   @param evidence_type [Symbol, Openlayer::Models::Governance::RuleCreateParams::EvidenceType, nil] The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
         #
         #   @param renewal_cadence_days [Integer, nil] How often evidence must be renewed, in days. Once evidence is older than this, t
         #
@@ -123,7 +129,8 @@ module Openlayer
         #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
 
         # Whether the rule is evaluated once for the whole workspace, or once per project
-        # the rule's frameworks apply to.
+        # the rule's frameworks apply to. Must be `project` for platform rules. Fixed once
+        # the rule is created.
         module Scope
           extend Openlayer::Internal::Type::Enum
 
@@ -135,7 +142,8 @@ module Openlayer
         end
 
         # `platform` rules are evaluated automatically from the state of your Openlayer
-        # workspace. `evidence` rules are satisfied by attaching evidence.
+        # workspace. `evidence` rules are satisfied by attaching evidence. Fixed once the
+        # rule is created.
         module Type
           extend Openlayer::Internal::Type::Enum
 
@@ -146,7 +154,8 @@ module Openlayer
           #   @return [Array<Symbol>]
         end
 
-        # The kind of evidence that satisfies the rule. `null` for platform rules.
+        # The kind of evidence that satisfies the rule. Set it for evidence rules; omit or
+        # `null` for platform rules. Fixed once the rule is created.
         module EvidenceType
           extend Openlayer::Internal::Type::Enum
 

@@ -4,11 +4,7 @@ module Openlayer
   module Resources
     class Governance
       class RuleResults
-        # Retrieve a rule result by its id.
-        #
-        # Alongside the status, the response carries the evaluation and renewal dates that
-        # explain it: `dateLastEvaluated` and `dateOfNextEvaluation` for platform rules,
-        # `dateOfLatestEvidence` and `dateOfRenewal` for evidence rules.
+        # Retrieve a rule result.
         #
         # @overload retrieve(rule_result_id, request_options: {})
         #
@@ -28,13 +24,10 @@ module Openlayer
           )
         end
 
-        # Update a rule result. Only the fields you send are changed.
+        # Some parameter documentations has been truncated, see
+        # {Openlayer::Models::Governance::RuleResultUpdateParams} for more details.
         #
-        # Use this to assign an owner, or to exclude a single result from compliance
-        # without deactivating the rule everywhere. `deactivatedReason` is required when
-        # setting `deactivated` to `true`.
-        #
-        # A result's `status` is computed by Openlayer and cannot be set directly.
+        # Update a rule result.
         #
         # @overload update(rule_result_id, assignee_id: nil, blocked_by: nil, blocking: nil, deactivated: nil, deactivated_reason: nil, request_options: {})
         #
@@ -46,9 +39,9 @@ module Openlayer
         #
         # @param blocking [Array<Openlayer::Models::Governance::RuleResultUpdateParams::Blocking>] Rule results that this one blocks.
         #
-        # @param deactivated [Boolean] Whether this result is excluded from compliance calculations.
+        # @param deactivated [Boolean] Whether this result is excluded from compliance calculations. Excludes just this
         #
-        # @param deactivated_reason [String, nil] Why the result was excluded.
+        # @param deactivated_reason [String, nil] Why the result was excluded. Required when setting `deactivated` to `true`.
         #
         # @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -66,12 +59,7 @@ module Openlayer
           )
         end
 
-        # List rule results across a workspace.
-        #
-        # A rule result is the compliance status of one rule for one entity: a project for
-        # project-scoped rules, or the workspace itself for workspace-scoped rules. This
-        # is the endpoint to poll or export when you want your current compliance state,
-        # filtered to a framework, a project, or a status.
+        # List the rule results in a workspace.
         #
         # @overload list(workspace_id, enabled_framework_only: nil, framework_id: nil, include_unframed: nil, page: nil, per_page: nil, project_id: nil, rule_id: nil, scope: nil, search_query: nil, status: nil, type: nil, request_options: {})
         #
@@ -128,16 +116,7 @@ module Openlayer
         # {Openlayer::Models::Governance::RuleResultCreateEvidenceParams} for more
         # details.
         #
-        # Attach evidence to a rule result, satisfying an evidence rule.
-        #
-        # Send the field that matches the rule's `evidenceType`: `storageUri` for an
-        # uploaded document, `text` for a written statement, or `url` for a link.
-        #
-        # For a document, upload the file first with `POST /storage/presigned-url` and
-        # send the resulting storage URI as `storageUri`.
-        #
-        # Attaching evidence re-evaluates the rule result. If the rule sets
-        # `renewalCadenceDays`, the renewal window restarts from this evidence.
+        # Attach evidence to a rule result.
         #
         # @overload create_evidence(rule_result_id, description: nil, name: nil, storage_uri: nil, text: nil, url: nil, request_options: {})
         #
@@ -170,10 +149,6 @@ module Openlayer
         end
 
         # List the evidence attached to a rule result.
-        #
-        # Which field carries the evidence depends on the rule's `evidenceType`:
-        # `storageUri` for uploaded documents, `text` for written statements, and `url`
-        # for links.
         #
         # @overload list_evidence(rule_result_id, page: nil, per_page: nil, request_options: {})
         #

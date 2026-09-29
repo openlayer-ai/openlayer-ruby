@@ -92,6 +92,9 @@ module Openlayer
         required :user_ids, Openlayer::Internal::Type::ArrayOf[String], api_name: :userIds
 
         # @!method initialize(id:, cost:, date_created:, date_of_first_record:, date_of_last_record:, duration:, first_record:, last_record:, latency:, records:, tokens:, user_ids:)
+        #   A session in an inference pipeline, with its activity stats: record counts,
+        #   token usage, cost, latency, and its first and last records.
+        #
         #   @param id [String] The unique session identifier
         #
         #   @param cost [Float] Total cost for the session

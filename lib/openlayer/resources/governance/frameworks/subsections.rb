@@ -9,11 +9,7 @@ module Openlayer
           # {Openlayer::Models::Governance::Frameworks::SubsectionListRulesParams} for more
           # details.
           #
-          # List the rules mapped to a subsection of a framework document.
-          #
-          # A subsection is usually the level at which a standard states an individual
-          # requirement, so this is the endpoint to use when you want to show which rules
-          # cover a specific clause.
+          # List the rules mapped to a document subsection.
           #
           # @overload list_rules(subsection_id, framework_id:, include_results: nil, page: nil, per_page: nil, project_id: nil, status: nil, request_options: {})
           #

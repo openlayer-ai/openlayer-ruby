@@ -6,7 +6,7 @@ module Openlayer
       # @return [Openlayer::Resources::Commits::TestResults]
       attr_reader :test_results
 
-      # Retrieve a project version (commit) by its id.
+      # Retrieve a project commit.
       #
       # @overload retrieve(project_version_id, request_options: {})
       #

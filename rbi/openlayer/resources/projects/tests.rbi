@@ -4,7 +4,7 @@ module Openlayer
   module Resources
     class Projects
       class Tests
-        # Create a test.
+        # Create a test in a project.
         sig do
           params(
             project_id: String,
@@ -76,7 +76,7 @@ module Openlayer
         )
         end
 
-        # Update tests.
+        # Update tests in a project.
         sig do
           params(
             project_id: String,
@@ -93,7 +93,7 @@ module Openlayer
         )
         end
 
-        # List tests under a project.
+        # List the tests in a project.
         sig do
           params(
             project_id: String,

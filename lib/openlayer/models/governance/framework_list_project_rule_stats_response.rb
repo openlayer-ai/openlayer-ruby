@@ -90,6 +90,8 @@ module Openlayer
                    api_name: :byRuleType
 
           # @!method initialize(project_id:, project_name:, task_type:, total:, total_due_soon:, total_error:, total_failing:, total_passing:, total_pending:, total_running:, total_skipped:, by_rule_type: nil)
+          #   One project's rule result counts by status, for a single framework.
+          #
           #   @param project_id [String] The project id.
           #
           #   @param project_name [String] The project name.

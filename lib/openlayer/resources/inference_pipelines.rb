@@ -12,7 +12,7 @@ module Openlayer
       # @return [Openlayer::Resources::InferencePipelines::TestResults]
       attr_reader :test_results
 
-      # Retrieve inference pipeline.
+      # Retrieve an inference pipeline.
       #
       # @overload retrieve(inference_pipeline_id, expand: nil, request_options: {})
       #
@@ -40,7 +40,7 @@ module Openlayer
       # Some parameter documentations has been truncated, see
       # {Openlayer::Models::InferencePipelineUpdateParams} for more details.
       #
-      # Update inference pipeline.
+      # Update an inference pipeline.
       #
       # @overload update(inference_pipeline_id, description: nil, name: nil, reference_dataset_uri: nil, request_options: {})
       #
@@ -68,7 +68,7 @@ module Openlayer
         )
       end
 
-      # Delete inference pipeline.
+      # Delete an inference pipeline.
       #
       # @overload delete(inference_pipeline_id, request_options: {})
       #
@@ -88,12 +88,7 @@ module Openlayer
         )
       end
 
-      # Get aggregated session data for an inference pipeline with pagination and
-      # metadata.
-      #
-      # Returns a list of sessions for the inference pipeline, including activity
-      # statistics such as record counts, token usage, cost, latency, and the first and
-      # last records.
+      # List the sessions in an inference pipeline, with their stats.
       #
       # @overload retrieve_sessions(inference_pipeline_id, asc: nil, page: nil, per_page: nil, sort_column: nil, column_filters: nil, exclude_row_id_list: nil, not_search_query_and: nil, not_search_query_or: nil, row_id_list: nil, search_query_and: nil, search_query_or: nil, request_options: {})
       #
@@ -140,11 +135,7 @@ module Openlayer
         )
       end
 
-      # Get aggregated user data for an inference pipeline with pagination and metadata.
-      #
-      # Returns a list of users who have interacted with the inference pipeline,
-      # including their activity statistics such as session counts, record counts, token
-      # usage, and costs.
+      # List the users of an inference pipeline, with their stats.
       #
       # @overload retrieve_users(inference_pipeline_id, asc: nil, page: nil, per_page: nil, sort_column: nil, column_filters: nil, exclude_row_id_list: nil, not_search_query_and: nil, not_search_query_or: nil, row_id_list: nil, search_query_and: nil, search_query_or: nil, request_options: {})
       #

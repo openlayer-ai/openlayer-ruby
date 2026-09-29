@@ -4,7 +4,7 @@ module Openlayer
   module Resources
     class InferencePipelines
       class Rows
-        # Fetch a single inference pipeline row by inference ID, including OTel steps.
+        # Retrieve a row by inference ID, including OTel steps.
         #
         # @overload retrieve(inference_id, inference_pipeline_id:, request_options: {})
         #
@@ -31,7 +31,7 @@ module Openlayer
           )
         end
 
-        # Update an inference data point in an inference pipeline.
+        # Update a row in an inference pipeline.
         #
         # @overload update(inference_pipeline_id, inference_id:, row:, config: nil, request_options: {})
         #
@@ -62,7 +62,7 @@ module Openlayer
           )
         end
 
-        # A list of rows for an inference pipeline.
+        # List the rows in an inference pipeline.
         #
         # @overload list(inference_pipeline_id, asc: nil, page: nil, per_page: nil, sort_column: nil, column_filters: nil, exclude_row_id_list: nil, not_search_query_and: nil, not_search_query_or: nil, row_id_list: nil, search_query_and: nil, search_query_or: nil, request_options: {})
         #
@@ -109,8 +109,7 @@ module Openlayer
           )
         end
 
-        # Delete a single inference pipeline row by inference ID. Only project admins can
-        # perform this action.
+        # Delete a row by inference ID.
         #
         # @overload delete(inference_id, inference_pipeline_id:, request_options: {})
         #

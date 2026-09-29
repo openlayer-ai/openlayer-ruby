@@ -4,11 +4,7 @@ module Openlayer
   module Resources
     class Governance
       class RuleResults
-        # Retrieve a rule result by its id.
-        #
-        # Alongside the status, the response carries the evaluation and renewal dates that
-        # explain it: `dateLastEvaluated` and `dateOfNextEvaluation` for platform rules,
-        # `dateOfLatestEvidence` and `dateOfRenewal` for evidence rules.
+        # Retrieve a rule result.
         sig do
           params(
             rule_result_id: String,
@@ -22,13 +18,7 @@ module Openlayer
         )
         end
 
-        # Update a rule result. Only the fields you send are changed.
-        #
-        # Use this to assign an owner, or to exclude a single result from compliance
-        # without deactivating the rule everywhere. `deactivatedReason` is required when
-        # setting `deactivated` to `true`.
-        #
-        # A result's `status` is computed by Openlayer and cannot be set directly.
+        # Update a rule result.
         sig do
           params(
             rule_result_id: String,
@@ -55,20 +45,16 @@ module Openlayer
           blocked_by: nil,
           # Rule results that this one blocks.
           blocking: nil,
-          # Whether this result is excluded from compliance calculations.
+          # Whether this result is excluded from compliance calculations. Excludes just this
+          # result, without deactivating the rule everywhere.
           deactivated: nil,
-          # Why the result was excluded.
+          # Why the result was excluded. Required when setting `deactivated` to `true`.
           deactivated_reason: nil,
           request_options: {}
         )
         end
 
-        # List rule results across a workspace.
-        #
-        # A rule result is the compliance status of one rule for one entity: a project for
-        # project-scoped rules, or the workspace itself for workspace-scoped rules. This
-        # is the endpoint to poll or export when you want your current compliance state,
-        # filtered to a framework, a project, or a status.
+        # List the rule results in a workspace.
         sig do
           params(
             workspace_id: String,
@@ -116,16 +102,7 @@ module Openlayer
         )
         end
 
-        # Attach evidence to a rule result, satisfying an evidence rule.
-        #
-        # Send the field that matches the rule's `evidenceType`: `storageUri` for an
-        # uploaded document, `text` for a written statement, or `url` for a link.
-        #
-        # For a document, upload the file first with `POST /storage/presigned-url` and
-        # send the resulting storage URI as `storageUri`.
-        #
-        # Attaching evidence re-evaluates the rule result. If the rule sets
-        # `renewalCadenceDays`, the renewal window restarts from this evidence.
+        # Attach evidence to a rule result.
         sig do
           params(
             rule_result_id: String,
@@ -147,7 +124,8 @@ module Openlayer
           # The evidence name.
           name: nil,
           # Where the uploaded file is stored. Set when the rule's `evidenceType` is
-          # `document`.
+          # `document`. Upload the file first with `POST /storage/presigned-url` and send
+          # the storage URI it returns.
           storage_uri: nil,
           # The evidence text. Set when the rule's `evidenceType` is `text`.
           text: nil,
@@ -158,10 +136,6 @@ module Openlayer
         end
 
         # List the evidence attached to a rule result.
-        #
-        # Which field carries the evidence depends on the rule's `evidenceType`:
-        # `storageUri` for uploaded documents, `text` for written statements, and `url`
-        # for links.
         sig do
           params(
             rule_result_id: String,

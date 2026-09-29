@@ -116,6 +116,7 @@ module Openlayer
           end
           attr_writer :by_rule_type
 
+          # One project's rule result counts by status, for a single framework.
           sig do
             params(
               project_id: String,
