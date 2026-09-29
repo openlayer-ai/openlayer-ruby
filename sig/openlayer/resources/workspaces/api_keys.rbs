@@ -4,9 +4,42 @@ module Openlayer
       class APIKeys
         def create: (
           String workspace_id,
+          ?expires_at: Time?,
           ?name: String?,
           ?request_options: Openlayer::request_opts
         ) -> Openlayer::Models::Workspaces::APIKeyCreateResponse
+
+        def retrieve: (
+          String api_key_id,
+          workspace_id: String,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Workspaces::APIKeyRetrieveResponse
+
+        def update: (
+          String api_key_id,
+          workspace_id: String,
+          ?name: String?,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Workspaces::APIKeyUpdateResponse
+
+        def list: (
+          String workspace_id,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Workspaces::api_key_list_response
+
+        def delete: (
+          String api_key_id,
+          workspace_id: String,
+          ?request_options: Openlayer::request_opts
+        ) -> nil
+
+        def rotate: (
+          String api_key_id,
+          workspace_id: String,
+          ?expires_at: Time?,
+          ?grace_period_hours: Integer,
+          ?request_options: Openlayer::request_opts
+        ) -> Openlayer::Models::Workspaces::APIKeyRotateResponse
 
         def initialize: (client: Openlayer::Client) -> void
       end

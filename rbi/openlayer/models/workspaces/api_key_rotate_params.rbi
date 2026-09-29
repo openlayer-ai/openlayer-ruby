@@ -3,20 +3,23 @@
 module Openlayer
   module Models
     module Workspaces
-      class APIKeyCreateParams < Openlayer::Internal::Type::BaseModel
+      class APIKeyRotateParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Openlayer::Workspaces::APIKeyCreateParams,
+              Openlayer::Workspaces::APIKeyRotateParams,
               Openlayer::Internal::AnyHash
             )
           end
 
         sig { returns(String) }
         attr_accessor :workspace_id
+
+        sig { returns(String) }
+        attr_accessor :api_key_id
 
         # When the key stops authenticating. `null` means the key never expires. Set when
         # the key is created or rotated, and must be in the future. When the request is
@@ -25,27 +28,32 @@ module Openlayer
         sig { returns(T.nilable(Time)) }
         attr_accessor :expires_at
 
-        # The API key name.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :name
+        # Hours the previous secret keeps authenticating.
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :grace_period_hours
+
+        sig { params(grace_period_hours: Integer).void }
+        attr_writer :grace_period_hours
 
         sig do
           params(
             workspace_id: String,
+            api_key_id: String,
             expires_at: T.nilable(Time),
-            name: T.nilable(String),
+            grace_period_hours: Integer,
             request_options: Openlayer::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           workspace_id:,
+          api_key_id:,
           # When the key stops authenticating. `null` means the key never expires. Set when
           # the key is created or rotated, and must be in the future. When the request is
           # authenticated with an API key that expires, the result can't be later than that
           # key's expiry.
           expires_at: nil,
-          # The API key name.
-          name: nil,
+          # Hours the previous secret keeps authenticating.
+          grace_period_hours: nil,
           request_options: {}
         )
         end
@@ -54,8 +62,9 @@ module Openlayer
           override.returns(
             {
               workspace_id: String,
+              api_key_id: String,
               expires_at: T.nilable(Time),
-              name: T.nilable(String),
+              grace_period_hours: Integer,
               request_options: Openlayer::RequestOptions
             }
           )

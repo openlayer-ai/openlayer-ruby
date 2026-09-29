@@ -3,8 +3,8 @@
 module Openlayer
   module Models
     module Workspaces
-      # @see Openlayer::Resources::Workspaces::APIKeys#create
-      class APIKeyCreateResponse < Openlayer::Internal::Type::BaseModel
+      # @see Openlayer::Resources::Workspaces::APIKeys#retrieve
+      class APIKeyRetrieveResponse < Openlayer::Internal::Type::BaseModel
         # @!attribute expires_at
         #   When the key stops authenticating. `null` means the key never expires. Set when
         #   the key is created or rotated, and must be in the future. When the request is
@@ -58,8 +58,8 @@ module Openlayer
           #   until `previousKeyExpiresAt`. `expired`: `expiresAt` has passed and no secret
           #   authenticates.
           #
-          #   @return [Symbol, Openlayer::Models::Workspaces::APIKeyCreateResponse::Status]
-          required :status, enum: -> { Openlayer::Models::Workspaces::APIKeyCreateResponse::Status }
+          #   @return [Symbol, Openlayer::Models::Workspaces::APIKeyRetrieveResponse::Status]
+          required :status, enum: -> { Openlayer::Models::Workspaces::APIKeyRetrieveResponse::Status }
 
           # @!attribute last_rotated_at
           #   When the key was last rotated.
@@ -83,7 +83,7 @@ module Openlayer
 
         # @!method initialize(id:, date_created:, date_last_used:, date_updated:, secure_key:, status:, expires_at: nil, last_rotated_at: nil, name: nil, previous_key_expires_at: nil, secret: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Openlayer::Models::Workspaces::APIKeyCreateResponse} for more details.
+        #   {Openlayer::Models::Workspaces::APIKeyRetrieveResponse} for more details.
         #
         #   @param id [String] The API key id.
         #
@@ -95,7 +95,7 @@ module Openlayer
         #
         #   @param secure_key [String] An obfuscated hint of the API key value. When a key is created or rotated this a
         #
-        #   @param status [Symbol, Openlayer::Models::Workspaces::APIKeyCreateResponse::Status] The key's lifecycle state. `active`: the current secret authenticates. `rotating
+        #   @param status [Symbol, Openlayer::Models::Workspaces::APIKeyRetrieveResponse::Status] The key's lifecycle state. `active`: the current secret authenticates. `rotating
         #
         #   @param expires_at [Time, nil] When the key stops authenticating. `null` means the key never expires. Set when
         #
@@ -112,7 +112,7 @@ module Openlayer
         # until `previousKeyExpiresAt`. `expired`: `expiresAt` has passed and no secret
         # authenticates.
         #
-        # @see Openlayer::Models::Workspaces::APIKeyCreateResponse#status
+        # @see Openlayer::Models::Workspaces::APIKeyRetrieveResponse#status
         module Status
           extend Openlayer::Internal::Type::Enum
 

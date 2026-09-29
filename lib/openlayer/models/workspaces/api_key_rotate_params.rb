@@ -3,8 +3,8 @@
 module Openlayer
   module Models
     module Workspaces
-      # @see Openlayer::Resources::Workspaces::APIKeys#create
-      class APIKeyCreateParams < Openlayer::Internal::Type::BaseModel
+      # @see Openlayer::Resources::Workspaces::APIKeys#rotate
+      class APIKeyRotateParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
@@ -12,6 +12,11 @@ module Openlayer
         #
         #   @return [String]
         required :workspace_id, String
+
+        # @!attribute api_key_id
+        #
+        #   @return [String]
+        required :api_key_id, String
 
         # @!attribute expires_at
         #   When the key stops authenticating. `null` means the key never expires. Set when
@@ -22,21 +27,23 @@ module Openlayer
         #   @return [Time, nil]
         optional :expires_at, Time, api_name: :expiresAt, nil?: true
 
-        # @!attribute name
-        #   The API key name.
+        # @!attribute grace_period_hours
+        #   Hours the previous secret keeps authenticating.
         #
-        #   @return [String, nil]
-        optional :name, String, nil?: true
+        #   @return [Integer, nil]
+        optional :grace_period_hours, Integer, api_name: :gracePeriodHours
 
-        # @!method initialize(workspace_id:, expires_at: nil, name: nil, request_options: {})
+        # @!method initialize(workspace_id:, api_key_id:, expires_at: nil, grace_period_hours: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
-        #   {Openlayer::Models::Workspaces::APIKeyCreateParams} for more details.
+        #   {Openlayer::Models::Workspaces::APIKeyRotateParams} for more details.
         #
         #   @param workspace_id [String]
         #
+        #   @param api_key_id [String]
+        #
         #   @param expires_at [Time, nil] When the key stops authenticating. `null` means the key never expires. Set when
         #
-        #   @param name [String, nil] The API key name.
+        #   @param grace_period_hours [Integer] Hours the previous secret keeps authenticating.
         #
         #   @param request_options [Openlayer::RequestOptions, Hash{Symbol=>Object}]
       end
