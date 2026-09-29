@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.17.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.16.0...v0.17.0) (2026-09-29)
+
+
+### Features
+
+* **api:** add API key CRUD, expiry, and rotation ([9ab4992](https://github.com/openlayer-ai/openlayer-ruby/commit/9ab4992fe14b456c70122b9f66c8b86679634122))
+* **api:** add API key CRUD, expiry, and rotation ([17edb02](https://github.com/openlayer-ai/openlayer-ruby/commit/17edb02ed93a58b224a2e5553992e9d090f6734a))
+
+
+### Chores
+
+* **stlc:** seal custom-code tracking files ([caa6cfb](https://github.com/openlayer-ai/openlayer-ruby/commit/caa6cfbef8534d5dc57e89b2d96815b52ab750c0))
+* **stlc:** seal custom-code tracking files ([47a9897](https://github.com/openlayer-ai/openlayer-ruby/commit/47a9897f0d4d0ff8465f3a30fe2bce7ddfe6b390))
+
 ## [0.16.0](https://github.com/openlayer-ai/openlayer-ruby/compare/v0.15.0...v0.16.0) (2026-09-21)
 
 
