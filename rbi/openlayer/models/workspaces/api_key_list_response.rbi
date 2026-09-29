@@ -3,11 +3,11 @@
 module Openlayer
   module Models
     module Workspaces
-      class APIKeyCreateResponse < Openlayer::Internal::Type::BaseModel
+      class APIKeyListResponseItem < Openlayer::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Openlayer::Models::Workspaces::APIKeyCreateResponse,
+              Openlayer::Models::Workspaces::APIKeyListResponseItem,
               Openlayer::Internal::AnyHash
             )
           end
@@ -50,7 +50,7 @@ module Openlayer
         # authenticates.
         sig do
           returns(
-            Openlayer::Models::Workspaces::APIKeyCreateResponse::Status::TaggedSymbol
+            Openlayer::Models::Workspaces::APIKeyListResponseItem::Status::TaggedSymbol
           )
         end
         attr_accessor :status
@@ -79,7 +79,7 @@ module Openlayer
             date_updated: Time,
             secure_key: String,
             status:
-              Openlayer::Models::Workspaces::APIKeyCreateResponse::Status::OrSymbol,
+              Openlayer::Models::Workspaces::APIKeyListResponseItem::Status::OrSymbol,
             expires_at: T.nilable(Time),
             last_rotated_at: T.nilable(Time),
             name: T.nilable(String),
@@ -130,7 +130,7 @@ module Openlayer
               date_updated: Time,
               secure_key: String,
               status:
-                Openlayer::Models::Workspaces::APIKeyCreateResponse::Status::TaggedSymbol,
+                Openlayer::Models::Workspaces::APIKeyListResponseItem::Status::TaggedSymbol,
               expires_at: T.nilable(Time),
               last_rotated_at: T.nilable(Time),
               name: T.nilable(String),
@@ -153,7 +153,7 @@ module Openlayer
             T.type_alias do
               T.all(
                 Symbol,
-                Openlayer::Models::Workspaces::APIKeyCreateResponse::Status
+                Openlayer::Models::Workspaces::APIKeyListResponseItem::Status
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -161,23 +161,23 @@ module Openlayer
           ACTIVE =
             T.let(
               :active,
-              Openlayer::Models::Workspaces::APIKeyCreateResponse::Status::TaggedSymbol
+              Openlayer::Models::Workspaces::APIKeyListResponseItem::Status::TaggedSymbol
             )
           ROTATING =
             T.let(
               :rotating,
-              Openlayer::Models::Workspaces::APIKeyCreateResponse::Status::TaggedSymbol
+              Openlayer::Models::Workspaces::APIKeyListResponseItem::Status::TaggedSymbol
             )
           EXPIRED =
             T.let(
               :expired,
-              Openlayer::Models::Workspaces::APIKeyCreateResponse::Status::TaggedSymbol
+              Openlayer::Models::Workspaces::APIKeyListResponseItem::Status::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                Openlayer::Models::Workspaces::APIKeyCreateResponse::Status::TaggedSymbol
+                Openlayer::Models::Workspaces::APIKeyListResponseItem::Status::TaggedSymbol
               ]
             )
           end
@@ -185,6 +185,14 @@ module Openlayer
           end
         end
       end
+
+      APIKeyListResponse =
+        T.let(
+          Openlayer::Internal::Type::ArrayOf[
+            Openlayer::Models::Workspaces::APIKeyListResponseItem
+          ],
+          Openlayer::Internal::Type::Converter
+        )
     end
   end
 end

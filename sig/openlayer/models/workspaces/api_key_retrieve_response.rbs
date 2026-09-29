@@ -1,14 +1,14 @@
 module Openlayer
   module Models
     module Workspaces
-      type api_key_create_response =
+      type api_key_retrieve_response =
         {
           id: String,
           date_created: Time,
           date_last_used: Time?,
           date_updated: Time,
           secure_key: String,
-          status: Openlayer::Models::Workspaces::APIKeyCreateResponse::status,
+          status: Openlayer::Models::Workspaces::APIKeyRetrieveResponse::status,
           expires_at: Time?,
           last_rotated_at: Time?,
           name: String?,
@@ -16,7 +16,7 @@ module Openlayer
           secret: String
         }
 
-      class APIKeyCreateResponse < Openlayer::Internal::Type::BaseModel
+      class APIKeyRetrieveResponse < Openlayer::Internal::Type::BaseModel
         attr_accessor expires_at: Time?
 
         attr_accessor name: String?
@@ -31,7 +31,7 @@ module Openlayer
 
         attr_accessor secure_key: String
 
-        attr_accessor status: Openlayer::Models::Workspaces::APIKeyCreateResponse::status
+        attr_accessor status: Openlayer::Models::Workspaces::APIKeyRetrieveResponse::status
 
         attr_accessor last_rotated_at: Time?
 
@@ -47,7 +47,7 @@ module Openlayer
           date_last_used: Time?,
           date_updated: Time,
           secure_key: String,
-          status: Openlayer::Models::Workspaces::APIKeyCreateResponse::status,
+          status: Openlayer::Models::Workspaces::APIKeyRetrieveResponse::status,
           ?expires_at: Time?,
           ?last_rotated_at: Time?,
           ?name: String?,
@@ -61,7 +61,7 @@ module Openlayer
           date_last_used: Time?,
           date_updated: Time,
           secure_key: String,
-          status: Openlayer::Models::Workspaces::APIKeyCreateResponse::status,
+          status: Openlayer::Models::Workspaces::APIKeyRetrieveResponse::status,
           expires_at: Time?,
           last_rotated_at: Time?,
           name: String?,
@@ -78,7 +78,7 @@ module Openlayer
           ROTATING: :rotating
           EXPIRED: :expired
 
-          def self?.values: -> ::Array[Openlayer::Models::Workspaces::APIKeyCreateResponse::status]
+          def self?.values: -> ::Array[Openlayer::Models::Workspaces::APIKeyRetrieveResponse::status]
         end
       end
     end

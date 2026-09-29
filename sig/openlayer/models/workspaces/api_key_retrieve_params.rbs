@@ -1,31 +1,27 @@
 module Openlayer
   module Models
     module Workspaces
-      type api_key_create_params =
-        { workspace_id: String, expires_at: Time?, name: String? }
+      type api_key_retrieve_params =
+        { workspace_id: String, api_key_id: String }
         & Openlayer::Internal::Type::request_parameters
 
-      class APIKeyCreateParams < Openlayer::Internal::Type::BaseModel
+      class APIKeyRetrieveParams < Openlayer::Internal::Type::BaseModel
         extend Openlayer::Internal::Type::RequestParameters::Converter
         include Openlayer::Internal::Type::RequestParameters
 
         attr_accessor workspace_id: String
 
-        attr_accessor expires_at: Time?
-
-        attr_accessor name: String?
+        attr_accessor api_key_id: String
 
         def initialize: (
           workspace_id: String,
-          ?expires_at: Time?,
-          ?name: String?,
+          api_key_id: String,
           ?request_options: Openlayer::request_opts
         ) -> void
 
         def to_hash: -> {
           workspace_id: String,
-          expires_at: Time?,
-          name: String?,
+          api_key_id: String,
           request_options: Openlayer::RequestOptions
         }
       end

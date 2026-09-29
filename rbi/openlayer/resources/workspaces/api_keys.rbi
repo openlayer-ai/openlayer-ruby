@@ -4,10 +4,14 @@ module Openlayer
   module Resources
     class Workspaces
       class APIKeys
-        # Create a new API key in a workspace.
+        # Create a new API key in a workspace. The full secret is returned in `secret`,
+        # only in this response. Optionally set `expiresAt`. When you authenticate with an
+        # API key that expires, the new key can't outlive it: omit `expiresAt` to inherit
+        # that expiry, and a later expiry (or `null`) is rejected with 400.
         sig do
           params(
             workspace_id: String,
+            expires_at: T.nilable(Time),
             name: T.nilable(String),
             request_options: Openlayer::RequestOptions::OrHash
           ).returns(Openlayer::Models::Workspaces::APIKeyCreateResponse)
@@ -15,8 +19,120 @@ module Openlayer
         def create(
           # The workspace id.
           workspace_id,
+          # When the key stops authenticating. `null` means the key never expires. Set when
+          # the key is created or rotated, and must be in the future. When the request is
+          # authenticated with an API key that expires, the result can't be later than that
+          # key's expiry.
+          expires_at: nil,
           # The API key name.
           name: nil,
+          request_options: {}
+        )
+        end
+
+        # Retrieve one of your API keys, with its lifecycle status. The secret is never
+        # returned; `secureKey` is an obfuscated hint.
+        sig do
+          params(
+            api_key_id: String,
+            workspace_id: String,
+            request_options: Openlayer::RequestOptions::OrHash
+          ).returns(Openlayer::Models::Workspaces::APIKeyRetrieveResponse)
+        end
+        def retrieve(
+          # The API key id.
+          api_key_id,
+          # The workspace id.
+          workspace_id:,
+          request_options: {}
+        )
+        end
+
+        # Rename one of your API keys. A key's expiry can't be updated; rotate the key
+        # with a new `expiresAt` instead, so extending a key's life always issues a new
+        # secret.
+        sig do
+          params(
+            api_key_id: String,
+            workspace_id: String,
+            name: T.nilable(String),
+            request_options: Openlayer::RequestOptions::OrHash
+          ).returns(Openlayer::Models::Workspaces::APIKeyUpdateResponse)
+        end
+        def update(
+          # Path param: The API key id.
+          api_key_id,
+          # Path param: The workspace id.
+          workspace_id:,
+          # Body param: The API key name.
+          name: nil,
+          request_options: {}
+        )
+        end
+
+        # List the API keys you own in a workspace, with their lifecycle status. Secrets
+        # are never returned; `secureKey` is an obfuscated hint.
+        sig do
+          params(
+            workspace_id: String,
+            request_options: Openlayer::RequestOptions::OrHash
+          ).returns(
+            T::Array[Openlayer::Models::Workspaces::APIKeyListResponseItem]
+          )
+        end
+        def list(
+          # The workspace id.
+          workspace_id,
+          request_options: {}
+        )
+        end
+
+        # Delete one of your API keys. Every secret for the key stops working immediately,
+        # including a previous secret still in its rotation grace period.
+        sig do
+          params(
+            api_key_id: String,
+            workspace_id: String,
+            request_options: Openlayer::RequestOptions::OrHash
+          ).void
+        end
+        def delete(
+          # The API key id.
+          api_key_id,
+          # The workspace id.
+          workspace_id:,
+          request_options: {}
+        )
+        end
+
+        # Replace an API key's secret now. The new secret is returned in `secret`, only in
+        # this response. Send `expiresAt` to change the key's expiry (`null` for never);
+        # omit it to keep the current one. The previous secret keeps authenticating for
+        # `gracePeriodHours` (default 0, so it stops working immediately), and never past
+        # `expiresAt`. The key keeps its id and name. Expired keys cannot be rotated. Only
+        # one previous secret is kept, so rotating again during a grace period retires the
+        # older one immediately.
+        sig do
+          params(
+            api_key_id: String,
+            workspace_id: String,
+            expires_at: T.nilable(Time),
+            grace_period_hours: Integer,
+            request_options: Openlayer::RequestOptions::OrHash
+          ).returns(Openlayer::Models::Workspaces::APIKeyRotateResponse)
+        end
+        def rotate(
+          # Path param: The API key id.
+          api_key_id,
+          # Path param: The workspace id.
+          workspace_id:,
+          # Body param: When the key stops authenticating. `null` means the key never
+          # expires. Set when the key is created or rotated, and must be in the future. When
+          # the request is authenticated with an API key that expires, the result can't be
+          # later than that key's expiry.
+          expires_at: nil,
+          # Body param: Hours the previous secret keeps authenticating.
+          grace_period_hours: nil,
           request_options: {}
         )
         end
